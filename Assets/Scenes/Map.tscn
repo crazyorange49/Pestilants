@@ -1,3 +1,3 @@
-[gd_scene format=3 uid="uid://dexdvbfljxaes"]
+[gd_scene load_steps=0 format=3 uid="uid://dexdvbfljxaes"]
 
 [node name="Map" type="Node2D"]
