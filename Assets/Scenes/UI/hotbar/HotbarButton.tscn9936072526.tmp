@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bom4ur2mvc2g2"]
+[gd_scene load_steps=3 format=3 uid="uid://bom4ur2mvc2g2"]
 
 [ext_resource type="Script" uid="uid://cw3uo2dt5iahx" path="res://Assets/Scripts/hotbar_button.gd" id="1_qo6jk"]
+[ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="2_2b3u6"]
 
 [node name="HotbarButton" type="Button"]
 custom_minimum_size = Vector2(60, 60)
@@ -28,6 +29,7 @@ offset_bottom = 23.810547
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("2_2b3u6")
 expand_mode = 1
 
 [node name="quantityText" type="Label" parent="."]

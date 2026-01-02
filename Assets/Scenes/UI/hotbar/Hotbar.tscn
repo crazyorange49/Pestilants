@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cd5so80g438ao"]
 
 [ext_resource type="PackedScene" uid="uid://bom4ur2mvc2g2" path="res://Assets/Scenes/UI/hotbar/HotbarButton.tscn" id="1_asi3r"]
-[ext_resource type="Script" uid="uid://bl58t3a6ksjrs" path="res://Assets/Scenes/UI/hotbar/hotbar.gd" id="1_y2nog"]
+[ext_resource type="Script" uid="uid://bl58t3a6ksjrs" path="res://Assets/Scripts/hotbar.gd" id="1_y2nog"]
 [ext_resource type="Shortcut" uid="uid://78gepmjqalx5" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_1.tres" id="2_8k8pe"]
 [ext_resource type="Shortcut" uid="uid://c4xatd4fh8s77" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_2.tres" id="3_8kbpo"]
 [ext_resource type="Shortcut" uid="uid://bq82xw6mrhw5s" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_3.tres" id="4_xui5u"]
@@ -67,12 +67,12 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[connection signal="pressed" from="SlotContainer/HotbarButton" to="." method="hotbar_Button_Pressed" binds= [1]]
-[connection signal="pressed" from="SlotContainer/HotbarButton2" to="." method="hotbar_Button_Pressed" binds= [2]]
-[connection signal="pressed" from="SlotContainer/HotbarButton3" to="." method="hotbar_Button_Pressed" binds= [3]]
-[connection signal="pressed" from="SlotContainer/HotbarButton4" to="." method="hotbar_Button_Pressed" binds= [4]]
-[connection signal="pressed" from="SlotContainer/HotbarButton5" to="." method="hotbar_Button_Pressed" binds= [5]]
-[connection signal="pressed" from="SlotContainer/HotbarButton6" to="." method="hotbar_Button_Pressed" binds= [6]]
-[connection signal="pressed" from="SlotContainer/HotbarButton7" to="." method="hotbar_Button_Pressed" binds= [7]]
-[connection signal="pressed" from="SlotContainer/HotbarButton8" to="." method="hotbar_Button_Pressed" binds= [8]]
-[connection signal="pressed" from="SlotContainer/HotbarButton9" to="." method="hotbar_Button_Pressed" binds= [9]]
+[connection signal="pressed" from="SlotContainer/HotbarButton" to="." method="_hotbar_Button_Pressed" binds= [1.0]]
+[connection signal="pressed" from="SlotContainer/HotbarButton2" to="." method="_hotbar_Button_Pressed" binds= [2.0]]
+[connection signal="pressed" from="SlotContainer/HotbarButton3" to="." method="_hotbar_Button_Pressed" binds= [3.0]]
+[connection signal="pressed" from="SlotContainer/HotbarButton4" to="." method="_hotbar_Button_Pressed" binds= [4.0]]
+[connection signal="pressed" from="SlotContainer/HotbarButton5" to="." method="_hotbar_Button_Pressed" binds= [5.0]]
+[connection signal="pressed" from="SlotContainer/HotbarButton6" to="." method="_hotbar_Button_Pressed" binds= [6.0]]
+[connection signal="pressed" from="SlotContainer/HotbarButton7" to="." method="_hotbar_Button_Pressed" binds= [7.0]]
+[connection signal="pressed" from="SlotContainer/HotbarButton8" to="." method="_hotbar_Button_Pressed" binds= [8.0]]
+[connection signal="pressed" from="SlotContainer/HotbarButton9" to="." method="_hotbar_Button_Pressed" binds= [9.0]]
