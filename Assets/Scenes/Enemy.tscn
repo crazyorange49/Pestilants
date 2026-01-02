@@ -86,7 +86,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.51,
 "texture": SubResource("AtlasTexture_6nf7p")
 }, {
 "duration": 1.0,
@@ -103,22 +103,22 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_03yfc")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ct8q6")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_jebe6")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_kuhgf")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_r1aat")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ch1ut")
 }],
 "loop": true,
@@ -139,8 +139,8 @@ script = ExtResource("1_3pmh0")
 position = Vector2(17.5, -10.9375)
 scale = Vector2(2.09375, 2.09375)
 sprite_frames = SubResource("SpriteFrames_wbetg")
-animation = &"idle"
-frame_progress = 0.42940876
+animation = &"walk"
+frame_progress = 0.23510706
 offset = Vector2(-8.805, -1.595)
 
 [node name="detecionArea" type="Area2D" parent="."]
