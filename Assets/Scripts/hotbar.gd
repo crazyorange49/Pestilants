@@ -65,4 +65,5 @@ func getNumberOfItems(Item: item) -> int:
 	return total
 
 func updateHotbar():
-	label.text = str(currentSelection)
+	label.text = str(int(currentSelection))
+	# man fuck this guy INT RULES
