@@ -61,3 +61,10 @@ shortcut = ExtResource("9_pnqcx")
 [node name="HotbarButton9" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("10_3g5mu")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="pressed" from="HBoxContainer/HotbarButton" to="." method="hotbar_Button_Pressed"]
