@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=3 uid="uid://cd5so80g438ao"]
+
+[ext_resource type="PackedScene" uid="uid://bom4ur2mvc2g2" path="res://Assets/Scenes/UI/hotbar/HotbarButton.tscn" id="1_asi3r"]
+[ext_resource type="Script" uid="uid://bl58t3a6ksjrs" path="res://Assets/Scenes/UI/hotbar/hotbar.gd" id="1_y2nog"]
+[ext_resource type="Shortcut" uid="uid://78gepmjqalx5" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_1.tres" id="2_8k8pe"]
+[ext_resource type="Shortcut" uid="uid://c4xatd4fh8s77" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_2.tres" id="3_8kbpo"]
+[ext_resource type="Shortcut" uid="uid://bq82xw6mrhw5s" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_3.tres" id="4_xui5u"]
+[ext_resource type="Shortcut" uid="uid://cdiqarhass0f1" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_4.tres" id="5_hrfy4"]
+[ext_resource type="Shortcut" uid="uid://ny1a5i8wxfxc" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_5.tres" id="6_ahhp5"]
+[ext_resource type="Shortcut" uid="uid://d0iwra22r2bul" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_6.tres" id="7_6w4qh"]
+[ext_resource type="Shortcut" uid="uid://cey8naxvjscsy" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_7.tres" id="8_qygfo"]
+[ext_resource type="Shortcut" uid="uid://dniiyey6oy3nt" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_8.tres" id="9_pnqcx"]
+[ext_resource type="Shortcut" uid="uid://cketowkadclds" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_9.tres" id="10_3g5mu"]
+
+[node name="Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y2nog")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HotbarButton" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("2_8k8pe")
+
+[node name="HotbarButton2" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("3_8kbpo")
+
+[node name="HotbarButton3" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("4_xui5u")
+
+[node name="HotbarButton4" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("5_hrfy4")
+
+[node name="HotbarButton5" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("6_ahhp5")
+
+[node name="HotbarButton6" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("7_6w4qh")
+
+[node name="HotbarButton7" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("8_qygfo")
+
+[node name="HotbarButton8" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("9_pnqcx")
+
+[node name="HotbarButton9" parent="HBoxContainer" instance=ExtResource("1_asi3r")]
+layout_mode = 2
+shortcut = ExtResource("10_3g5mu")

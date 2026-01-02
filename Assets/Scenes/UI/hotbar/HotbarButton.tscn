@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bom4ur2mvc2g2"]
+
+[ext_resource type="Script" uid="uid://cw3uo2dt5iahx" path="res://Assets/Scripts/hotbar_button.gd" id="1_qo6jk"]
+
+[node name="HotbarButton" type="Button"]
+custom_minimum_size = Vector2(60, 60)
+offset_right = 60.0
+offset_bottom = 60.0
+scale = Vector2(0.9931278, 1)
+theme_override_font_sizes/font_size = 13
+text = "
+"
+alignment = 2
+icon_alignment = 1
+script = ExtResource("1_qo6jk")
