@@ -16,4 +16,4 @@ position = Vector2(0, 3)
 position = Vector2(314, -127)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_gyfs4")]
-position = Vector2(-151, -268)
+position = Vector2(-94, -253)
