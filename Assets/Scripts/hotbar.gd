@@ -1,7 +1,8 @@
 class_name Hotbar
 extends Control
 
-var currentSelection : float = 1
+var currentSelection : float = 0
+var currentSlot: HotbarSlot = null
 var slots: Array[HotbarSlot]
 @onready var label: Label = $Label
 
@@ -14,7 +15,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("hotbarMoveLeft") or event.is_action("hotbarMoveRight"):
-		currentSelection = clamp(currentSelection + .5 if event.is_action("hotbarMoveLeft") else currentSelection - .5, 1, 9)
+		currentSelection = clamp(currentSelection + .5 if event.is_action("hotbarMoveLeft") else currentSelection - .5, 0.0, 8.0)
 		updateHotbar()
 		
 func _hotbar_Button_Pressed(Selction) -> void:
@@ -65,5 +66,11 @@ func getNumberOfItems(Item: item) -> int:
 	return total
 
 func updateHotbar():
-	label.text = str(int(currentSelection))
-	# man fuck this guy INT RULES
+	var currentSelectionInt = int(currentSelection)
+	slots[currentSelectionInt].slotSelected(true)
+	if currentSlot:
+		currentSlot.slotSelected(false)
+		currentSlot = slots[currentSelectionInt]
+	else:
+		currentSlot = slots[currentSelectionInt]
+	label.text = str(currentSelectionInt)

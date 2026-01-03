@@ -1,0 +1,9 @@
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://n1844buytfog"]
+
+[sub_resource type="Gradient" id="Gradient_2b3u6"]
+colors = PackedColorArray(0.20152658, 0.20152658, 0.20152658, 1, 0.2159017, 0.21590173, 0.2159017, 1)
+
+[resource]
+gradient = SubResource("Gradient_2b3u6")
+fill_from = Vector2(0.5555556, 1)
+fill_to = Vector2(0.508547, 0)

@@ -1,13 +1,18 @@
 class_name HotbarSlot
-extends Control
+extends TextureButton
 
 @export var Item: item
 var quantity
 var hotbar: Hotbar
 @onready var icon: TextureRect = $icon
 @onready var quantityText: Label = $quantityText
+var unfocused = preload("res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonNormalTexture.tres")
+var focused = preload("res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonFocusedTexture.tres")
 
 
+func slotSelected(isSelected: bool) -> void:
+	self.texture_normal = focused if isSelected else unfocused
+	
 
 func set_item (new_item: item):
 	Item = new_item
@@ -24,6 +29,7 @@ func set_item (new_item: item):
 func add_item ():
 	quantity += 1
 	update_quantity_text()
+
 func remove_item ():
 	quantity -= 1
 	update_quantity_text()

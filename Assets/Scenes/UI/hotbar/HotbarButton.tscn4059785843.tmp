@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bom4ur2mvc2g2"]
+[gd_scene load_steps=2 format=3 uid="uid://bom4ur2mvc2g2"]
 
-[ext_resource type="Texture2D" uid="uid://cmtb106ioyhob" path="res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonNormalTexture.tres" id="1_2b3u6"]
 [ext_resource type="Script" uid="uid://cw3uo2dt5iahx" path="res://Assets/Scripts/hotbar_button.gd" id="1_qo6jk"]
 
-[sub_resource type="Theme" id="Theme_qo6jk"]
-
-[node name="HotbarButton" type="TextureButton"]
+[node name="HotbarButton" type="Button"]
 custom_minimum_size = Vector2(60, 60)
 offset_right = 60.0
 offset_bottom = 60.0
 scale = Vector2(0.9931278, 1)
 focus_mode = 0
-theme = SubResource("Theme_qo6jk")
-texture_normal = ExtResource("1_2b3u6")
-stretch_mode = 6
+theme_override_colors/icon_normal_color = Color(0.5648059, 0.05290048, 0.28988028, 1)
+theme_override_font_sizes/font_size = 13
+text = "
+"
+alignment = 2
+icon_alignment = 1
 script = ExtResource("1_qo6jk")
 
 [node name="icon" type="TextureRect" parent="."]
