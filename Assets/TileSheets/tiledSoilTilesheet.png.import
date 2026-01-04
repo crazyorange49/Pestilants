@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dso46glyfu6rg"
-path="res://.godot/imported/tiled_soil_tilesheet.png-372665f967d7e5d2f32c15cc83644214.ctex"
+uid="uid://bv6ga0bt067pe"
+path="res://.godot/imported/tiledSoilTilesheet.png-2e94f31ebdce83475d7b69dd58de8026.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSheets/tiled_soil_tilesheet.png"
-dest_files=["res://.godot/imported/tiled_soil_tilesheet.png-372665f967d7e5d2f32c15cc83644214.ctex"]
+source_file="res://Assets/TileSheets/tiledSoilTilesheet.png"
+dest_files=["res://.godot/imported/tiledSoilTilesheet.png-2e94f31ebdce83475d7b69dd58de8026.ctex"]
 
 [params]
 
