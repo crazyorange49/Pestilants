@@ -1,4 +1,5 @@
-class_name item
+@tool
+class_name itemStats
 extends Resource
 
 @export var itemName: StringName

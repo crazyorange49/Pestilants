@@ -13,3 +13,4 @@ offset_top = -42.0
 offset_right = 0.0
 offset_bottom = -42.0
 grow_vertical = 0
+scale = Vector2(0.4799988, 0.4799988)
