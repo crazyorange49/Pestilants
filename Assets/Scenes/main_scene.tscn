@@ -1,8 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdsxtleb68cob"]
+[gd_scene load_steps=8 format=3 uid="uid://bdsxtleb68cob"]
 
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
 [ext_resource type="PackedScene" uid="uid://tx4bkgf2okvm" path="res://Assets/Scenes/Enemy.tscn" id="3_xcvj3"]
+[ext_resource type="Script" uid="uid://i2qfpxvfn8r7" path="res://Assets/Scenes/day_and_night_cycle.gd" id="4_03t3n"]
+
+[sub_resource type="Animation" id="Animation_xcvj3"]
+resource_name = "DayNNight"
+length = 24.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.2, 24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.973361e-06, 0.35194287, 0.34109485, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_03t3n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6bpw5"]
+_data = {
+&"DayNNight": SubResource("Animation_xcvj3"),
+&"RESET": SubResource("Animation_03t3n")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -17,3 +56,12 @@ position = Vector2(-269, -294)
 
 [node name="Player" parent="." instance=ExtResource("2_2c62f")]
 position = Vector2(0, 3)
+
+[node name="DayAndNightCycle" type="CanvasModulate" parent="."]
+script = ExtResource("4_03t3n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DayAndNightCycle"]
+libraries = {
+&"": SubResource("AnimationLibrary_6bpw5")
+}
+autoplay = "DayNNight"
