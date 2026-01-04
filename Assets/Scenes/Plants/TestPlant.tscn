@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk442lry6dxp6"]
+
+[ext_resource type="Script" uid="uid://dayfb0m3p2kao" path="res://Assets/Scripts/Plants/NewPlant/NewPlant.gd" id="1_22t4m"]
+[ext_resource type="Resource" uid="uid://ctkffinwytewh" path="res://Assets/Scripts/Plants/NewPlant/NewPlant.tres" id="2_gh5nc"]
+
+[node name="TestPlant" type="Node2D"]
+script = ExtResource("1_22t4m")
+stats = ExtResource("2_gh5nc")

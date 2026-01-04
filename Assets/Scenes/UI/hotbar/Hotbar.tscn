@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cd5so80g438ao"]
+[gd_scene load_steps=14 format=3 uid="uid://cd5so80g438ao"]
 
 [ext_resource type="PackedScene" uid="uid://bom4ur2mvc2g2" path="res://Assets/Scenes/UI/hotbar/HotbarButton.tscn" id="1_asi3r"]
 [ext_resource type="Script" uid="uid://bl58t3a6ksjrs" path="res://Assets/Scripts/hotbar.gd" id="1_y2nog"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shortcut" uid="uid://cey8naxvjscsy" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_7.tres" id="8_qygfo"]
 [ext_resource type="Shortcut" uid="uid://dniiyey6oy3nt" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_8.tres" id="9_pnqcx"]
 [ext_resource type="Shortcut" uid="uid://cketowkadclds" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_9.tres" id="10_3g5mu"]
+[ext_resource type="Script" uid="uid://dq0q83qbpla8s" path="res://Assets/Scripts/hotbar_test.gd" id="13_woy4h"]
 
 [node name="Hotbar" type="Control"]
 layout_mode = 3
@@ -88,3 +89,11 @@ shortcut = ExtResource("9_pnqcx")
 [node name="8" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("10_3g5mu")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 132.0
+offset_right = 423.0
+offset_bottom = 424.0
+script = ExtResource("13_woy4h")
