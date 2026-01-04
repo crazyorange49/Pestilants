@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdsxtleb68cob"]
+[gd_scene load_steps=8 format=3 uid="uid://bdsxtleb68cob"]
 
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
@@ -9,9 +9,6 @@
 
 [node name="Map" parent="." instance=ExtResource("1_0f027")]
 position = Vector2(-1, -5)
-
-[node name="Player" parent="." instance=ExtResource("2_2c62f")]
-position = Vector2(0, 3)
 
 [node name="Enemy" parent="." instance=ExtResource("3_xcvj3")]
 position = Vector2(270, -182)
