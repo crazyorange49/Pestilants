@@ -1,7 +1,7 @@
 class_name HotbarSlot
 extends TextureButton
 
-@export var Item: item
+@export var Item: Resource
 var quantity
 var hotbar: Hotbar
 @onready var icon: TextureRect = $icon
@@ -16,7 +16,7 @@ func slotSelected(isSelected: bool) -> void:
 	self.texture_normal = focused if isSelected else unfocused
 	
 ## if a slot is not found with a simalar item this will set the item to the empty slot
-func setItem (new_item: item):
+func setItem (new_item):
 	Item = new_item
 	quantity = 1
 	

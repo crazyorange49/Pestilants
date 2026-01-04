@@ -4,8 +4,6 @@ extends Control
 var currentSelection : int = 0
 var currentSlot: HotbarSlot = null
 var slots: Array[HotbarSlot]
-@onready var label: Label = $Label
-
 
 func _ready() -> void:
 	for child in get_node("SlotContainer").get_children():
@@ -28,7 +26,7 @@ func _hotbar_Button_Pressed(Selction: int) -> void:
 	updateHotbar()
 
 ## main function for adding items to a slot, by either locating a slot with a simaler item or the nearest empty slot
-func addItem (Item: item):
+func addItem (Item):
 	var slot = getSlotToAdd(Item)
 	if slot == null:
 		return
@@ -48,7 +46,7 @@ func removeItem():
 	slot.remove_item()
 
 ## searches for a slot that has either a simalar item or is empty
-func getSlotToAdd(Item: item) -> HotbarSlot:
+func getSlotToAdd(Item) -> HotbarSlot:
 	for slot in slots:
 		if slot.Item == Item and slot.quantity < Item.maxStackSize:
 			return slot
@@ -60,7 +58,7 @@ func getSlotToAdd(Item: item) -> HotbarSlot:
 	return null
 
 ## returns the total number of a specific item in the users hotbar
-func getNumberOfItems(Item: item) -> int:
+func getNumberOfItems(Item) -> int:
 	var total = 0
 	
 	for slot in slots:
