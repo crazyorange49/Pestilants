@@ -9,12 +9,14 @@ var hotbar: Hotbar
 var unfocused = preload("res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonNormalTexture.tres")
 var focused = preload("res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonFocusedTexture.tres")
 
+func _pressed() -> void:
+	hotbar._hotbar_Button_Pressed(int(self.name))
 
 func slotSelected(isSelected: bool) -> void:
 	self.texture_normal = focused if isSelected else unfocused
 	
-
-func set_item (new_item: item):
+## if a slot is not found with a simalar item this will set the item to the empty slot
+func setItem (new_item: item):
 	Item = new_item
 	quantity = 1
 	
@@ -24,20 +26,23 @@ func set_item (new_item: item):
 		icon.visible = true
 		icon.texture = Item.icon
 	
-	update_quantity_text()
+	updateQuantityText()
 
-func add_item ():
+## if an item does alrealy exist in the hotbar this will add to the quantity of the item in the respective slot
+func addItem ():
 	quantity += 1
-	update_quantity_text()
+	updateQuantityText()
 
-func remove_item ():
+## removes one item from the respective slot
+func removeItem ():
 	quantity -= 1
-	update_quantity_text()
+	updateQuantityText()
 	
 	if quantity == 0:
-		set_item(null)
+		setItem(null)
 
-func update_quantity_text ():
+## changes or shows the display of number of items in the slot
+func updateQuantityText ():
 	if quantity <= 1:
 		quantityText.text = ""
 	else:

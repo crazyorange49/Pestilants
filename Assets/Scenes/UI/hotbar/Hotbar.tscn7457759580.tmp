@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bom4ur2mvc2g2" path="res://Assets/Scenes/UI/hotbar/HotbarButton.tscn" id="1_asi3r"]
 [ext_resource type="Script" uid="uid://bl58t3a6ksjrs" path="res://Assets/Scripts/hotbar.gd" id="1_y2nog"]
-[ext_resource type="Texture2D" uid="uid://bkga34huv75r6" path="res://Assets/Sprites/tile_196.png" id="1_yh3xf"]
 [ext_resource type="Shortcut" uid="uid://78gepmjqalx5" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_1.tres" id="2_8k8pe"]
 [ext_resource type="Shortcut" uid="uid://c4xatd4fh8s77" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_2.tres" id="3_8kbpo"]
 [ext_resource type="Shortcut" uid="uid://bq82xw6mrhw5s" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_3.tres" id="4_xui5u"]
@@ -12,79 +11,67 @@
 [ext_resource type="Shortcut" uid="uid://cey8naxvjscsy" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_7.tres" id="8_qygfo"]
 [ext_resource type="Shortcut" uid="uid://dniiyey6oy3nt" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_8.tres" id="9_pnqcx"]
 [ext_resource type="Shortcut" uid="uid://cketowkadclds" path="res://Assets/Scenes/UI/hotbar/shortcuts/hotbar_9.tres" id="10_3g5mu"]
+[ext_resource type="Script" uid="uid://b8js7urstw2gq" path="res://Assets/Scripts/Resources/hotbar_test_script.gd" id="12_yh3xf"]
 
 [node name="Hotbar" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -527.0
-offset_bottom = -571.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y2nog")
 
-[node name="HotbarBackground" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -312.5
-offset_top = -38.5
-offset_right = 312.5
-offset_bottom = 38.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_yh3xf")
-
 [node name="SlotContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -304.0
-offset_top = -32.0
-offset_right = 304.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="0" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("2_8k8pe")
 
-[node name="1" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton2" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("3_8kbpo")
 
-[node name="2" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton3" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("4_xui5u")
 
-[node name="3" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton4" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("5_hrfy4")
 
-[node name="4" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton5" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("6_ahhp5")
 
-[node name="5" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton6" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("7_6w4qh")
 
-[node name="6" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton7" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("8_qygfo")
 
-[node name="7" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton8" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("9_pnqcx")
 
-[node name="8" parent="SlotContainer" instance=ExtResource("1_asi3r")]
+[node name="HotbarButton9" parent="SlotContainer" instance=ExtResource("1_asi3r")]
 layout_mode = 2
 shortcut = ExtResource("10_3g5mu")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 171.0
+offset_right = 382.0
+offset_bottom = 382.0
+script = ExtResource("12_yh3xf")
