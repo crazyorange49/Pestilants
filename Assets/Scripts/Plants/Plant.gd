@@ -8,7 +8,7 @@ extends Node2D
 @export var visionRadius: float
 @export var movementSpeed: float
 
-func _init(p_health: int, p_atkDamage: int, p_atkCoolDownInSeconds: float, p_visionRadius: float, p_movementSpeed: float) -> void:
+func _init(p_health: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_movementSpeed: float = 0.0) -> void:
 	health = p_health
 	atkDamage = p_atkDamage
 	atkCoolDownInSeconds  = p_atkCoolDownInSeconds
