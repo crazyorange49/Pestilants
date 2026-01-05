@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://b85ckxdld6jch"]
+
+[ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="1_ctk0b"]
+
+[node name="ShopItemButton" type="Button"]
+custom_minimum_size = Vector2(440, 75)
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(440, 75)
+layout_mode = 0
+offset_left = 88.0
+offset_top = 29.0
+offset_right = 528.0
+offset_bottom = 104.0
+scale = Vector2(0.96830004, 0.96830004)
+text = "Label for the item so we know what it is"
+clip_text = true
+text_overrun_behavior = 6
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(440, 75)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 5.9999995
+offset_right = 449.0
+offset_bottom = 381.70578
+scale = Vector2(0.17566939, 0.17566939)
+texture = ExtResource("1_ctk0b")
+
+[node name="priceLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(440, 75)
+layout_mode = 0
+offset_left = 416.0
+offset_top = 31.0
+offset_right = 856.0
+offset_bottom = 106.0
+scale = Vector2(0.86280394, 0.86280394)
+text = "99"
