@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://dexdvbfljxaes"]
+[gd_scene load_steps=18 format=4 uid="uid://dexdvbfljxaes"]
 
 [ext_resource type="Texture2D" uid="uid://dnwifcgyao3se" path="res://Assets/TileSheets/TilemapMaker.png" id="1_u8q4h"]
 [ext_resource type="Texture2D" uid="uid://ck7ftsoltstni" path="res://Assets/TileSheets/grassesTilesheet.png" id="2_q1pg1"]
 [ext_resource type="Material" uid="uid://cmbcfxlkxxnwq" path="res://addons/TileMapDual/ghost_material.tres" id="5_4hua8"]
 [ext_resource type="Texture2D" uid="uid://bv6ga0bt067pe" path="res://Assets/TileSheets/tiledSoilTilesheet.png" id="5_wdgfw"]
 [ext_resource type="Script" uid="uid://cjk8nronimk5r" path="res://addons/TileMapDual/tile_map_dual.gd" id="6_17ifn"]
+[ext_resource type="Texture2D" uid="uid://d14iarpbhvy74" path="res://Assets/TileSheets/worldplaceholderstilesheet.png" id="6_47en4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1pg1"]
 texture = ExtResource("1_u8q4h")
@@ -361,7 +362,7 @@ sources/0 = SubResource("TileSetAtlasSource_wdgfw")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4hua8"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47en4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4hua8"]
 texture = ExtResource("5_wdgfw")
 texture_region_size = Vector2i(128, 128)
 0:3/0 = 0
@@ -375,106 +376,114 @@ texture_region_size = Vector2i(128, 128)
 3:3/0/terrain_set = 0
 3:3/0/terrains_peering_bit/bottom_right_corner = 0
 3:3/0/terrains_peering_bit/bottom_left_corner = 0
-3:3/0/terrains_peering_bit/top_left_corner = 3
+3:3/0/terrains_peering_bit/top_left_corner = 1
 3:3/0/terrains_peering_bit/top_right_corner = 0
 0:2/0 = 0
 0:2/0/terrain_set = 0
 0:2/0/terrains_peering_bit/bottom_right_corner = 0
 0:2/0/terrains_peering_bit/bottom_left_corner = 0
 0:2/0/terrains_peering_bit/top_left_corner = 0
-0:2/0/terrains_peering_bit/top_right_corner = 3
+0:2/0/terrains_peering_bit/top_right_corner = 1
 1:2/0 = 0
 1:2/0/terrain_set = 0
 1:2/0/terrains_peering_bit/bottom_right_corner = 0
 1:2/0/terrains_peering_bit/bottom_left_corner = 0
-1:2/0/terrains_peering_bit/top_left_corner = 3
-1:2/0/terrains_peering_bit/top_right_corner = 3
+1:2/0/terrains_peering_bit/top_left_corner = 1
+1:2/0/terrains_peering_bit/top_right_corner = 1
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrains_peering_bit/bottom_right_corner = 0
-0:0/0/terrains_peering_bit/bottom_left_corner = 3
+0:0/0/terrains_peering_bit/bottom_left_corner = 1
 0:0/0/terrains_peering_bit/top_left_corner = 0
 0:0/0/terrains_peering_bit/top_right_corner = 0
 3:2/0 = 0
 3:2/0/terrain_set = 0
 3:2/0/terrains_peering_bit/bottom_right_corner = 0
-3:2/0/terrains_peering_bit/bottom_left_corner = 3
-3:2/0/terrains_peering_bit/top_left_corner = 3
+3:2/0/terrains_peering_bit/bottom_left_corner = 1
+3:2/0/terrains_peering_bit/top_left_corner = 1
 3:2/0/terrains_peering_bit/top_right_corner = 0
 2:3/0 = 0
 2:3/0/terrain_set = 0
 2:3/0/terrains_peering_bit/bottom_right_corner = 0
-2:3/0/terrains_peering_bit/bottom_left_corner = 3
+2:3/0/terrains_peering_bit/bottom_left_corner = 1
 2:3/0/terrains_peering_bit/top_left_corner = 0
-2:3/0/terrains_peering_bit/top_right_corner = 3
+2:3/0/terrains_peering_bit/top_right_corner = 1
 3:1/0 = 0
 3:1/0/terrain_set = 0
 3:1/0/terrains_peering_bit/bottom_right_corner = 0
-3:1/0/terrains_peering_bit/bottom_left_corner = 3
-3:1/0/terrains_peering_bit/top_left_corner = 3
-3:1/0/terrains_peering_bit/top_right_corner = 3
+3:1/0/terrains_peering_bit/bottom_left_corner = 1
+3:1/0/terrains_peering_bit/top_left_corner = 1
+3:1/0/terrains_peering_bit/top_right_corner = 1
 1:3/0 = 0
 1:3/0/terrain_set = 0
-1:3/0/terrains_peering_bit/bottom_right_corner = 3
+1:3/0/terrains_peering_bit/bottom_right_corner = 1
 1:3/0/terrains_peering_bit/bottom_left_corner = 0
 1:3/0/terrains_peering_bit/top_left_corner = 0
 1:3/0/terrains_peering_bit/top_right_corner = 0
 0:1/0 = 0
 0:1/0/terrain_set = 0
-0:1/0/terrains_peering_bit/bottom_right_corner = 3
+0:1/0/terrains_peering_bit/bottom_right_corner = 1
 0:1/0/terrains_peering_bit/bottom_left_corner = 0
-0:1/0/terrains_peering_bit/top_left_corner = 3
+0:1/0/terrains_peering_bit/top_left_corner = 1
 0:1/0/terrains_peering_bit/top_right_corner = 0
 1:0/0 = 0
 1:0/0/terrain_set = 0
-1:0/0/terrains_peering_bit/bottom_right_corner = 3
+1:0/0/terrains_peering_bit/bottom_right_corner = 1
 1:0/0/terrains_peering_bit/bottom_left_corner = 0
 1:0/0/terrains_peering_bit/top_left_corner = 0
-1:0/0/terrains_peering_bit/top_right_corner = 3
+1:0/0/terrains_peering_bit/top_right_corner = 1
 2:2/0 = 0
 2:2/0/terrain_set = 0
-2:2/0/terrains_peering_bit/bottom_right_corner = 3
+2:2/0/terrains_peering_bit/bottom_right_corner = 1
 2:2/0/terrains_peering_bit/bottom_left_corner = 0
-2:2/0/terrains_peering_bit/top_left_corner = 3
-2:2/0/terrains_peering_bit/top_right_corner = 3
+2:2/0/terrains_peering_bit/top_left_corner = 1
+2:2/0/terrains_peering_bit/top_right_corner = 1
 3:0/0 = 0
 3:0/0/terrain_set = 0
-3:0/0/terrains_peering_bit/bottom_right_corner = 3
-3:0/0/terrains_peering_bit/bottom_left_corner = 3
+3:0/0/terrains_peering_bit/bottom_right_corner = 1
+3:0/0/terrains_peering_bit/bottom_left_corner = 1
 3:0/0/terrains_peering_bit/top_left_corner = 0
 3:0/0/terrains_peering_bit/top_right_corner = 0
 2:0/0 = 0
 2:0/0/terrain_set = 0
-2:0/0/terrains_peering_bit/bottom_right_corner = 3
-2:0/0/terrains_peering_bit/bottom_left_corner = 3
-2:0/0/terrains_peering_bit/top_left_corner = 3
+2:0/0/terrains_peering_bit/bottom_right_corner = 1
+2:0/0/terrains_peering_bit/bottom_left_corner = 1
+2:0/0/terrains_peering_bit/top_left_corner = 1
 2:0/0/terrains_peering_bit/top_right_corner = 0
 1:1/0 = 0
 1:1/0/terrain_set = 0
-1:1/0/terrains_peering_bit/bottom_right_corner = 3
-1:1/0/terrains_peering_bit/bottom_left_corner = 3
+1:1/0/terrains_peering_bit/bottom_right_corner = 1
+1:1/0/terrains_peering_bit/bottom_left_corner = 1
 1:1/0/terrains_peering_bit/top_left_corner = 0
-1:1/0/terrains_peering_bit/top_right_corner = 3
+1:1/0/terrains_peering_bit/top_right_corner = 1
 2:1/0 = 0
 2:1/0/terrain_set = 0
-2:1/0/terrain = 3
-2:1/0/terrains_peering_bit/bottom_right_corner = 3
-2:1/0/terrains_peering_bit/bottom_left_corner = 3
-2:1/0/terrains_peering_bit/top_left_corner = 3
-2:1/0/terrains_peering_bit/top_right_corner = 3
+2:1/0/terrains_peering_bit/bottom_right_corner = 1
+2:1/0/terrains_peering_bit/bottom_left_corner = 1
+2:1/0/terrains_peering_bit/top_left_corner = 1
+2:1/0/terrains_peering_bit/top_right_corner = 1
 
-[sub_resource type="TileSet" id="TileSet_4hua8"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_17ifn"]
+texture = ExtResource("6_47en4")
+texture_region_size = Vector2i(128, 128)
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 1
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+
+[sub_resource type="TileSet" id="TileSet_it2g8"]
 tile_size = Vector2i(128, 128)
 terrain_set_0/mode = 1
 terrain_set_0/terrain_0/name = "<any>"
 terrain_set_0/terrain_0/color = Color(0.93333334, 0.50980395, 0.93333334, 1)
-terrain_set_0/terrain_1/name = "FG -tiled_soil_tilesheet.png"
+terrain_set_0/terrain_1/name = "Soil"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
-terrain_set_0/terrain_2/name = "FG -tiled_soil_tileset2.png"
-terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
-terrain_set_0/terrain_3/name = "FG -tiledSoilTilesheet.png"
-terrain_set_0/terrain_3/color = Color(0.375, 0.5, 0.25, 1)
-sources/2 = SubResource("TileSetAtlasSource_47en4")
+sources/0 = SubResource("TileSetAtlasSource_4hua8")
+sources/1 = SubResource("TileSetAtlasSource_17ifn")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hv05q"]
 
 [node name="Map" type="Node2D"]
 
@@ -491,10 +500,11 @@ godot_4_3_compatibility = false
 display_material = SubResource("CanvasItemMaterial_4hua8")
 metadata/_custom_type_script = "uid://cjk8nronimk5r"
 
-[node name="CropTiles" type="TileMapLayer" parent="."]
+[node name="SoilTiles" type="TileMapLayer" parent="."]
 material = ExtResource("5_4hua8")
-tile_map_data = PackedByteArray("AAAIAPz/AgACAAEAAAAIAP3/AgACAAEAAAAIAP7/AgACAAEAAAAIAP//AgACAAEAAAAIAAAAAgACAAEAAAAIAAEAAgACAAEAAAAIAAIAAgACAAEAAAAJAAIAAgACAAEAAAAKAAIAAgACAAEAAAALAAIAAgACAAEAAAALAAEAAgACAAEAAAALAAAAAgACAAEAAAALAP//AgACAAEAAAALAP7/AgACAAEAAAALAP3/AgACAAEAAAAKAP3/AgACAAEAAAAKAPz/AgACAAEAAAAJAPz/AgACAAEAAAAJAP3/AgACAAEAAAAJAP7/AgACAAEAAAAJAP//AgACAAEAAAAJAAAAAgACAAEAAAAKAAEAAgACAAEAAAAKAAAAAgACAAEAAAAKAP//AgACAAEAAAAKAP7/AgACAAEAAAAJAAEAAgACAAEAAAALAPz/AgACAAEAAAAMAPz/AgACAAEAAAAMAP3/AgACAAEAAAAMAP7/AgACAAEAAAAMAP//AgACAAEAAAAMAAAAAgACAAEAAAAMAAEAAgACAAEAAAAMAAIAAgACAAEAAAAMAAMAAgACAAEAAAAMAAQAAgACAAEAAAAMAAUAAgACAAEAAAAMAAYAAgACAAEAAAAMAAcAAgACAAEAAAAMAAgAAgACAAEAAAAMAAkAAgACAAEAAAALAAkAAgACAAEAAAAKAAkAAgACAAEAAAAJAAkAAgACAAEAAAAIAAkAAgACAAEAAAAIAAgAAgACAAEAAAAIAAcAAgACAAEAAAAIAAYAAgACAAEAAAAIAAUAAgACAAEAAAAIAAQAAgACAAEAAAAIAAMAAgACAAEAAAAJAAMAAgACAAEAAAAJAAQAAgACAAEAAAAJAAUAAgACAAEAAAAJAAYAAgACAAEAAAAJAAcAAgACAAEAAAAJAAgAAgACAAEAAAAKAAgAAgACAAEAAAALAAgAAgACAAEAAAALAAcAAgACAAEAAAALAAYAAgACAAEAAAALAAUAAgACAAEAAAALAAQAAgACAAEAAAALAAMAAgACAAEAAAAKAAMAAgACAAEAAAAKAAQAAgACAAEAAAAKAAUAAgACAAEAAAAKAAYAAgACAAEAAAAKAAcAAgACAAEAAAA=")
-tile_set = SubResource("TileSet_4hua8")
+tile_map_data = PackedByteArray("AAAJAAMAAQAAAAIAAAAJAAQAAQAAAAIAAAAJAAUAAQAAAAIAAAAIAAYAAQAAAAIAAAAJAAYAAQAAAAIAAAAJAAIAAQAAAAIAAAAIAAQAAQAAAAIAAAAIAAUAAQAAAAIAAAAIAAMAAQAAAAIAAAAIAAIAAQAAAAIAAAAIAAEAAQAAAAIAAAAIAPz/AQAAAAIAAAAIAP3/AQAAAAIAAAAIAP7/AQAAAAIAAAAIAP//AQAAAAIAAAAIAAAAAQAAAAIAAAAIAAcAAQAAAAIAAAAIAAgAAQAAAAIAAAAIAAkAAQAAAAIAAAAJAPz/AQAAAAIAAAAJAP3/AQAAAAIAAAAJAP7/AQAAAAIAAAAJAP//AQAAAAIAAAAJAAAAAQAAAAIAAAAJAAEAAQAAAAIAAAAJAAcAAQAAAAIAAAAJAAgAAQAAAAIAAAAJAAkAAQAAAAIAAAAKAPz/AQAAAAIAAAAKAP3/AQAAAAIAAAAKAP7/AQAAAAIAAAAKAP//AQAAAAIAAAAKAAAAAQAAAAIAAAAKAAEAAQAAAAIAAAAKAAIAAQAAAAIAAAAKAAMAAQAAAAIAAAAKAAQAAQAAAAIAAAAKAAUAAQAAAAIAAAAKAAYAAQAAAAIAAAAKAAcAAQAAAAIAAAAKAAgAAQAAAAIAAAAKAAkAAQAAAAIAAAALAPz/AQAAAAIAAAALAP3/AQAAAAIAAAALAP7/AQAAAAIAAAALAP//AQAAAAIAAAALAAAAAQAAAAIAAAALAAEAAQAAAAIAAAALAAIAAQAAAAIAAAALAAMAAQAAAAIAAAALAAQAAQAAAAIAAAALAAUAAQAAAAIAAAALAAYAAQAAAAIAAAALAAcAAQAAAAIAAAALAAgAAQAAAAIAAAALAAkAAQAAAAIAAAAMAPz/AQAAAAIAAAAMAP3/AQAAAAIAAAAMAP7/AQAAAAIAAAAMAP//AQAAAAIAAAAMAAAAAQAAAAIAAAAMAAEAAQAAAAIAAAAMAAIAAQAAAAIAAAAMAAMAAQAAAAIAAAAMAAQAAQAAAAIAAAAMAAUAAQAAAAIAAAAMAAYAAQAAAAIAAAAMAAcAAQAAAAIAAAAMAAgAAQAAAAIAAAAMAAkAAQAAAAIAAAAJAAoAAQAAAAEAAAA=")
+tile_set = SubResource("TileSet_it2g8")
 script = ExtResource("6_17ifn")
 godot_4_3_compatibility = false
+display_material = SubResource("CanvasItemMaterial_hv05q")
 metadata/_custom_type_script = "uid://cjk8nronimk5r"
