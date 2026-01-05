@@ -2,6 +2,7 @@ class_name Plant
 extends Node2D
 
 static var group: StringName = "plant"
+@export var enemyPriority: int
 @export var stats: Resource = preload("uid://csr8dxvj1ns2l")
 @export var atkDamage: int
 @export var maxHealth: int
@@ -13,6 +14,7 @@ static var group: StringName = "plant"
 
 @onready var visionCollisionBox: CollisionShape2D = $VisionArea/Radius
 @onready var attackRangeCollisionBox: CollisionShape2D = $AttackArea/Range
+
 
 var dayTimePos: Vector2
 

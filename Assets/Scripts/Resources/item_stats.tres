@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_g8el3")
-itemName = &"NewPlant"
+itemName = &"TestPlant"
 maxStackSize = 10
 icon = ExtResource("1_45op4")
 price = 13

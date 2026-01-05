@@ -43,7 +43,7 @@ func removeItem():
 	if slot == null or slot.Item == null:
 		return
 	
-	slot.remove_item()
+	slot.removeItem()
 
 ## searches for a slot that has either a simalar item or is empty
 func getSlotToAdd(Item) -> HotbarSlot:

@@ -1,24 +1,24 @@
 [gd_scene load_steps=6 format=3 uid="uid://dr7ci54k2fljk"]
 
 [ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/Bravestem/bravestem.gd" id="1_sntse"]
-[ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="2_ixgqj"]
+[ext_resource type="Texture2D" uid="uid://dpieb85e380ko" path="res://Assets/Sprites/braveStem.png" id="2_sntse"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_78iwd"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sntse"]
-radius = 61.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jr61u"]
+radius = 40.0
+height = 110.0
 
 [node name="Bravestem" type="CharacterBody2D"]
-position = Vector2(519, 293)
 script = ExtResource("1_sntse")
 maxHealth = 100
 visionRadius = 250.0
 atkRange = 100.0
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ixgqj")
+texture = ExtResource("2_sntse")
 
 [node name="VisionArea" type="Area2D" parent="."]
 
@@ -32,7 +32,8 @@ shape = SubResource("CircleShape2D_78iwd")
 debug_color = Color(0.49411765, 0, 0.05882353, 0.50980395)
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_sntse")
+position = Vector2(-1, 12)
+shape = SubResource("CapsuleShape2D_jr61u")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]

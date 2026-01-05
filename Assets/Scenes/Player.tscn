@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://1spsxhila5to"]
+[gd_scene load_steps=5 format=3 uid="uid://1spsxhila5to"]
 
 [ext_resource type="Texture2D" uid="uid://brac6tajwuiet" path="res://Assets/Sprites/manOld_stand.png" id="1_3e2tf"]
 [ext_resource type="Script" uid="uid://qhc8nwka33gh" path="res://Assets/Scripts/player.gd" id="1_b2ifw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b2ifw"]
 radius = 21.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2ifw"]
+size = Vector2(7, 7)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -18,3 +21,19 @@ shape = SubResource("CircleShape2D_b2ifw")
 texture = ExtResource("1_3e2tf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlotSelector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="range" type="CollisionShape2D" parent="PlotSelector"]
+shape = SubResource("RectangleShape2D_b2ifw")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -21.0
+offset_top = 27.0
+offset_right = 48.0
+offset_bottom = 68.0
+
+[connection signal="body_shape_entered" from="PlotSelector" to="." method="_on_plot_selector_body_shape_entered"]
+[connection signal="body_shape_exited" from="PlotSelector" to="." method="_on_plot_selector_body_shape_exited"]
