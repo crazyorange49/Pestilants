@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Uplifting Game Jam (pixel-perfect)"
-run/main_scene="uid://bdsxtleb68cob"
+run/main_scene="uid://ckugtawfvcu5f"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
