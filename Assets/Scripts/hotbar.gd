@@ -1,6 +1,7 @@
 class_name Hotbar
 extends Control
 
+var isInShop = null
 var currentSelection : int = 0
 var currentSlot: HotbarSlot = null
 var slots: Array[HotbarSlot]
@@ -12,7 +13,7 @@ func _ready() -> void:
 		child.hotbar = self
 
 func _input(event: InputEvent) -> void:
-	if event.is_pressed() and (event.is_action("hotbarMoveLeft") or event.is_action("hotbarMoveRight")) :
+	if event.is_pressed() and (event.is_action("hotbarMoveLeft") or event.is_action("hotbarMoveRight")) and !isInShop :
 		if currentSelection == 8 and event.is_action("hotbarMoveLeft"):
 			currentSelection = 0
 		elif currentSelection == 0 and event.is_action("hotbarMoveRight"):

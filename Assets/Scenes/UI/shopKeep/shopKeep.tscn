@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dodyitge0c33y"]
+
+[ext_resource type="Script" uid="uid://cvhr0tt6716gw" path="res://Assets/Scenes/UI/shopKeep/shop_keep.gd" id="1_h4jb3"]
+[ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="2_yhwn0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4knl"]
+radius = 87.28116
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h4jb3"]
+radius = 258.02713
+
+[node name="ShopKeep" type="Node2D"]
+script = ExtResource("1_h4jb3")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CharacterBody2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_yhwn0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(66, 67)
+shape = SubResource("CircleShape2D_r4knl")
+
+[node name="detectionArea" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/detectionArea"]
+position = Vector2(64, 67)
+shape = SubResource("CircleShape2D_h4jb3")
+
+[connection signal="body_entered" from="CharacterBody2D/detectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/detectionArea" to="." method="_on_detection_area_body_exited"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdsxtleb68cob"]
+[gd_scene load_steps=12 format=3 uid="uid://bdsxtleb68cob"]
 
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://chix7afojtval" path="res://Assets/Scenes/UI/Shop/Shop.tscn" id="2_qk5nb"]
 [ext_resource type="PackedScene" uid="uid://tx4bkgf2okvm" path="res://Assets/Scenes/Enemy.tscn" id="3_xcvj3"]
 [ext_resource type="PackedScene" uid="uid://d3wsaqq4atule" path="res://Assets/Scenes/UI/hud.tscn" id="4_03t3n"]
 [ext_resource type="Script" uid="uid://i2qfpxvfn8r7" path="res://Assets/Scripts/day_and_night_cycle.gd" id="5_6bpw5"]
+[ext_resource type="PackedScene" uid="uid://dodyitge0c33y" path="res://Assets/Scenes/UI/shopKeep/shopKeep.tscn" id="6_qk5nb"]
 
 [sub_resource type="Animation" id="Animation_qk5nb"]
 resource_name = "NightToDay"
@@ -85,5 +87,10 @@ libraries = {
 [node name="Timer" type="Timer" parent="dayAndNight"]
 wait_time = 300.0
 autostart = true
+
+[node name="ShopKeep" parent="." instance=ExtResource("6_qk5nb")]
+position = Vector2(1756, -1077)
+
+[node name="Shop" parent="." instance=ExtResource("2_qk5nb")]
 
 [connection signal="timeout" from="dayAndNight/Timer" to="dayAndNight" method="_on_timer_timeout"]
