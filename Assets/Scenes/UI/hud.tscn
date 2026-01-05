@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3wsaqq4atule"]
+[gd_scene load_steps=4 format=3 uid="uid://d3wsaqq4atule"]
 
 [ext_resource type="PackedScene" uid="uid://cd5so80g438ao" path="res://Assets/Scenes/UI/hotbar/Hotbar.tscn" id="1_7hthr"]
+[ext_resource type="Script" uid="uid://dscljreyqttko" path="res://Assets/Scripts/timer.gd" id="2_had68"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w5d3o"]
+font_size = 32
 
 [node name="Hud" type="CanvasLayer"]
 
@@ -14,3 +18,15 @@ offset_right = 0.0
 offset_bottom = -42.0
 grow_vertical = 0
 scale = Vector2(0.4799988, 0.4799988)
+
+[node name="Timer" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "5:00"
+label_settings = SubResource("LabelSettings_w5d3o")
+script = ExtResource("2_had68")

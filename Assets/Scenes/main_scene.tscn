@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdsxtleb68cob"]
+[gd_scene load_steps=10 format=3 uid="uid://bdsxtleb68cob"]
 
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
@@ -6,25 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3wsaqq4atule" path="res://Assets/Scenes/UI/hud.tscn" id="4_03t3n"]
 [ext_resource type="Script" uid="uid://i2qfpxvfn8r7" path="res://Assets/Scripts/day_and_night_cycle.gd" id="5_6bpw5"]
 
-[sub_resource type="Animation" id="Animation_03t3n"]
-resource_name = "dayNNight"
-length = 24.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 23.97),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0.37, 0.37, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_6bpw5"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,8 +20,41 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_03t3n"]
+resource_name = "dayNNight"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.37, 0.37, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qk5nb"]
+resource_name = "NightToDay"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.063753895, 9.945608),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0.36862746, 0.36862746, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qk5nb"]
 _data = {
+&"NightToDay": SubResource("Animation_qk5nb"),
 &"RESET": SubResource("Animation_6bpw5"),
 &"dayNNight": SubResource("Animation_03t3n")
 }
@@ -66,4 +81,9 @@ script = ExtResource("5_6bpw5")
 libraries = {
 &"": SubResource("AnimationLibrary_qk5nb")
 }
-autoplay = "dayNNight"
+
+[node name="Timer" type="Timer" parent="dayAndNight"]
+wait_time = 300.0
+autostart = true
+
+[connection signal="timeout" from="dayAndNight/Timer" to="dayAndNight" method="_on_timer_timeout"]
