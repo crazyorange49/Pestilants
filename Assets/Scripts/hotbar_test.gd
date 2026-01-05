@@ -1,9 +1,9 @@
 extends Button
 
-@export var seed_1 = "res://Assets/Scenes/Plants/Bravestem.tscn"
+const BRAVESTEM_ITEM = preload("uid://dh5pyc230gwc2")
+
 @onready var hotbar: Hotbar = $"../Hotbar"
 
 
 func _pressed() -> void:
-	var plant = load(seed_1).instantiate()
-	hotbar.addItem(plant)
+	hotbar.addItem(BRAVESTEM_ITEM)

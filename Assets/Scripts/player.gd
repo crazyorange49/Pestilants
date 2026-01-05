@@ -6,6 +6,7 @@ var isInFarmPlot: bool = false
 @onready var label: Label = $Label
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
+@onready var map: Node2D = $"../Map"
 
 
 func _physics_process(_delta: float) -> void:
@@ -16,9 +17,10 @@ func _physics_process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
 		if isInFarmPlot:
-			var slotInUse = hotbar.currentSlot
-			var itemInUse = slotInUse.Item
+			var itemInUse = hotbar.currentSlot.Item
 			if itemInUse != null:
+				var usedItem = load(itemInUse.sencePath).instantiate()
+				map.add_child(usedItem)
 				hotbar.removeItem()
 				itemInUse.position = position
 
