@@ -11,6 +11,8 @@
 size = Vector2(128, 128)
 
 [node name="Bravestem" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_sntse")
 maxHealth = 100
 visionRadius = 250.0

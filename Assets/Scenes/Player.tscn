@@ -28,13 +28,8 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="range" type="CollisionShape2D" parent="PlotSelector"]
+position = Vector2(-32, 0)
 shape = SubResource("RectangleShape2D_b2ifw")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -21.0
-offset_top = 27.0
-offset_right = 48.0
-offset_bottom = 68.0
 
 [connection signal="body_shape_entered" from="PlotSelector" to="." method="_on_plot_selector_body_shape_entered"]
 [connection signal="body_shape_exited" from="PlotSelector" to="." method="_on_plot_selector_body_shape_exited"]
