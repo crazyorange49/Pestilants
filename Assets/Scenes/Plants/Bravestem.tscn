@@ -7,9 +7,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_78iwd"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jr61u"]
-radius = 40.0
-height = 110.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
+size = Vector2(128, 128)
 
 [node name="Bravestem" type="CharacterBody2D"]
 script = ExtResource("1_sntse")
@@ -32,8 +31,7 @@ shape = SubResource("CircleShape2D_78iwd")
 debug_color = Color(0.49411765, 0, 0.05882353, 0.50980395)
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 12)
-shape = SubResource("CapsuleShape2D_jr61u")
+shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]

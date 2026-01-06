@@ -11,7 +11,6 @@ static var group: StringName = "plant"
 @export var movementSpeed: float
 @export var atkRange: float
 
-
 @onready var visionCollisionBox: CollisionShape2D = $VisionArea/Radius
 @onready var attackRangeCollisionBox: CollisionShape2D = $AttackArea/Range
 
