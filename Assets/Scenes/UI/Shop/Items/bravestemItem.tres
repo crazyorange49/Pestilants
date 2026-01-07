@@ -8,7 +8,7 @@
 script = ExtResource("3_gjdiy")
 scenePath = ExtResource("2_6vk33")
 itemName = &"Bravestem"
-description = "unfilled item description"
+description = "Normal foot soldier flower"
 maxStackSize = 16
 icon = ExtResource("1_wx4wx")
 price = 100

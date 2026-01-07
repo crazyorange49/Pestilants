@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dr7ci54k2fljk"]
 
-[ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/Bravestem/bravestem.gd" id="1_sntse"]
+[ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/bravestem.gd" id="1_sntse"]
 [ext_resource type="Texture2D" uid="uid://dpieb85e380ko" path="res://Assets/Sprites/braveStem.png" id="2_sntse"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]

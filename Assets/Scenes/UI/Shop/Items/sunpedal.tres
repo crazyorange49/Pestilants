@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="itemStats" load_steps=3 format=3 uid="uid://e2leq8masu58"]
+
+[ext_resource type="Texture2D" uid="uid://b51xt18562q15" path="res://Assets/Sprites/sunPetal_Day.png" id="1_74oqp"]
+[ext_resource type="Script" uid="uid://dhxcbvbymlfxm" path="res://Assets/Scripts/Resources/item.gd" id="2_ps64a"]
+
+[resource]
+script = ExtResource("2_ps64a")
+itemName = &"Sunpetal"
+description = "unfilled item description"
+maxStackSize = 16
+icon = ExtResource("1_74oqp")
+price = 100
+metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

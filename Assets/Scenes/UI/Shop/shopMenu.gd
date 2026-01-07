@@ -1,15 +1,16 @@
 extends CanvasLayer
 
 const SHOP_ITEM_BUTTON = preload("uid://b85ckxdld6jch")
-var plantItemPaths = DirAccess.open("res://Assets/Scripts/Plants/PlantItems/").get_files()
-var plantItems: Array[itemStats]
+var ItemFolderPath = "res://Assets/Scenes/UI/Shop/Items/"
+var ItemPaths = DirAccess.open(ItemFolderPath).get_files()
+var Items: Array[itemStats]
 @onready var shop_items_container: VBoxContainer = %ShopItemsContainer
 
 func _ready() -> void:
-	for plantItem in plantItemPaths:
-		plantItems.append(load("res://Assets/Scripts/Plants/PlantItems/" + plantItem))
+	for ItemPath in ItemPaths:
+		Items.append(load(ItemFolderPath + ItemPath))
 	pass
-	populatePlantList(plantItems)
+	populatePlantList(Items)
 
 func populatePlantList(plants : Array[itemStats]) -> void:
 	for plant in plants:

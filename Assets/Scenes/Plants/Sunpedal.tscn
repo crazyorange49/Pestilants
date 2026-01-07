@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://4kwdbcwrvxbb"]
 
-[ext_resource type="Script" uid="uid://cjsjmhqs45yqk" path="res://Assets/Scripts/Plants/Sunpedal/sunpedal.gd" id="1_5dig4"]
-[ext_resource type="Resource" uid="uid://e2leq8masu58" path="res://Assets/Scripts/Plants/Sunpedal/Sunpedal.tres" id="2_78iwd"]
+[ext_resource type="Script" uid="uid://cjsjmhqs45yqk" path="res://Assets/Scripts/Plants/sunpetal.gd" id="1_5dig4"]
+[ext_resource type="Resource" uid="uid://e2leq8masu58" path="res://Assets/Scenes/UI/Shop/Items/sunpedal.tres" id="2_78iwd"]
 [ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="2_ydai6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_78iwd"]
