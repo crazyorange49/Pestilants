@@ -4,6 +4,9 @@ var speed: float = 400
 var rotationSpeed: float = 100
 var isInFarmPlot: bool = false
 var activePlotPOS: Vector2
+
+var renewalSeeds = 0
+
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
 @onready var map: TileMapDual = $"../Map/SoilTiles"
@@ -31,3 +34,6 @@ func _on_plot_selector_body_shape_entered(_body_rid: RID, _body: Node2D, _body_s
 
 func _on_plot_selector_body_shape_exited(_body_rid: RID, _boddy: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	isInFarmPlot = false
+
+func getRenewalSeedCount() -> int:
+	return renewalSeeds 
