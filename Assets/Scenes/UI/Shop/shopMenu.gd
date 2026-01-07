@@ -6,7 +6,8 @@ var ItemPaths = DirAccess.open(ItemFolderPath).get_files()
 var Items: Array[itemStats]
 @onready var shop_items_container: VBoxContainer = %ShopItemsContainer
 @onready var currency_label: Label = %currencyLabel
-@onready var player: CharacterBody2D = get_node("/root/Node2D/Player")
+@onready var player: CharacterBody2D = $"../Player"
+
 
 @onready var currency = player.getRenewalSeedCount()
 
@@ -21,7 +22,6 @@ func whenOpened():
 func _ready() -> void:
 	for ItemPath in ItemPaths:
 		Items.append(load(ItemFolderPath + ItemPath))
-	pass
 	populatePlantList(Items)
 
 func populatePlantList(plants : Array[itemStats]) -> void:

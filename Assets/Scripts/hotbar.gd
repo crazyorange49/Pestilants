@@ -5,6 +5,8 @@ var isInShop = null
 var currentSelection : int = 0
 var currentSlot: HotbarSlot = null
 var slots: Array[HotbarSlot]
+@onready var player: CharacterBody2D = $"../../Player"
+
 
 func _ready() -> void:
 	for child in get_node("SlotContainer").get_children():
