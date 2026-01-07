@@ -4,9 +4,11 @@ var speed: float = 400
 var rotationSpeed: float = 100
 var isInFarmPlot: bool = false
 var activePlotPOS: Vector2
+var NumberOfCollisions: int
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
 @onready var map: TileMapDual = $"../Map/SoilTiles"
+@onready var plot_selector: Area2D = $PlotSelector
 
 
 func _physics_process(_delta: float) -> void:
@@ -27,7 +29,11 @@ func _input(event: InputEvent) -> void:
 
 func _on_plot_selector_body_shape_entered(_body_rid: RID, _body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	activePlotPOS = map.map_to_local(map.local_to_map(position))
-	isInFarmPlot = true
+	NumberOfCollisions = len(plot_selector.get_overlapping_bodies())
+	if NumberOfCollisions > 1:
+		return
+	else:
+		isInFarmPlot = true
 
 func _on_plot_selector_body_shape_exited(_body_rid: RID, _boddy: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	isInFarmPlot = false

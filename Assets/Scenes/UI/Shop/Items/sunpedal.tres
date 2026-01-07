@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_ps64a")
 itemName = &"Sunpetal"
-description = "unfilled item description"
+description = "Conserve sunlight during the day to use against the bugs at night."
 maxStackSize = 16
 icon = ExtResource("1_74oqp")
 price = 100

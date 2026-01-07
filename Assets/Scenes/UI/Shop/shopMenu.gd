@@ -9,7 +9,6 @@ var Items: Array[itemStats]
 func _ready() -> void:
 	for ItemPath in ItemPaths:
 		Items.append(load(ItemFolderPath + ItemPath))
-	pass
 	populatePlantList(Items)
 
 func populatePlantList(plants : Array[itemStats]) -> void:
