@@ -37,3 +37,6 @@ func _on_plot_selector_body_shape_entered(_body_rid: RID, _body: Node2D, _body_s
 
 func _on_plot_selector_body_shape_exited(_body_rid: RID, _boddy: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	isInFarmPlot = false
+
+func getRenewalSeedCount() -> int:
+	return renewalSeeds 

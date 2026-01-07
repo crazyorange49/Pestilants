@@ -5,6 +5,18 @@ var ItemFolderPath = "res://Assets/Scenes/UI/Shop/Items/"
 var ItemPaths = DirAccess.open(ItemFolderPath).get_files()
 var Items: Array[itemStats]
 @onready var shop_items_container: VBoxContainer = %ShopItemsContainer
+@onready var currency_label: Label = %currencyLabel
+@onready var player: CharacterBody2D = get_node("/root/Node2D/Player")
+
+@onready var currency = player.getRenewalSeedCount()
+
+func updateCurrency():
+	currency_label.text = str(currency)
+	pass
+
+func whenOpened():
+	updateCurrency()
+	pass
 
 func _ready() -> void:
 	for ItemPath in ItemPaths:

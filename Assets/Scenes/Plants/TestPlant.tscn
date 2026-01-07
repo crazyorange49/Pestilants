@@ -1,6 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://dk442lry6dxp6"]
-
-[ext_resource type="Script" uid="uid://dayfb0m3p2kao" path="res://Assets/Scripts/Plants/ExamplePlant/NewPlant.gd" id="1_22t4m"]
+[gd_scene format=3 uid="uid://dk442lry6dxp6"]
 
 [node name="TestPlant" type="Node2D"]
-script = ExtResource("1_22t4m")
