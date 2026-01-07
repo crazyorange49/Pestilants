@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcp0dgmy5l4px"]
+
+[ext_resource type="Texture2D" uid="uid://bw8kskewsnqjs" path="res://Assets/Sprites/UI/keyboard_e.png" id="1_stdjy"]
+
+[node name="Tooltip" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1005.0
+offset_bottom = -588.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_top = -1.0
+offset_right = 64.0
+offset_bottom = 63.0
+texture = ExtResource("1_stdjy")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 70.0
+offset_top = 6.0
+offset_right = 138.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 36
+text = "USE"

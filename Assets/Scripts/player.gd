@@ -22,10 +22,11 @@ func _input(event: InputEvent) -> void:
 		if isInFarmPlot and hotbar.currentSlot != null:
 			var itemInUse = hotbar.currentSlot.Item
 			if itemInUse != null:
-				var usedItem = load(itemInUse.scenePath.resource_path).instantiate()
+				var usedItem: Plant = load(itemInUse.scenePath.resource_path).instantiate()
 				map.add_child(usedItem)
 				hotbar.removeItem()
 				usedItem.position = activePlotPOS
+				usedItem.onPlantPlaced()
 
 
 func _on_plot_selector_body_shape_entered(_body_rid: RID, _body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:

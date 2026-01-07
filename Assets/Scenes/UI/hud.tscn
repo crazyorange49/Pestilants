@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3wsaqq4atule"]
+[gd_scene load_steps=6 format=3 uid="uid://d3wsaqq4atule"]
 
 [ext_resource type="PackedScene" uid="uid://cd5so80g438ao" path="res://Assets/Scenes/UI/hotbar/Hotbar.tscn" id="1_7hthr"]
 [ext_resource type="Script" path="res://Assets/Scripts/timer.gd" id="2_had68"]
 [ext_resource type="Script" uid="uid://dq0q83qbpla8s" path="res://Assets/Scripts/hotbar_test.gd" id="3_w5d3o"]
+[ext_resource type="PackedScene" uid="uid://dcp0dgmy5l4px" path="res://Assets/Scenes/UI/Tooltip.tscn" id="4_rfqbw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w5d3o"]
 font_size = 32
@@ -36,3 +37,10 @@ script = ExtResource("2_had68")
 offset_right = 105.0
 offset_bottom = 101.0
 script = ExtResource("3_w5d3o")
+
+[node name="Tooltip" parent="." instance=ExtResource("4_rfqbw")]
+visible = false
+offset_left = 34.0
+offset_top = 569.0
+offset_right = -975.0
+offset_bottom = -20.0

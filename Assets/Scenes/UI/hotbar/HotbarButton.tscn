@@ -17,6 +17,7 @@ stretch_mode = 6
 script = ExtResource("1_qo6jk")
 
 [node name="icon" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
