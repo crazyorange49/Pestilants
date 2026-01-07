@@ -76,6 +76,7 @@ font_size = 31
 
 [node name="Shop" type="CanvasLayer"]
 layer = 3
+visible = false
 script = ExtResource("1_343ii")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -186,7 +187,7 @@ layout_mode = 0
 offset_left = 1.5890362
 offset_top = 1.3142447
 offset_right = 10.28692
-offset_bottom = 10.012129
+offset_bottom = 11.499657
 texture = ExtResource("2_n0g5p")
 expand_mode = 1
 

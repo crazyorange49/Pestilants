@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b85ckxdld6jch"]
+[gd_scene load_steps=3 format=3 uid="uid://b85ckxdld6jch"]
 
 [ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="1_ctk0b"]
+[ext_resource type="Script" uid="uid://yxt3utqfdonn" path="res://Assets/Scenes/UI/Shop/shop_item_button.gd" id="1_vn4bg"]
 
 [node name="ShopItemButton" type="Button"]
 custom_minimum_size = Vector2(440, 75)
+script = ExtResource("1_vn4bg")
 
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(440, 75)
