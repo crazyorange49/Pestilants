@@ -1,10 +1,10 @@
 class_name ShopItemButton extends Button
 
 
-var plant : Plant
+var plant : itemStats
 
-func setup_item( _plant : Plant):
+func setup_item( _plant : itemStats):
 	plant = _plant
-	$Label.text = plant.name
-	$priceLabel.text = str(plant.cost)
-	$TextureRect.texture = plant.texture
+	$Label.text = plant.itemName
+	$priceLabel.text = str(plant.price)
+	$TextureRect.texture = plant.icon
