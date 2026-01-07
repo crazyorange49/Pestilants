@@ -5,6 +5,7 @@ var rotationSpeed: float = 100
 var isInFarmPlot: bool = false
 var activePlotPOS: Vector2
 var NumberOfCollisions: int
+var renewalSeeds: = 15
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
 @onready var map: TileMapDual = $"../Map/SoilTiles"
