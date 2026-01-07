@@ -17,7 +17,6 @@ offset_bottom = 104.0
 scale = Vector2(0.96830004, 0.96830004)
 text = "Label for the item so we know what it is"
 clip_text = true
-text_overrun_behavior = 6
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(440, 75)

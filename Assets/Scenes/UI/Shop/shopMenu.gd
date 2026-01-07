@@ -11,11 +11,6 @@ func _ready() -> void:
 	pass
 	populatePlantList(plantItems)
 
-func clearItemList() -> void:
-	for c in shop_items_container.get_children():
-		c.queue_free()
-	pass
-
 func populatePlantList(plants : Array[itemStats]) -> void:
 	for plant in plants:
 		var shop_plant : ShopItemButton = SHOP_ITEM_BUTTON.instantiate()
