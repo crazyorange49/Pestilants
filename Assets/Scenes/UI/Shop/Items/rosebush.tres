@@ -9,5 +9,5 @@ itemName = &"Rosebush"
 description = "Does damage on a received hit, outgoing attacks are minimal."
 maxStackSize = 16
 icon = ExtResource("1_c0whc")
-price = 100
+price = 25
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

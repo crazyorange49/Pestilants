@@ -9,5 +9,5 @@ itemName = &"Sunpetal"
 description = "Conserve sunlight during the day to use against the bugs at night."
 maxStackSize = 16
 icon = ExtResource("1_74oqp")
-price = 100
+price = 50
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

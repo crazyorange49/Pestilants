@@ -9,5 +9,5 @@ itemName = &"Conefower"
 description = "heals nearby plants"
 maxStackSize = 16
 icon = ExtResource("1_4uep4")
-price = 100
+price = 15
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

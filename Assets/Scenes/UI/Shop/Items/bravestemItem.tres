@@ -11,5 +11,5 @@ itemName = &"Bravestem"
 description = "Normal foot soldier flower"
 maxStackSize = 16
 icon = ExtResource("1_wx4wx")
-price = 100
+price = 5
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"
