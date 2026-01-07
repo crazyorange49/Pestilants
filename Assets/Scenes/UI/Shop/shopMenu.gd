@@ -29,6 +29,7 @@ func _ready() -> void:
 	for ItemPath in ItemPaths:
 		Items.append(load(ItemFolderPath + ItemPath))
 	populatePlantList(Items)
+	focusedItemChanged(Items[0])
 
 func populatePlantList(plants : Array[itemStats]) -> void:
 	for plant in plants:
