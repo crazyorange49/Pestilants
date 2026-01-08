@@ -85,7 +85,7 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="dayAndNight"]
-wait_time = 300.0
+wait_time = 15.0
 autostart = true
 
 [node name="ShopKeep" parent="." instance=ExtResource("6_qk5nb")]

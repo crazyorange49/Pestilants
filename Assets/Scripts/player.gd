@@ -10,7 +10,7 @@ var renewalSeeds: = 15
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
 @onready var tooltip: Control = hud.get_child(3)
-
+@onready var Map: Node2D = $"../Map"
 @onready var map: TileMapDual = $"../Map/SoilTiles"
 @onready var plot_selector: Area2D = $PlotSelector
 var maxHealth = 100
@@ -30,7 +30,7 @@ func _input(event: InputEvent) -> void:
 			var itemInUse = hotbar.currentSlot.Item
 			if itemInUse != null:
 				var usedItem: Plant = load(itemInUse.scenePath.resource_path).instantiate()
-				map.add_child(usedItem)
+				Map.add_child(usedItem)
 				hotbar.removeItem()
 				usedItem.position = activePlotPOS
 				usedItem.onPlantPlaced()
