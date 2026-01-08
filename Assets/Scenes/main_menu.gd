@@ -1,9 +1,14 @@
 extends Control
 
+@onready var v_box_container: VBoxContainer = $VBoxContainer
+@onready var options: Panel = $Panel/Options
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	v_box_container.visible = true
+	options.visible = false
+	$Title.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,8 +21,14 @@ func _on_start_button_pressed() -> void:
 	
 
 func _on_options_button_pressed() -> void:
-	print("Options pressed")
+	v_box_container.visible = false
+	options.visible = true
+	$Title.visible = false
 
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_back_pressed() -> void:
+	_ready()
