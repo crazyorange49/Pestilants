@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://chix7afojtval"]
+[gd_scene load_steps=9 format=3 uid="uid://chix7afojtval"]
 
 [ext_resource type="Script" uid="uid://b8wi31y3d7per" path="res://Assets/Scenes/UI/Shop/shopMenu.gd" id="1_343ii"]
-[ext_resource type="PackedScene" uid="uid://b85ckxdld6jch" path="res://Assets/Scenes/UI/Shop/shop_item_button.tscn" id="1_hof0n"]
 [ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="2_n0g5p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u14vn"]
@@ -76,6 +75,7 @@ font_size = 31
 
 [node name="Shop" type="CanvasLayer"]
 layer = 3
+visible = false
 script = ExtResource("1_343ii")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -153,21 +153,6 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="ShopItemButton" parent="Control/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("1_hof0n")]
-layout_mode = 2
-
-[node name="ShopItemButton2" parent="Control/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("1_hof0n")]
-layout_mode = 2
-
-[node name="ShopItemButton3" parent="Control/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("1_hof0n")]
-layout_mode = 2
-
-[node name="ShopItemButton4" parent="Control/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("1_hof0n")]
-layout_mode = 2
-
-[node name="ShopItemButton5" parent="Control/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("1_hof0n")]
-layout_mode = 2
-
 [node name="DetailsPanel" type="PanelContainer" parent="Control"]
 layout_mode = 0
 offset_left = 589.0
@@ -186,7 +171,7 @@ layout_mode = 0
 offset_left = 1.5890362
 offset_top = 1.3142447
 offset_right = 10.28692
-offset_bottom = 10.012129
+offset_bottom = 11.499657
 texture = ExtResource("2_n0g5p")
 expand_mode = 1
 
@@ -194,10 +179,11 @@ expand_mode = 1
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1.3381357
-offset_top = 10.185408
-offset_right = 184.10205
-offset_bottom = 72.554436
-scale = Vector2(0.21598905, 0.21598905)
+offset_top = 17.413765
+offset_right = 565.28265
+offset_bottom = 116.87649
+scale = Vector2(0.0649558, 0.0649558)
+theme_override_font_sizes/font_size = 54
 text = "item name label"
 vertical_alignment = 2
 autowrap_mode = 2
@@ -206,46 +192,51 @@ autowrap_mode = 2
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1.0872352
-offset_top = 24.423077
-offset_right = 183.85115
-offset_bottom = 86.7921
-scale = Vector2(0.21598905, 0.21598905)
+offset_top = 24.532598
+offset_right = 364.23056
+offset_bottom = 126.64393
+scale = Vector2(0.0750792, 0.0750792)
 theme_override_colors/font_color = Color(0.8207309, 0.8307432, 0.93654966, 1)
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 27
 text = "example description"
 autowrap_mode = 2
 
 [node name="priceLabel" type="Label" parent="Control/DetailsPanel/Control"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 18.483
-offset_top = 1.5332851
-offset_right = 128.0639
-offset_bottom = 22.322958
-scale = Vector2(0.21598905, 0.21598905)
+offset_left = 17.9812
+offset_top = 2.4094527
+offset_right = 325.8302
+offset_bottom = 59.409454
+scale = Vector2(0.05596411, 0.05596411)
 theme_override_colors/font_color = Color(0.8207309, 0.8307432, 0.93654966, 1)
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 41
 text = "Purchase price:"
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="itemPrice" type="Label" parent="Control/DetailsPanel/Control"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 37.300533
-offset_top = 1.6428057
-offset_right = 50.465725
-offset_bottom = 22.432478
-scale = Vector2(0.21598905, 0.21598905)
+offset_left = 35.460598
+offset_top = 1.9713683
+offset_right = 109.53494
+offset_bottom = 70.55636
+scale = Vector2(0.050447274, 0.050447274)
+pivot_offset = Vector2(-0.06, 0.09)
 theme_override_colors/font_color = Color(0.8207309, 0.8307432, 0.93654966, 1)
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 36
 text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
+justification_flags = 131
 
 [node name="ColorRect" type="ColorRect" parent="Control/DetailsPanel/Control"]
 layout_mode = 0
 offset_left = 18.06483
 offset_top = 5.585545
-offset_right = 40.311337
+offset_right = 37.9696
 offset_bottom = 5.804587
 color = Color(0.23392546, 0.23392546, 0.23392543, 1)
 
