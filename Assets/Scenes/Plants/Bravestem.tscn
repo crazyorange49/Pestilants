@@ -39,6 +39,8 @@ shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
 [node name="NavTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
