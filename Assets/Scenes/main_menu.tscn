@@ -1,16 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ckugtawfvcu5f"]
+[gd_scene load_steps=11 format=3 uid="uid://ckugtawfvcu5f"]
 
 [ext_resource type="Script" uid="uid://35mrd44ki3s" path="res://Assets/Scenes/main_menu.gd" id="1_x6jn2"]
-<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://vuspus5ab6rg" path="res://Assets/Scenes/audio_control.gd" id="2_cbhea"]
-[ext_resource type="Texture2D" uid="uid://b3xqdvnqvmfxw" path="res://Assets/Sprites/placeholder2..png" id="2_tanm1"]
-=======
-[ext_resource type="Script" path="res://Assets/Scenes/audio_control.gd" id="2_cbhea"]
->>>>>>> b8347e22ef0b072e2f47ef9c246ef2e5e95cb031
 [ext_resource type="Script" uid="uid://h8uu3vrf37iw" path="res://Assets/Scenes/full_screen.gd" id="3_cbhea"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6qsvb"]
-texture = ExtResource("2_tanm1")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6jn2"]
+bg_color = Color(0.21171063, 0.68334466, 0.63159126, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77rv3"]
 bg_color = Color(1, 1, 1, 1)
@@ -74,7 +69,6 @@ grow_vertical = 2
 script = ExtResource("1_x6jn2")
 
 [node name="Panel" type="Panel" parent="."]
-texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +77,7 @@ offset_top = -77.0
 offset_right = 77.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_6qsvb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_x6jn2")
 
 [node name="Options" type="Panel" parent="Panel"]
 layout_mode = 1
