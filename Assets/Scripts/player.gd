@@ -59,3 +59,8 @@ func getRenewalSeedCount() -> int:
 
 func changeRenewalSeedCount(x : int):
 	renewalSeeds += x
+	
+
+		
+		
+	
