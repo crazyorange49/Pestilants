@@ -14,9 +14,11 @@ var dayTimePosition: Vector2
 @export var visionRadius: float
 @export var movementSpeed: float
 @export var atkRange: float
-
+@onready var TimeState: DayAndNightCycle = $"../../dayAndNight"
 @onready var visionCollisionBox: CollisionShape2D = $VisionArea/Radius
 @onready var attackRangeCollisionBox: CollisionShape2D = $AttackArea/Range
+@onready var navMap: Node2D = $"../NavMap"
+@onready var navRegions = navMap.get_children()
 
 
 var dayTimePos: Vector2
@@ -34,7 +36,9 @@ func _ready() -> void:
 	attackRangeCollisionBox.shape.radius = atkRange
 
 func _physics_process(delta: float) -> void:
-	pass
+	if TimeState.dayTime == TimeState.DAY_STATE.EVENING:
+		var navRID: RID = navRegions[0].get_rid()
+		print(NavigationServer2D.region_get_random_point(navRID, 1, false))
 
 
 var icon : Texture = stats.icon:
