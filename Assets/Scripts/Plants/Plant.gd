@@ -2,6 +2,9 @@ class_name Plant
 extends Node2D
 
 static var group: StringName = "plant"
+
+var dayTimePosition: Vector2
+
 @export var enemyPriority: int
 @export var stats: Resource = preload("uid://csr8dxvj1ns2l")
 @export var atkDamage: int
@@ -52,6 +55,9 @@ var health: int:
 		health = clamp(newHealth, 0, maxHealth) 
 	get:
 		return health
-		
+
+func onPlantPlaced():
+	dayTimePosition = position
+
 func subtractDamage(damage: int) -> void:
 	health -= damage

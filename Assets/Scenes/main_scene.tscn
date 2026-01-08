@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdsxtleb68cob"]
+[gd_scene load_steps=13 format=3 uid="uid://bdsxtleb68cob"]
 
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
@@ -61,6 +61,11 @@ _data = {
 &"dayNNight": SubResource("Animation_03t3n")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_r8ymx"]
+vertices = PackedVector2Array(-375, -1461.0313, 1392.9766, -1467.9609, 1391.9766, -817.21875, -375, 2030, 1607.0234, 2031.9922, 1613.9688, -812.21875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-385, -1471, -385, 2040, 1617, 2042, 1624, -822, 1402, -827, 1403, -1478)])
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("1_0f027")]
@@ -92,5 +97,8 @@ autostart = true
 position = Vector2(1756, -1077)
 
 [node name="Shop" parent="." instance=ExtResource("2_qk5nb")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_r8ymx")
 
 [connection signal="timeout" from="dayAndNight/Timer" to="dayAndNight" method="_on_timer_timeout"]

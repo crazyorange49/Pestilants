@@ -8,9 +8,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_78iwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
-size = Vector2(128, 128)
+size = Vector2(106.5, 105)
 
-[node name="Bravestem" type="CharacterBody2D"]
+[node name="Bravestem" type="CharacterBody2D" groups=["Plant"]]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_sntse")
@@ -33,6 +33,7 @@ shape = SubResource("CircleShape2D_78iwd")
 debug_color = Color(0.49411765, 0, 0.05882353, 0.50980395)
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
