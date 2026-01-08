@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://1spsxhila5to"]
+[gd_scene load_steps=12 format=3 uid="uid://1spsxhila5to"]
 
 [ext_resource type="Texture2D" uid="uid://brac6tajwuiet" path="res://Assets/Sprites/manOld_stand.png" id="1_3e2tf"]
 [ext_resource type="Script" uid="uid://qhc8nwka33gh" path="res://Assets/Scripts/player.gd" id="1_b2ifw"]
@@ -9,6 +9,70 @@ radius = 21.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2ifw"]
 size = Vector2(7, 7)
+
+[sub_resource type="Gradient" id="Gradient_aee6e"]
+offsets = PackedFloat32Array(0.2147651, 0.4161074, 0.68456376)
+colors = PackedColorArray(1, 1, 1, 1, 0.39193398, 0.62047255, 0.60720485, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e5q2x"]
+gradient = SubResource("Gradient_aee6e")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_aee6e"]
+resource_name = "lightOn"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 2.0]
+}
+
+[sub_resource type="Animation" id="Animation_e5q2x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+
+[sub_resource type="Animation" id="Animation_mifcl"]
+resource_name = "lightOff"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mifcl"]
+_data = {
+&"RESET": SubResource("Animation_e5q2x"),
+&"lightOff": SubResource("Animation_mifcl"),
+&"lightOn": SubResource("Animation_aee6e")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -37,6 +101,16 @@ offset_left = -50.0
 offset_top = -41.0
 offset_right = 49.0
 offset_bottom = -32.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_e5q2x")
+texture_scale = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_mifcl")
+}
 
 [connection signal="body_shape_entered" from="PlotSelector" to="." method="_on_plot_selector_body_shape_entered"]
 [connection signal="body_shape_exited" from="PlotSelector" to="." method="_on_plot_selector_body_shape_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://tx4bkgf2okvm"]
+[gd_scene load_steps=24 format=3 uid="uid://tx4bkgf2okvm"]
 
 [ext_resource type="Script" uid="uid://dd5n4w1g143gs" path="res://Assets/Scripts/enemySlime.gd" id="1_3pmh0"]
 [ext_resource type="Texture2D" uid="uid://comjs8fb6muam" path="res://Assets/Sprites/slime.png" id="1_oyf8h"]
@@ -133,6 +133,15 @@ radius = 228.00877
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyf8h"]
 radius = 10.049875
 
+[sub_resource type="Gradient" id="Gradient_aee6e"]
+offsets = PackedFloat32Array(0.2147651, 0.4161074, 0.68456376)
+colors = PackedColorArray(1, 1, 1, 1, 0.39193398, 0.62047255, 0.60720485, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_td1d5"]
+gradient = SubResource("Gradient_aee6e")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_3pmh0")
 
@@ -159,6 +168,11 @@ offset_left = -40.0
 offset_top = -45.0
 offset_right = 39.0
 offset_bottom = -38.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -11)
+texture = SubResource("GradientTexture2D_td1d5")
+texture_scale = 2.0
 
 [connection signal="body_entered" from="detecionArea" to="." method="_on_detecion_area_body_entered"]
 [connection signal="body_exited" from="detecionArea" to="." method="_on_detecion_area_body_exited"]

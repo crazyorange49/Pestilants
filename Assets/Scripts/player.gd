@@ -13,11 +13,14 @@ var renewalSeeds: = 15
 @onready var Map: Node2D = $"../Map"
 @onready var map: TileMapDual = $"../Map/SoilTiles"
 @onready var plot_selector: Area2D = $PlotSelector
+@onready var light: PointLight2D = $PointLight2D
+@onready var lightAni: AnimationPlayer = $PointLight2D/AnimationPlayer
 var maxHealth = 100
 var health = 78
 var minHealth = 0
 
-
+func _ready():
+	light.visible = false
 
 func _physics_process(_delta: float) -> void:
 	var moveInput = Input.get_vector("left","right", "up","down")
