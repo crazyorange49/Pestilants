@@ -20,10 +20,11 @@ var dayTimePosition: Vector2
 @onready var attackRangeCollisionBox: CollisionShape2D = $AttackArea/Range
 @onready var navMap: Node2D = $"../NavMap"
 @onready var navRegions = navMap.get_children()
+@onready var navigationAgent2d: NavigationAgent2D = $NavigationAgent2D
 
 
 var dayTimePos: Vector2
-var direction
+var Direction: Vector2 = dayTimePos
 func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_movementSpeed: float = 0.0, p_atkRange: float = 0.0) -> void:
 	maxHealth = p_maxHealth
 	atkDamage = p_atkDamage
@@ -35,15 +36,15 @@ func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: f
 func _ready() -> void:
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
-	
+
 func _physics_process(delta: float) -> void:
+	pass
+	Direction = Vector2.ZERO
 	if TimeState.dayTime == TimeState.DAY_STATE.EVENING:
-		var navRID: RID = navRegions[0].get_rid()
-		direction = Vector2.ZERO
-		direction = (NavigationServer2D.region_get_random_point(navRID, 1, false) - global_position).normalized()
-		velocity = velocity.lerp(direction * speed, delta)
-		print_debug(velocity)
-		move_and_collide(velocity)
+		Direction = (navigationAgent2d.get_next_path_position() - global_position).normalized()
+		velocity =  velocity.lerp(Direction * speed, delta)
+		move_and_slide()
+		
 
 
 var icon : Texture = stats.icon:
@@ -75,3 +76,8 @@ func onPlantPlaced():
 
 func subtractDamage(damage: int) -> void:
 	health -= damage
+	
+func getNewPosition():
+	var navRID: RID = navRegions[0].get_rid()
+	navigationAgent2d.target_position = (NavigationServer2D.region_get_random_point(navRID, 1, false))
+	
