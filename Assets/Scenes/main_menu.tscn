@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ckugtawfvcu5f"]
 
 [ext_resource type="Script" uid="uid://35mrd44ki3s" path="res://Assets/Scenes/main_menu.gd" id="1_x6jn2"]
-[ext_resource type="Script" path="res://Assets/Scenes/audio_control.gd" id="2_cbhea"]
+[ext_resource type="Script" uid="uid://vuspus5ab6rg" path="res://Assets/Scenes/audio_control.gd" id="2_cbhea"]
 [ext_resource type="Script" uid="uid://h8uu3vrf37iw" path="res://Assets/Scenes/full_screen.gd" id="3_cbhea"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6jn2"]
