@@ -11,8 +11,8 @@ radius = 21.0
 size = Vector2(7, 7)
 
 [sub_resource type="Gradient" id="Gradient_aee6e"]
-offsets = PackedFloat32Array(0.2147651, 0.4161074, 0.68456376)
-colors = PackedColorArray(1, 1, 1, 1, 0.39193398, 0.62047255, 0.60720485, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.11409396, 0.4161074, 0.68456376)
+colors = PackedColorArray(1, 1, 1, 1, 0.24350977, 0.68821865, 0.70025784, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_e5q2x"]
 gradient = SubResource("Gradient_aee6e")
@@ -29,10 +29,22 @@ tracks/0/path = NodePath("PointLight2D:texture_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.9666667),
+"times": PackedFloat32Array(0.06666667, 2.9666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.2, 2.0]
+"values": [0.2, 6.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_e5q2x"]
@@ -49,6 +61,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.2]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_mifcl"]
 resource_name = "lightOff"
@@ -64,7 +88,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [2.0, 0.2]
+"values": [6.0, 0.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mifcl"]

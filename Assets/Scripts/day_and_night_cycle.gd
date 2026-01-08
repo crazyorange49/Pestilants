@@ -27,8 +27,6 @@ func _on_timer_timeout() -> void:
 		dayTime = DAY_STATE.NOON
 		changeDayTime.emit(dayTime)
 		player.lightAni.play("lightOff")  
-		await get_tree().create_timer(3).timeout
-		player.light.visible = false
 		map.killAllChildren()
 		animation_player.play("NightToDay")
 		print("dayTIME!!")

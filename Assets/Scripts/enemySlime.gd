@@ -6,6 +6,7 @@ var maxHealth = 50
 var minHealth = 0
 var playerChase = false
 var victim = null
+@onready var enemy_target: Marker2D = $"../../EnemyTarget"
 
 func _physics_process(delta):
 	if(health == 0):
@@ -15,7 +16,8 @@ func _physics_process(delta):
 		move_and_collide(velocity)
 		$AnimatedSprite2D.play("walk")
 	else:
-		velocity = lerp(velocity, Vector2.ZERO, 0.07)
+		#velocity = lerp(velocity, Vector2.ZERO, 0.07) #idles
+		velocity = (enemy_target.get_global_position() - position).normalized() * speed * delta
 		move_and_collide(velocity)
 		$AnimatedSprite2D.play("idle") 
 

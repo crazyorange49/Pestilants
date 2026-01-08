@@ -563,6 +563,9 @@ position = Vector2(-6636, 0)
 navigation_polygon = ExtResource("14_vwnmq")
 enabled = false
 
+[node name="EnemyTarget" type="Marker2D" parent="."]
+position = Vector2(733, 283)
+
 [node name="EnemySpawn" type="Marker2D" parent="."]
 position = Vector2(-9246, 198)
 
