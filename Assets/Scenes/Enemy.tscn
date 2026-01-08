@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://tx4bkgf2okvm"]
+[gd_scene load_steps=22 format=3 uid="uid://tx4bkgf2okvm"]
 
 [ext_resource type="Script" uid="uid://dd5n4w1g143gs" path="res://Assets/Scripts/enemySlime.gd" id="1_3pmh0"]
 [ext_resource type="Texture2D" uid="uid://comjs8fb6muam" path="res://Assets/Sprites/slime.png" id="1_oyf8h"]
+[ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_td1d5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pmh0"]
 atlas = ExtResource("1_oyf8h")
@@ -139,8 +140,7 @@ script = ExtResource("1_3pmh0")
 position = Vector2(17.5, -10.9375)
 scale = Vector2(2.09375, 2.09375)
 sprite_frames = SubResource("SpriteFrames_wbetg")
-animation = &"walk"
-frame_progress = 0.23510706
+animation = &"idle"
 offset = Vector2(-8.805, -1.595)
 
 [node name="detecionArea" type="Area2D" parent="."]
@@ -153,6 +153,12 @@ shape = SubResource("CircleShape2D_rf64a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_oyf8h")
+
+[node name="HpBar" parent="." instance=ExtResource("3_td1d5")]
+offset_left = -40.0
+offset_top = -45.0
+offset_right = 39.0
+offset_bottom = -38.0
 
 [connection signal="body_entered" from="detecionArea" to="." method="_on_detecion_area_body_entered"]
 [connection signal="body_exited" from="detecionArea" to="." method="_on_detecion_area_body_exited"]
