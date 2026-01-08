@@ -488,19 +488,19 @@ sources/1 = SubResource("TileSetAtlasSource_17ifn")
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hv05q"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_47en4"]
-vertices = PackedVector2Array(1724.9531, -886, 1709.0469, 2028.8672, -375.9922, 2003.1172, 1462.1016, -886, -373, -1428.1563, 1456.1016, -1459.8203)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-383, -1438, -386, 2013, 1719, 2039, 1735, -896, 1472, -896, 1466, -1470)])
+vertices = PackedVector2Array(-378.04688, -1428.1563, 1456.1016, -1459.8203, 1462.1016, -886, -395.9375, 2015.0625, 1709.0469, 2028.9297, 1724.9531, -886)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-388, -1438, -406, 2025, 1719, 2039, 1735, -896, 1472, -896, 1466, -1470)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4hua8"]
-vertices = PackedVector2Array(-376, 2019.7891, -1529, 1996.2031, -1529, -1435.0703, -376, -1443.9219)
+vertices = PackedVector2Array(-401.92188, 2031.0234, -1558.9063, 2033.9688, -1529.0781, -1435.0703, -376.0703, -1443.9219)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-366, -1454, -366, 2030, -1539, 2006, -1539, -1445)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-366, -1454, -392, 2041, -1569, 2044, -1539, -1445)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_17ifn"]
-vertices = PackedVector2Array(504.95313, 2007.9688, -538.97656, 2005.0234, -533.0078, -1443.0625, 489.03906, -1449.9297)
+vertices = PackedVector2Array(537.8906, -1407.3281, 502.10156, 2018.8594, -538.97656, 2005.1328, -533.0078, -1442.6563)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(499, -1460, -543, -1453, -549, 2015, 515, 2018)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(548, -1417, -543, -1453, -549, 2015, 512, 2029)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_it2g8"]
 vertices = PackedVector2Array(836.9531, -1451.0938, 822.03906, 2024.1328, -193, 2037.8594, -193, -1460.8984)
@@ -531,40 +531,42 @@ godot_4_3_compatibility = false
 display_material = SubResource("CanvasItemMaterial_hv05q")
 metadata/_custom_type_script = "uid://cjk8nronimk5r"
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavMap" type="Node2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="NavMap"]
 navigation_polygon = SubResource("NavigationPolygon_47en4")
 
-[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(11, 0)
 navigation_polygon = SubResource("NavigationPolygon_4hua8")
 enabled = false
 
-[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="."]
-position = Vector2(-1127, -5)
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="NavMap"]
+position = Vector2(-1127, 0)
 navigation_polygon = SubResource("NavigationPolygon_4hua8")
 enabled = false
 
-[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-2267, 0)
 navigation_polygon = SubResource("NavigationPolygon_4hua8")
 enabled = false
 
-[node name="NavigationRegion2D5" type="NavigationRegion2D" parent="."]
-position = Vector2(-4325, 4)
+[node name="NavigationRegion2D5" type="NavigationRegion2D" parent="NavMap"]
+position = Vector2(-4325, 0)
 navigation_polygon = SubResource("NavigationPolygon_17ifn")
 enabled = false
 
-[node name="NavigationRegion2D6" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D6" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-5685, 0)
 navigation_polygon = SubResource("NavigationPolygon_it2g8")
 enabled = false
 
-[node name="NavigationRegion2D7" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D7" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-5494, 0)
 navigation_polygon = SubResource("NavigationPolygon_4hua8")
 enabled = false
 
-[node name="NavigationRegion2D8" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D8" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-6636, 0)
 navigation_polygon = SubResource("NavigationPolygon_4hua8")
 enabled = false
