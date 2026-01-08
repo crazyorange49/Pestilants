@@ -23,5 +23,6 @@ func _on_timer_timeout() -> void:
 	elif dayTime != DAY_STATE.NOON:
 		dayTime = DAY_STATE.NOON
 		changeDayTime.emit(dayTime)
+		map.killAllChildren()
 		animation_player.play("NightToDay")
 		print("dayTIME!!")
