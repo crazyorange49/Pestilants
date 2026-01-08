@@ -32,6 +32,10 @@ func _ready() -> void:
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
 
+func _physics_process(delta: float) -> void:
+	pass
+
+
 var icon : Texture = stats.icon:
 	set(icon):
 		stats.icon = icon

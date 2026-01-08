@@ -7,6 +7,7 @@ func _ready() -> void:
 	health = maxHealth
 
 
+
 func _on_vision_area_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.
 
