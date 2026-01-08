@@ -8,6 +8,8 @@ var playerChase = false
 var victim = null
 
 func _physics_process(delta):
+	if(health == 0):
+		queue_free()
 	if playerChase:
 		velocity = (victim.get_global_position() - position).normalized() * speed * delta
 		move_and_collide(velocity)

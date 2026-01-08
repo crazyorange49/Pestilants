@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dexdvbfljxaes"]
+[gd_scene load_steps=28 format=4 uid="uid://dexdvbfljxaes"]
 
 [ext_resource type="Script" uid="uid://cfjgmammsk3ab" path="res://Assets/Scenes/map.gd" id="1_17ifn"]
 [ext_resource type="Texture2D" uid="uid://dnwifcgyao3se" path="res://Assets/TileSheets/TilemapMaker.png" id="1_u8q4h"]
@@ -565,3 +565,5 @@ enabled = false
 
 [node name="EnemySpawn" type="Marker2D" parent="."]
 position = Vector2(-9246, 198)
+
+[node name="enemyStorage" type="Node2D" parent="."]

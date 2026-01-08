@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
 [ext_resource type="PackedScene" uid="uid://chix7afojtval" path="res://Assets/Scenes/UI/Shop/Shop.tscn" id="2_qk5nb"]
-[ext_resource type="PackedScene" uid="uid://tx4bkgf2okvm" path="res://Assets/Scenes/Enemy.tscn" id="3_xcvj3"]
 [ext_resource type="PackedScene" uid="uid://d3wsaqq4atule" path="res://Assets/Scenes/UI/hud.tscn" id="4_03t3n"]
 [ext_resource type="Script" uid="uid://i2qfpxvfn8r7" path="res://Assets/Scripts/day_and_night_cycle.gd" id="5_6bpw5"]
 [ext_resource type="PackedScene" uid="uid://dodyitge0c33y" path="res://Assets/Scenes/UI/shopKeep/shopKeep.tscn" id="6_qk5nb"]
@@ -65,12 +64,6 @@ _data = {
 
 [node name="Map" parent="." instance=ExtResource("1_0f027")]
 position = Vector2(-1, -5)
-
-[node name="Enemy" parent="." instance=ExtResource("3_xcvj3")]
-position = Vector2(-808, -182)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_xcvj3")]
-position = Vector2(-269, -294)
 
 [node name="Player" parent="." instance=ExtResource("2_2c62f")]
 
