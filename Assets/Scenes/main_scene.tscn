@@ -67,7 +67,7 @@ _data = {
 position = Vector2(-1, -5)
 
 [node name="Enemy" parent="." instance=ExtResource("3_xcvj3")]
-position = Vector2(270, -182)
+position = Vector2(-808, -182)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_xcvj3")]
 position = Vector2(-269, -294)
