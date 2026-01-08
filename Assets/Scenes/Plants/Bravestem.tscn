@@ -17,6 +17,7 @@ script = ExtResource("1_sntse")
 maxHealth = 100
 visionRadius = 250.0
 atkRange = 100.0
+speed = 400.0
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_sntse")

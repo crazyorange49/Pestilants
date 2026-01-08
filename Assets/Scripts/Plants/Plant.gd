@@ -1,5 +1,5 @@
 class_name Plant
-extends Node2D
+extends CharacterBody2D
 
 static var group: StringName = "plant"
 
@@ -14,6 +14,7 @@ var dayTimePosition: Vector2
 @export var visionRadius: float
 @export var movementSpeed: float
 @export var atkRange: float
+@export var speed: float
 @onready var TimeState: DayAndNightCycle = $"../../dayAndNight"
 @onready var visionCollisionBox: CollisionShape2D = $VisionArea/Radius
 @onready var attackRangeCollisionBox: CollisionShape2D = $AttackArea/Range
@@ -22,7 +23,7 @@ var dayTimePosition: Vector2
 
 
 var dayTimePos: Vector2
-
+var direction
 func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_movementSpeed: float = 0.0, p_atkRange: float = 0.0) -> void:
 	maxHealth = p_maxHealth
 	atkDamage = p_atkDamage
@@ -34,11 +35,15 @@ func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: f
 func _ready() -> void:
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
-
+	
 func _physics_process(delta: float) -> void:
 	if TimeState.dayTime == TimeState.DAY_STATE.EVENING:
 		var navRID: RID = navRegions[0].get_rid()
-		print(NavigationServer2D.region_get_random_point(navRID, 1, false))
+		direction = Vector2.ZERO
+		direction = (NavigationServer2D.region_get_random_point(navRID, 1, false) - global_position).normalized()
+		velocity = velocity.lerp(direction * speed, delta)
+		print_debug(velocity)
+		move_and_collide(velocity)
 
 
 var icon : Texture = stats.icon:
