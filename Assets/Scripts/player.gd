@@ -41,3 +41,6 @@ func _on_plot_selector_body_shape_exited(_body_rid: RID, _boddy: Node2D, _body_s
 
 func getRenewalSeedCount() -> int:
 	return renewalSeeds 
+
+func changeRenewalSeedCount(x : int):
+	renewalSeeds += x
