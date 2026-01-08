@@ -13,6 +13,10 @@ var renewalSeeds: = 15
 
 @onready var map: TileMapDual = $"../Map/SoilTiles"
 @onready var plot_selector: Area2D = $PlotSelector
+var maxHealth = 100
+var health = 78
+var minHealth = 0
+
 
 
 func _physics_process(_delta: float) -> void:

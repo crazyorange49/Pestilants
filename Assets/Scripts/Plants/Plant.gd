@@ -9,6 +9,7 @@ var dayTimePosition: Vector2
 @export var stats: Resource = preload("uid://csr8dxvj1ns2l")
 @export var atkDamage: int
 @export var maxHealth: int
+@export var minHealth: int
 @export var atkCoolDownInSeconds: float
 @export var visionRadius: float
 @export var movementSpeed: float
@@ -32,6 +33,10 @@ func _ready() -> void:
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
 
+func _physics_process(delta: float) -> void:
+	pass
+
+
 var icon : Texture = stats.icon:
 	set(icon):
 		stats.icon = icon
@@ -50,7 +55,7 @@ var itemName: StringName = stats.itemName:
 	get:
 		return itemName
 
-var health: int:
+@export var health: int:
 	set(newHealth):
 		health = clamp(newHealth, 0, maxHealth) 
 	get:
