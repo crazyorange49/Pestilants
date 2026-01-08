@@ -22,7 +22,7 @@ func changeNight():
 		nightEnded = false
 		currentNight += 1
 		prepareSpawn("slimes", 2.0, 1) # mob type, multiplier, # of spawn points
-		print("Night:", currentNight)
+		print("Night: ", currentNight)
 
 func prepareSpawn(type, multiplier, mobSpawns):
 	var mobAmount = 2 #float(currentNight) * multiplier
