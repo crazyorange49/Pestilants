@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var attack_cooldown = 1.0
 var minHealth = 0
 var playerChase = false
-var victim : Plant = null
+var victim  = null
 var can_attack = true
 var is_dead = false
 var move_target: Node2D = null
@@ -51,7 +51,7 @@ func attack():
 	can_attack = true
 
 func _on_attack_area_body_entered(body):
-	if body is Plant:
+	if body.is_in_group("plant"):
 		victim = body
 		moving = false
 func _on_attack_area_body_exited(body):
