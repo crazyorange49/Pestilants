@@ -89,3 +89,6 @@ func getNewPosition():
 	var navRID: RID = navRegions[0].get_rid()
 	navigationAgent2d.target_position = (NavigationServer2D.region_get_random_point(navRID, 1, false))
 	
+
+
+	

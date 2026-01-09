@@ -78,12 +78,15 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="dayAndNight"]
-wait_time = 30.0
+wait_time = 300.0
 autostart = true
 
 [node name="ShopKeep" parent="." instance=ExtResource("6_qk5nb")]
 position = Vector2(1756, -1077)
 
 [node name="Shop" parent="." instance=ExtResource("2_qk5nb")]
+
+[node name="Move_node" type="Node2D" parent="."]
+position = Vector2(1236, 184)
 
 [connection signal="timeout" from="dayAndNight/Timer" to="dayAndNight" method="_on_timer_timeout"]
