@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3wsaqq4atule"]
+[gd_scene load_steps=7 format=3 uid="uid://d3wsaqq4atule"]
 
 [ext_resource type="PackedScene" uid="uid://cd5so80g438ao" path="res://Assets/Scenes/UI/hotbar/Hotbar.tscn" id="1_7hthr"]
-[ext_resource type="Script" path="res://Assets/Scripts/timer.gd" id="2_had68"]
+[ext_resource type="Script" uid="uid://dscljreyqttko" path="res://Assets/Scripts/timer.gd" id="2_had68"]
 [ext_resource type="Script" uid="uid://dq0q83qbpla8s" path="res://Assets/Scripts/hotbar_test.gd" id="3_w5d3o"]
 [ext_resource type="PackedScene" uid="uid://dcp0dgmy5l4px" path="res://Assets/Scenes/UI/Tooltip.tscn" id="4_rfqbw"]
+[ext_resource type="Script" uid="uid://cnpx7wrajrpt" path="res://Assets/Scenes/UI/days_lived.gd" id="5_4a7rl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w5d3o"]
 font_size = 32
@@ -25,9 +26,9 @@ grow_vertical = 0
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 45.0
 grow_horizontal = 2
 text = "5:00"
 label_settings = SubResource("LabelSettings_w5d3o")
@@ -44,3 +45,12 @@ offset_left = 34.0
 offset_top = 569.0
 offset_right = -975.0
 offset_bottom = -20.0
+
+[node name="DaysLived" type="Label" parent="."]
+offset_left = 1000.0
+offset_top = 2.0
+offset_right = 1092.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 32
+text = "Days: "
+script = ExtResource("5_4a7rl")

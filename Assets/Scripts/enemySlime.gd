@@ -11,6 +11,7 @@ var victim = null
 func _physics_process(delta):
 	if(health == 0):
 		queue_free()
+		$AnimatedSprite2D.play("death")
 	if playerChase:
 		velocity = (victim.get_global_position() - position).normalized() * speed * delta
 		move_and_collide(velocity)
@@ -20,7 +21,6 @@ func _physics_process(delta):
 		velocity = (enemy_target.get_global_position() - position).normalized() * speed * delta
 		move_and_collide(velocity)
 		$AnimatedSprite2D.play("idle") 
-
 
 func _on_detecion_area_body_entered(body: Node2D) -> void:
 	victim = body
