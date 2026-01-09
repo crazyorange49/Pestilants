@@ -11,7 +11,7 @@
 size = Vector2(106.5, 105)
 
 [node name="Bravestem" type="CharacterBody2D" groups=["Plant"]]
-collision_layer = 8
+collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_sntse")
 maxHealth = 100
