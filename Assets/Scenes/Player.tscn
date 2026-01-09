@@ -8,7 +8,7 @@
 radius = 21.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2ifw"]
-size = Vector2(7, 7)
+size = Vector2(4, 4)
 
 [sub_resource type="Gradient" id="Gradient_aee6e"]
 offsets = PackedFloat32Array(0.11409396, 0.4161074, 0.68456376)
@@ -18,34 +18,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0.24350977, 0.68821865, 0.70025784, 1, 0, 
 gradient = SubResource("Gradient_aee6e")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Animation" id="Animation_aee6e"]
-resource_name = "lightOn"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:texture_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.06666667, 2.9666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.2, 6.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PointLight2D:enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_e5q2x"]
 length = 0.001
@@ -101,6 +73,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_aee6e"]
+resource_name = "lightOn"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666667, 2.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 6.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mifcl"]

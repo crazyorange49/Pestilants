@@ -1,23 +1,24 @@
 [gd_scene load_steps=6 format=3 uid="uid://dr7ci54k2fljk"]
 
 [ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/bravestem.gd" id="1_sntse"]
-[ext_resource type="Texture2D" uid="uid://dpieb85e380ko" path="res://Assets/Sprites/braveStem.png" id="2_sntse"]
+[ext_resource type="Texture2D" uid="uid://dlbb7ggcdhsq8" path="res://Assets/Sprites/braveStem_Day.png" id="2_sntse"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_78iwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
-size = Vector2(106.5, 105)
+size = Vector2(47, 48.75)
 
 [node name="Bravestem" type="CharacterBody2D" groups=["Plant"]]
+texture_filter = 1
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_sntse")
 maxHealth = 100
 visionRadius = 250.0
 atkRange = 100.0
-speed = 300.0
+speed = 250.0
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_sntse")
@@ -34,7 +35,7 @@ shape = SubResource("CircleShape2D_78iwd")
 debug_color = Color(0.49411765, 0, 0.05882353, 0.50980395)
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+position = Vector2(0.5, 1.375)
 shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
@@ -43,7 +44,6 @@ wait_time = 10.0
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
