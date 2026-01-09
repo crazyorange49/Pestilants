@@ -25,6 +25,8 @@ var dayTimePosition: Vector2
 
 var dayTimePos: Vector2
 var Direction: Vector2 = dayTimePos
+var isBackHome: bool = true
+
 func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_movementSpeed: float = 0.0, p_atkRange: float = 0.0) -> void:
 	maxHealth = p_maxHealth
 	atkDamage = p_atkDamage
@@ -41,12 +43,18 @@ func _physics_process(delta: float) -> void:
 	pass
 	Direction = Vector2.ZERO
 	if TimeState.dayTime == TimeState.DAY_STATE.EVENING:
+		isBackHome = false
 		Direction = (navigationAgent2d.get_next_path_position() - global_position).normalized()
 		velocity =  velocity.lerp(Direction * speed, delta)
 		move_and_slide()
-		
-
-
+	elif !isBackHome and TimeState.dayTime == TimeState.DAY_STATE.NOON:
+		navigationAgent2d.target_position = dayTimePos
+		Direction = (navigationAgent2d.get_next_path_position() - global_position).normalized()
+		velocity =  velocity.lerp(Direction * speed, delta)
+		move_and_slide()
+		if navigationAgent2d.is_target_reached():
+			isBackHome = true
+	
 var icon : Texture = stats.icon:
 	set(icon):
 		stats.icon = icon

@@ -36,6 +36,7 @@ func _input(event: InputEvent) -> void:
 				Map.add_child(usedItem)
 				hotbar.removeItem()
 				usedItem.position = activePlotPOS
+				usedItem.dayTimePos = activePlotPOS
 				usedItem.onPlantPlaced()
 
 

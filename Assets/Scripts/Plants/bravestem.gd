@@ -1,8 +1,6 @@
 class_name Bravestem
 extends Plant
 
-var newPosition: Vector2
-var direction
 func _ready() -> void:
 	super._ready()
 	health = maxHealth

@@ -17,7 +17,7 @@ script = ExtResource("1_sntse")
 maxHealth = 100
 visionRadius = 250.0
 atkRange = 100.0
-speed = 400.0
+speed = 300.0
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_sntse")
@@ -39,7 +39,7 @@ shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
 [node name="NavTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 10.0
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
