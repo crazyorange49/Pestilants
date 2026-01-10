@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://biirlcud4ie1x"]
+[gd_scene load_steps=7 format=3 uid="uid://8bbjksyw0lcg"]
 
-[ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/bravestem.gd" id="1_sntse"]
-[ext_resource type="Texture2D" uid="uid://dlbb7ggcdhsq8" path="res://Assets/Sprites/braveStem_Day.png" id="2_sntse"]
-[ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_jr61u"]
+[ext_resource type="Script" uid="uid://iwfpdtvl83b4" path="res://Assets/Scripts/Plants/sunpetal.gd" id="1_ojlaq"]
+[ext_resource type="Texture2D" uid="uid://b51xt18562q15" path="res://Assets/Sprites/sunPetal_Day.png" id="2_53p8o"]
+[ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_c0i50"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
 
@@ -11,18 +11,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
 size = Vector2(47, 48.75)
 
-[node name="Bravestem" type="CharacterBody2D" groups=["Plant"]]
+[node name="Sunpetal" type="CharacterBody2D" groups=["Plant"]]
 texture_filter = 1
 collision_layer = 4
 collision_mask = 16
-script = ExtResource("1_sntse")
+script = ExtResource("1_ojlaq")
 maxHealth = 100
 visionRadius = 250.0
 atkRange = 100.0
 speed = 200.0
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_sntse")
+texture = ExtResource("2_53p8o")
 
 [node name="VisionArea" type="Area2D" parent="."]
 
@@ -46,7 +46,7 @@ autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="HpBar" parent="." instance=ExtResource("3_jr61u")]
+[node name="HpBar" parent="." instance=ExtResource("3_c0i50")]
 offset_left = -40.0
 offset_top = -45.0
 offset_right = 39.0

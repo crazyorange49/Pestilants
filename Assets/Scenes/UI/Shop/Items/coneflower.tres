@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dsk047k50cmdg" path="res://Assets/Sprites/coneflower_Day.png" id="1_4uep4"]
 [ext_resource type="Script" uid="uid://dhxcbvbymlfxm" path="res://Assets/Scripts/Resources/item.gd" id="2_8plu2"]
-[ext_resource type="PackedScene" uid="uid://biirlcud4ie1x" path="res://Assets/Scenes/Plants/Coneflower.tscn" id="2_wxau5"]
+[ext_resource type="PackedScene" uid="uid://dr7ci54k2fljk" path="res://Assets/Scenes/Plants/Coneflower.tscn" id="2_wxau5"]
 
 [resource]
 script = ExtResource("2_8plu2")
