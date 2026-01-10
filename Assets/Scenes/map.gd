@@ -19,7 +19,7 @@ var movingToNextNight: bool
 var nightsSurived: int
 
 func _ready() -> void:
-	SignalBus.connect("EnemyDeath", Callable(self, "enemyDeath"))
+	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
 	currentNight = 0
 	startingNodes = enemy_storage.get_child_count()
 	numberOfEnemies = enemy_storage.get_child_count()
@@ -48,23 +48,21 @@ func spawn_type(type, mobSpawnRounds, mobWaitTime):
 				slime1.global_position = slimeSpawn.global_position
 				enemy_storage.add_child(slime1)
 				mobSpawnRounds -= 1
+				numberOfEnemies += 1
 				await get_tree().create_timer(mobWaitTime).timeout
 	#nightEnded = true
 	
 func killAllChildren():
 	var enemyStorageChildren = enemy_storage.get_children()
 	for child in enemyStorageChildren:
-		child.free()
+		child.health = 0
 	nightEnded = true
-	nightSurvived()
 		
 
-func _process(_delta: float) -> void:
-	numberOfEnemies = enemy_storage.get_child_count()
-
 func _enemyDeath() -> void:
-	numberOfEnemies = enemy_storage.get_child_count()
-	if numberOfEnemies == 0 or nightEnded:
+	numberOfEnemies -= 1
+	print_debug("Enemy death recived" + str(numberOfEnemies))
+	if numberOfEnemies == 0:
 		nightSurvived()
 
 func nightSurvived():

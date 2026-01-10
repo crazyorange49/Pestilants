@@ -76,6 +76,8 @@ var itemName: StringName = stats.itemName:
 @export var health: int:
 	set(newHealth):
 		health = clamp(newHealth, 0, maxHealth) 
+		if health <= 0:
+			pass
 	get:
 		return health
 
