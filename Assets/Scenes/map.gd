@@ -70,13 +70,13 @@ func _enemyDeath() -> void:
 		nightSurvived()
 
 func nightSurvived():
-	nightsSurived += clamp(1, -1, 8) 
+	nightsSurived += clamp(1, -1, 7) 
 	night_survived.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
 	
 func nightLoss():
-	nightsSurived -= clamp(1, -1, 8) 
+	nightsSurived -= clamp(1, -1, 7) 
 	nightLost.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
