@@ -8,8 +8,8 @@ var dayTimePosition: Vector2
 @export var enemyPriority: int
 @export var stats: Resource = preload("uid://csr8dxvj1ns2l")
 @export var atkDamage: int
-@export var maxHealth: int
-@export var minHealth: int
+@export var maxHealth: int = 100
+@export var minHealth: int = 0
 @export var atkCoolDownInSeconds: float
 @export var visionRadius: float
 @export var movementSpeed: float
