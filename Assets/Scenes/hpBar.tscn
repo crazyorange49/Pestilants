@@ -9,6 +9,7 @@ bg_color = Color(0.9372549, 0.24705882, 0.24313726, 1)
 bg_color = Color(0.34036937, 0.70270187, 1.1551381e-06, 1)
 
 [node name="HpBar" type="ProgressBar"]
+z_index = 5
 offset_left = -49.0
 offset_top = -1.0
 offset_right = 50.0
