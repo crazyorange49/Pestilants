@@ -11,7 +11,7 @@ var renewalSeeds: = 15
 @onready var hotbar: Hotbar = hud.get_child(0)
 @onready var tooltip: Control = hud.get_child(3)
 @onready var Map: Node2D = $"../Map"
-@onready var map: TileMapDual = $"../Map/SoilTiles"
+@onready var soilTiles: TileMapDual = $"../Map/SoilTiles"
 @onready var plot_selector: Area2D = $PlotSelector
 @onready var light: PointLight2D = $PointLight2D
 @onready var lightAni: AnimationPlayer = $PointLight2D/AnimationPlayer
@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 			var itemInUse = hotbar.currentSlot.Item
 			if itemInUse != null:
 				var usedItem: Plant = load(itemInUse.scenePath.resource_path).instantiate()
-				Map.add_child(usedItem)
+				Map.get_node("plantStorage").add_child(usedItem)
 				hotbar.removeItem()
 				usedItem.position = activePlotPOS
 				usedItem.dayTimePos = activePlotPOS
@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_plot_selector_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	activePlotPOS = map.map_to_local(map.local_to_map(position))
+	activePlotPOS = soilTiles.map_to_local(soilTiles.local_to_map(position))
 	NumberOfCollisions = len(plot_selector.get_overlapping_bodies())
 	if body.is_in_group("Plant"):
 		isInPlant = true

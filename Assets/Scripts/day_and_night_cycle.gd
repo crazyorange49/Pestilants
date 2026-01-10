@@ -6,7 +6,6 @@ signal changeDayTime(dayTime: DAY_STATE)
 @onready var map: Node2D = $"../Map"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player: CharacterBody2D = $"../Player"
-@onready var hud: Label = $"../HUD/DaysLived"
 
 enum DAY_STATE{NOON, EVENING}
 var dayTime : DAY_STATE = DAY_STATE.NOON
@@ -29,6 +28,5 @@ func _on_timer_timeout() -> void:
 		changeDayTime.emit(dayTime)
 		player.lightAni.play("lightOff")  
 		map.killAllChildren()
-		hud.addNight()
 		animation_player.play("NightToDay")
 		print("dayTIME!!")

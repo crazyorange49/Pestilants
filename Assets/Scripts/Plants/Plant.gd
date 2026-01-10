@@ -15,11 +15,11 @@ var dayTimePosition: Vector2
 @export var movementSpeed: float
 @export var atkRange: float
 @export var speed: float
-@onready var TimeState: DayAndNightCycle = $"../../dayAndNight"
+@onready var TimeState: DayAndNightCycle = $"../../../dayAndNight"
 @onready var visionCollisionBox: CollisionShape2D = $VisionArea/Radius
 @onready var attackRangeCollisionBox: CollisionShape2D = $AttackArea/Range
-@onready var navMap: Node2D = $"../NavMap"
-@onready var navRegions = navMap.get_children()
+@onready var map: Node2D = $"../../"
+@onready var navRegions = map.navMap.get_children()
 @onready var navigationAgent2d: NavigationAgent2D = $NavigationAgent2D
 
 

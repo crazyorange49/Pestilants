@@ -8,11 +8,6 @@ func _ready() -> void:
 	currentNight = 0
 	days_lived.text = "Days: " + str(currentNight)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func addNight():
 	currentNight += 1
 	days_lived.text = "Days: " + str(currentNight)

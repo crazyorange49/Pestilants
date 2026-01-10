@@ -25,6 +25,7 @@ func _ready():
 
 func _physics_process(delta):
 	if(health == 0):
+		SignalBus.onDeath.emit()
 		queue_free()
 		$AnimatedSprite2D.play("death")
 	if victim:

@@ -573,3 +573,5 @@ position = Vector2(733, 283)
 position = Vector2(-9246, 198)
 
 [node name="enemyStorage" type="Node2D" parent="."]
+
+[node name="plantStorage" type="Node2D" parent="."]
