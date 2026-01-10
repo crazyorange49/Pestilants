@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://biirlcud4ie1x"]
+
+[ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/bravestem.gd" id="1_1r1j7"]
+[ext_resource type="Texture2D" uid="uid://dsk047k50cmdg" path="res://Assets/Sprites/coneflower_Day.png" id="2_1r1j7"]
+[ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_hmbhg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_78iwd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
+size = Vector2(47, 48.75)
+
+[node name="Coneflower" type="CharacterBody2D" groups=["Plant"]]
+texture_filter = 1
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_1r1j7")
+maxHealth = 100
+visionRadius = 250.0
+atkRange = 100.0
+speed = 200.0
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1r1j7")
+
+[node name="VisionArea" type="Area2D" parent="."]
+
+[node name="Radius" type="CollisionShape2D" parent="VisionArea"]
+shape = SubResource("CircleShape2D_4edj2")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="Range" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_78iwd")
+debug_color = Color(0.49411765, 0, 0.05882353, 0.50980395)
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.375)
+shape = SubResource("RectangleShape2D_sntse")
+debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
+
+[node name="NavTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="HpBar" parent="." instance=ExtResource("3_hmbhg")]
+offset_left = -40.0
+offset_top = -45.0
+offset_right = 39.0
+offset_bottom = -38.0
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="NavTimer" to="." method="_on_nav_timer_timeout"]
