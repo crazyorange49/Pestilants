@@ -61,7 +61,6 @@ func killAllChildren():
 
 func _enemyDeath() -> void:
 	numberOfEnemies -= 1
-	print_debug("Enemy death recived" + str(numberOfEnemies))
 	if numberOfEnemies == 0:
 		nightSurvived()
 
