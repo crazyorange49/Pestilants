@@ -3,12 +3,17 @@ extends Node2D
 signal night_survived
 signal nightLost
 
+const tileMapSectionVectors: Array[Vector2i] = [Vector2i(-6,-23),Vector2i(-24,-23),Vector2i(-42,-23),Vector2i(-60,-23),Vector2i(-76,-23),Vector2i(-92,-23),Vector2i(-110,-23),Vector2i(-128,-23)]
+
 var currentNight: int
 @export var enemy: PackedScene
 @onready var day_and_night: DayAndNightCycle = $"../dayAndNight"
 @onready var enemy_storage: Node2D = $enemyStorage
 @onready var plant_storage: Node2D = $plantStorage
 @onready var navMap: Node2D = $NavMap
+@onready var grass_tiles: TileMapDual = $GrassTiles
+@onready var grass_tileset: TileSet = grass_tiles.tile_set
+
 
 
 var startingNodes: int  
@@ -67,6 +72,8 @@ func _enemyDeath() -> void:
 func nightSurvived():
 	nightsSurived += 1
 	night_survived.emit()
+	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
+	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
 	
 func nightLoss():
 	nightsSurived -= 1
