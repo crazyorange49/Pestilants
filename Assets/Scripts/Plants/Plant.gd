@@ -12,7 +12,6 @@ var dayTimePosition: Vector2
 @export var minHealth: int 
 @export var atkCoolDownInSeconds: float
 @export var visionRadius: float
-@export var movementSpeed: float
 @export var atkRange: float
 @export var speed: float
 @onready var TimeState: DayAndNightCycle = $"../../../dayAndNight"
@@ -32,7 +31,6 @@ func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: f
 	atkDamage = p_atkDamage
 	atkCoolDownInSeconds  = p_atkCoolDownInSeconds
 	visionRadius  = p_visionRadius
-	movementSpeed  = p_movementSpeed
 	atkRange = p_atkRange
 
 func _ready() -> void:

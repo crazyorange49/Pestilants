@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="itemStats" load_steps=4 format=3 uid="uid://dh5pyc230gwc2"]
 
 [ext_resource type="Texture2D" uid="uid://dlbb7ggcdhsq8" path="res://Assets/Sprites/braveStem_Day.png" id="1_wx4wx"]
-[ext_resource type="PackedScene" uid="uid://dr7ci54k2fljk" path="res://Assets/Scenes/Plants/Bravestem.tscn" id="2_6vk33"]
+[ext_resource type="PackedScene" uid="uid://biirlcud4ie1x" path="res://Assets/Scenes/Plants/Bravestem.tscn" id="2_6vk33"]
 [ext_resource type="Script" uid="uid://dhxcbvbymlfxm" path="res://Assets/Scripts/Resources/item.gd" id="3_gjdiy"]
 
 [resource]

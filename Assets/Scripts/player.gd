@@ -6,7 +6,7 @@ var isInFarmPlot: bool = false
 var isInPlant: bool = false
 var activePlotPOS: Vector2
 var NumberOfCollisions: int
-var renewalSeeds: = 15
+var renewalSeeds: = 100
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
 @onready var tooltip: Control = hud.get_child(3)

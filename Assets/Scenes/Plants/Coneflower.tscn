@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://biirlcud4ie1x"]
+[gd_scene load_steps=7 format=3 uid="uid://dr7ci54k2fljk"]
 
-[ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/bravestem.gd" id="1_1r1j7"]
+[ext_resource type="Script" uid="uid://b30uocvtl7i6n" path="res://Assets/Scripts/Plants/coneflower.gd" id="1_1r1j7"]
 [ext_resource type="Texture2D" uid="uid://dsk047k50cmdg" path="res://Assets/Sprites/coneflower_Day.png" id="2_1r1j7"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_hmbhg"]
 

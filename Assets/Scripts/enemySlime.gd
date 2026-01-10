@@ -60,7 +60,7 @@ func _on_attack_area_body_exited(body):
 		victim = null
 		moving = true  
 
-func move_to_target(delta):
+func move_to_target(_delta):
 	if move_target == null:
 		return
 
