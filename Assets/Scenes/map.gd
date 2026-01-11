@@ -89,7 +89,7 @@ func nightSurvived():
 func nightLoss():
 	nightsSurived = clamp(nightsSurived - 1, -1, 7)
 	nightLost.emit()
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(4))
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
+	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
+	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
 
 	
