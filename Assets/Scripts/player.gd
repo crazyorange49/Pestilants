@@ -32,8 +32,7 @@ func _physics_process(_delta: float) -> void:
 	if(hotbar.currentSlot != null):
 		if hotbar.currentSlot.Item == ZMOONLIGHT_REFLECTOR and !isInFarmPlot:
 			tooltip.visible = true
-		else:
-			tooltip.visible = false
+		
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):

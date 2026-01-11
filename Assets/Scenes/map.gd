@@ -14,8 +14,7 @@ var currentNight: int
 @onready var navMap: Node2D = $NavMap
 @onready var grass_tiles: TileMapDual = $GrassTiles
 @onready var grass_tileset: TileSet = grass_tiles.tile_set
-
-
+@onready var hud: CanvasLayer = $"../HUD"
 
 var startingNodes: int  
 var numberOfEnemies: int
