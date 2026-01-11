@@ -8,7 +8,10 @@ extends CanvasLayer
 @onready var map: Node2D = $"../Map"
 
 func _updateDaysLived() -> void:
-	days_lived.text = "Days: " + str(map.nightsSurived)
+	var updatedText = "Days: " + str(map.nightsSurived)
+	if map.nightsSurived == -1:
+		updatedText = "Last night"
+	days_lived.text = updatedText
 
 func _ready() -> void:
 	days_lived.text = "Days: " + str(map.nightsSurived)

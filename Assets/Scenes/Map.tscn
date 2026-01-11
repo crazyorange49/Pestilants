@@ -507,7 +507,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_it2g8"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 4
+physics_layer_0/collision_layer = 128
 terrain_set_0/mode = 1
 terrain_set_0/terrain_0/name = "<any>"
 terrain_set_0/terrain_0/color = Color(0.93333334, 0.50980395, 0.93333334, 1)

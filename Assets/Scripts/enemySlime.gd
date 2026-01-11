@@ -16,11 +16,14 @@ var moving = true
 var targetsInRange: Array[Node2D]
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var detecion_area: Area2D = $detecionArea
+@onready var map: Map = $Map
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 func _ready():
 	var main_scene = get_tree().get_current_scene() 
 	if main_scene.has_node("Move_node"):
 		move_target = main_scene.get_node("Move_node")
+		navigation_agent_2d.target_position = move_target.position
 	else:
 		print("node not found")
 	
@@ -54,7 +57,6 @@ func attack():
 	can_attack = true
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	
 	if body.is_in_group("Plant"):
 		victim = calculateTarget()
 		moving = false
@@ -87,9 +89,9 @@ func calculateTarget() -> Plant:
 	var newTarget: Node2D
 	var targetPrio = 10
 	if len(targetsInRange) > 0:
-		print("Number to choose from: " + str(targetsInRange))
 		for plant in targetsInRange:
-			if plant.is_in_group("Plant") and plant.enemyPriority < targetPrio:
+			if plant.enemyPriority < targetPrio:
+				print("plant reconized " + str(plant.position))
 				plant.enemyPriority = targetPrio
 				newTarget = plant
 			else:

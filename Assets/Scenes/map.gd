@@ -23,6 +23,9 @@ var numberOfPlants: int
 var nightEnded: bool
 var movingToNextNight: bool
 var nightsSurived: int
+var navServerMap: RID
+
+
 
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
@@ -30,6 +33,7 @@ func _ready() -> void:
 	currentNight = 0
 	startingNodes = enemy_storage.get_child_count()
 	numberOfEnemies = enemy_storage.get_child_count()
+	setRegionMap()
 	pass 
 
 func changeNight():
@@ -87,8 +91,7 @@ func nightSurvived():
 	night_survived.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
-	
-	
+
 func nightLoss():
 	if nightsSurived == -1:
 		#game loss
@@ -98,4 +101,25 @@ func nightLoss():
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
 
+func setRegionMap():
+	navServerMap = NavigationServer2D.map_create()
+	NavigationServer2D.map_set_active(navServerMap, true)
+	for navRegion in navMap.get_children():
+		NavigationServer2D.region_set_map(navRegion.get_rid(), navServerMap)
+	await get_tree().physics_frame
+	
+	
+func setAvableTargetAgents():
+	pass
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	

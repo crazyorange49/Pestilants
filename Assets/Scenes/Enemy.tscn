@@ -153,7 +153,7 @@ animation = &"idle"
 offset = Vector2(-8.805, -1.595)
 
 [node name="detecionArea" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detecionArea"]
@@ -173,6 +173,8 @@ offset_bottom = -38.0
 position = Vector2(0, -11)
 texture = SubResource("GradientTexture2D_td1d5")
 texture_scale = 7.09
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="body_entered" from="detecionArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="detecionArea" to="." method="_on_attack_area_body_exited"]
