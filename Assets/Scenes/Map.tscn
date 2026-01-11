@@ -595,7 +595,7 @@ position = Vector2(1846, 249)
 metadata/enemyPriority = -1
 
 [node name="EnemySpawn" type="Marker2D" parent="."]
-position = Vector2(291, 263)
+position = Vector2(-9337, 329)
 
 [node name="enemyStorage" type="Node2D" parent="."]
 
