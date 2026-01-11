@@ -105,6 +105,7 @@ func calculateTarget() -> Plant:
 				if move_target.is_in_group("Plant"):
 					move_target.isTarget = false
 			else:
+				print("cant find new target")
 				newTarget = move_target
 	else:
 		return null

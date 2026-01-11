@@ -91,7 +91,7 @@ position = Vector2(1756, -1077)
 [node name="Shop" parent="." instance=ExtResource("2_qk5nb")]
 
 [node name="Move_node" type="Node2D" parent="."]
-position = Vector2(2761, 220)
+position = Vector2(1902, 365)
 metadata/enemyPriority = -1
 
 [connection signal="nightLost" from="Map" to="HUD" method="_updateDaysLived"]

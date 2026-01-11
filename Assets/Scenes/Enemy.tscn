@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://tx4bkgf2okvm"]
 
-[ext_resource type="Script" uid="uid://dd5n4w1g143gs" path="res://Assets/Scripts/enemySlime.gd" id="1_3pmh0"]
 [ext_resource type="Texture2D" uid="uid://comjs8fb6muam" path="res://Assets/Sprites/slime.png" id="1_oyf8h"]
+[ext_resource type="Script" uid="uid://dgah4hxtcbpel" path="res://Assets/Scenes/TestEnemy.gd" id="1_td1d5"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_td1d5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pmh0"]
@@ -143,9 +143,10 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_3pmh0")
-newDistaceWeight = -0.01
-oldDistaceWeight = -0.03
+script = ExtResource("1_td1d5")
+speed = 700
+newDistaceWeight = -0.001
+oldDistaceWeight = -0.003
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(17.5, -10.9375)
@@ -184,4 +185,4 @@ wait_time = 0.5
 
 [connection signal="body_entered" from="detecionArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="detecionArea" to="." method="_on_attack_area_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_findNewTarget"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -44,7 +44,7 @@ func changeNight():
 		print("Night: ", currentNight)
 	
 func prepareSpawn(type, multiplier, mobSpawns):
-	var mobAmount = 2 #float(currentNight) * multiplier
+	var mobAmount = 5 #float(currentNight) * multiplier
 	var mobWaitTime: float = 2.0
 	print("mob amount: ", mobAmount)
 	var mobSpawnRounds = mobAmount / mobSpawns
