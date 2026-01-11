@@ -10,8 +10,8 @@ radius = 87.46428
 size = Vector2(73, 72.75)
 
 [sub_resource type="Gradient" id="Gradient_ne33d"]
-offsets = PackedFloat32Array(0.5637584, 0.84563756, 1)
-colors = PackedColorArray(0.11038213, 0.8302496, 3.85046e-07, 1, 0.62380826, 0.26626793, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.5704698, 0.8389262, 1)
+colors = PackedColorArray(0.11038213, 0.8302496, 3.85046e-07, 1, 0.7058824, 0.003921569, 0.98039216, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6qjon"]
 gradient = SubResource("Gradient_ne33d")
@@ -19,7 +19,7 @@ width = 128
 height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.17370892, 0.8685446)
+fill_to = Vector2(0.15492958, 0.8403756)
 
 [sub_resource type="Animation" id="Animation_4tvud"]
 resource_name = "farmBellAni"
