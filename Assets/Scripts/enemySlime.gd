@@ -36,11 +36,10 @@ func _physics_process(delta):
 		SignalBus.emit_signal("EnemyDeath")
 	if victim:
 		attack()
+	if move_target and moving:
+		move_to_target(delta)
 	else:
-		if move_target and moving:
-			move_to_target(delta)
-		else:
-			sprite.play("idle")
+		sprite.play("idle")
 			
 			
 		
@@ -70,14 +69,15 @@ func move_to_target(delta):
 	if move_target == null:
 		_findNewTarget()
 
-	var direction = (navigation_agent_2d.get_next_path_position() - global_position).normalized()
+	var direction = (navigation_agent_2d.get_next_path_position() - global_position)
 	var distance = direction.length()
 
-	if distance > 1:
-		velocity =  velocity.lerp(direction * speed, delta)
+	if move_target:
+		velocity = velocity.lerp(direction.normalized() * speed, delta)
 		move_and_slide()
 		sprite.play("walk")
 	else:
+		print(distance)
 		velocity = Vector2.ZERO
 		move_and_slide()
 		sprite.play("idle")
@@ -86,12 +86,10 @@ func move_to_target(delta):
 func calculateTarget() -> Plant:
 	var avalableTargets = map.avalableTargets
 	var newTarget: Node2D = move_target
-	var targetPrio = 10
 	if len(avalableTargets) > 0:
 		for plant in avalableTargets:
-			if plant.enemyPriority < targetPrio and position.distance_to(plant.global_position) < position.distance_to(newTarget.global_position) and !plant.isTarget:
+			if plant.enemyPriority < newTarget.enemyPriority and position.distance_to(plant.position) < position.distance_to(newTarget.position) and !plant.isTarget:
 				print("plant reconized " + str(plant.position))
-				plant.enemyPriority = targetPrio
 				newTarget = plant
 				plant.isTarget = true
 				if move_target.is_in_group("Plant"):
