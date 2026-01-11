@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cd5so80g438ao" path="res://Assets/Scenes/UI/hotbar/Hotbar.tscn" id="1_7hthr"]
 [ext_resource type="Script" uid="uid://dfhj14ka3fffb" path="res://Assets/Scenes/UI/hud.gd" id="1_h5kcl"]
-[ext_resource type="Script" path="res://Assets/Scripts/timer.gd" id="2_had68"]
+[ext_resource type="Script" uid="uid://dscljreyqttko" path="res://Assets/Scripts/timer.gd" id="2_had68"]
 [ext_resource type="Script" uid="uid://dq0q83qbpla8s" path="res://Assets/Scripts/hotbar_test.gd" id="3_w5d3o"]
 [ext_resource type="PackedScene" uid="uid://dcp0dgmy5l4px" path="res://Assets/Scenes/UI/Tooltip.tscn" id="4_rfqbw"]
 

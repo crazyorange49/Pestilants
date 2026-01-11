@@ -16,7 +16,8 @@ var Items: Array[itemStats]
 @onready var item_description: Label = %itemDescription
 @onready var item_price: Label = %itemPrice
 
-
+const ZFARM_BELL = preload("uid://dtjkdqeeiybvm")
+@onready var farmbell: Farmbell = $"../Farmbell"
 
 @onready var currency = player.getRenewalSeedCount()
 
@@ -64,7 +65,10 @@ func purchase_item( plant : itemStats ) -> void:
 	if canPurchase:
 		player.changeRenewalSeedCount((0 - plant.price))
 		updateCurrency()
-		hotbar.addItem(plant)
+		if( plant == ZFARM_BELL):
+			farmbell.visible = true
+		else:
+			hotbar.addItem(plant)
 	else:
 		#play audio
 		animation_player.play("notEnoughMoney")

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://m3or5cb2wbu5"]
+
+[ext_resource type="Script" uid="uid://b6uqs01380s6b" path="res://Assets/Scenes/DefenseItems/farmbell.gd" id="1_6qjon"]
+[ext_resource type="Texture2D" uid="uid://cy7es1elt2tf5" path="res://Assets/Sprites/farmBell_Day.png" id="2_4tvud"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
+radius = 87.46428
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
+size = Vector2(73, 72.75)
+
+[node name="Farmbell" type="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(-13, 11)
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_6qjon")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+position = Vector2(13, -13)
+scale = Vector2(1.40625, 1.40625)
+texture = ExtResource("2_4tvud")
+
+[node name="VisionArea" type="Area2D" parent="."]
+
+[node name="Radius" type="CollisionShape2D" parent="VisionArea"]
+position = Vector2(13, -9)
+shape = SubResource("CircleShape2D_4edj2")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(13, -9)
+shape = SubResource("RectangleShape2D_sntse")
+debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
