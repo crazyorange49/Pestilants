@@ -2,15 +2,21 @@ class_name Farmbell
 extends CharacterBody2D
 
 @onready var hud: CanvasLayer = $"../HUD"
+@onready var animation_player: AnimationPlayer = $PointLight2D/AnimationPlayer
+@onready var point_light_2d: PointLight2D = $PointLight2D
+var isInRange: bool
+var isNightTime: bool
 
 func _ready() -> void:
 	visible = false
+	isInRange = false
 	pass
 
 
 func _on_vision_area_body_entered(body: Node2D) -> void:
 	if(visible):
 		hud.tooltip.visible = true
+		isInRange = true
 	pass # Replace with function body.
 
 
@@ -20,6 +26,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 func _on_vision_area_body_exited(body: Node2D) -> void:
 	hud.tooltip.visible = false
+	isInRange = false
 	pass # Replace with function body.
 
 
@@ -28,5 +35,7 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("use"):
+	if event.is_action_pressed("use") and isInRange:
+		point_light_2d.enabled = true
+		animation_player.play("farmBellAni")
 		pass
