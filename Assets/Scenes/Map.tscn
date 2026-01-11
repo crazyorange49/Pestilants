@@ -592,7 +592,7 @@ navigation_polygon = ExtResource("14_vwnmq")
 
 [node name="EnemyTarget" type="Marker2D" parent="."]
 position = Vector2(1846, 249)
-metadata/enemyPriority = 10
+metadata/enemyPriority = -1
 
 [node name="EnemySpawn" type="Marker2D" parent="."]
 position = Vector2(291, 263)

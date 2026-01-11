@@ -7,21 +7,27 @@ extends CharacterBody2D
 @export var attack_damage = 5
 @export var attack_range = 30.0
 @export var attack_cooldown = 1.0
+@export var newDistaceWeight: float
+@export var oldDistaceWeight: float
 var minHealth = 0
 var playerChase = false
 var victim  = null
 var can_attack = true
 var is_dead = false
 var move_target: Node2D = null
+var moveTargetPriority = -1
 var moving = true
 var targetsInRange: Array[Node2D]
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var detecion_area: Area2D = $detecionArea
 @onready var map: Map = $"../../"
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var timer: Timer = $Timer
+
 
 func _ready():
 	var main_scene = get_tree().get_current_scene() 
+	timer.start()
 	if main_scene.has_node("Move_node"):
 		move_target = main_scene.get_node("Move_node")
 		navigation_agent_2d.target_position = move_target.position
@@ -86,12 +92,16 @@ func move_to_target(delta):
 func calculateTarget() -> Plant:
 	var avalableTargets = map.avalableTargets
 	var newTarget: Node2D = move_target
+	var targetPriority: int 
 	if len(avalableTargets) > 0:
 		for plant in avalableTargets:
-			if plant.enemyPriority < newTarget.enemyPriority and position.distance_to(plant.position) < position.distance_to(newTarget.position) and !plant.isTarget:
+			targetPriority = plant.enemyPriority - (newDistaceWeight * position.distance_to(plant.position)) - (oldDistaceWeight * position.distance_to(move_target.position))
+			print("newPrio: " + str(targetPriority) + " moveTargetPriority: " + str(moveTargetPriority))
+			if targetPriority > moveTargetPriority and !plant.isTarget:
 				print("plant reconized " + str(plant.position))
 				newTarget = plant
 				plant.isTarget = true
+				moveTargetPriority = targetPriority
 				if move_target.is_in_group("Plant"):
 					move_target.isTarget = false
 			else:
@@ -102,5 +112,6 @@ func calculateTarget() -> Plant:
 		
 		
 func _findNewTarget() -> void:
+	print("looking for target")
 	move_target = calculateTarget()
 	navigation_agent_2d.target_position = move_target.position

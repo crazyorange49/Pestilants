@@ -55,6 +55,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		if navigationAgent2d.is_target_reached():
 			isBackHome = true
+			isTarget = false
 	
 var icon : Texture = stats.icon:
 	set(icon):
