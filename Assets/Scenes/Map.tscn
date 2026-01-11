@@ -599,6 +599,8 @@ position = Vector2(291, 263)
 
 [node name="enemyStorage" type="Node2D" parent="."]
 
+[node name="defenseStorage" type="Node2D" parent="."]
+
 [node name="plantStorage" type="Node2D" parent="."]
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]

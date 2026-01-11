@@ -13,6 +13,9 @@ func _ready() -> void:
 		slots.append(child)
 		child.setItem(null)
 		child.hotbar = self
+		currentSelection = 0
+		updateHotbar()
+		
 
 func _input(event: InputEvent) -> void:
 	if event.is_pressed() and (event.is_action("hotbarMoveLeft") or event.is_action("hotbarMoveRight")) and !isInShop :

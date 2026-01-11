@@ -7,7 +7,7 @@
 radius = 87.46428
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
-size = Vector2(73, 72.75)
+size = Vector2(78, 41)
 
 [sub_resource type="Gradient" id="Gradient_pkyi3"]
 offsets = PackedFloat32Array(0.093959734, 1)
@@ -18,6 +18,33 @@ gradient = SubResource("Gradient_pkyi3")
 fill = 1
 fill_from = Vector2(0.5023474, 0.5023474)
 fill_to = Vector2(0.16431925, 0.12206573)
+
+[sub_resource type="Animation" id="Animation_53wua"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, 14.000002)]
+}
 
 [sub_resource type="Animation" id="Animation_l0pdi"]
 resource_name = "twinkle"
@@ -49,33 +76,6 @@ tracks/1/keys = {
 "values": [Vector2(-3, 14.000002), Vector2(-3, 14.000002), Vector2(30, -5.000002), Vector2(30, -5.000002)]
 }
 
-[sub_resource type="Animation" id="Animation_53wua"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-3, 14.000002)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8i3qd"]
 _data = {
 &"RESET": SubResource("Animation_53wua"),
@@ -94,7 +94,7 @@ fill_from = Vector2(0.53051645, 0.5399061)
 [node name="Moonlight Reflector" type="CharacterBody2D"]
 texture_filter = 1
 position = Vector2(-13, 11)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 16
 script = ExtResource("1_pkyi3")
 
@@ -110,8 +110,9 @@ position = Vector2(13, -9)
 shape = SubResource("CircleShape2D_4edj2")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(13, -9)
+position = Vector2(14, 5.5)
 shape = SubResource("RectangleShape2D_sntse")
+disabled = true
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]

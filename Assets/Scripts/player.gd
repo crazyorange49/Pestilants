@@ -6,7 +6,7 @@ var isInFarmPlot: bool = false
 var isInPlant: bool = false
 var activePlotPOS: Vector2
 var NumberOfCollisions: int
-var renewalSeeds: = 100
+var renewalSeeds: = 300
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
 @onready var tooltip: Control = hud.get_child(3)
@@ -15,9 +15,12 @@ var renewalSeeds: = 100
 @onready var plot_selector: Area2D = $PlotSelector
 @onready var light: PointLight2D = $PointLight2D
 @onready var lightAni: AnimationPlayer = $PointLight2D/AnimationPlayer
+@export var ML: PackedScene
+@onready var item_spawn: Marker2D = $itemSpawn
 var maxHealth = 100
 var health = 78
 var minHealth = 0
+const ZMOONLIGHT_REFLECTOR = preload("uid://bjriv5fi8rcua")
 
 func _ready():
 	light.visible = false
@@ -26,11 +29,16 @@ func _physics_process(_delta: float) -> void:
 	var moveInput = Input.get_vector("left","right", "up","down")
 	velocity = moveInput * speed
 	move_and_slide()
+	if(hotbar.currentSlot != null):
+		if hotbar.currentSlot.Item == ZMOONLIGHT_REFLECTOR and !isInFarmPlot:
+			tooltip.visible = true
+		else:
+			tooltip.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
-		if isInFarmPlot and hotbar.currentSlot != null and !isInPlant:
-			var itemInUse = hotbar.currentSlot.Item
+		var itemInUse = hotbar.currentSlot.Item
+		if isInFarmPlot and hotbar.currentSlot != null and !isInPlant and itemInUse != ZMOONLIGHT_REFLECTOR:
 			if itemInUse != null:
 				var usedItem: Plant = load(itemInUse.scenePath.resource_path).instantiate()
 				map.get_node("plantStorage").add_child(usedItem)
@@ -38,7 +46,12 @@ func _input(event: InputEvent) -> void:
 				usedItem.position = activePlotPOS
 				usedItem.dayTimePos = activePlotPOS
 				usedItem.onPlantPlaced()
-
+		elif !isInFarmPlot and hotbar.currentSlot != null and itemInUse == ZMOONLIGHT_REFLECTOR:
+			if itemInUse != null:
+				var usedItem = load(itemInUse.scenePath.resource_path).instantiate()
+				map.get_node("defenseStorage").add_child(usedItem)
+				hotbar.removeItem()
+				usedItem.position = item_spawn.global_position
 
 func _on_plot_selector_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	activePlotPOS = soilTiles.map_to_local(soilTiles.local_to_map(position))

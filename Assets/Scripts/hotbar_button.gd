@@ -1,7 +1,7 @@
 class_name HotbarSlot
 extends TextureButton
 
-@export var Item: Resource
+@export var Item: Resource = null
 var quantity
 var hotbar: Hotbar
 @onready var icon: TextureRect = $icon
