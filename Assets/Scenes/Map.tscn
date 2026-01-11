@@ -547,7 +547,6 @@ display_material = SubResource("CanvasItemMaterial_hv05q")
 metadata/_custom_type_script = "uid://cjk8nronimk5r"
 
 [node name="NavMap" type="Node2D" parent="."]
-visible = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="NavMap"]
 navigation_polygon = ExtResource("7_hv05q")
@@ -555,37 +554,30 @@ navigation_polygon = ExtResource("7_hv05q")
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(11, 0)
 navigation_polygon = ExtResource("8_pg1eo")
-enabled = false
 
 [node name="NavigationRegion2D3" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-1127, 0)
 navigation_polygon = ExtResource("9_4cr8j")
-enabled = false
 
 [node name="NavigationRegion2D4" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-2267, 0)
 navigation_polygon = ExtResource("10_b0akx")
-enabled = false
 
 [node name="NavigationRegion2D5" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-4325, 0)
 navigation_polygon = ExtResource("9_p8knt")
-enabled = false
 
 [node name="NavigationRegion2D6" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-5685, 0)
 navigation_polygon = ExtResource("10_ky2ni")
-enabled = false
 
 [node name="NavigationRegion2D7" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-5494, 0)
 navigation_polygon = ExtResource("13_7dmry")
-enabled = false
 
 [node name="NavigationRegion2D8" type="NavigationRegion2D" parent="NavMap"]
 position = Vector2(-6636, 0)
 navigation_polygon = ExtResource("14_vwnmq")
-enabled = false
 
 [node name="EnemyTarget" type="Marker2D" parent="."]
 position = Vector2(733, 283)

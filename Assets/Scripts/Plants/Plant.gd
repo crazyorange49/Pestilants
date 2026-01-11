@@ -72,8 +72,8 @@ var itemName: StringName = stats.itemName:
 		return itemName
 
 @export var health: int:
-	set(newHealth):
-		health = clamp(newHealth, 0, maxHealth) 
+	set(subtractedHealth):
+		health -= clamp(subtractedHealth, 0, maxHealth) 
 		if health <= 0:
 			pass
 	get:
@@ -86,7 +86,7 @@ func subtractDamage(damage: int) -> void:
 	health -= damage
 	
 func getNewPosition():
-	var navRID: RID = navRegions[0].get_rid()
+	var navRID: RID = navRegions[randi() % (map.nightsSurived + 1)].get_rid()
 	navigationAgent2d.target_position = (NavigationServer2D.region_get_random_point(navRID, 1, false))
 	
 

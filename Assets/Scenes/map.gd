@@ -25,6 +25,7 @@ var nightsSurived: int
 
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
+	SignalBus.connect("PlantDeath", Callable(self, "_plantDeath"))
 	currentNight = 0
 	startingNodes = enemy_storage.get_child_count()
 	numberOfEnemies = enemy_storage.get_child_count()
@@ -66,14 +67,20 @@ func killAllChildren():
 
 func _enemyDeath() -> void:
 	numberOfEnemies -= 1
-	if numberOfEnemies == 0:
+	if numberOfEnemies == 0 and numberOfPlants > 0:
 		nightSurvived()
+	else:
+		nightLoss()
 
+func _plantDeath() -> void:
+	numberOfPlants -= 1
+	
 func nightSurvived():
 	nightsSurived += clamp(1, -1, 7) 
 	night_survived.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
+	
 	
 func nightLoss():
 	nightsSurived -= clamp(1, -1, 7) 
