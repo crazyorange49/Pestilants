@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody2D
 
 @export var speed = 150
@@ -16,7 +17,7 @@ var moving = true
 var targetsInRange: Array[Node2D]
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var detecion_area: Area2D = $detecionArea
-@onready var map: Map = $Map
+@onready var map: Map = $"../../"
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 func _ready():
@@ -58,24 +59,22 @@ func attack():
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Plant"):
-		victim = calculateTarget()
-		moving = false
+		victim = body
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body == victim:
-		victim = calculateTarget()
-		if !victim:
-			moving = true  
+		victim = null
 
-func move_to_target(_delta):
+
+func move_to_target(delta):
 	if move_target == null:
-		return
+		_findNewTarget()
 
-	var direction = move_target.global_position - global_position
+	var direction = (navigation_agent_2d.get_next_path_position() - global_position).normalized()
 	var distance = direction.length()
 
 	if distance > 1:
-		velocity = direction.normalized() * speed
+		velocity =  velocity.lerp(direction * speed, delta)
 		move_and_slide()
 		sprite.play("walk")
 	else:
@@ -85,22 +84,25 @@ func move_to_target(_delta):
 		moving = false
 
 func calculateTarget() -> Plant:
-	targetsInRange = detecion_area.get_overlapping_bodies()
-	var newTarget: Node2D
+	var avalableTargets = map.avalableTargets
+	var newTarget: Node2D = move_target
 	var targetPrio = 10
-	if len(targetsInRange) > 0:
-		for plant in targetsInRange:
-			if plant.enemyPriority < targetPrio:
+	if len(avalableTargets) > 0:
+		for plant in avalableTargets:
+			if plant.enemyPriority < targetPrio and position.distance_to(plant.global_position) < position.distance_to(newTarget.global_position) and !plant.isTarget:
 				print("plant reconized " + str(plant.position))
 				plant.enemyPriority = targetPrio
 				newTarget = plant
+				plant.isTarget = true
+				if move_target.is_in_group("Plant"):
+					move_target.isTarget = false
 			else:
-				newTarget = victim
+				newTarget = move_target
 	else:
 		return null
 	return newTarget
 		
 		
-		
-		
-		
+func _findNewTarget() -> void:
+	move_target = calculateTarget()
+	navigation_agent_2d.target_position = move_target.position

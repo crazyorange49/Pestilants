@@ -176,5 +176,10 @@ texture_scale = 7.09
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="body_entered" from="detecionArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="detecionArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_findNewTarget"]

@@ -25,6 +25,7 @@ var dayTimePosition: Vector2
 var dayTimePos: Vector2
 var Direction: Vector2 = dayTimePos
 var isBackHome: bool = true
+var isTarget: bool = false
 
 func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_movementSpeed: float = 0.0, p_atkRange: float = 0.0) -> void:
 	maxHealth = p_maxHealth
