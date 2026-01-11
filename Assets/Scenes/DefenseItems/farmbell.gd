@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var point_light_2d: PointLight2D = $PointLight2D
 var isInRange: bool
 var isNightTime: bool
+var currentState: DayAndNightCycle.DAY_STATE
+var isUsed: bool = false
 
 func _ready() -> void:
 	visible = false
@@ -35,7 +37,13 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("use") and isInRange:
+	if event.is_action_pressed("use") and isInRange and currentState == DayAndNightCycle.DAY_STATE.EVENING and !isUsed:
+		isUsed = true 
 		point_light_2d.enabled = true
 		animation_player.play("farmBellAni")
 		pass
+
+
+func _on_day_and_night_change_day_time(dayTime: DayAndNightCycle.DAY_STATE) -> void:
+	currentState = dayTime
+	isUsed = false
