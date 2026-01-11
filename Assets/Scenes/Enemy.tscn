@@ -134,8 +134,8 @@ radius = 228.00877
 radius = 10.049875
 
 [sub_resource type="Gradient" id="Gradient_aee6e"]
-offsets = PackedFloat32Array(0.12751678, 0.4161074, 0.70469797)
-colors = PackedColorArray(1, 1, 1, 1, 0.42775795, 0.7369359, 0.7764472, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.08053691, 0.2885906, 0.70469797)
+colors = PackedColorArray(1, 1, 1, 1, 0.7833221, 0.0011285698, 0.8778656, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_td1d5"]
 gradient = SubResource("Gradient_aee6e")
