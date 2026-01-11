@@ -58,6 +58,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Plant"):
 		victim = calculateTarget()
 		moving = false
+
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body == victim:
 		victim = calculateTarget()
