@@ -13,7 +13,9 @@ var can_attack = true
 var is_dead = false
 var move_target: Node2D = null
 var moving = true
+var targetsInRange: Array[Node2D]
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var detecion_area: Area2D = $detecionArea
 
 func _ready():
 	var main_scene = get_tree().get_current_scene() 
@@ -46,19 +48,20 @@ func attack():
 	can_attack = false
 	
 
-	victim.subtractDamage(attack_damage)
+	victim.health = attack_damage
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
 
 func _on_attack_area_body_entered(body):
-	if body.is_in_group("plant"):
-		victim = body
+	if body.is_in_group("Plant"):
+		victim = calculateTarget()
 		moving = false
 func _on_attack_area_body_exited(body):
 	if body == victim:
-		victim = null
-		moving = true  
+		victim = calculateTarget()
+		if !victim:
+			moving = true  
 
 func move_to_target(_delta):
 	if move_target == null:
@@ -76,3 +79,23 @@ func move_to_target(_delta):
 		move_and_slide()
 		sprite.play("idle")
 		moving = false
+
+func calculateTarget() -> Plant:
+	targetsInRange = detecion_area.get_overlapping_bodies()
+	var newTarget: Node2D
+	var targetPrio = 0
+	if len(targetsInRange) > 0:
+		for plant in targetsInRange:
+			if plant.is_in_group("Plant"):
+				if plant.priority > targetPrio:
+					plant.priority = targetPrio
+					newTarget = plant
+				
+	else:
+		return null
+	return newTarget
+		
+		
+		
+		
+		
