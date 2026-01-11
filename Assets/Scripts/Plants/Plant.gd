@@ -17,7 +17,7 @@ var dayTimePosition: Vector2
 @onready var TimeState: DayAndNightCycle = $"../../../dayAndNight"
 @onready var visionCollisionBox: CollisionShape2D = $VisionArea/Radius
 @onready var attackRangeCollisionBox: CollisionShape2D = $AttackArea/Range
-@onready var map: Node2D = $"../../"
+@onready var map: Map = $"../../"
 @onready var navRegions = map.navMap.get_children()
 @onready var navigationAgent2d: NavigationAgent2D = $NavigationAgent2D
 
@@ -36,6 +36,8 @@ func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: f
 func _ready() -> void:
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
+	map.numberOfPlants += 1
+	print_debug("plant added: " + str(map.numberOfPlants))
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -73,7 +75,7 @@ var itemName: StringName = stats.itemName:
 
 @export var health: int:
 	set(subtractedHealth):
-		health -= clamp(subtractedHealth, 0, maxHealth) 
+		health = clamp(health - subtractedHealth, 0, maxHealth) 
 		if health <= 0:
 			pass
 	get:

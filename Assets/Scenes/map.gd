@@ -1,3 +1,4 @@
+class_name Map
 extends Node2D
 
 signal night_survived
@@ -37,7 +38,7 @@ func changeNight():
 		currentNight += 1
 		prepareSpawn("slimes", 2.0, 1) # mob type, multiplier, # of spawn points
 		print("Night: ", currentNight)
-
+	
 func prepareSpawn(type, multiplier, mobSpawns):
 	var mobAmount = 2 #float(currentNight) * multiplier
 	var mobWaitTime: float = 2.0
@@ -69,21 +70,24 @@ func _enemyDeath() -> void:
 	numberOfEnemies -= 1
 	if numberOfEnemies == 0 and numberOfPlants > 0:
 		nightSurvived()
-	else:
+	elif numberOfPlants == 0:
 		nightLoss()
 
 func _plantDeath() -> void:
 	numberOfPlants -= 1
-	
+	if numberOfPlants == 0:
+		nightLoss()
+
 func nightSurvived():
-	nightsSurived += clamp(1, -1, 7) 
+	nightsSurived = clamp(nightsSurived + 1, -1, 7) 
+	print("Night survived: " + str(nightsSurived))
 	night_survived.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
 	
 	
 func nightLoss():
-	nightsSurived -= clamp(1, -1, 7) 
+	nightsSurived = clamp(nightsSurived - 1, -1, 7)
 	nightLost.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))

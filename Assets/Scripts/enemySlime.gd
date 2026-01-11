@@ -53,11 +53,12 @@ func attack():
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
 
-func _on_attack_area_body_entered(body):
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	
 	if body.is_in_group("Plant"):
 		victim = calculateTarget()
 		moving = false
-func _on_attack_area_body_exited(body):
+func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body == victim:
 		victim = calculateTarget()
 		if !victim:
@@ -83,14 +84,15 @@ func move_to_target(_delta):
 func calculateTarget() -> Plant:
 	targetsInRange = detecion_area.get_overlapping_bodies()
 	var newTarget: Node2D
-	var targetPrio = 0
+	var targetPrio = 10
 	if len(targetsInRange) > 0:
+		print("Number to choose from: " + str(targetsInRange))
 		for plant in targetsInRange:
-			if plant.is_in_group("Plant"):
-				if plant.priority > targetPrio:
-					plant.priority = targetPrio
-					newTarget = plant
-				
+			if plant.is_in_group("Plant") and plant.enemyPriority < targetPrio:
+				plant.enemyPriority = targetPrio
+				newTarget = plant
+			else:
+				newTarget = victim
 	else:
 		return null
 	return newTarget
