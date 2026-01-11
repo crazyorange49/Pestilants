@@ -79,6 +79,9 @@ func _plantDeath() -> void:
 		nightLoss()
 
 func nightSurvived():
+	if nightsSurived == 7:
+		#game won
+		return
 	nightsSurived = clamp(nightsSurived + 1, -1, 7) 
 	print("Night survived: " + str(nightsSurived))
 	night_survived.emit()
@@ -87,9 +90,12 @@ func nightSurvived():
 	
 	
 func nightLoss():
+	if nightsSurived == -1:
+		#game loss
+		return
 	nightsSurived = clamp(nightsSurived - 1, -1, 7)
 	nightLost.emit()
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(4))
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
+	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
+	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
 
 	
