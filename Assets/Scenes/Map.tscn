@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dexdvbfljxaes"]
+[gd_scene load_steps=38 format=4 uid="uid://dexdvbfljxaes"]
 
 [ext_resource type="Script" uid="uid://cfjgmammsk3ab" path="res://Assets/Scenes/map.gd" id="1_17ifn"]
 [ext_resource type="Texture2D" uid="uid://dnwifcgyao3se" path="res://Assets/TileSheets/TilemapMaker.png" id="1_u8q4h"]
@@ -518,6 +518,17 @@ sources/2 = SubResource("TileSetAtlasSource_bwh4a")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hv05q"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vwnmq"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4fr7r"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tue0r"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bwh4a"]
+normal = Vector2(1, 0)
+
 [node name="Map" type="Node2D"]
 script = ExtResource("1_17ifn")
 enemy = ExtResource("2_it2g8")
@@ -588,3 +599,21 @@ position = Vector2(291, 263)
 [node name="enemyStorage" type="Node2D" parent="."]
 
 [node name="plantStorage" type="Node2D" parent="."]
+
+[node name="WorldBorder" type="StaticBody2D" parent="."]
+
+[node name="WorldBorder" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(2852, 2082)
+shape = SubResource("WorldBoundaryShape2D_vwnmq")
+
+[node name="WorldBorder2" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(2848, -1504)
+shape = SubResource("WorldBoundaryShape2D_4fr7r")
+
+[node name="WorldBorder3" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(2848, -1148)
+shape = SubResource("WorldBoundaryShape2D_tue0r")
+
+[node name="WorldBorder4" type="CollisionShape2D" parent="WorldBorder"]
+position = Vector2(-10113, -1147)
+shape = SubResource("WorldBoundaryShape2D_bwh4a")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qbn65467pc8r"]
+[gd_scene load_steps=12 format=3 uid="uid://qbn65467pc8r"]
 
 [ext_resource type="Script" uid="uid://1lw0jsqyjouq" path="res://Assets/Scenes/DefenseItems/moonlight_reflector.gd" id="1_pkyi3"]
 [ext_resource type="Texture2D" uid="uid://buq4njdy5nibm" path="res://Assets/Sprites/moonlightReflector_Day.png" id="2_7rapx"]
@@ -9,81 +9,88 @@ radius = 87.46428
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
 size = Vector2(73, 72.75)
 
-[sub_resource type="Gradient" id="Gradient_ne33d"]
-offsets = PackedFloat32Array(0.5637584, 0.84563756, 1)
-colors = PackedColorArray(0.11038213, 0.8302496, 3.85046e-07, 1, 0.62380826, 0.26626793, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_pkyi3"]
+offsets = PackedFloat32Array(0.093959734, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6qjon"]
-gradient = SubResource("Gradient_ne33d")
-width = 128
-height = 128
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7rapx"]
+gradient = SubResource("Gradient_pkyi3")
 fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.17370892, 0.8685446)
+fill_from = Vector2(0.5023474, 0.5023474)
+fill_to = Vector2(0.16431925, 0.12206573)
 
-[sub_resource type="Animation" id="Animation_lv6k8"]
+[sub_resource type="Animation" id="Animation_l0pdi"]
+resource_name = "twinkle"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.04, 4, 5.95, 7.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.1, 3.5, 0.1, 3.5, 0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4, 4.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, 14.000002), Vector2(-3, 14.000002), Vector2(30, -5.000002)]
+}
+
+[sub_resource type="Animation" id="Animation_53wua"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/path = NodePath(".:texture_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.5]
+"values": [0.1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [Vector2(-3, 14.000002)]
 }
 
-[sub_resource type="Animation" id="Animation_4tvud"]
-resource_name = "farmBellAni"
-length = 4.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:texture_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.1, 1.5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PointLight2D:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vngf1"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8i3qd"]
 _data = {
-&"RESET": SubResource("Animation_lv6k8"),
-&"farmBellAni": SubResource("Animation_4tvud")
+&"RESET": SubResource("Animation_53wua"),
+&"twinkle": SubResource("Animation_l0pdi")
 }
 
-[node name="Farmbell" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_aee6e"]
+offsets = PackedFloat32Array(0.25503355, 0.59731543)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pkyi3"]
+gradient = SubResource("Gradient_aee6e")
+fill = 1
+fill_from = Vector2(0.53051645, 0.5399061)
+
+[node name="Moonlight Reflector" type="CharacterBody2D"]
 texture_filter = 1
 position = Vector2(-13, 11)
 collision_layer = 4
@@ -106,18 +113,23 @@ position = Vector2(13, -9)
 shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(12.000003, -9.000003)
-scale = Vector2(8.360678, 8.360678)
-enabled = false
-texture = SubResource("GradientTexture2D_6qjon")
-texture_scale = 1.5
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-3, 14.000002)
+rotation = 0.66086215
+scale = Vector2(0.045146406, 0.05157691)
+texture = SubResource("GradientTexture2D_7rapx")
+texture_scale = 0.1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D2"]
 libraries = {
-&"": SubResource("AnimationLibrary_vngf1")
+&"": SubResource("AnimationLibrary_8i3qd")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-229.00002, -13.000001)
+scale = Vector2(2.8583674, 1.3858321)
+texture = SubResource("GradientTexture2D_pkyi3")
+texture_scale = 3.1
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
