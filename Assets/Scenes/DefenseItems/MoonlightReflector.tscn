@@ -22,6 +22,7 @@ fill_to = Vector2(0.16431925, 0.12206573)
 [sub_resource type="Animation" id="Animation_l0pdi"]
 resource_name = "twinkle"
 length = 8.0
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -42,10 +43,10 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 4, 4.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 4, 4.1, 7.94),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-3, 14.000002), Vector2(-3, 14.000002), Vector2(30, -5.000002)]
+"values": [Vector2(-3, 14.000002), Vector2(-3, 14.000002), Vector2(30, -5.000002), Vector2(30, -5.000002)]
 }
 
 [sub_resource type="Animation" id="Animation_53wua"]
@@ -124,12 +125,13 @@ texture_scale = 0.1
 libraries = {
 &"": SubResource("AnimationLibrary_8i3qd")
 }
+autoplay = "twinkle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-229.00002, -13.000001)
+position = Vector2(-475, -39)
 scale = Vector2(2.8583674, 1.3858321)
 texture = SubResource("GradientTexture2D_pkyi3")
-texture_scale = 3.1
+texture_scale = 7.25
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
