@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="itemStats" load_steps=4 format=3 uid="uid://bjriv5fi8rcua"]
+
+[ext_resource type="Texture2D" uid="uid://buq4njdy5nibm" path="res://Assets/Sprites/moonlightReflector_Day.png" id="1_n7buv"]
+[ext_resource type="PackedScene" uid="uid://qbn65467pc8r" path="res://Assets/Scenes/DefenseItems/MoonlightReflector.tscn" id="2_ot588"]
+[ext_resource type="Script" uid="uid://dhxcbvbymlfxm" path="res://Assets/Scripts/Resources/item.gd" id="3_fiwkt"]
+
+[resource]
+script = ExtResource("3_fiwkt")
+scenePath = ExtResource("2_ot588")
+itemName = &"Moonlight Reflector"
+description = "Reflects moonlight to ward off nearby enemies!"
+maxStackSize = 16
+icon = ExtResource("1_n7buv")
+price = 60
+metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

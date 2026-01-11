@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://qbn65467pc8r"]
+
+[ext_resource type="Script" uid="uid://1lw0jsqyjouq" path="res://Assets/Scenes/DefenseItems/moonlight_reflector.gd" id="1_pkyi3"]
+[ext_resource type="Texture2D" uid="uid://buq4njdy5nibm" path="res://Assets/Sprites/moonlightReflector_Day.png" id="2_7rapx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
+radius = 87.46428
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
+size = Vector2(73, 72.75)
+
+[sub_resource type="Gradient" id="Gradient_ne33d"]
+offsets = PackedFloat32Array(0.5637584, 0.84563756, 1)
+colors = PackedColorArray(0.11038213, 0.8302496, 3.85046e-07, 1, 0.62380826, 0.26626793, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6qjon"]
+gradient = SubResource("Gradient_ne33d")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.17370892, 0.8685446)
+
+[sub_resource type="Animation" id="Animation_lv6k8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_4tvud"]
+resource_name = "farmBellAni"
+length = 4.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.1, 1.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vngf1"]
+_data = {
+&"RESET": SubResource("Animation_lv6k8"),
+&"farmBellAni": SubResource("Animation_4tvud")
+}
+
+[node name="Farmbell" type="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(-13, 11)
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_pkyi3")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+position = Vector2(13, -13)
+scale = Vector2(1.40625, 1.40625)
+texture = ExtResource("2_7rapx")
+
+[node name="VisionArea" type="Area2D" parent="."]
+
+[node name="Radius" type="CollisionShape2D" parent="VisionArea"]
+position = Vector2(13, -9)
+shape = SubResource("CircleShape2D_4edj2")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(13, -9)
+shape = SubResource("RectangleShape2D_sntse")
+debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(12.000003, -9.000003)
+scale = Vector2(8.360678, 8.360678)
+enabled = false
+texture = SubResource("GradientTexture2D_6qjon")
+texture_scale = 1.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_vngf1")
+}
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]

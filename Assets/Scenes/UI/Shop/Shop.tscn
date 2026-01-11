@@ -71,7 +71,7 @@ _data = {
 [sub_resource type="Theme" id="Theme_n0g5p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_343ii"]
-font_size = 31
+font_size = 32
 
 [node name="Shop" type="CanvasLayer"]
 layer = 3
@@ -180,10 +180,10 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1.3381357
 offset_top = 17.413765
-offset_right = 565.28265
-offset_bottom = 116.87649
-scale = Vector2(0.0649558, 0.0649558)
-theme_override_font_sizes/font_size = 54
+offset_right = 1306.0203
+offset_bottom = 229.1535
+scale = Vector2(0.03, 0.03)
+theme_override_font_sizes/font_size = 130
 text = "item name label"
 vertical_alignment = 2
 autowrap_mode = 2
@@ -225,7 +225,7 @@ offset_bottom = 70.55636
 scale = Vector2(0.050447274, 0.050447274)
 pivot_offset = Vector2(-0.06, 0.09)
 theme_override_colors/font_color = Color(0.8207309, 0.8307432, 0.93654966, 1)
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 42
 text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -248,13 +248,19 @@ offset_right = 40.227703
 offset_bottom = 24.204035
 color = Color(0.23392546, 0.23392546, 0.23392543, 1)
 
-[node name="Label" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0.7607843)
-offset_left = 72.0
-offset_top = 76.0
-offset_right = 112.0
-offset_bottom = 99.0
-text = "shop"
-label_settings = SubResource("LabelSettings_343ii")
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 130.0
+offset_top = 76.0
+offset_right = 498.0
+offset_bottom = 130.0
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.8862745)
+offset_left = 144.0
+offset_top = 79.0
+offset_right = 511.0
+offset_bottom = 124.0
+text = "Town Recovery Center"
+label_settings = SubResource("LabelSettings_343ii")

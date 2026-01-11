@@ -44,7 +44,6 @@ func populatePlantList(plants : Array[itemStats]) -> void:
 		shop_items_container.add_child( shop_plant )
 		shop_plant.focus_entered.connect( updateItemDetails.bind( plant ) )
 		shop_plant.pressed.connect( purchase_item.bind( plant ) )
-		#connect to signals
 		pass
 	pass
 	
