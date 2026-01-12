@@ -16,10 +16,12 @@ var renewalSeeds: = 300
 @onready var light: PointLight2D = $PointLight2D
 @onready var lightAni: AnimationPlayer = $PointLight2D/AnimationPlayer
 @export var ML: PackedScene
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var item_spawn: Marker2D = $itemSpawn
 var maxHealth = 100
 var health = 78
 var minHealth = 0
+var last_direction: Vector2
 const ZMOONLIGHT_REFLECTOR = preload("uid://bjriv5fi8rcua")
 const ZDECOYSPROUT = preload("uid://cu0nj78id1rtn")
 
@@ -30,10 +32,42 @@ func _physics_process(_delta: float) -> void:
 	var moveInput = Input.get_vector("left","right", "up","down")
 	velocity = moveInput * speed
 	move_and_slide()
+	handleMovementAnimations(moveInput)
 	if(hotbar.currentSlot != null):
 		if (hotbar.currentSlot.Item == ZMOONLIGHT_REFLECTOR or hotbar.currentSlot.Item == ZDECOYSPROUT) and !isInFarmPlot:
 			tooltip.visible = true
 		 
+func handleMovementAnimations(Direction):
+	if Direction == Vector2.ZERO:
+		playIdleAnimation(last_direction)
+		return
+	
+	if abs(Direction.x) > abs(Direction.y):
+		if Direction.x > 0:
+			sprite.play("walkRight")
+			last_direction = Vector2.RIGHT
+		else:
+			sprite.play("walkLeft")
+			last_direction = Vector2.LEFT
+	else:
+		if Direction.y > 0:
+			sprite.play("walkDown")
+			last_direction = Vector2.DOWN
+		else:
+			sprite.play("walkUp")
+			last_direction = Vector2.UP
+			
+func playIdleAnimation(last_direction):
+	if abs(last_direction.x) > abs(last_direction.y):
+		if last_direction.x > 0:
+			sprite.play("idleRight")
+		else:
+			sprite.play("idleLeft")
+	else:
+		if last_direction.y > 0:
+			sprite.play("idleForward")
+		else:
+			sprite.play("idleBackward")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):

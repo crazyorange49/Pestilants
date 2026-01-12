@@ -146,7 +146,7 @@ texture_filter = 1
 position = Vector2(9, -1)
 sprite_frames = SubResource("SpriteFrames_wbetg")
 animation = &"idle"
-frame_progress = 0.24699612
+frame_progress = 0.86969596
 offset = Vector2(-8.805, -1.595)
 
 [node name="detecionArea" type="Area2D" parent="."]
@@ -162,9 +162,9 @@ shape = SubResource("CircleShape2D_oyf8h")
 
 [node name="HpBar" parent="." instance=ExtResource("3_td1d5")]
 offset_left = -40.0
-offset_top = -32.0
+offset_top = -47.0
 offset_right = 39.0
-offset_bottom = -25.0
+offset_bottom = -40.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
