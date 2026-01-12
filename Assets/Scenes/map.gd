@@ -28,8 +28,6 @@ var nightsSurived: int
 var navServerMap: RID
 var avalableTargets
 
-
-
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
 	SignalBus.connect("PlantDeath", Callable(self, "_plantDeath"))
@@ -106,9 +104,10 @@ func nightLoss():
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
 
-
+var night = 0
 func _on_timer_timeout() -> void:
-	var night = 0
+	night += 1
+	print(night)
 	if(night % 2 == 0):
 		health -= 20
 	pass # Replace with function body.
