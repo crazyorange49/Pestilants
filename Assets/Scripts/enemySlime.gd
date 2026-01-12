@@ -26,7 +26,7 @@ var w_new = 0.25
 var scale_new = 8
 var oldDistaceWeight: float = 0.1
 
-@export var health: int = 50:
+@export var health: int:
 	set(subtractedHealth):
 		health = clamp(health + subtractedHealth, 0, maxHealth) 
 		if health <= 0:

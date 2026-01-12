@@ -12,24 +12,25 @@ func _on_vision_area_body_entered(_body: Node2D) -> void:
 	enemysInSight = visionArea.get_overlapping_bodies()
 	attackTarget = getAttackTarget()
 	if attackTarget:
-		print("attacking enemy!")
 		navigationAgent2d.target_position = attackTarget.position
 
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body == attackTarget:
+		victim = attackTarget
+		attack()
 
 
 func _on_vision_area_body_exited(_body: Node2D) -> void:
 	enemysInSight = visionArea.get_overlapping_bodies()
 	attackTarget = getAttackTarget()
 	if attackTarget:
-		print("attacking enemy!")
 		navigationAgent2d.target_position = attackTarget.position
 	
 
 func _on_attack_area_body_exited(_body: Node2D) -> void:
 	pass
+
 func _on_nav_timer_timeout() -> void:
 	if attackTarget:
 		return

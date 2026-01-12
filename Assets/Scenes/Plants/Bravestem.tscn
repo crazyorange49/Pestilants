@@ -16,7 +16,7 @@ texture_filter = 1
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_sntse")
-enemyPriority = 4
+enemyPriority = 3
 maxHealth = 100
 visionRadius = 250.0
 atkRange = 100.0
@@ -32,6 +32,7 @@ collision_mask = 32
 shape = SubResource("CircleShape2D_4edj2")
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 32
 
 [node name="Range" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_78iwd")

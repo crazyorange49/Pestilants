@@ -28,6 +28,8 @@ var Direction: Vector2 = dayTimePos
 var isBackHome: bool = true
 var isTarget: bool = false
 var attackTarget = null
+var can_attack = true
+var victim
 
 func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_speed: float = 0.0, p_atkRange: float = 0.0) -> void:
 	maxHealth = p_maxHealth
@@ -43,7 +45,6 @@ func _ready() -> void:
 	map.numberOfPlants += 1
 
 func _physics_process(delta: float) -> void:
-	pass
 	Direction = Vector2.ZERO
 	if TimeState.dayTime == TimeState.DAY_STATE.EVENING:
 		isBackHome = false
@@ -97,6 +98,17 @@ func getNewPosition():
 	
 func calculateVulnerability(currentHealth: int, maxHealth: int):
 	return exp(-currentHealth / maxHealth)
+
+func attack():
+	if !can_attack:
+		return
+
+	can_attack = false
+	print("attacking enemy! " + victim.name)
+	victim.health = -atkDamage
+
+	await get_tree().create_timer(atkCoolDownInSeconds).timeout
+	can_attack = true
 
 func  calculateCloseness(dist: float) -> float:
 	var distScale = 8.0
