@@ -1,0 +1,383 @@
+{ "frames": [
+   {
+    "filename": "player #Front Idle 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Front Idle 1.aseprite",
+    "frame": { "x": 64, "y": 0, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Front Idle 2.aseprite",
+    "frame": { "x": 128, "y": 0, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Front Idle 3.aseprite",
+    "frame": { "x": 192, "y": 0, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Front Idle 4.aseprite",
+    "frame": { "x": 256, "y": 0, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Front Idle 5.aseprite",
+    "frame": { "x": 320, "y": 0, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Back Idle 0.aseprite",
+    "frame": { "x": 0, "y": 128, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Back Idle 1.aseprite",
+    "frame": { "x": 64, "y": 128, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Back Idle 2.aseprite",
+    "frame": { "x": 128, "y": 128, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Back Idle 3.aseprite",
+    "frame": { "x": 192, "y": 128, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Back Idle 4.aseprite",
+    "frame": { "x": 256, "y": 128, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Back Idle 5.aseprite",
+    "frame": { "x": 320, "y": 128, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Right Idle 0.aseprite",
+    "frame": { "x": 0, "y": 256, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Right Idle 1.aseprite",
+    "frame": { "x": 64, "y": 256, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Right Idle 2.aseprite",
+    "frame": { "x": 128, "y": 256, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Right Idle 3.aseprite",
+    "frame": { "x": 192, "y": 256, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Right Idle 4.aseprite",
+    "frame": { "x": 256, "y": 256, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Right Idle 5.aseprite",
+    "frame": { "x": 320, "y": 256, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Left Idle 0.aseprite",
+    "frame": { "x": 0, "y": 384, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Left Idle 1.aseprite",
+    "frame": { "x": 64, "y": 384, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Left Idle 2.aseprite",
+    "frame": { "x": 128, "y": 384, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Left Idle 3.aseprite",
+    "frame": { "x": 192, "y": 384, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Left Idle 4.aseprite",
+    "frame": { "x": 256, "y": 384, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Left Idle 5.aseprite",
+    "frame": { "x": 320, "y": 384, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Front Walk 0.aseprite",
+    "frame": { "x": 0, "y": 512, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Front Walk 1.aseprite",
+    "frame": { "x": 64, "y": 512, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Front Walk 2.aseprite",
+    "frame": { "x": 128, "y": 512, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Front Walk 3.aseprite",
+    "frame": { "x": 192, "y": 512, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Back Walk 0.aseprite",
+    "frame": { "x": 0, "y": 640, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Back Walk 1.aseprite",
+    "frame": { "x": 64, "y": 640, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Back Walk 2.aseprite",
+    "frame": { "x": 128, "y": 640, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Back Walk 3.aseprite",
+    "frame": { "x": 192, "y": 640, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Right Walk 0.aseprite",
+    "frame": { "x": 0, "y": 768, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Right Walk 1.aseprite",
+    "frame": { "x": 64, "y": 768, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Right Walk 2.aseprite",
+    "frame": { "x": 128, "y": 768, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Right Walk 3.aseprite",
+    "frame": { "x": 192, "y": 768, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Left Walk 0.aseprite",
+    "frame": { "x": 0, "y": 896, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Left Walk 1.aseprite",
+    "frame": { "x": 64, "y": 896, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   },
+   {
+    "filename": "player #Left Walk 2.aseprite",
+    "frame": { "x": 128, "y": 896, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 166
+   },
+   {
+    "filename": "player #Left Walk 3.aseprite",
+    "frame": { "x": 192, "y": 896, "w": 64, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 128 },
+    "sourceSize": { "w": 64, "h": 128 },
+    "duration": 332
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.7-x64",
+  "image": "player.png",
+  "format": "RGBA8888",
+  "size": { "w": 384, "h": 1024 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Front Idle", "from": 0, "to": 5, "direction": "forward", "color": "#6acd5bff" },
+   { "name": "Back Idle", "from": 6, "to": 11, "direction": "forward", "color": "#f3ce52ff" },
+   { "name": "Right Idle", "from": 12, "to": 17, "direction": "forward", "color": "#f7a547ff" },
+   { "name": "Left Idle", "from": 18, "to": 23, "direction": "forward", "color": "#fe5b59ff" },
+   { "name": "Front Walk", "from": 24, "to": 27, "direction": "forward", "color": "#6acd5bff" },
+   { "name": "Back Walk", "from": 28, "to": 31, "direction": "forward", "color": "#f3ce52ff" },
+   { "name": "Right Walk", "from": 32, "to": 35, "direction": "forward", "color": "#f7a547ff" },
+   { "name": "Left Walk", "from": 36, "to": 39, "direction": "forward", "color": "#fe5b59ff" }
+  ],
+  "slices": [
+  ]
+ }
+}
