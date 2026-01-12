@@ -29,6 +29,7 @@ var oldDistaceWeight: float = 0.1
 @export var health: int:
 	set(subtractedHealth):
 		health = clamp(health + subtractedHealth, 0, maxHealth) 
+		print(str(health))
 		if health <= 0:
 			queue_free()
 			SignalBus.emit_signal("EnemyDeath")
@@ -50,6 +51,7 @@ func _physics_process(delta):
 		attack()
 	if move_target and moving:
 		move_to_target(delta)
+		rotation = get_angle_to(navigation_agent_2d.get_next_path_position())
 	else:
 		sprite.play("idle")
 			
@@ -86,6 +88,8 @@ func move_to_target(delta):
 
 	if move_target:
 		velocity = velocity.lerp(direction.normalized() * speed, delta)
+		var new_transform = transform.looking_at(direction)
+		transform = new_transform
 		move_and_slide()
 		sprite.play("idle") #change to walk later
 	else:
