@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://qbn65467pc8r"]
+[gd_scene load_steps=14 format=3 uid="uid://qbn65467pc8r"]
 
 [ext_resource type="Script" uid="uid://1lw0jsqyjouq" path="res://Assets/Scenes/DefenseItems/moonlight_reflector.gd" id="1_pkyi3"]
 [ext_resource type="Texture2D" uid="uid://buq4njdy5nibm" path="res://Assets/Sprites/moonlightReflector_Day.png" id="2_7rapx"]
+[ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_7rapx"]
+[ext_resource type="Script" uid="uid://byj6weaxiuk10" path="res://Assets/Scenes/DefenseItems/hp_barML.gd" id="4_l0pdi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
 radius = 87.46428
@@ -133,6 +135,13 @@ position = Vector2(-475, -39)
 scale = Vector2(2.8583674, 1.3858321)
 texture = SubResource("GradientTexture2D_pkyi3")
 texture_scale = 7.25
+
+[node name="HpBar" parent="." instance=ExtResource("3_7rapx")]
+offset_left = -36.0
+offset_top = -33.0
+offset_right = 63.0
+offset_bottom = -27.0
+script = ExtResource("4_l0pdi")
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
