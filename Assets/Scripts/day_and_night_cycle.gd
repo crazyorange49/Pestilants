@@ -24,6 +24,7 @@ func _on_timer_timeout() -> void:
 		animation_player.play("dayNNight")
 		print("nightTIME!!")
 	elif dayTime != DAY_STATE.NOON:
+		SignalBus.emit_signal("DayTime")
 		dayTime = DAY_STATE.NOON
 		changeDayTime.emit(dayTime)
 		player.lightAni.play("lightOff")  

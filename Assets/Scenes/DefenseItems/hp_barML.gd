@@ -9,15 +9,16 @@ var minValueAmount
 
 
 func _ready():
-	maxValueAmount = map.maxHealth
-	currentHealth = map.health
-	minValueAmount = map.minHealth
+	parent = get_parent()
+	maxValueAmount = parent.maxHealth
+	currentHealth = parent.health
+	minValueAmount = parent.minHealth
 	
 func _process(_delta):
-	self.value = map.health
-	if map.health != maxValueAmount:
+	self.value = parent.health
+	if parent.health != maxValueAmount:
 		self.visible = true
-		if map.health == minValueAmount:
+		if parent.health == minValueAmount:
 			self.visible = false
 	else:
 		self.visible = false

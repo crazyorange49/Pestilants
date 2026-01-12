@@ -74,6 +74,7 @@ use={
 [signal_bus]
 
 signals={
+"DayTime": [],
 "EnemyDeath": [],
 "PlantDeath": []
 }
