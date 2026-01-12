@@ -97,4 +97,5 @@ metadata/enemyPriority = -1
 [connection signal="nightLost" from="Map" to="HUD" method="_updateDaysLived"]
 [connection signal="night_survived" from="Map" to="HUD" method="_updateDaysLived"]
 [connection signal="changeDayTime" from="dayAndNight" to="Farmbell" method="_on_day_and_night_change_day_time"]
+[connection signal="timeout" from="dayAndNight/Timer" to="Map" method="_on_timer_timeout"]
 [connection signal="timeout" from="dayAndNight/Timer" to="dayAndNight" method="_on_timer_timeout"]

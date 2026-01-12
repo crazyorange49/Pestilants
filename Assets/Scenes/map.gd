@@ -15,6 +15,9 @@ var currentNight: int
 @onready var grass_tiles: TileMapDual = $GrassTiles
 @onready var grass_tileset: TileSet = grass_tiles.tile_set
 @onready var hud: CanvasLayer = $"../HUD"
+@export var maxHealth: int = 100
+@export var health: int = 80       # Durability Health for Moonlight Reflectors / I dont like it either
+@export var minHealth = 0
 
 var startingNodes: int  
 var numberOfEnemies: int
@@ -24,6 +27,7 @@ var movingToNextNight: bool
 var nightsSurived: int
 var navServerMap: RID
 var avalableTargets
+
 
 
 func _ready() -> void:
@@ -101,3 +105,10 @@ func nightLoss():
 	nightLost.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
+
+
+func _on_timer_timeout() -> void:
+	var night = 0
+	if(night % 2 == 0):
+		health -= 20
+	pass # Replace with function body.

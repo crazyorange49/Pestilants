@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://tx4bkgf2okvm"]
 
 [ext_resource type="Texture2D" uid="uid://comjs8fb6muam" path="res://Assets/Sprites/slime.png" id="1_oyf8h"]
-[ext_resource type="Script" uid="uid://dgah4hxtcbpel" path="res://Assets/Scenes/TestEnemy.gd" id="1_td1d5"]
+[ext_resource type="Script" path="res://Assets/Scenes/TestEnemy.gd" id="1_td1d5"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_td1d5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pmh0"]
