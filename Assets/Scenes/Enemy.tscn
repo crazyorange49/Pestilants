@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://tx4bkgf2okvm"]
+[gd_scene load_steps=24 format=3 uid="uid://tx4bkgf2okvm"]
 
 [ext_resource type="Texture2D" uid="uid://comjs8fb6muam" path="res://Assets/Sprites/slime.png" id="1_oyf8h"]
-[ext_resource type="Script" path="res://Assets/Scenes/TestEnemy.gd" id="1_td1d5"]
-[ext_resource type="Texture2D" uid="uid://cw6whoftutbq0" path="res://Assets/Sprites/Fly_sprite.png" id="3_ftyeq"]
+[ext_resource type="Script" uid="uid://dgah4hxtcbpel" path="res://Assets/Scenes/TestEnemy.gd" id="1_td1d5"]
+[ext_resource type="Texture2D" uid="uid://cl7vhph7iauma" path="res://Assets/Sprites/Soldier_Bug_Sprite-sheet.png" id="3_ftyeq"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_td1d5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pmh0"]
@@ -36,14 +36,6 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8gsn"]
 atlas = ExtResource("3_ftyeq")
 region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_waoeb"]
-atlas = ExtResource("3_ftyeq")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wbetg"]
-atlas = ExtResource("3_ftyeq")
-region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03yfc"]
 atlas = ExtResource("1_oyf8h")
@@ -100,12 +92,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u8gsn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_waoeb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wbetg")
 }],
 "loop": true,
 "name": &"idle",
@@ -160,8 +146,7 @@ texture_filter = 1
 position = Vector2(9, -1)
 sprite_frames = SubResource("SpriteFrames_wbetg")
 animation = &"idle"
-frame = 4
-frame_progress = 0.6831114
+frame_progress = 0.8886833
 offset = Vector2(-8.805, -1.595)
 
 [node name="detecionArea" type="Area2D" parent="."]
@@ -183,6 +168,7 @@ offset_bottom = -25.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
+energy = 0.5
 texture = SubResource("GradientTexture2D_td1d5")
 texture_scale = 7.09
 
