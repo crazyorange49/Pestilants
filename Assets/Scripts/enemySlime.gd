@@ -2,7 +2,6 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var speed = 150
-@export var health = 21
 @export var maxHealth = 50
 @export var attack_damage = 5
 @export var attack_range = 30.0
@@ -27,6 +26,15 @@ var w_new = 0.25
 var scale_new = 8
 var oldDistaceWeight: float
 
+@export var health: int = 50:
+	set(subtractedHealth):
+		health = clamp(health + subtractedHealth, 0, maxHealth) 
+		if health <= 0:
+			queue_free()
+			SignalBus.emit_signal("EnemyDeath")
+	get:
+		return health
+
 func _ready():
 	var main_scene = get_tree().get_current_scene() 
 	timer.start()
@@ -38,10 +46,6 @@ func _ready():
 	
 
 func _physics_process(delta):
-	if(health == 0):
-		$AnimatedSprite2D.play("death")
-		queue_free()
-		SignalBus.emit_signal("EnemyDeath")
 	if victim:
 		attack()
 	if move_target and moving:
@@ -105,8 +109,6 @@ func calculateTarget() -> Plant:
 			bestScore = score
 			newTarget = plant
 	return newTarget
-	
-
 
 func calculatePriority(plant: Plant):
 	var score = plant.enemyPriority
@@ -119,6 +121,5 @@ func closeness(dist: float, distScale: float) -> float:
 	return exp(-dist / distScale)
 
 func _findNewTarget() -> void:
-	print("looking for target")
 	move_target = calculateTarget()
 	navigation_agent_2d.target_position = move_target.position

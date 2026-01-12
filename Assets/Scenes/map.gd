@@ -66,7 +66,7 @@ func spawn_type(type, mobSpawnRounds, mobWaitTime):
 func killAllChildren():
 	var enemyStorageChildren = enemy_storage.get_children()
 	for child in enemyStorageChildren:
-		child.health = 0
+		child.health = -50
 	nightEnded = true
 		
 
