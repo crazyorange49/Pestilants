@@ -7,15 +7,12 @@ extends CharacterBody2D
 @export var attack_damage = 5
 @export var attack_range = 30.0
 @export var attack_cooldown = 1.0
-@export var newDistaceWeight: float
-@export var oldDistaceWeight: float
 var minHealth = 0
 var playerChase = false
 var victim  = null
 var can_attack = true
 var is_dead = false
 var move_target: Node2D = null
-var moveTargetPriority = -1
 var moving = true
 var targetsInRange: Array[Node2D]
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -24,6 +21,11 @@ var targetsInRange: Array[Node2D]
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var timer: Timer = $Timer
 
+## priority variables
+var w_priority = 0.5
+var w_new = 0.25
+var scale_new = 8
+var oldDistaceWeight: float
 
 func _ready():
 	var main_scene = get_tree().get_current_scene() 
@@ -92,26 +94,30 @@ func move_to_target(delta):
 func calculateTarget() -> Plant:
 	var avalableTargets = map.avalableTargets
 	var newTarget: Node2D = move_target
-	var targetPriority: int 
-	if len(avalableTargets) > 0:
-		for plant in avalableTargets:
-			targetPriority = plant.enemyPriority - (newDistaceWeight * position.distance_to(plant.position)) - (oldDistaceWeight * position.distance_to(move_target.position))
-			print("newPrio: " + str(targetPriority) + " moveTargetPriority: " + str(moveTargetPriority))
-			if targetPriority > moveTargetPriority and !plant.isTarget:
-				print("plant reconized " + str(plant.position))
-				newTarget = plant
-				plant.isTarget = true
-				moveTargetPriority = targetPriority
-				if move_target.is_in_group("Plant"):
-					move_target.isTarget = false
-			else:
-				print("cant find new target")
-				newTarget = move_target
-	else:
-		return null
+	var bestScore := -INF
+	for plant in avalableTargets:
+		if plant.isTarget:
+			continue
+
+		var score = calculatePriority(plant)
+
+		if score > bestScore:
+			bestScore = score
+			newTarget = plant
 	return newTarget
-		
-		
+	
+
+
+func calculatePriority(plant: Plant):
+	var score = plant.enemyPriority
+	score += closeness(position.distance_to(plant.position), scale_new) * w_new
+	if plant != move_target:
+		score -= oldDistaceWeight
+	return score
+
+func closeness(dist: float, distScale: float) -> float:
+	return exp(-dist / distScale)
+
 func _findNewTarget() -> void:
 	print("looking for target")
 	move_target = calculateTarget()
