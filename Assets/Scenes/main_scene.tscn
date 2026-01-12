@@ -86,7 +86,7 @@ wait_time = 20.0
 autostart = true
 
 [node name="ShopKeep" parent="." instance=ExtResource("6_qk5nb")]
-position = Vector2(1756, -1077)
+position = Vector2(1778, -1082)
 
 [node name="Shop" parent="." instance=ExtResource("2_qk5nb")]
 
