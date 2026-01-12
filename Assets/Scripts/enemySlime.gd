@@ -51,7 +51,6 @@ func _physics_process(delta):
 		attack()
 	if move_target and moving:
 		move_to_target(delta)
-		rotation = get_angle_to(navigation_agent_2d.get_next_path_position())
 	else:
 		sprite.play("idle")
 			
@@ -89,7 +88,7 @@ func move_to_target(delta):
 	if move_target:
 		velocity = velocity.lerp(direction.normalized() * speed, delta)
 		var new_transform = transform.looking_at(direction)
-		transform = new_transform
+		transform = transform.interpolate_with(new_transform, delta)
 		move_and_slide()
 		sprite.play("idle") #change to walk later
 	else:

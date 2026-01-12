@@ -632,6 +632,7 @@ position = Vector2(-10113, -1147)
 shape = SubResource("WorldBoundaryShape2D_bwh4a")
 
 [node name="ShopSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1844, -1018)
 texture = ExtResource("18_4fr7r")
 
