@@ -16,7 +16,7 @@ var currentNight: int
 @onready var grass_tileset: TileSet = grass_tiles.tile_set
 @onready var hud: CanvasLayer = $"../HUD"
 @export var maxHealth: int = 100
-@export var health: int = 80       # Durability Health for Moonlight Reflectors / I dont like it either
+@export var health: int = 100     # Durability Health for Moonlight Reflectors / I dont like it either
 @export var minHealth = 0
 
 var startingNodes: int  
