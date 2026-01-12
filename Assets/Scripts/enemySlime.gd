@@ -24,7 +24,7 @@ var targetsInRange: Array[Node2D]
 var w_priority = 0.5
 var w_new = 0.25
 var scale_new = 8
-var oldDistaceWeight: float
+var oldDistaceWeight: float = 0.1
 
 @export var health: int = 50:
 	set(subtractedHealth):

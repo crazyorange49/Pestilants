@@ -20,25 +20,27 @@ var dayTimePosition: Vector2
 @onready var map: Map = $"../../"
 @onready var navRegions = map.navMap.get_children()
 @onready var navigationAgent2d: NavigationAgent2D = $NavigationAgent2D
+@onready var visionArea: Area2D = $VisionArea
 
 
 var dayTimePos: Vector2
 var Direction: Vector2 = dayTimePos
 var isBackHome: bool = true
 var isTarget: bool = false
+var attackTarget = null
 
-func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_movementSpeed: float = 0.0, p_atkRange: float = 0.0) -> void:
+func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_speed: float = 0.0, p_atkRange: float = 0.0) -> void:
 	maxHealth = p_maxHealth
 	atkDamage = p_atkDamage
 	atkCoolDownInSeconds  = p_atkCoolDownInSeconds
 	visionRadius  = p_visionRadius
 	atkRange = p_atkRange
+	speed = p_speed
 
 func _ready() -> void:
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
 	map.numberOfPlants += 1
-	print_debug("plant added: " + str(map.numberOfPlants))
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -93,6 +95,22 @@ func getNewPosition():
 	var navRID: RID = navRegions[randi() % (map.nightsSurived + 1)].get_rid()
 	navigationAgent2d.target_position = (NavigationServer2D.region_get_random_point(navRID, 1, false))
 	
+func calculateVulnerability(currentHealth: int, maxHealth: int):
+	return exp(-currentHealth / maxHealth)
 
+func  calculateCloseness(dist: float) -> float:
+	var distScale = 8.0
+	return exp(-dist / distScale)
 
+func calculatePriority(target) -> float:
+	var score = 0.0
+	var pentaltyForSwitch = 0.1
+	var healthWeight = 0.5
+	var distanceWeight = 0.1
+	score += calculateVulnerability(target.health, target.maxHealth) * healthWeight
+	score += calculateCloseness(position.distance_to(target.position)) * distanceWeight
 	
+	if target != attackTarget:
+		score -= pentaltyForSwitch
+	
+	return score

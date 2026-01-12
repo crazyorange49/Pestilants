@@ -143,6 +143,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 32
 script = ExtResource("1_td1d5")
 speed = 1560
 
