@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="itemStats" load_steps=4 format=3 uid="uid://cu0nj78id1rtn"]
+
+[ext_resource type="Texture2D" uid="uid://uhoo1qsvvxc4" path="res://Assets/Sprites/decoysprout_Day.png" id="1_cjp5x"]
+[ext_resource type="PackedScene" uid="uid://cgnio6v1kj16p" path="res://Assets/Scenes/DefenseItems/DecoySprout.tscn" id="2_cjp5x"]
+[ext_resource type="Script" uid="uid://dhxcbvbymlfxm" path="res://Assets/Scripts/Resources/item.gd" id="3_eghg2"]
+
+[resource]
+script = ExtResource("3_eghg2")
+scenePath = ExtResource("2_cjp5x")
+itemName = &"Decoy Sprout"
+description = "Attracts nearby enemies to an explosion on death."
+maxStackSize = 16
+icon = ExtResource("1_cjp5x")
+price = 60
+metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

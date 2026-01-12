@@ -87,7 +87,7 @@ func move_to_target(delta):
 	if move_target:
 		velocity = velocity.lerp(direction.normalized() * speed, delta)
 		move_and_slide()
-		sprite.play("walk")
+		sprite.play("idle") #change to walk later
 	else:
 		print(distance)
 		velocity = Vector2.ZERO
