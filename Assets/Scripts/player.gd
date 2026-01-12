@@ -21,6 +21,7 @@ var maxHealth = 100
 var health = 78
 var minHealth = 0
 const ZMOONLIGHT_REFLECTOR = preload("uid://bjriv5fi8rcua")
+const ZDECOYSPROUT = preload("uid://cu0nj78id1rtn")
 
 func _ready():
 	light.visible = false
@@ -30,9 +31,9 @@ func _physics_process(_delta: float) -> void:
 	velocity = moveInput * speed
 	move_and_slide()
 	if(hotbar.currentSlot != null):
-		if hotbar.currentSlot.Item == ZMOONLIGHT_REFLECTOR and !isInFarmPlot:
+		if (hotbar.currentSlot.Item == ZMOONLIGHT_REFLECTOR or hotbar.currentSlot.Item == ZDECOYSPROUT) and !isInFarmPlot:
 			tooltip.visible = true
-		
+		 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
@@ -45,7 +46,7 @@ func _input(event: InputEvent) -> void:
 				usedItem.position = activePlotPOS
 				usedItem.dayTimePos = activePlotPOS
 				usedItem.onPlantPlaced()
-		elif !isInFarmPlot and hotbar.currentSlot != null and itemInUse == ZMOONLIGHT_REFLECTOR:
+		elif !isInFarmPlot and hotbar.currentSlot != null and itemInUse == ZMOONLIGHT_REFLECTOR or itemInUse == ZDECOYSPROUT:
 			if itemInUse != null:
 				var usedItem = load(itemInUse.scenePath.resource_path).instantiate()
 				map.get_node("defenseStorage").add_child(usedItem)

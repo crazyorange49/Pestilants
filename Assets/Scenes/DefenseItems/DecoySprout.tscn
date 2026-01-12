@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://cgnio6v1kj16p"]
+
+[ext_resource type="Script" uid="uid://cv6nvmnvtt740" path="res://Assets/Scenes/DefenseItems/decoy_sprout.gd" id="1_0kvcp"]
+[ext_resource type="Texture2D" uid="uid://uhoo1qsvvxc4" path="res://Assets/Sprites/decoysprout_Day.png" id="2_jccn8"]
+[ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_6gcls"]
+[ext_resource type="Script" uid="uid://byj6weaxiuk10" path="res://Assets/Scenes/DefenseItems/hp_barML.gd" id="4_gd6yn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
+radius = 87.46428
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
+size = Vector2(78, 56)
+
+[sub_resource type="Gradient" id="Gradient_pkyi3"]
+offsets = PackedFloat32Array(0.093959734, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7rapx"]
+gradient = SubResource("Gradient_pkyi3")
+fill = 1
+fill_from = Vector2(0.5023474, 0.5023474)
+fill_to = Vector2(0.16431925, 0.12206573)
+
+[sub_resource type="Animation" id="Animation_53wua"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, 14.000002)]
+}
+
+[sub_resource type="Animation" id="Animation_l0pdi"]
+resource_name = "twinkle"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.04, 4, 5.95, 7.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.1, 3.5, 0.1, 3.5, 0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4, 4.1, 7.94),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, 14.000002), Vector2(-3, 14.000002), Vector2(30, -5.000002), Vector2(30, -5.000002)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8i3qd"]
+_data = {
+&"RESET": SubResource("Animation_53wua"),
+&"twinkle": SubResource("Animation_l0pdi")
+}
+
+[node name="DecoySprout" type="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(-13, 11)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_0kvcp")
+enemyPriority = 5
+maxHealth = 100
+health = 100
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+position = Vector2(13, -13)
+scale = Vector2(1.40625, 1.40625)
+texture = ExtResource("2_jccn8")
+
+[node name="VisionArea" type="Area2D" parent="."]
+
+[node name="Radius" type="CollisionShape2D" parent="VisionArea"]
+position = Vector2(13, -9)
+shape = SubResource("CircleShape2D_4edj2")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(14, -2)
+shape = SubResource("RectangleShape2D_sntse")
+disabled = true
+debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-3, 14.000002)
+rotation = 0.66086215
+scale = Vector2(0.045146406, 0.05157691)
+texture = SubResource("GradientTexture2D_7rapx")
+texture_scale = 0.1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D2"]
+libraries = {
+&"": SubResource("AnimationLibrary_8i3qd")
+}
+autoplay = "twinkle"
+
+[node name="HpBar" parent="." instance=ExtResource("3_6gcls")]
+offset_left = -36.0
+offset_top = -49.0
+offset_right = 63.0
+offset_bottom = -43.0
+script = ExtResource("4_gd6yn")
+
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
