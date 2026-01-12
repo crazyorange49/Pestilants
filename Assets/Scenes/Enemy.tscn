@@ -144,9 +144,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_td1d5")
-speed = 700
-newDistaceWeight = -0.001
-oldDistaceWeight = -0.003
+speed = 1560
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(17.5, -10.9375)
