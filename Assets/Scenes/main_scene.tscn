@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cu611lud1s211"]
+[gd_scene load_steps=13 format=3 uid="uid://cu611lud1s211"]
 
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
+[ext_resource type="Script" uid="uid://juky67gc2d1f" path="res://Assets/Scenes/main_scene.gd" id="1_1bw7v"]
 [ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
 [ext_resource type="PackedScene" uid="uid://chix7afojtval" path="res://Assets/Scenes/UI/Shop/Shop.tscn" id="2_qk5nb"]
 [ext_resource type="PackedScene" uid="uid://d3wsaqq4atule" path="res://Assets/Scenes/UI/hud.tscn" id="4_03t3n"]
@@ -62,6 +63,7 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_1bw7v")
 
 [node name="Map" parent="." instance=ExtResource("1_0f027")]
 position = Vector2(-1, -5)

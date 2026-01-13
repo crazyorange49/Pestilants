@@ -67,14 +67,14 @@ func killAllChildren():
 	for child in enemyStorageChildren:
 		child.health = -50
 	nightEnded = true
+	if( numberOfPlants <= 0 ):
+		nightLoss()
 		
 
 func _enemyDeath() -> void:
 	numberOfEnemies -= 1
 	if numberOfEnemies == 0 and numberOfPlants > 0:
 		nightSurvived()
-	elif numberOfPlants == 0:
-		nightLoss()
 
 func _plantDeath() -> void:
 	numberOfPlants -= 1
@@ -86,7 +86,7 @@ func nightSurvived():
 	if nightsSurived == 7:
 		#game won
 		return
-	nightsSurived = clamp(nightsSurived + 1, -1, 7) 
+	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
 	print("Night survived: " + str(nightsSurived))
 	night_survived.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
@@ -95,8 +95,9 @@ func nightSurvived():
 func nightLoss():
 	if nightsSurived == -1:
 		#game loss
+		SignalBus.emit_signal("GameOver")
 		return
-	nightsSurived = clamp(nightsSurived - 1, -1, 7)
+	nightsSurived = clamp(nightsSurived - 1, -2, 7)
 	nightLost.emit()
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
