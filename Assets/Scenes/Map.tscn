@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d14iarpbhvy74" path="res://Assets/TileSheets/worldplaceholderstilesheet.png" id="6_47en4"]
 [ext_resource type="NavigationPolygon" uid="uid://daejun74jn0cv" path="res://NavMeshes/NavRegion1.tres" id="7_hv05q"]
 [ext_resource type="NavigationPolygon" uid="uid://dmnjy1er8q2xg" path="res://NavMeshes/NavRegion2.tres" id="8_pg1eo"]
-[ext_resource type="Shader" uid="uid://blvdwh53huw20" path="res://Assets/Scripts/grassTiles.gdshader" id="8_tue0r"]
+[ext_resource type="Shader" path="res://Assets/Scripts/grassTiles.gdshader" id="8_tue0r"]
 [ext_resource type="NavigationPolygon" uid="uid://02mdans2asvd" path="res://NavMeshes/NavRegion3.tres" id="9_4cr8j"]
 [ext_resource type="Texture2D" uid="uid://yu60qe8e0shv" path="res://Assets/TileSheets/tilledSoilTileset_Day.png" id="9_4fr7r"]
 [ext_resource type="Texture2D" uid="uid://qn64ak1s7rr2" path="res://Assets/TileSheets/grass fill texture.png" id="9_bwh4a"]
