@@ -28,7 +28,7 @@ var oldDistaceWeight: float = 0.1
 
 @export var health: int:
 	set(subtractedHealth):
-		health = clamp(health + subtractedHealth, 0, maxHealth) 
+		health = subtractedHealth
 		print(str(health))
 		if health <= 0:
 			queue_free()
@@ -64,7 +64,7 @@ func attack():
 	can_attack = false
 	
 
-	victim.health = attack_damage
+	victim.subtractDamage(attack_damage)
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
@@ -87,8 +87,8 @@ func move_to_target(delta):
 
 	if move_target:
 		velocity = velocity.lerp(direction.normalized() * speed, delta)
-		var new_transform = transform.looking_at(direction)
-		transform = transform.interpolate_with(new_transform, delta)
+		var new_transform = sprite.transform.looking_at(direction)
+		sprite.transform = sprite.transform.interpolate_with(new_transform, delta)
 		move_and_slide()
 		sprite.play("idle") #change to walk later
 	else:
@@ -103,7 +103,7 @@ func calculateTarget() -> Plant:
 	var newTarget: Node2D = move_target
 	var bestScore := -INF
 	for plant in avalableTargets:
-		if plant.isTarget:
+		if !is_instance_valid(plant):
 			continue
 
 		var score = calculatePriority(plant)
@@ -125,4 +125,10 @@ func closeness(dist: float, distScale: float) -> float:
 
 func _findNewTarget() -> void:
 	move_target = calculateTarget()
-	navigation_agent_2d.target_position = move_target.position
+	if is_instance_valid(move_target):
+		navigation_agent_2d.target_position = move_target.position
+	else:
+		navigation_agent_2d.target_position = Vector2.ZERO
+
+func subtractDamage(damage: int) -> void:
+	health = clamp(health - damage, 0, maxHealth)
