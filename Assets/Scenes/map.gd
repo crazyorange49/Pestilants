@@ -83,7 +83,6 @@ func _plantDeath() -> void:
 	avalableTargets = plant_storage.get_children()
 	if numberOfPlants == 0:
 		pass
-		
 
 func nightSurvived():
 	if nightsSurived == 7:
