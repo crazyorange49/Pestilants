@@ -22,7 +22,7 @@ var dayTimePosition: Vector2
 @onready var navigationAgent2d: NavigationAgent2D = $NavigationAgent2D
 @onready var visionArea: Area2D = $VisionArea
 
-
+var enemysInSight: Array[Node2D]
 var dayTimePos: Vector2
 var Direction: Vector2 = dayTimePos
 var isBackHome: bool = true
@@ -40,6 +40,7 @@ func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: f
 	speed = p_speed
 
 func _ready() -> void:
+	SignalBus.connect("EnemyDeath", Callable(self, "onEnemyDeath"))
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
 	map.numberOfPlants += 1
@@ -80,9 +81,10 @@ var itemName: StringName = stats.itemName:
 
 @export var health: int:
 	set(subtractedHealth):
-		health = clamp(health - subtractedHealth, 0, maxHealth) 
+		health = subtractedHealth
 		if health <= 0:
-			pass
+			queue_free()
+			SignalBus.emit_signal("PlantDeath")
 	get:
 		return health
 
@@ -93,19 +95,22 @@ func subtractDamage(damage: int) -> void:
 	health -= damage
 	
 func getNewPosition():
-	var navRID: RID = navRegions[randi() % (map.nightsSurived + 1)].get_rid()
+	var navRID: RID
+	if map.nightsSurived == -1:
+		navRID= navRegions[0].get_rid()
+	else:
+		navRID= navRegions[randi() % (map.nightsSurived + 1)].get_rid()
 	navigationAgent2d.target_position = (NavigationServer2D.region_get_random_point(navRID, 1, false))
 	
-func calculateVulnerability(currentHealth: int, maxHealth: int):
-	return exp(-currentHealth / maxHealth)
+func calculateVulnerability(currentHealth: int, targetMaxHealth: int):
+	return exp(-currentHealth / targetMaxHealth)
 
 func attack():
 	if !can_attack:
 		return
 
 	can_attack = false
-	print("attacking enemy! " + victim.name)
-	victim.health = -atkDamage
+	victim.subtractDamage(atkDamage)
 
 	await get_tree().create_timer(atkCoolDownInSeconds).timeout
 	can_attack = true
@@ -116,13 +121,18 @@ func  calculateCloseness(dist: float) -> float:
 
 func calculatePriority(target) -> float:
 	var score = 0.0
-	var pentaltyForSwitch = 0.1
-	var healthWeight = 0.5
+	var pentaltyForSwitch = 1
+	var healthWeight = 0.6
 	var distanceWeight = 0.1
 	score += calculateVulnerability(target.health, target.maxHealth) * healthWeight
 	score += calculateCloseness(position.distance_to(target.position)) * distanceWeight
-	
 	if target != attackTarget:
 		score -= pentaltyForSwitch
 	
 	return score
+
+func onEnemyDeath():
+	if attackTarget and !is_instance_valid(attackTarget):
+		attackTarget = null
+		victim = null
+	enemysInSight = visionArea.get_overlapping_bodies()

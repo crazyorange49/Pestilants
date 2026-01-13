@@ -65,7 +65,7 @@ func spawn_type(type, mobSpawnRounds, mobWaitTime):
 func killAllChildren():
 	var enemyStorageChildren = enemy_storage.get_children()
 	for child in enemyStorageChildren:
-		child.health = -50
+		child.health = 0
 	nightEnded = true
 	if( numberOfPlants <= 0 ):
 		nightLoss()
@@ -73,14 +73,17 @@ func killAllChildren():
 
 func _enemyDeath() -> void:
 	numberOfEnemies -= 1
+	print("bug death")
 	if numberOfEnemies == 0 and numberOfPlants > 0:
 		nightSurvived()
 
 func _plantDeath() -> void:
 	numberOfPlants -= 1
+	print("Plant death")
+	avalableTargets = plant_storage.get_children()
 	if numberOfPlants == 0:
 		nightLoss()
-		avalableTargets = plant_storage.get_children()
+		
 
 func nightSurvived():
 	if nightsSurived == 7:
