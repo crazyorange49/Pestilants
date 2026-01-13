@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://dexdvbfljxaes"]
+[gd_scene load_steps=43 format=4 uid="uid://dexdvbfljxaes"]
 
 [ext_resource type="Script" uid="uid://cfjgmammsk3ab" path="res://Assets/Scenes/map.gd" id="1_17ifn"]
 [ext_resource type="Texture2D" uid="uid://dnwifcgyao3se" path="res://Assets/TileSheets/TilemapMaker.png" id="1_u8q4h"]
@@ -10,8 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://d14iarpbhvy74" path="res://Assets/TileSheets/worldplaceholderstilesheet.png" id="6_47en4"]
 [ext_resource type="NavigationPolygon" uid="uid://daejun74jn0cv" path="res://NavMeshes/NavRegion1.tres" id="7_hv05q"]
 [ext_resource type="NavigationPolygon" uid="uid://dmnjy1er8q2xg" path="res://NavMeshes/NavRegion2.tres" id="8_pg1eo"]
+[ext_resource type="Shader" uid="uid://blvdwh53huw20" path="res://Assets/Scripts/grassTiles.gdshader" id="8_tue0r"]
 [ext_resource type="NavigationPolygon" uid="uid://02mdans2asvd" path="res://NavMeshes/NavRegion3.tres" id="9_4cr8j"]
 [ext_resource type="Texture2D" uid="uid://yu60qe8e0shv" path="res://Assets/TileSheets/tilledSoilTileset_Day.png" id="9_4fr7r"]
+[ext_resource type="Texture2D" uid="uid://qn64ak1s7rr2" path="res://Assets/TileSheets/grass fill texture.png" id="9_bwh4a"]
 [ext_resource type="NavigationPolygon" uid="uid://bdwc2niin43ny" path="res://NavMeshes/NavRegion5.tres" id="9_p8knt"]
 [ext_resource type="NavigationPolygon" uid="uid://dgd1mxuwdlpq0" path="res://NavMeshes/NavRegion4.tres" id="10_b0akx"]
 [ext_resource type="NavigationPolygon" uid="uid://dpm4iivx4c3wk" path="res://NavMeshes/NavRegion6.tres" id="10_ky2ni"]
@@ -392,7 +394,10 @@ pattern_2 = SubResource("TileMapPattern_bwh4a")
 pattern_3 = SubResource("TileMapPattern_jbq5a")
 pattern_4 = SubResource("TileMapPattern_vwnmq")
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4hua8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bwh4a"]
+shader = ExtResource("8_tue0r")
+shader_parameter/overlay_tex = ExtResource("9_bwh4a")
+shader_parameter/scale = 0.001
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_17ifn"]
 texture = ExtResource("6_47en4")
@@ -554,7 +559,7 @@ tile_map_data = PackedByteArray("AAD+/wcAAQACAAEAAAD+/wgAAQACAAEAAAD+/wkAAQACAAE
 tile_set = SubResource("TileSet_47en4")
 script = ExtResource("6_17ifn")
 godot_4_3_compatibility = false
-display_material = SubResource("CanvasItemMaterial_4hua8")
+display_material = SubResource("ShaderMaterial_bwh4a")
 metadata/_custom_type_script = "uid://cjk8nronimk5r"
 
 [node name="SoilTiles" type="TileMapLayer" parent="." groups=["Item", "Plot"]]
@@ -568,6 +573,7 @@ display_material = SubResource("CanvasItemMaterial_hv05q")
 metadata/_custom_type_script = "uid://cjk8nronimk5r"
 
 [node name="NavMap" type="Node2D" parent="."]
+visible = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="NavMap"]
 navigation_polygon = ExtResource("7_hv05q")
