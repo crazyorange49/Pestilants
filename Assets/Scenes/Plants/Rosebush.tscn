@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dd034y74qrocs"]
+[gd_scene load_steps=21 format=3 uid="uid://dd034y74qrocs"]
 
 [ext_resource type="Script" uid="uid://bbiduae1xcet5" path="res://Assets/Scripts/Plants/rosebush.gd" id="1_gqu0m"]
 [ext_resource type="Texture2D" uid="uid://fybujgqnug2w" path="res://Assets/Sprites/roseBush_Day.png" id="2_jc1kl"]
 [ext_resource type="Texture2D" uid="uid://bvbmdp3h4wdeq" path="res://Assets/Sprites/NIGHT_ROSE.png" id="3_jc1kl"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_rbjk7"]
+[ext_resource type="Texture2D" uid="uid://da866jgrbufe6" path="res://Assets/Sprites/GrowthSprites/roseBushGrowthStages.png" id="3_xt5w5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rbjk7"]
 atlas = ExtResource("2_jc1kl")
@@ -19,6 +20,18 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_en8k1"]
 atlas = ExtResource("2_jc1kl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uqg2"]
+atlas = ExtResource("3_xt5w5")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcbim"]
+atlas = ExtResource("3_xt5w5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo42h"]
+atlas = ExtResource("3_xt5w5")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xt5w5"]
@@ -58,6 +71,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1uqg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcbim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mo42h")
+}],
+"loop": true,
+"name": &"growth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xt5w5")
 }, {
 "duration": 1.0,
@@ -81,7 +108,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
 size = Vector2(47, 48.75)
 
-[node name="Rosebush" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d") groups=["Plant"]]
+[node name="Rosebush" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d", "sprite") groups=["Plant"]]
 texture_filter = 1
 collision_layer = 4
 collision_mask = 16
@@ -93,13 +120,12 @@ atkRange = 100.0
 speed = 200.0
 attackRangeCollisionBox = NodePath("AttackArea/Range")
 navigationAgent2d = NodePath("NavigationAgent2D")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_pyroe")
-animation = &"nightIdle"
-frame = 3
-frame_progress = 1.0
+animation = &"growth"
 
 [node name="VisionArea" type="Area2D" parent="."]
 collision_mask = 32

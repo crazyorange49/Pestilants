@@ -8,6 +8,8 @@ func _ready() -> void:
 	health = maxHealth
 
 func _process(delta: float) -> void:
+	if(growthProgress < 2):
+		return
 	if( map.nightEnded == true ):
 		animated_sprite_2d.play("dayIdle")
 	else:

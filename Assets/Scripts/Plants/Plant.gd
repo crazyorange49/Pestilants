@@ -21,6 +21,7 @@ var dayTimePosition: Vector2
 @onready var navRegions = map.navMap.get_children()
 @export var navigationAgent2d: NavigationAgent2D
 @onready var visionArea: Area2D = $VisionArea
+@export var sprite: AnimatedSprite2D
 
 var enemysInSight: Array[Node2D]
 var Direction: Vector2 = dayTimePos
@@ -30,6 +31,7 @@ var isTarget: bool = false
 var dayTimePos: Vector2
 var attackTarget = null
 var can_attack = true
+var growthProgress: int = 0
 var victim
 
 func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_speed: float = 0.0, p_atkRange: float = 0.0) -> void:
@@ -42,11 +44,17 @@ func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: f
 
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "onEnemyDeath"))
+	SignalBus.connect("NightTime", Callable(self, "growthCheck"))
+	SignalBus.connect("DayTime", Callable(self, "growthCheck"))
+	sprite.animation = "growth"
+	sprite.frame = growthProgress
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
 	map.numberOfPlants += 1
 
 func _physics_process(delta: float) -> void:
+	if(growthProgress < 2):
+		return
 	Direction = Vector2.ZERO
 	if TimeState.dayTime == TimeState.DAY_STATE.EVENING:
 		isBackHome = false
@@ -107,7 +115,7 @@ func calculateVulnerability(currentHealth: int, targetMaxHealth: int):
 	return exp(-currentHealth / targetMaxHealth)
 
 func attack():
-	if !can_attack:
+	if (!can_attack || growthProgress < 2):
 		return
 
 	can_attack = false
@@ -137,3 +145,8 @@ func onEnemyDeath():
 		attackTarget = null
 		victim = null
 	enemysInSight = visionArea.get_overlapping_bodies()
+
+func growthCheck():
+	if(growthProgress < 2):
+		growthProgress += 1
+		sprite.frame = growthProgress
