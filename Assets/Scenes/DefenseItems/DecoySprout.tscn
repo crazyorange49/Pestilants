@@ -1,8 +1,86 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgnio6v1kj16p"]
+[gd_scene load_steps=22 format=3 uid="uid://cgnio6v1kj16p"]
 
 [ext_resource type="Script" uid="uid://cv6nvmnvtt740" path="res://Assets/Scenes/DefenseItems/decoy_sprout.gd" id="1_0kvcp"]
-[ext_resource type="Texture2D" uid="uid://uhoo1qsvvxc4" path="res://Assets/Sprites/decoysprout_Day.png" id="2_jccn8"]
+[ext_resource type="Texture2D" uid="uid://cfhkb2qkp55v6" path="res://Assets/Sprites/BOMB_Decoy-sheet.png" id="2_ayuli"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_6gcls"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kvcp"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jccn8"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gcls"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd6yn"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkjw6"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_887gx"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfe85"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi8m0"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0acug"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2on8b"]
+atlas = ExtResource("2_ayuli")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i5oxe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kvcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jccn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gcls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd6yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkjw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_887gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfe85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi8m0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0acug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2on8b")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
 radius = 33.0
@@ -91,10 +169,11 @@ script = ExtResource("1_0kvcp")
 enemyPriority = 5
 maxHealth = 50
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -12.000001)
 scale = Vector2(1.40625, 1.40625)
-texture = ExtResource("2_jccn8")
+sprite_frames = SubResource("SpriteFrames_i5oxe")
+animation = &"death"
 
 [node name="VisionArea" type="Area2D" parent="."]
 collision_mask = 32
