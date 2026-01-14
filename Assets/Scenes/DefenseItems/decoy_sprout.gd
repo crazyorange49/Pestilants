@@ -8,7 +8,6 @@ var is_dead = false
 
 func _ready():
 	health = maxHealth
-	#decoySprite.animation_finished.connect(_on_animation_finished)
 	SignalBus.connect("DayTime", Callable(self, "destroy"))
 	SignalBus.emit_signal("DecoyPlanted")
 	
@@ -23,11 +22,6 @@ func die() -> void:
 	decoySprite.play("death")
 	await decoySprite.animation_finished
 	queue_free()
-
-#func _on_animation_finished() -> void:
-	#if decoySprite.animation == "death":
-		#queue_free()
-
 
 func _physics_process(_delta: float) -> void:
 	pass
