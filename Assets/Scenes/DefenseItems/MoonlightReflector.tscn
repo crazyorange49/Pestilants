@@ -149,8 +149,7 @@ script = ExtResource("4_l0pdi")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-524, 8)
-collision_layer = 17
-collision_mask = 17
+collision_mask = 32
 
 [node name="lightCollision" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(55, -23)
@@ -158,7 +157,7 @@ rotation = -1.568875
 shape = SubResource("CapsuleShape2D_l0pdi")
 
 [node name="DamageTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.001
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
