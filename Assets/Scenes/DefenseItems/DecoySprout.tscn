@@ -88,6 +88,7 @@ _data = {
 texture_filter = 1
 collision_layer = 4
 collision_mask = 16
+collision_priority = 1.07
 script = ExtResource("1_0kvcp")
 enemyPriority = 5
 maxHealth = 50
@@ -98,7 +99,7 @@ scale = Vector2(1.40625, 1.40625)
 texture = ExtResource("2_jccn8")
 
 [node name="VisionArea" type="Area2D" parent="."]
-collision_layer = 4
+collision_mask = 32
 
 [node name="Radius" type="CollisionShape2D" parent="VisionArea"]
 shape = SubResource("CircleShape2D_4edj2")
