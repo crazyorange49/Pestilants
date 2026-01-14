@@ -165,3 +165,4 @@ wait_time = 0.001
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="child_entered_tree" from="Area2D/lightCollision" to="." method="_on_light_collision_child_entered_tree"]
 [connection signal="tree_entered" from="Area2D/lightCollision" to="." method="_on_light_collision_tree_entered"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
