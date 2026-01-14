@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://35mrd44ki3s" path="res://Assets/Scenes/main_menu.gd" id="1_x6jn2"]
 [ext_resource type="Script" uid="uid://vuspus5ab6rg" path="res://Assets/Scenes/audio_control.gd" id="2_cbhea"]
+[ext_resource type="Texture2D" uid="uid://tree25n21hra" path="res://Assets/Sprites/IMG_0332.png" id="2_tanm1"]
 [ext_resource type="Script" uid="uid://h8uu3vrf37iw" path="res://Assets/Scenes/full_screen.gd" id="3_cbhea"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6jn2"]
-bg_color = Color(0.21171063, 0.68334466, 0.63159126, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77rv3"]
 bg_color = Color(1, 1, 1, 1)
@@ -56,6 +54,46 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/29/0/ascent = 0.0
+cache/0/29/0/descent = 0.0
+cache/0/29/0/underline_position = 0.0
+cache/0/29/0/underline_thickness = 0.0
+cache/0/29/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/4/0/ascent = 0.0
+cache/0/4/0/descent = 0.0
+cache/0/4/0/underline_position = 0.0
+cache/0/4/0/underline_thickness = 0.0
+cache/0/4/0/scale = 1.0
+cache/0/34/0/ascent = 0.0
+cache/0/34/0/descent = 0.0
+cache/0/34/0/underline_position = 0.0
+cache/0/34/0/underline_thickness = 0.0
+cache/0/34/0/scale = 1.0
+cache/0/39/0/ascent = 0.0
+cache/0/39/0/descent = 0.0
+cache/0/39/0/underline_position = 0.0
+cache/0/39/0/underline_thickness = 0.0
+cache/0/39/0/scale = 1.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -68,7 +106,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x6jn2")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,9 +115,10 @@ offset_top = -77.0
 offset_right = 77.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_x6jn2")
+texture = ExtResource("2_tanm1")
 
 [node name="Options" type="Panel" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -166,18 +205,19 @@ offset_bottom = 160.0
 text = "FullScreen"
 script = ExtResource("3_cbhea")
 
+[node name="Node2D" type="Node2D" parent="Panel"]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -352.0
-offset_top = -94.5
-offset_right = 352.0
-offset_bottom = 94.5
+offset_left = -31.869995
+offset_top = -174.505
+offset_right = 189.63
+offset_bottom = -26.50476
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 11
@@ -228,24 +268,23 @@ text = "Exit
 "
 
 [node name="Title" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -174.5
-offset_top = -191.5
-offset_right = 174.5
-offset_bottom = -125.5
+offset_left = -49.5
+offset_top = -246.5
+offset_right = 231.5
+offset_bottom = -193.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.1812548, 0.1260924, 0.18124354, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.20042524, 0.5216362, 0.4137083, 0)
 theme_override_colors/font_outline_color = Color(0.70331234, 0.31754443, 0.49660486, 1)
 theme_override_fonts/font = SubResource("FontFile_fsbqx")
-theme_override_font_sizes/font_size = 49
+theme_override_font_sizes/font_size = 39
 text = "Plant Game WIP"
 
 [connection signal="pressed" from="Panel/Options/Back" to="." method="_on_back_pressed"]
