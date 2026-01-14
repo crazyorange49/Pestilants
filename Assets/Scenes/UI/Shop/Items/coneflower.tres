@@ -8,7 +8,8 @@
 script = ExtResource("2_8plu2")
 scenePath = ExtResource("2_wxau5")
 itemName = &"Coneflower"
-description = "heals nearby plants"
+description = "Magical flower who heals nearby injured plants!
+"
 maxStackSize = 16
 icon = ExtResource("1_8plu2")
 price = 15
