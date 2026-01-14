@@ -80,6 +80,7 @@ pause={
 
 signals={
 "DayTime": [],
+"DecoyPlanted": [],
 "EnemyDeath": [],
 "GameOver": [],
 "NightTime": [],
