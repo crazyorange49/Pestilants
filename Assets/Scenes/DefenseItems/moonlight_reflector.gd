@@ -32,15 +32,7 @@ func _process(_float) -> void:
 		if enemies_in_attack_area.size() > 0 and damage_timer.is_stopped():
 			damage_timer.start()
 
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Enemies") and !enemies_in_attack_area.has(body):
-		enemies_in_attack_area.append(body)
-		print(enemies_in_attack_area)
 
-func _on_attack_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Enemies"):
-		enemies_in_attack_area.erase(body)
-			
 			
 func _on_damage_timer_timeout() -> void:
 	for enemy in enemies_in_attack_area:
@@ -50,8 +42,11 @@ func _on_damage_timer_timeout() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body.is_in_group("Enemies") and !enemies_in_attack_area.has(body):
+		enemies_in_attack_area.append(body)
+		print(enemies_in_attack_area)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body.is_in_group("Enemies"):
+		enemies_in_attack_area.erase(body)
