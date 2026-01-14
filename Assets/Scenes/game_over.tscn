@@ -1,9 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b01jk3w12doq8"]
 
 [ext_resource type="Script" uid="uid://ccyaegwp0rcg3" path="res://Assets/Scripts/game_over.gd" id="1_b48d2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6jn2"]
-bg_color = Color(0.21171063, 0.68334466, 0.63159126, 1)
+[ext_resource type="Texture2D" uid="uid://tree25n21hra" path="res://Assets/Sprites/IMG_0332.png" id="2_scefk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77rv3"]
 bg_color = Color(1, 1, 1, 1)
@@ -35,17 +33,72 @@ shadow_color = Color(0.31756654, 0.6937955, 0.21739033, 0.6)
 shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
-[sub_resource type="FontFile" id="FontFile_fsbqx"]
-cache/0/49/0/ascent = 0.0
-cache/0/49/0/descent = 0.0
-cache/0/49/0/underline_position = 0.0
-cache/0/49/0/underline_thickness = 0.0
-cache/0/49/0/scale = 1.0
+[sub_resource type="FontFile" id="FontFile_7gjxu"]
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/49/0/ascent = 0.0
+cache/0/49/0/descent = 0.0
+cache/0/49/0/underline_position = 0.0
+cache/0/49/0/underline_thickness = 0.0
+cache/0/49/0/scale = 1.0
+cache/0/29/0/ascent = 0.0
+cache/0/29/0/descent = 0.0
+cache/0/29/0/underline_position = 0.0
+cache/0/29/0/underline_thickness = 0.0
+cache/0/29/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/4/0/ascent = 0.0
+cache/0/4/0/descent = 0.0
+cache/0/4/0/underline_position = 0.0
+cache/0/4/0/underline_thickness = 0.0
+cache/0/4/0/scale = 1.0
+cache/0/34/0/ascent = 0.0
+cache/0/34/0/descent = 0.0
+cache/0/34/0/underline_position = 0.0
+cache/0/34/0/underline_thickness = 0.0
+cache/0/34/0/scale = 1.0
+cache/0/39/0/ascent = 0.0
+cache/0/39/0/descent = 0.0
+cache/0/39/0/underline_position = 0.0
+cache/0/39/0/underline_thickness = 0.0
+cache/0/39/0/scale = 1.0
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/69/0/ascent = 0.0
+cache/0/69/0/descent = 0.0
+cache/0/69/0/underline_position = 0.0
+cache/0/69/0/underline_thickness = 0.0
+cache/0/69/0/scale = 1.0
+cache/0/59/0/ascent = 0.0
+cache/0/59/0/descent = 0.0
+cache/0/59/0/underline_position = 0.0
+cache/0/59/0/underline_thickness = 0.0
+cache/0/59/0/scale = 1.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -58,7 +111,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b48d2")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,7 +120,7 @@ offset_top = -77.0
 offset_right = 77.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_x6jn2")
+texture = ExtResource("2_scefk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -121,18 +174,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -174.5
+offset_left = -132.5
 offset_top = -191.5
-offset_right = 174.5
-offset_bottom = -125.5
+offset_right = 148.5
+offset_bottom = -112.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.1812548, 0.1260924, 0.18124354, 1)
-theme_override_colors/font_shadow_color = Color(0.20042524, 0.5216362, 0.4137083, 0)
-theme_override_colors/font_outline_color = Color(0.70331234, 0.31754443, 0.49660486, 1)
-theme_override_fonts/font = SubResource("FontFile_fsbqx")
-theme_override_font_sizes/font_size = 49
-text = "Plant Game WIP"
+theme_override_colors/font_color = Color(0.48053217, 0.36398193, 0.7046112, 1)
+theme_override_colors/font_shadow_color = Color(0.111693405, 0.32583785, 0.2529609, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("FontFile_7gjxu")
+theme_override_font_sizes/font_size = 59
+text = "Pestilants"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit_button" to="." method="_on_exit_button_pressed"]

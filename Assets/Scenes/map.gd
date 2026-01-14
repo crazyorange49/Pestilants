@@ -123,7 +123,7 @@ func _plantDeath() -> void:
 
 func nightSurvived():
 	if nightsSurived == 7:
-		#game won
+		SignalBus.emit_signal("GameOver")
 		return
 	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
 	print("Night survived: " + str(nightsSurived))

@@ -64,8 +64,9 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 32
+collision_mask = 256
 script = ExtResource("1_do57l")
-speed = 250
+speed = 400
 maxHealth = 40
 attack_damage = 12
 
