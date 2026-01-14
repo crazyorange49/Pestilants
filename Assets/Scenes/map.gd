@@ -106,7 +106,7 @@ func _enemyDeath() -> void:
 	numberOfEnemies -= 1
 	mobAmount -= 1
 	print("bug death")
-	player.renewalSeeds += randi() % 10 + 5
+	player.renewalSeeds += randi() % 25 + 5
 	if numberOfEnemies == 0 and numberOfPlants > 0:
 		nightSurvived()
 
