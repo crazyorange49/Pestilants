@@ -30,6 +30,7 @@ var nightsSurived: int
 var navServerMap: RID
 var availableTargets
 var defenceObjects
+var mobAmount: int = 0
 
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
@@ -55,7 +56,7 @@ func changeNight():
 		print("Night: ", currentNight)
 	
 func prepareSpawn(type, multiplier, mobSpawns):
-	var mobAmount = float(currentNight) * multiplier
+	mobAmount = float(currentNight) * multiplier
 	var mobWaitTime: float = 0.5
 	print("mob amount: ", mobAmount)
 	var mobSpawnRounds = mobAmount / mobSpawns
@@ -103,6 +104,7 @@ func killAllChildren():
 
 func _enemyDeath() -> void:
 	numberOfEnemies -= 1
+	mobAmount -= 1
 	print("bug death")
 	player.renewalSeeds += randi() % 10 + 5
 	if numberOfEnemies == 0 and numberOfPlants > 0:
