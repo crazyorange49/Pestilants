@@ -1,7 +1,6 @@
-[gd_scene load_steps=40 format=4 uid="uid://dexdvbfljxaes"]
+[gd_scene load_steps=39 format=4 uid="uid://dexdvbfljxaes"]
 
 [ext_resource type="Script" uid="uid://cfjgmammsk3ab" path="res://Assets/Scenes/map.gd" id="1_17ifn"]
-[ext_resource type="PackedScene" uid="uid://tx4bkgf2okvm" path="res://Assets/Scenes/Enemy.tscn" id="2_it2g8"]
 [ext_resource type="Texture2D" uid="uid://5rawhje0pheo" path="res://Assets/TileSheets/grassAndDarkTileset_Day.png" id="4_vwnmq"]
 [ext_resource type="Material" uid="uid://cmbcfxlkxxnwq" path="res://addons/TileMapDual/ghost_material.tres" id="5_4hua8"]
 [ext_resource type="Script" uid="uid://cjk8nronimk5r" path="res://addons/TileMapDual/tile_map_dual.gd" id="6_17ifn"]
@@ -307,7 +306,6 @@ points = PackedVector2Array(327.5, 504, -324.5, 501, -334.5, -277, 0.5, -517, 33
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_17ifn")
-enemy = ExtResource("2_it2g8")
 
 [node name="GrassTiles" type="TileMapLayer" parent="."]
 texture_filter = 1
