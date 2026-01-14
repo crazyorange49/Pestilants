@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="itemStats" load_steps=4 format=3 uid="uid://b413ifushsaor"]
 
-[ext_resource type="Texture2D" uid="uid://dsk047k50cmdg" path="res://Assets/Sprites/coneflower_Day.png" id="1_4uep4"]
+[ext_resource type="Texture2D" uid="uid://cymvaxvdc80s5" path="res://Assets/Sprites/UI/ConeFlower_Icon.png" id="1_8plu2"]
 [ext_resource type="Script" uid="uid://dhxcbvbymlfxm" path="res://Assets/Scripts/Resources/item.gd" id="2_8plu2"]
 [ext_resource type="PackedScene" uid="uid://dr7ci54k2fljk" path="res://Assets/Scenes/Plants/Coneflower.tscn" id="2_wxau5"]
 
@@ -10,6 +10,6 @@ scenePath = ExtResource("2_wxau5")
 itemName = &"Conefower"
 description = "heals nearby plants"
 maxStackSize = 16
-icon = ExtResource("1_4uep4")
+icon = ExtResource("1_8plu2")
 price = 15
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"
