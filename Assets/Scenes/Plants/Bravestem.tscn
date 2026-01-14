@@ -53,10 +53,10 @@ autostart = true
 debug_enabled = true
 
 [node name="HpBar" parent="." instance=ExtResource("3_jr61u")]
-offset_left = -40.0
-offset_top = -45.0
-offset_right = 39.0
-offset_bottom = -38.0
+offset_left = -23.0
+offset_top = -29.0
+offset_right = 24.0
+offset_bottom = -26.0
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]

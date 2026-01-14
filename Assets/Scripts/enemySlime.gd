@@ -99,10 +99,13 @@ func move_to_target(delta):
 		moving = false
 
 func calculateTarget() -> Plant:
-	var avalableTargets = map.avalableTargets
+	var availableTargets = map.availableTargets
+	for defenceObject in map.defenceObjects:
+		if defenceObject.is_in_group("Plant"):
+			availableTargets.append(defenceObject)
 	var newTarget: Node2D = move_target
 	var bestScore := -INF
-	for plant in avalableTargets:
+	for plant in availableTargets:
 		if !is_instance_valid(plant):
 			continue
 

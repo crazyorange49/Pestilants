@@ -11,6 +11,7 @@ var currentNight: int
 @onready var day_and_night: DayAndNightCycle = $"../dayAndNight"
 @onready var enemy_storage: Node2D = $enemyStorage
 @onready var plant_storage: Node2D = $plantStorage
+@onready var defense_storage: Node2D = $defenseStorage
 @onready var navMap: Node2D = $NavMap
 @onready var grass_tiles: TileMapDual = $GrassTiles
 @onready var grass_tileset: TileSet = grass_tiles.tile_set
@@ -23,7 +24,8 @@ var nightEnded: bool
 var movingToNextNight: bool
 var nightsSurived: int
 var navServerMap: RID
-var avalableTargets
+var availableTargets
+var defenceObjects
 
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
@@ -31,7 +33,8 @@ func _ready() -> void:
 	currentNight = 0
 	startingNodes = enemy_storage.get_child_count()
 	numberOfEnemies = enemy_storage.get_child_count()
-	avalableTargets = plant_storage.get_children()
+	availableTargets = plant_storage.get_children()
+	defenceObjects = defense_storage.get_children()
 	pass 
 
 func changeNight():
@@ -39,7 +42,8 @@ func changeNight():
 		nightEnded = false
 		currentNight += 1
 		prepareSpawn("slimes", 2.0, 1) # mob type, multiplier, # of spawn points
-		avalableTargets = plant_storage.get_children()
+		availableTargets = plant_storage.get_children()
+		defenceObjects = defense_storage.get_children()
 		print("Night: ", currentNight)
 	
 func prepareSpawn(type, multiplier, mobSpawns):
@@ -80,7 +84,8 @@ func _enemyDeath() -> void:
 func _plantDeath() -> void:
 	numberOfPlants -= 1
 	print("Plant death")
-	avalableTargets = plant_storage.get_children()
+	availableTargets = plant_storage.get_children()
+	defenceObjects = defense_storage.get_children()
 	if numberOfPlants == 0:
 		pass
 

@@ -23,10 +23,11 @@ var dayTimePosition: Vector2
 @onready var visionArea: Area2D = $VisionArea
 
 var enemysInSight: Array[Node2D]
-var dayTimePos: Vector2
 var Direction: Vector2 = dayTimePos
+var availablePlants: Array[Node2D]
 var isBackHome: bool = true
 var isTarget: bool = false
+var dayTimePos: Vector2
 var attackTarget = null
 var can_attack = true
 var victim

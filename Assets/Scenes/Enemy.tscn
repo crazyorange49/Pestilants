@@ -122,10 +122,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rf64a"]
-radius = 228.00877
+radius = 62.968246
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyf8h"]
-radius = 15.0
+radius = 17.029387
 
 [sub_resource type="Gradient" id="Gradient_aee6e"]
 offsets = PackedFloat32Array(0.08053691, 0.2885906, 0.70469797)
@@ -157,7 +157,6 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_rf64a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_oyf8h")
 
 [node name="HpBar" parent="." instance=ExtResource("3_td1d5")]
