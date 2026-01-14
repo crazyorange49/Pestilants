@@ -9,7 +9,6 @@ var isInRange: bool
 var isNightTime: bool
 var currentState: DayAndNightCycle.DAY_STATE
 var isUsed: bool = false
-@onready var enemies
 
 func _ready() -> void:
 	visible = false
