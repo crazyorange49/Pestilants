@@ -102,6 +102,7 @@ texture_filter = 1
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("1_pkyi3")
+damage = 3
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 position = Vector2(13, -13)
@@ -156,6 +157,7 @@ rotation = -1.568875
 shape = SubResource("CapsuleShape2D_l0pdi")
 
 [node name="DamageTimer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
