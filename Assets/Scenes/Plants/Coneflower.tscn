@@ -27,11 +27,13 @@ navigationAgent2d = NodePath("NavigationAgent2D")
 texture = ExtResource("2_1r1j7")
 
 [node name="VisionArea" type="Area2D" parent="."]
+collision_mask = 32
 
 [node name="Radius" type="CollisionShape2D" parent="VisionArea"]
 shape = SubResource("CircleShape2D_4edj2")
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 32
 
 [node name="Range" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_78iwd")
