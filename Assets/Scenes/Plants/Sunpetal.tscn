@@ -115,6 +115,7 @@ collision_mask = 16
 script = ExtResource("1_ojlaq")
 atkDamage = 15
 maxHealth = 100
+atkCoolDownInSeconds = 1.5
 visionRadius = 250.0
 atkRange = 100.0
 speed = 200.0
