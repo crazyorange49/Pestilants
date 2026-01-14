@@ -77,6 +77,5 @@ signals={
 "DayTime": [],
 "EnemyDeath": [],
 "GameOver": [],
-"NightTime": [],
 "PlantDeath": []
 }
