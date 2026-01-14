@@ -31,6 +31,7 @@ var defenceObjects
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
 	SignalBus.connect("PlantDeath", Callable(self, "_plantDeath"))
+	SignalBus.connect("DecoyPlanted", Callable(self, "_updateDefence"))
 	currentNight = 0
 	startingNodes = enemy_storage.get_child_count()
 	numberOfEnemies = enemy_storage.get_child_count()
@@ -81,6 +82,9 @@ func _enemyDeath() -> void:
 	print("bug death")
 	if numberOfEnemies == 0 and numberOfPlants > 0:
 		nightSurvived()
+
+func _updateDefence() -> void:
+	defenceObjects = defense_storage.get_children()
 
 func _plantDeath() -> void:
 	numberOfPlants = plant_storage.get_child_count()
