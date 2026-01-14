@@ -37,18 +37,15 @@ func _process(_float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	enemies_in_light.append(body)
 	if not map.nightEnded:
+		enemies_in_light.append(body)
 		damage_timer.start()
-	for enemy in enemies_in_light:
-		print(enemy.name)
 		
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 		enemies_in_light.erase(body)
 		if enemies_in_light.is_empty():
 			damage_timer.stop()
-		print("exit")
 			
 			
 func _on_damage_timer_timeout() -> void:
