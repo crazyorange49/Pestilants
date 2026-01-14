@@ -23,6 +23,7 @@ var dayTimePosition: Vector2
 @onready var visionArea: Area2D = $VisionArea
 @export var sprite: AnimatedSprite2D
 
+
 var enemysInSight: Array[Node2D]
 var Direction: Vector2 = dayTimePos
 var availablePlants: Array[Node]
@@ -93,10 +94,14 @@ var itemName: StringName = stats.itemName:
 	set(subtractedHealth):
 		health = clamp(subtractedHealth, minHealth, maxHealth)
 		if health <= 0:
-			queue_free()
-			SignalBus.emit_signal("PlantDeath")
+			die()
 	get:
 		return health
+
+func die() -> void:
+	queue_free()
+	SignalBus.emit_signal("PlantDeath")
+
 
 func onPlantPlaced():
 	dayTimePosition = position
