@@ -1,8 +1,78 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr7ci54k2fljk"]
+[gd_scene load_steps=23 format=3 uid="uid://dr7ci54k2fljk"]
 
 [ext_resource type="Script" uid="uid://b30uocvtl7i6n" path="res://Assets/Scripts/Plants/coneflower.gd" id="1_1r1j7"]
 [ext_resource type="Texture2D" uid="uid://dsk047k50cmdg" path="res://Assets/Sprites/coneflower_Day.png" id="2_1r1j7"]
+[ext_resource type="Texture2D" uid="uid://c07a8vsrq1rtw" path="res://Assets/Sprites/NIGHT_Coneflower-sheet.png" id="3_24du1"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_hmbhg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmbhg"]
+atlas = ExtResource("2_1r1j7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlvi1"]
+atlas = ExtResource("2_1r1j7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jttgs"]
+atlas = ExtResource("2_1r1j7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgkv2"]
+atlas = ExtResource("2_1r1j7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chtlw"]
+atlas = ExtResource("3_24du1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x8ia"]
+atlas = ExtResource("3_24du1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2luxj"]
+atlas = ExtResource("3_24du1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih7ec"]
+atlas = ExtResource("3_24du1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ysi1y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmbhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlvi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jttgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgkv2")
+}],
+"loop": true,
+"name": &"dayIdle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chtlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x8ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2luxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih7ec")
+}],
+"loop": true,
+"name": &"nightIdle",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
 
@@ -10,6 +80,69 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
 size = Vector2(47, 48.75)
+
+[sub_resource type="Gradient" id="Gradient_24du1"]
+colors = PackedColorArray(0.4968807, 0.67934114, 0.31090802, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hmbhg"]
+gradient = SubResource("Gradient_24du1")
+fill = 1
+fill_from = Vector2(0.519337, 0.5138122)
+fill_to = Vector2(0.9116022, 0.160221)
+
+[sub_resource type="Animation" id="Animation_24du1"]
+resource_name = "healOn"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.01, 4.61]
+}
+
+[sub_resource type="Animation" id="Animation_hmbhg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+
+[sub_resource type="Animation" id="Animation_xlvi1"]
+resource_name = "healOff"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 3.9333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.61, 0.01]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xlvi1"]
+_data = {
+&"RESET": SubResource("Animation_hmbhg"),
+&"healOff": SubResource("Animation_xlvi1"),
+&"healOn": SubResource("Animation_24du1")
+}
 
 [node name="Coneflower" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d") groups=["Plant"]]
 texture_filter = 1
@@ -23,8 +156,10 @@ speed = 200.0
 attackRangeCollisionBox = NodePath("AttackArea/Range")
 navigationAgent2d = NodePath("NavigationAgent2D")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_1r1j7")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ysi1y")
+animation = &"nightIdle"
+frame_progress = 0.8807404
 
 [node name="VisionArea" type="Area2D" parent="."]
 collision_mask = 32
@@ -55,6 +190,16 @@ offset_left = -40.0
 offset_top = -45.0
 offset_right = 39.0
 offset_bottom = -38.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 1.37
+texture = SubResource("GradientTexture2D_hmbhg")
+texture_scale = 0.01
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_xlvi1")
+}
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
