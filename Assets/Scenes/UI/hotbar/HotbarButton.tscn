@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bom4ur2mvc2g2"]
 
-[ext_resource type="Texture2D" uid="uid://cmtb106ioyhob" path="res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonNormalTexture.tres" id="1_2b3u6"]
+[ext_resource type="Texture2D" uid="uid://coflil8u4jh7m" path="res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonNormal.png" id="1_2b3u6"]
 [ext_resource type="Script" uid="uid://cw3uo2dt5iahx" path="res://Assets/Scripts/hotbar_button.gd" id="1_qo6jk"]
 
 [sub_resource type="Theme" id="Theme_qo6jk"]

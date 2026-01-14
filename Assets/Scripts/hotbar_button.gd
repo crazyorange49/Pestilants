@@ -6,8 +6,8 @@ var quantity
 var hotbar: Hotbar
 @onready var icon: TextureRect = $icon
 @onready var quantityText: Label = $quantityText
-var unfocused = preload("res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonNormalTexture.tres")
-var focused = preload("res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonFocusedTexture.tres")
+var unfocused = preload("uid://coflil8u4jh7m")
+var focused = preload("uid://dhme08djtaf04")
 
 func _pressed() -> void:
 	hotbar._hotbar_Button_Pressed(int(self.name))
