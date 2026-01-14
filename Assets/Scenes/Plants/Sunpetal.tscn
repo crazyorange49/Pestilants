@@ -1,8 +1,105 @@
-[gd_scene load_steps=7 format=3 uid="uid://8bbjksyw0lcg"]
+[gd_scene load_steps=21 format=3 uid="uid://8bbjksyw0lcg"]
 
 [ext_resource type="Script" uid="uid://iwfpdtvl83b4" path="res://Assets/Scripts/Plants/sunpetal.gd" id="1_ojlaq"]
 [ext_resource type="Texture2D" uid="uid://b51xt18562q15" path="res://Assets/Sprites/sunPetal_Day.png" id="2_53p8o"]
+[ext_resource type="Texture2D" uid="uid://bdj2g65c0xes" path="res://Assets/Sprites/NIGHT_Sunpetal-sheet.png" id="3_53p8o"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_c0i50"]
+[ext_resource type="Texture2D" uid="uid://bclmh2uqk68g6" path="res://Assets/Sprites/GrowthSprites/sunpetalGrowthStagesSpritesheet.png" id="3_teqe6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0i50"]
+atlas = ExtResource("2_53p8o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teqe6"]
+atlas = ExtResource("2_53p8o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0202v"]
+atlas = ExtResource("2_53p8o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3beu"]
+atlas = ExtResource("2_53p8o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yl8wm"]
+atlas = ExtResource("3_teqe6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhqky"]
+atlas = ExtResource("3_teqe6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gissv"]
+atlas = ExtResource("3_teqe6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iodfe"]
+atlas = ExtResource("3_53p8o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgohb"]
+atlas = ExtResource("3_53p8o")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eu1v"]
+atlas = ExtResource("3_53p8o")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksm2u"]
+atlas = ExtResource("3_53p8o")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yl8wm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0i50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teqe6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0202v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3beu")
+}],
+"loop": true,
+"name": &"dayIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yl8wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhqky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gissv")
+}],
+"loop": true,
+"name": &"growth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iodfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgohb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eu1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksm2u")
+}],
+"loop": true,
+"name": &"nightIdle",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
 
@@ -11,7 +108,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
 size = Vector2(53, 63)
 
-[node name="Sunpetal" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d") groups=["Plant"]]
+[node name="Sunpetal" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d", "sprite") groups=["Plant"]]
 texture_filter = 1
 collision_layer = 4
 collision_mask = 16
@@ -23,9 +120,11 @@ atkRange = 100.0
 speed = 200.0
 attackRangeCollisionBox = NodePath("AttackArea/Range")
 navigationAgent2d = NodePath("NavigationAgent2D")
+sprite = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_53p8o")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yl8wm")
+animation = &"growth"
 
 [node name="VisionArea" type="Area2D" parent="."]
 collision_mask = 32

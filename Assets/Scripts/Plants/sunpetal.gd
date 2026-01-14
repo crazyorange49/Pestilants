@@ -1,11 +1,20 @@
 class_name Sunpetal
 extends Plant
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 func _ready() -> void:
 	super._ready()
 	health = maxHealth
 
 func _process(_delta: float) -> void:
+	if(growthProgress < 2):
+		return
+	if( map.nightEnded == true ):
+		animated_sprite_2d.play("dayIdle")
+	else:
+		animated_sprite_2d.play("nightIdle")
+
 	if victim and is_instance_valid(victim):
 		attack()
 	else:

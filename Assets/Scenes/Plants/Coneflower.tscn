@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dr7ci54k2fljk"]
+[gd_scene load_steps=27 format=3 uid="uid://dr7ci54k2fljk"]
 
 [ext_resource type="Script" uid="uid://b30uocvtl7i6n" path="res://Assets/Scripts/Plants/coneflower.gd" id="1_1r1j7"]
 [ext_resource type="Texture2D" uid="uid://dsk047k50cmdg" path="res://Assets/Sprites/coneflower_Day.png" id="2_1r1j7"]
 [ext_resource type="Texture2D" uid="uid://c07a8vsrq1rtw" path="res://Assets/Sprites/NIGHT_Coneflower-sheet.png" id="3_24du1"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_hmbhg"]
+[ext_resource type="Texture2D" uid="uid://bndn12guxuee2" path="res://Assets/Sprites/GrowthSprites/coneflowergrowthstagesSpritesheet.png" id="3_xlvi1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmbhg"]
 atlas = ExtResource("2_1r1j7")
@@ -19,6 +20,18 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgkv2"]
 atlas = ExtResource("2_1r1j7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysi1y"]
+atlas = ExtResource("3_xlvi1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wux47"]
+atlas = ExtResource("3_xlvi1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ck2m"]
+atlas = ExtResource("3_xlvi1")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_chtlw"]
@@ -55,6 +68,20 @@ animations = [{
 "loop": true,
 "name": &"dayIdle",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysi1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wux47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ck2m")
+}],
+"loop": true,
+"name": &"growth",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -144,7 +171,7 @@ _data = {
 &"healOn": SubResource("Animation_24du1")
 }
 
-[node name="Coneflower" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d") groups=["Plant"]]
+[node name="Coneflower" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d", "sprite") groups=["Plant"]]
 texture_filter = 1
 collision_layer = 4
 collision_mask = 16
@@ -155,11 +182,11 @@ atkRange = 100.0
 speed = 200.0
 attackRangeCollisionBox = NodePath("AttackArea/Range")
 navigationAgent2d = NodePath("NavigationAgent2D")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ysi1y")
-animation = &"nightIdle"
-frame_progress = 0.8807404
+animation = &"growth"
 
 [node name="VisionArea" type="Area2D" parent="."]
 collision_mask = 32

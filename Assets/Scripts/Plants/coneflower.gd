@@ -3,13 +3,14 @@ extends Plant
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $PointLight2D/AnimationPlayer
-var makeAidenMad = 0
 
 func _ready() -> void:
 	super._ready()
 	health = maxHealth
 
 func _process(delta: float) -> void:
+	if(growthProgress < 2):
+		return
 	if( map.nightEnded == true ):
 		animated_sprite_2d.play("dayIdle")
 	else:
