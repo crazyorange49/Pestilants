@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var days_lived: Label = $DaysLived
 @onready var map: Node2D = $"../Map"
 @onready var  pause_menu = $PauseMenu
+@onready var enemies: Label = $Enemies
 var paused = false
 
 func _updateDaysLived() -> void:
@@ -20,6 +21,7 @@ func _ready() -> void:
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
+	enemies.text = "Enemies: " + str(map.mobAmount)
 func pauseMenu():
 	if paused:
 		pause_menu.hide()
