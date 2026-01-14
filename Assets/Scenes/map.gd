@@ -36,8 +36,7 @@ func _ready() -> void:
 	startingNodes = enemy_storage.get_child_count()
 	numberOfEnemies = enemy_storage.get_child_count()
 	availableTargets = plant_storage.get_children()
-	defenceObjects = defense_storage.get_children()
-	pass 
+	defenceObjects = defense_storage.get_children() 
 
 func changeNight():
 	if numberOfEnemies == startingNodes: #all enemies defeated
@@ -49,7 +48,7 @@ func changeNight():
 		print("Night: ", currentNight)
 	
 func prepareSpawn(type, multiplier, mobSpawns):
-	var mobAmount = float(currentNight) * multiplier
+	var mobAmount = 0 #float(currentNight) * multiplier
 	var mobWaitTime: float = 2.0
 	print("mob amount: ", mobAmount)
 	var mobSpawnRounds = mobAmount / mobSpawns

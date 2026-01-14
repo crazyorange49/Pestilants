@@ -29,7 +29,7 @@ func _on_vision_area_body_entered(_body: Node2D) -> void:
 
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body == attackTarget:
+	if body == attackTarget:	
 		victim = attackTarget
 
 
