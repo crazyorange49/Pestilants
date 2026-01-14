@@ -25,7 +25,7 @@ var dayTimePosition: Vector2
 
 var enemysInSight: Array[Node2D]
 var Direction: Vector2 = dayTimePos
-var availablePlants: Array[Node2D]
+var availablePlants: Array[Node]
 var isBackHome: bool = true
 var isTarget: bool = false
 var dayTimePos: Vector2
@@ -90,7 +90,7 @@ var itemName: StringName = stats.itemName:
 
 @export var health: int:
 	set(subtractedHealth):
-		health = subtractedHealth
+		health = clamp(subtractedHealth, minHealth, maxHealth)
 		if health <= 0:
 			queue_free()
 			SignalBus.emit_signal("PlantDeath")
@@ -102,7 +102,10 @@ func onPlantPlaced():
 
 func subtractDamage(damage: int) -> void:
 	health -= damage
-	
+
+func addHealth(healing: int) -> void:
+	health += healing
+
 func getNewPosition():
 	var navRID: RID
 	if map.nightsSurived == -1:

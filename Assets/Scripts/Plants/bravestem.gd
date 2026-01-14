@@ -17,7 +17,6 @@ func _process(_delta: float) -> void:
 	if victim and is_instance_valid(victim):
 		attack()
 	else:
-		
 		attackTarget = getAttackTarget()
 		if attackTarget:
 			navigationAgent2d.target_position = attackTarget.position
