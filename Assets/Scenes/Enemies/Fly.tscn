@@ -1,0 +1,106 @@
+[gd_scene load_steps=14 format=3 uid="uid://biw8da6mxhhmx"]
+
+[ext_resource type="Script" uid="uid://cm0lwglfs0h" path="res://Assets/Scenes/Enemies/fly.gd" id="1_do57l"]
+[ext_resource type="Texture2D" uid="uid://cw6whoftutbq0" path="res://Assets/Sprites/Fly_sprite.png" id="2_2un2u"]
+[ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="4_ywuro"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asof0"]
+atlas = ExtResource("2_2un2u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ij6y"]
+atlas = ExtResource("2_2un2u")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akjwm"]
+atlas = ExtResource("2_2un2u")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqr8b"]
+atlas = ExtResource("2_2un2u")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s2cu"]
+atlas = ExtResource("2_2un2u")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjs8t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asof0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ij6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akjwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqr8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7s2cu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rf64a"]
+radius = 64.00781
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oyf8h"]
+radius = 21.023796
+
+[sub_resource type="Gradient" id="Gradient_aee6e"]
+offsets = PackedFloat32Array(0.08053691, 0.2885906, 0.70469797)
+colors = PackedColorArray(1, 1, 1, 1, 0.7833221, 0.0011285698, 0.8778656, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_td1d5"]
+gradient = SubResource("Gradient_aee6e")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 32
+script = ExtResource("1_do57l")
+maxHealth = 30
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(9, -1)
+sprite_frames = SubResource("SpriteFrames_xjs8t")
+offset = Vector2(-8.805, -1.595)
+
+[node name="detecionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detecionArea"]
+shape = SubResource("CircleShape2D_rf64a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oyf8h")
+
+[node name="HpBar" parent="." instance=ExtResource("4_ywuro")]
+offset_left = -40.0
+offset_top = -34.0
+offset_right = 39.0
+offset_bottom = -27.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -9)
+energy = 0.5
+texture = SubResource("GradientTexture2D_td1d5")
+texture_scale = 7.09
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="detecionArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="detecionArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

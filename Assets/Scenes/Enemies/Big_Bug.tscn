@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://c8wf7w8mupiek"]
+
+[ext_resource type="Script" uid="uid://belo3ajb75yi6" path="res://Assets/Scenes/Enemies/big_bug.gd" id="1_mbat7"]
+[ext_resource type="Texture2D" uid="uid://b4xusdcdfc2i3" path="res://Assets/Sprites/Big_Bug_Sprite_New_WORM.png" id="3_si2nt"]
+[ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="4_5au7t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm4vt"]
+atlas = ExtResource("3_si2nt")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbat7"]
+atlas = ExtResource("3_si2nt")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si2nt"]
+atlas = ExtResource("3_si2nt")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h6aw"]
+atlas = ExtResource("3_si2nt")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_af2ka"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm4vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbat7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si2nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h6aw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rf64a"]
+radius = 144.05554
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oyf8h"]
+radius = 68.007355
+
+[sub_resource type="Gradient" id="Gradient_aee6e"]
+offsets = PackedFloat32Array(0.08053691, 0.2885906, 0.70469797)
+colors = PackedColorArray(1, 1, 1, 1, 0.7833221, 0.0011285698, 0.8778656, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_td1d5"]
+gradient = SubResource("Gradient_aee6e")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 32
+script = ExtResource("1_mbat7")
+maxHealth = 100
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(9, -1)
+sprite_frames = SubResource("SpriteFrames_af2ka")
+offset = Vector2(-8.805, -1.595)
+
+[node name="detecionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detecionArea"]
+shape = SubResource("CircleShape2D_rf64a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oyf8h")
+
+[node name="HpBar" parent="." instance=ExtResource("4_5au7t")]
+offset_left = -39.0
+offset_top = -66.0
+offset_right = 40.0
+offset_bottom = -59.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -9)
+energy = 0.5
+texture = SubResource("GradientTexture2D_td1d5")
+texture_scale = 7.09
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="detecionArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="detecionArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
