@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://qbn65467pc8r"]
+[gd_scene load_steps=15 format=3 uid="uid://qbn65467pc8r"]
 
 [ext_resource type="Script" uid="uid://1lw0jsqyjouq" path="res://Assets/Scenes/DefenseItems/moonlight_reflector.gd" id="1_pkyi3"]
 [ext_resource type="Texture2D" uid="uid://buq4njdy5nibm" path="res://Assets/Sprites/moonlightReflector_Day.png" id="2_7rapx"]
@@ -93,6 +93,10 @@ gradient = SubResource("Gradient_aee6e")
 fill = 1
 fill_from = Vector2(0.53051645, 0.5399061)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l0pdi"]
+radius = 205.00923
+height = 782.0447
+
 [node name="Moonlight Reflector" type="CharacterBody2D"]
 texture_filter = 1
 position = Vector2(-13, 11)
@@ -131,7 +135,7 @@ libraries = {
 autoplay = "twinkle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-475, -39)
+position = Vector2(-480, -30)
 scale = Vector2(2.8583674, 1.3858321)
 texture = SubResource("GradientTexture2D_pkyi3")
 texture_scale = 7.25
@@ -143,5 +147,23 @@ offset_right = 63.0
 offset_bottom = -27.0
 script = ExtResource("4_l0pdi")
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-524, 8)
+collision_layer = 17
+collision_mask = 17
+
+[node name="lightCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(55, -23)
+rotation = -1.568875
+shape = SubResource("CapsuleShape2D_l0pdi")
+
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="child_entered_tree" from="Area2D/lightCollision" to="." method="_on_light_collision_child_entered_tree"]
+[connection signal="tree_entered" from="Area2D/lightCollision" to="." method="_on_light_collision_tree_entered"]
