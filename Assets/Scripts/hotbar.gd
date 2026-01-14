@@ -9,13 +9,18 @@ var slots: Array[HotbarSlot]
 
 
 func _ready() -> void:
+	
 	for child in get_node("SlotContainer").get_children():
 		slots.append(child)
 		child.setItem(null)
 		child.hotbar = self
-		currentSelection = 0
 		updateHotbar()
-		
+	currentSelection = 0
+	addItem(preload("uid://cu0nj78id1rtn"))
+	addItem(preload("uid://cu0nj78id1rtn"))
+	addItem(preload("uid://cu0nj78id1rtn"))
+	updateHotbar()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_pressed() and (event.is_action("hotbarMoveLeft") or event.is_action("hotbarMoveRight")) and !isInShop :
