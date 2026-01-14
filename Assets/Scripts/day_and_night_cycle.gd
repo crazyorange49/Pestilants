@@ -20,6 +20,7 @@ func _on_timer_timeout() -> void:
 		map.changeNight()
 		player.light.visible = true
 		player.lightAni.play("lightOn")   
+		SignalBus.emit_signal("NightTime")
 		changeDayTime.emit(dayTime)
 		animation_player.play("dayNNight")
 		print("nightTIME!!")

@@ -20,7 +20,7 @@ var currentNight: int
 var startingNodes: int  
 var numberOfEnemies: int
 var numberOfPlants: int
-var nightEnded: bool
+var nightEnded: bool = true
 var movingToNextNight: bool
 var nightsSurived: int
 var navServerMap: RID
