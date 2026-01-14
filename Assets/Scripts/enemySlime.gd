@@ -110,7 +110,7 @@ func calculateTarget() -> Plant:
 	var newTarget: Node2D = move_target
 	var bestScore := -INF
 	for plant in availableTargets:
-		if !is_instance_valid(plant):
+		if (!is_instance_valid(plant) or plant.growthProgress < 2):
 			continue
 
 		var score = calculatePriority(plant)
@@ -135,7 +135,7 @@ func _findNewTarget() -> void:
 	if is_instance_valid(move_target):
 		navigation_agent_2d.target_position = move_target.position
 	else:
-		navigation_agent_2d.target_position = Vector2.ZERO
+		navigation_agent_2d.target_position = map.enemy_spawn.position
 
 func subtractDamage(damage: int) -> void:
 	health = clamp(health - damage, 0, maxHealth)

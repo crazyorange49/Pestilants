@@ -16,6 +16,7 @@ var currentNight: int
 @onready var grass_tiles: TileMapDual = $GrassTiles
 @onready var grass_tileset: TileSet = grass_tiles.tile_set
 @onready var hud: CanvasLayer = $"../HUD"
+@onready var enemy_spawn: Marker2D = $EnemySpawn
 
 var startingNodes: int  
 var numberOfEnemies: int
@@ -47,7 +48,7 @@ func changeNight():
 		print("Night: ", currentNight)
 	
 func prepareSpawn(type, multiplier, mobSpawns):
-	var mobAmount = 0 #float(currentNight) * multiplier
+	var mobAmount = 1 #float(currentNight) * multiplier
 	var mobWaitTime: float = 2.0
 	print("mob amount: ", mobAmount)
 	var mobSpawnRounds = mobAmount / mobSpawns
