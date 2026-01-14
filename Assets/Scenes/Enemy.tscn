@@ -147,7 +147,6 @@ texture_filter = 1
 position = Vector2(9, -1)
 sprite_frames = SubResource("SpriteFrames_wbetg")
 animation = &"idle"
-frame_progress = 0.86969596
 offset = Vector2(-8.805, -1.595)
 
 [node name="detecionArea" type="Area2D" parent="."]
@@ -173,7 +172,6 @@ texture = SubResource("GradientTexture2D_td1d5")
 texture_scale = 7.09
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

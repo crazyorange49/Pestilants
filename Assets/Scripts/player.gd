@@ -9,7 +9,7 @@ var NumberOfCollisions: int
 var renewalSeeds: = 300
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
-@onready var tooltip: Control = hud.get_child(3)
+@onready var tooltip: Control = hud.get_child(2)
 @onready var map: Map = $"../Map"
 @onready var soilTiles: TileMapDual = $"../Map/SoilTiles"
 @onready var plot_selector: Area2D = $PlotSelector

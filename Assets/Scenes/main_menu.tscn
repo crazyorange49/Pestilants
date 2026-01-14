@@ -94,6 +94,21 @@ cache/0/39/0/descent = 0.0
 cache/0/39/0/underline_position = 0.0
 cache/0/39/0/underline_thickness = 0.0
 cache/0/39/0/scale = 1.0
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/69/0/ascent = 0.0
+cache/0/69/0/descent = 0.0
+cache/0/69/0/underline_position = 0.0
+cache/0/69/0/underline_thickness = 0.0
+cache/0/69/0/scale = 1.0
+cache/0/59/0/ascent = 0.0
+cache/0/59/0/descent = 0.0
+cache/0/59/0/underline_position = 0.0
+cache/0/59/0/underline_thickness = 0.0
+cache/0/59/0/scale = 1.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -274,18 +289,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -49.5
-offset_top = -246.5
-offset_right = 231.5
-offset_bottom = -193.5
+offset_left = -62.5
+offset_top = -251.5
+offset_right = 218.5
+offset_bottom = -172.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.20042524, 0.5216362, 0.4137083, 0)
-theme_override_colors/font_outline_color = Color(0.70331234, 0.31754443, 0.49660486, 1)
+theme_override_colors/font_color = Color(0.48053217, 0.36398193, 0.7046112, 1)
+theme_override_colors/font_shadow_color = Color(0.111693405, 0.32583785, 0.2529609, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = SubResource("FontFile_fsbqx")
-theme_override_font_sizes/font_size = 39
-text = "Plant Game WIP"
+theme_override_font_sizes/font_size = 59
+text = "Pestilants"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Panel/Options/Back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="Panel/Options/Audio_control" to="Panel/Options/Audio_control" method="_on_value_changed"]

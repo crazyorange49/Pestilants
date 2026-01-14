@@ -19,6 +19,7 @@ var currentNight: int
 @onready var grass_tileset: TileSet = grass_tiles.tile_set
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var enemy_spawn: Marker2D = $EnemySpawn
+@onready var player: CharacterBody2D = $"../Player"
 
 var startingNodes: int  
 var numberOfEnemies: int
@@ -103,6 +104,7 @@ func killAllChildren():
 func _enemyDeath() -> void:
 	numberOfEnemies -= 1
 	print("bug death")
+	player.renewalSeeds += randi() % 10 + 5
 	if numberOfEnemies == 0 and numberOfPlants > 0:
 		nightSurvived()
 

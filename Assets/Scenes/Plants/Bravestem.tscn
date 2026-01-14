@@ -153,7 +153,6 @@ wait_time = 10.0
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="HpBar" parent="." instance=ExtResource("3_jr61u")]
 offset_left = -23.0

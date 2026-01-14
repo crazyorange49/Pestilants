@@ -43,7 +43,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_7s2cu")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -73,6 +73,7 @@ attack_damage = 12
 texture_filter = 1
 position = Vector2(9, -1)
 sprite_frames = SubResource("SpriteFrames_xjs8t")
+animation = &"idle"
 offset = Vector2(-8.805, -1.595)
 
 [node name="detecionArea" type="Area2D" parent="."]
@@ -98,7 +99,6 @@ texture = SubResource("GradientTexture2D_td1d5")
 texture_scale = 7.09
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
