@@ -125,9 +125,10 @@ navigationAgent2d = NodePath("NavigationAgent2D")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_sg2vr")
 animation = &"nightIdle"
-frame_progress = 0.07198147
+frame_progress = 0.6907509
 
 [node name="VisionArea" type="Area2D" parent="."]
 collision_mask = 32
