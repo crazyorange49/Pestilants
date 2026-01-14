@@ -48,7 +48,6 @@ func destroy():
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies") and !enemies_in_attack_area.has(body):
 		enemies_in_attack_area.append(body)
-		print(enemies_in_attack_area)
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemies"):

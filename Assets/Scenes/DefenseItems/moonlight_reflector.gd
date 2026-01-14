@@ -8,7 +8,8 @@ class_name MoonlightReflector
 @onready var map: Map = $"../../"
 @onready var point_light_2d: PointLight2D = $PointLight2D
 @onready var damage_timer: Timer = $DamageTimer
-var enemies_in_light: Array[Enemy] = []
+var enemies_in_attack_area: Array[Node2D] = []
+
 func _ready():
 	SignalBus.connect("DayTime", Callable(self, "Damage") )
 	pass
@@ -28,27 +29,24 @@ func _process(_float) -> void:
 		damage_timer.stop()
 	else:
 		point_light_2d.visible = true
-		if enemies_in_light.size() > 0 and damage_timer.is_stopped():
+		if enemies_in_attack_area.size() > 0 and damage_timer.is_stopped():
 			damage_timer.start()
 
 
-
-	
+			
+func _on_damage_timer_timeout() -> void:
+	for enemy in enemies_in_attack_area:
+		if is_instance_valid(enemy):
+			enemy.subtractDamage(damage)
+	print("Timer has timed out")
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if not map.nightEnded:
-		enemies_in_light.append(body)
-		damage_timer.start()
-		
+	if body.is_in_group("Enemies") and !enemies_in_attack_area.has(body):
+		enemies_in_attack_area.append(body)
+		print(enemies_in_attack_area)
+
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-		enemies_in_light.erase(body)
-		if enemies_in_light.is_empty():
-			damage_timer.stop()
-			
-			
-func _on_damage_timer_timeout() -> void:
-	for enemy in enemies_in_light:
-		if is_instance_valid(enemy):
-			enemy.subtractDamage(damage)
+	if body.is_in_group("Enemies"):
+		enemies_in_attack_area.erase(body)

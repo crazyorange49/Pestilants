@@ -106,7 +106,7 @@ func die() -> void:
 func onPlantPlaced():
 	dayTimePosition = position
 
-func subtractDamage(damage: int) -> void:
+func subtractDamage(damage: int, attacker: Node2D = null) -> void:
 	health -= damage
 
 func addHealth(healing: int) -> void:

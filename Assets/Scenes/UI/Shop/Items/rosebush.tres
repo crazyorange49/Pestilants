@@ -8,7 +8,8 @@
 script = ExtResource("2_67gfr")
 scenePath = ExtResource("2_2h5tf")
 itemName = &"Rosebush"
-description = "Does damage on a received hit, outgoing attacks are minimal."
+description = "Thorny bush that sends outgoing damage on a received hit!
+"
 maxStackSize = 16
 icon = ExtResource("1_67gfr")
 price = 25

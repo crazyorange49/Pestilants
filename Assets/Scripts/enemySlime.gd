@@ -61,7 +61,7 @@ func attack():
 	can_attack = false
 	
 
-	victim.subtractDamage(attack_damage)
+	victim.subtractDamage(attack_damage, self)
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true

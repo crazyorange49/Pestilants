@@ -8,7 +8,8 @@
 script = ExtResource("3_fiwkt")
 scenePath = ExtResource("2_ot588")
 itemName = &"Moonlight Reflector"
-description = "Reflects moonlight to ward off nearby enemies!"
+description = "Reflects moonlight to damage nearby enemies!
+"
 maxStackSize = 16
 icon = ExtResource("1_n7buv")
 price = 60
