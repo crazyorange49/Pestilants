@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3wsaqq4atule"]
+[gd_scene load_steps=10 format=3 uid="uid://d3wsaqq4atule"]
 
 [ext_resource type="PackedScene" uid="uid://cd5so80g438ao" path="res://Assets/Scenes/UI/hotbar/Hotbar.tscn" id="1_7hthr"]
 [ext_resource type="Script" uid="uid://dfhj14ka3fffb" path="res://Assets/Scenes/UI/hud.gd" id="1_h5kcl"]
 [ext_resource type="Script" uid="uid://dscljreyqttko" path="res://Assets/Scripts/timer.gd" id="2_had68"]
 [ext_resource type="Script" uid="uid://dq0q83qbpla8s" path="res://Assets/Scripts/hotbar_test.gd" id="3_w5d3o"]
 [ext_resource type="PackedScene" uid="uid://dcp0dgmy5l4px" path="res://Assets/Scenes/UI/Tooltip.tscn" id="4_rfqbw"]
-[ext_resource type="PackedScene" uid="uid://b4ueoyn67lxq" path="res://pause_menu.tscn" id="6_h5kcl"]
+[ext_resource type="Script" uid="uid://cnpx7wrajrpt" path="res://Assets/Scenes/UI/days_lived.gd" id="6_0u0r5"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="6_h5kcl"]
+[ext_resource type="Script" uid="uid://y5811y4vom4m" path="res://Assets/Scenes/UI/renewal_seeds.gd" id="8_l3gab"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w5d3o"]
 font_size = 32
@@ -32,6 +34,7 @@ offset_left = -32.0
 offset_right = 32.0
 offset_bottom = 45.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
 text = "5:00"
 label_settings = SubResource("LabelSettings_w5d3o")
 script = ExtResource("2_had68")
@@ -49,12 +52,13 @@ offset_right = -975.0
 offset_bottom = -20.0
 
 [node name="DaysLived" type="Label" parent="."]
-offset_left = 1000.0
+offset_left = 971.0
 offset_top = 2.0
-offset_right = 1092.0
+offset_right = 1063.0
 offset_bottom = 47.0
 theme_override_font_sizes/font_size = 32
 text = "Days: "
+script = ExtResource("6_0u0r5")
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_h5kcl")]
 visible = false
@@ -63,3 +67,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+
+[node name="renewalSeeds" type="Label" parent="."]
+offset_left = 106.0
+offset_top = 1.0
+offset_right = 352.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 32
+text = "Renewal Seeds: "
+script = ExtResource("8_l3gab")
