@@ -11,5 +11,5 @@ itemName = &"Bravestem"
 description = "Brave and loyal plant who guards all!"
 maxStackSize = 16
 icon = ExtResource("1_g3c7s")
-price = 5
+price = 15
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

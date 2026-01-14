@@ -93,7 +93,7 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="dayAndNight"]
-wait_time = 60.0
+wait_time = 120.0
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="dayAndNight"]
