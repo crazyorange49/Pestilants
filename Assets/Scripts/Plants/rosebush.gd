@@ -18,6 +18,7 @@ func _on_vision_area_body_exited(body: Node2D) -> void:
 	pass # Replace with function body.
 
 
+
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	pass
 

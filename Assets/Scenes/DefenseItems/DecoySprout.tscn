@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cgnio6v1kj16p"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/DefenseItems/decoy_sprout.gd" id="1_0kvcp"]
+[ext_resource type="Script" uid="uid://cv6nvmnvtt740" path="res://Assets/Scenes/DefenseItems/decoy_sprout.gd" id="1_0kvcp"]
 [ext_resource type="Texture2D" uid="uid://uhoo1qsvvxc4" path="res://Assets/Sprites/decoysprout_Day.png" id="2_jccn8"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_6gcls"]
 [ext_resource type="Script" uid="uid://byj6weaxiuk10" path="res://Assets/Scenes/DefenseItems/hp_barML.gd" id="4_gd6yn"]
@@ -104,7 +104,6 @@ collision_layer = 4
 shape = SubResource("CircleShape2D_4edj2")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(-2.75, -0.5)
 shape = SubResource("RectangleShape2D_sntse")
 disabled = true
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
@@ -123,10 +122,10 @@ libraries = {
 autoplay = "twinkle"
 
 [node name="HpBar" parent="." instance=ExtResource("3_6gcls")]
-offset_left = -26.0
-offset_top = -34.0
-offset_right = 34.227272
-offset_bottom = -32.0
+offset_left = -27.0
+offset_top = -33.0
+offset_right = 27.545456
+offset_bottom = -31.0
 scale = Vector2(0.88, 1)
 script = ExtResource("4_gd6yn")
 

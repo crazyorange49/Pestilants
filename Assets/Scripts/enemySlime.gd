@@ -24,7 +24,7 @@ var targetsInRange: Array[Node2D]
 var w_priority = 0.5
 var w_new = 0.25
 var scale_new = 8
-var oldDistaceWeight: float = 0.1
+var oldDistaceWeight: float = 0.01
 
 @export var health: int:
 	set(subtractedHealth):
@@ -68,8 +68,8 @@ func attack():
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
-
 func _on_attack_area_body_entered(body: Node2D) -> void:
+	print(body.name)
 	if body.is_in_group("Plant"):
 		victim = body
 
