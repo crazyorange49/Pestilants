@@ -31,11 +31,12 @@ var isTarget: bool = false
 var dayTimePos: Vector2
 var attackTarget = null
 var can_attack = true
-var growthProgress: int = 0
+@export var growthProgress: int
 var victim
 
-func _init(p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_speed: float = 0.0, p_atkRange: float = 0.0) -> void:
+func _init(p_growthProgress: int = 0, p_maxHealth: int = 0, p_atkDamage: int = 0, p_atkCoolDownInSeconds: float = 0.0, p_visionRadius: float = 0.0, p_speed: float = 0.0, p_atkRange: float = 0.0) -> void:
 	maxHealth = p_maxHealth
+	growthProgress = 0
 	atkDamage = p_atkDamage
 	atkCoolDownInSeconds  = p_atkCoolDownInSeconds
 	visionRadius  = p_visionRadius

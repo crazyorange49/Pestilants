@@ -18,7 +18,6 @@ func _process(_delta: float) -> void:
 		attackTarget = getHealTarget()
 		if attackTarget:
 			navigationAgent2d.target_position = attackTarget.position
-			victim = attackTarget
 	if( map.nightEnded == true ):
 		animated_sprite_2d.play("dayIdle")
 		animation_player.stop()

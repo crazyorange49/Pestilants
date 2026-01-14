@@ -7,13 +7,11 @@ class_name DecoySprout
 func _ready():
 	health = maxHealth
 	SignalBus.connect("DayTime", Callable(self, "destroy"))
-	decoySprite.animation = "death"
-	decoySprite.frame = 0
 	
 
 func _process(_float) -> void:
 	if (health <= 0):
-		decoySprite.play()
+		decoySprite.play("death")
 		if (decoySprite.frame == 9):
 			decoySprite.stop()
 

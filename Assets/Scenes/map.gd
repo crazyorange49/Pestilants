@@ -83,7 +83,7 @@ func _enemyDeath() -> void:
 		nightSurvived()
 
 func _plantDeath() -> void:
-	numberOfPlants -= 1
+	numberOfPlants = plant_storage.get_child_count()
 	print("Plant death")
 	availableTargets = plant_storage.get_children()
 	defenceObjects = defense_storage.get_children()

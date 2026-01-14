@@ -72,7 +72,7 @@ func playIdleAnimation(last_direction):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
 		var itemInUse = hotbar.currentSlot.Item
-		if isInFarmPlot and hotbar.currentSlot != null and !isInPlant and itemInUse != ZMOONLIGHT_REFLECTOR:
+		if isInFarmPlot and hotbar.currentSlot != null and !isInPlant and itemInUse != ZMOONLIGHT_REFLECTOR and map.nightEnded:
 			if itemInUse != null:
 				var usedItem: Plant = load(itemInUse.scenePath.resource_path).instantiate()
 				map.get_node("plantStorage").add_child(usedItem)

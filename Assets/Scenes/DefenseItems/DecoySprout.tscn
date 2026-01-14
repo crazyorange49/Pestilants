@@ -168,6 +168,7 @@ collision_mask = 16
 script = ExtResource("1_0kvcp")
 enemyPriority = 5
 maxHealth = 50
+growthProgress = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -12.000001)

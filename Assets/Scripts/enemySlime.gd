@@ -102,6 +102,7 @@ func calculateTarget() -> Plant:
 			continue
 		if defenceObject.is_in_group("Plant"):
 			availableTargets.append(defenceObject)
+			print(defenceObject.name)
 	var newTarget: Node2D = move_target
 	var bestScore := -INF
 	for plant in availableTargets:
