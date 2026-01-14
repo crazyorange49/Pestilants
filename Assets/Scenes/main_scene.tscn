@@ -1,11 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cu611lud1s211"]
+[gd_scene load_steps=18 format=3 uid="uid://cu611lud1s211"]
 
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
 [ext_resource type="Script" uid="uid://juky67gc2d1f" path="res://Assets/Scenes/main_scene.gd" id="1_1bw7v"]
 [ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
 [ext_resource type="PackedScene" uid="uid://chix7afojtval" path="res://Assets/Scenes/UI/Shop/Shop.tscn" id="2_qk5nb"]
+[ext_resource type="PackedScene" uid="uid://tx4bkgf2okvm" path="res://Assets/Scenes/Enemy.tscn" id="3_cyn7s"]
 [ext_resource type="PackedScene" uid="uid://d3wsaqq4atule" path="res://Assets/Scenes/UI/hud.tscn" id="4_03t3n"]
+[ext_resource type="PackedScene" uid="uid://biw8da6mxhhmx" path="res://Assets/Scenes/Enemies/Fly.tscn" id="4_v6rsf"]
 [ext_resource type="Script" uid="uid://i2qfpxvfn8r7" path="res://Assets/Scripts/day_and_night_cycle.gd" id="5_6bpw5"]
+[ext_resource type="PackedScene" uid="uid://c8wf7w8mupiek" path="res://Assets/Scenes/Enemies/Big_Bug.tscn" id="5_swc2n"]
 [ext_resource type="PackedScene" uid="uid://dodyitge0c33y" path="res://Assets/Scenes/UI/shopKeep/shopKeep.tscn" id="6_qk5nb"]
 [ext_resource type="AudioStream" uid="uid://cfnhy8twsi55p" path="res://Assets/music/skippy-mr-sunshine-fernweh-goldfish-main-version-02-32-7172.mp3" id="7_j6pfq"]
 [ext_resource type="PackedScene" uid="uid://m3or5cb2wbu5" path="res://Assets/Scenes/DefenseItems/Farmbell.tscn" id="7_r8ymx"]
@@ -69,6 +72,9 @@ script = ExtResource("1_1bw7v")
 
 [node name="Map" parent="." instance=ExtResource("1_0f027")]
 position = Vector2(-1, -5)
+Solder = ExtResource("3_cyn7s")
+fly = ExtResource("4_v6rsf")
+worm = ExtResource("5_swc2n")
 
 [node name="Farmbell" parent="." instance=ExtResource("7_r8ymx")]
 position = Vector2(1794, -437)

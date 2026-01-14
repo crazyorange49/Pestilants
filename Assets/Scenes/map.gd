@@ -7,7 +7,9 @@ signal nightLost
 const tileMapSectionVectors: Array[Vector2i] = [Vector2i(-6,-23),Vector2i(-24,-23),Vector2i(-42,-23),Vector2i(-60,-23),Vector2i(-76,-23),Vector2i(-92,-23),Vector2i(-110,-23),Vector2i(-128,-23)]
 
 var currentNight: int
-@export var enemy: PackedScene
+@export var Solder: PackedScene
+@export var fly: PackedScene
+@export var worm: PackedScene
 @onready var day_and_night: DayAndNightCycle = $"../dayAndNight"
 @onready var enemy_storage: Node2D = $enemyStorage
 @onready var plant_storage: Node2D = $plantStorage
@@ -42,26 +44,48 @@ func changeNight():
 	if numberOfEnemies == startingNodes: #all enemies defeated
 		nightEnded = false
 		currentNight += 1
-		prepareSpawn("slimes", 2.0, 1) # mob type, multiplier, # of spawn points
+		prepareSpawn("aphid", 2.0, 1) # mob type, multiplier, # of spawn points
+		if nightsSurived >= 3:
+			prepareSpawn("fly", 2.0, 1) # mob type, multiplier, # of spawn points
+		if nightsSurived >= 5:
+			prepareSpawn("worm", 2.0, 1) # mob type, multiplier, # of spawn points
 		availableTargets = plant_storage.get_children()
 		defenceObjects = defense_storage.get_children()
 		print("Night: ", currentNight)
 	
 func prepareSpawn(type, multiplier, mobSpawns):
-	var mobAmount = 0 #float(currentNight) * multiplier
-	var mobWaitTime: float = 2.0
+	var mobAmount = float(currentNight) * multiplier
+	var mobWaitTime: float = 0.5
 	print("mob amount: ", mobAmount)
 	var mobSpawnRounds = mobAmount / mobSpawns
 	spawn_type(type, mobSpawnRounds, mobWaitTime)
 	
 func spawn_type(type, mobSpawnRounds, mobWaitTime):
-	if type == "slimes":
-		var slimeSpawn = $EnemySpawn
+	var slimeSpawn = $EnemySpawn
+	if type == "aphid":
 		if mobSpawnRounds >= 1:
 			for i in mobSpawnRounds:
-				var slime1 = enemy.instantiate()
-				slime1.global_position = slimeSpawn.global_position
-				enemy_storage.add_child(slime1)
+				var aphid = Solder.instantiate()
+				aphid.global_position = slimeSpawn.global_position
+				enemy_storage.add_child(aphid)
+				mobSpawnRounds -= 1
+				numberOfEnemies += 1
+				await get_tree().create_timer(mobWaitTime).timeout
+	elif type == "fly":
+		if mobSpawnRounds >= 1:
+			for i in mobSpawnRounds:
+				var flyBug = fly.instantiate()
+				flyBug.global_position = slimeSpawn.global_position
+				enemy_storage.add_child(flyBug)
+				mobSpawnRounds -= 1
+				numberOfEnemies += 1
+				await get_tree().create_timer(mobWaitTime).timeout
+	elif type == "worm":
+		if mobSpawnRounds >= 1:
+			for i in mobSpawnRounds:
+				var bigBug = worm.instantiate()
+				bigBug.global_position = slimeSpawn.global_position
+				enemy_storage.add_child(bigBug)
 				mobSpawnRounds -= 1
 				numberOfEnemies += 1
 				await get_tree().create_timer(mobWaitTime).timeout

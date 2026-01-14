@@ -140,6 +140,7 @@ fill_from = Vector2(0.5, 0.5)
 collision_layer = 32
 script = ExtResource("1_td1d5")
 speed = 1560
+attack_damage = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

@@ -65,7 +65,9 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 32
 script = ExtResource("1_do57l")
-maxHealth = 30
+speed = 250
+maxHealth = 40
+attack_damage = 12
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
