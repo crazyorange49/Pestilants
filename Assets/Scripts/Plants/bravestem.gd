@@ -14,8 +14,6 @@ func _process(_delta: float) -> void:
 		if attackTarget:
 			navigationAgent2d.target_position = attackTarget.position
 			victim = attackTarget
-	
-	
 
 func _on_vision_area_body_entered(_body: Node2D) -> void:
 	enemysInSight = visionArea.get_overlapping_bodies()
