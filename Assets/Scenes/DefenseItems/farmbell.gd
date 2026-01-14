@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var animation_player: AnimationPlayer = $PointLight2D/AnimationPlayer
 @onready var point_light_2d: PointLight2D = $PointLight2D
+@onready var enemyStorage: Node2D = $"../Map/enemyStorage"
 
 var isInRange: bool
 var isNightTime: bool
@@ -31,6 +32,9 @@ func _input(event: InputEvent) -> void:
 		isUsed = true 
 		point_light_2d.enabled = true
 		animation_player.play("farmBellAni")
+		
+		for enemy in enemyStorage.get_tree().get_nodes_in_group("Enemies"):
+			enemy.subtractDamage(20)
 		pass
 
 
