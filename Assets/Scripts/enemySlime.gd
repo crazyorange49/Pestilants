@@ -40,12 +40,7 @@ var oldDistaceWeight: float = 0.01
 func _ready():
 	var main_scene = get_tree().get_current_scene() 
 	timer.start()
-	if main_scene.has_node("Move_node"):
-		move_target = main_scene.get_node("Move_node")
-		navigation_agent_2d.target_position = move_target.position
-	else:
 
-		print("node not found")
 	
 
 func _physics_process(delta):
