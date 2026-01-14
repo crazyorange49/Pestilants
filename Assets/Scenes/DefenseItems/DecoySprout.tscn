@@ -84,14 +84,14 @@ _data = {
 &"twinkle": SubResource("Animation_l0pdi")
 }
 
-[node name="DecoySprout" type="CharacterBody2D" groups=["Plant"]]
+[node name="DecoySprout" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox") groups=["Plant"]]
 texture_filter = 1
 collision_layer = 4
 collision_mask = 16
-collision_priority = 1.07
 script = ExtResource("1_0kvcp")
 enemyPriority = 5
 maxHealth = 50
+attackRangeCollisionBox = NodePath("")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, -12.000001)
@@ -106,7 +106,6 @@ shape = SubResource("CircleShape2D_4edj2")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sntse")
-disabled = true
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
