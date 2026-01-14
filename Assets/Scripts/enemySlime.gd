@@ -21,6 +21,7 @@ var targetsInRange: Array[Node2D]
 @onready var timer: Timer = $Timer
 
 ## priority variables
+
 var w_priority = 0.5
 var w_new = 0.25
 var scale_new = 8
@@ -43,6 +44,7 @@ func _ready():
 		move_target = main_scene.get_node("Move_node")
 		navigation_agent_2d.target_position = move_target.position
 	else:
+
 		print("node not found")
 	
 
@@ -101,6 +103,8 @@ func move_to_target(delta):
 func calculateTarget() -> Plant:
 	var availableTargets = map.availableTargets
 	for defenceObject in map.defenceObjects:
+		if !is_instance_valid(defenceObject):
+			continue
 		if defenceObject.is_in_group("Plant"):
 			availableTargets.append(defenceObject)
 	var newTarget: Node2D = move_target

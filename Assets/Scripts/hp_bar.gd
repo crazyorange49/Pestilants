@@ -1,19 +1,17 @@
 extends ProgressBar
 
 var parent
-var maxValueAmount
-var minValueAmount
 
 func _ready():
 	parent = get_parent()
-	maxValueAmount = parent.maxHealth
-	minValueAmount = parent.minHealth
-	
+	max_value = parent.maxHealth
+	min_value = parent.minHealth
+
 func _process(_delta):
 	self.value = parent.health
-	if parent.health != maxValueAmount:
+	if parent.health != max_value:
 		self.visible = true
-		if parent.health == minValueAmount:
+		if parent.health == min_value:
 			self.visible = false
 	else:
 		self.visible = false
