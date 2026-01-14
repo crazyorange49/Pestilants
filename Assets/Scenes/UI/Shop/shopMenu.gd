@@ -2,7 +2,7 @@ extends CanvasLayer
 
 const SHOP_ITEM_BUTTON = preload("uid://b85ckxdld6jch")
 var ItemFolderPath = "res://Assets/Scenes/UI/Shop/Items/"
-var ItemPaths = DirAccess.open(ItemFolderPath).get_files()
+var ItemPaths = [preload("uid://dh5pyc230gwc2"),preload("uid://b413ifushsaor"),preload("uid://c0ljm4521vth4"),preload("uid://e2leq8masu58"),preload("uid://cu0nj78id1rtn"),preload("uid://dtjkdqeeiybvm"),preload("uid://bjriv5fi8rcua")]
 var Items: Array[itemStats]
 @onready var shop_items_container: VBoxContainer = %ShopItemsContainer
 @onready var currency_label: Label = %currencyLabel
@@ -32,8 +32,8 @@ func whenOpened():
 	pass
 
 func _ready() -> void:
-	for ItemPath in ItemPaths:
-		Items.append(load(ItemFolderPath + ItemPath))
+	for Item in ItemPaths:
+		Items.append(Item)
 	populatePlantList(Items)
 	focusedItemChanged(Items[0])
 

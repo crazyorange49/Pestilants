@@ -6,7 +6,7 @@ static var group: StringName = "plant"
 var dayTimePosition: Vector2
 
 @export var enemyPriority: int
-@export var stats: Resource = preload("uid://csr8dxvj1ns2l")
+@export var stats: Resource
 @export var atkDamage: int
 @export var maxHealth: int 
 @export var minHealth: int 
