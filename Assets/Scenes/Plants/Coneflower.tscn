@@ -181,7 +181,7 @@ maxHealth = 100
 atkCoolDownInSeconds = 2.0
 visionRadius = 250.0
 atkRange = 100.0
-speed = 200.0
+speed = 250.0
 attackRangeCollisionBox = NodePath("AttackArea/Range")
 navigationAgent2d = NodePath("NavigationAgent2D")
 sprite = NodePath("AnimatedSprite2D")
@@ -197,7 +197,7 @@ collision_mask = 32
 shape = SubResource("CircleShape2D_4edj2")
 
 [node name="AttackArea" type="Area2D" parent="."]
-collision_mask = 32
+collision_mask = 4
 
 [node name="Range" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_78iwd")
