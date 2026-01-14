@@ -7,6 +7,18 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rf64a"]
 radius = 144.05554
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_oyf8h"]
+radius = 68.007355
+
+[sub_resource type="Gradient" id="Gradient_aee6e"]
+offsets = PackedFloat32Array(0.08053691, 0.2885906, 0.70469797)
+colors = PackedColorArray(1, 1, 1, 1, 0.7833221, 0.0011285698, 0.8778656, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_td1d5"]
+gradient = SubResource("Gradient_aee6e")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nm4vt"]
 atlas = ExtResource("3_si2nt")
 region = Rect2(0, 0, 128, 128)
@@ -43,18 +55,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oyf8h"]
-radius = 68.007355
-
-[sub_resource type="Gradient" id="Gradient_aee6e"]
-offsets = PackedFloat32Array(0.08053691, 0.2885906, 0.70469797)
-colors = PackedColorArray(1, 1, 1, 1, 0.7833221, 0.0011285698, 0.8778656, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_td1d5"]
-gradient = SubResource("Gradient_aee6e")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 256
@@ -63,7 +63,7 @@ speed = 220
 maxHealth = 100
 attack_damage = 25
 attack_range = 50.0
-attack_cooldown = 1.5
+attack_cooldown = 4.0
 
 [node name="detecionArea" type="Area2D" parent="."]
 collision_layer = 8
@@ -71,13 +71,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detecionArea"]
 shape = SubResource("CircleShape2D_rf64a")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="detecionArea"]
-texture_filter = 1
-position = Vector2(9, -1)
-sprite_frames = SubResource("SpriteFrames_af2ka")
-animation = &"idle"
-offset = Vector2(-8.805, -1.595)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oyf8h")
@@ -98,6 +91,13 @@ texture_scale = 7.09
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(9, -1)
+sprite_frames = SubResource("SpriteFrames_af2ka")
+animation = &"idle"
+offset = Vector2(-8.805, -1.595)
 
 [connection signal="body_entered" from="detecionArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="detecionArea" to="." method="_on_attack_area_body_exited"]

@@ -69,6 +69,7 @@ script = ExtResource("1_do57l")
 speed = 400
 maxHealth = 40
 attack_damage = 12
+attack_cooldown = 2.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

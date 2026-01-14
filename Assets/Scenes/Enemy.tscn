@@ -142,6 +142,7 @@ collision_mask = 256
 script = ExtResource("1_td1d5")
 speed = 350
 attack_damage = 10
+attack_cooldown = 1.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
