@@ -47,9 +47,9 @@ func changeNight():
 		currentNight += 1
 		prepareSpawn("aphid", 2.0, 1) # mob type, multiplier, # of spawn points
 		if nightsSurived >= 3:
-			prepareSpawn("fly", 2.0, 1) # mob type, multiplier, # of spawn points
+			prepareSpawn("fly", 1.5, 1) # mob type, multiplier, # of spawn points
 		if nightsSurived >= 5:
-			prepareSpawn("worm", 2.0, 1) # mob type, multiplier, # of spawn points
+			prepareSpawn("worm", 1.0, 1) # mob type, multiplier, # of spawn points
 		availableTargets = plant_storage.get_children()
 		defenceObjects = defense_storage.get_children()
 		print("Night: ", currentNight)
