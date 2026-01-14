@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_78iwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
-size = Vector2(47, 48.75)
+size = Vector2(53, 63)
 
 [node name="Sunpetal" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d") groups=["Plant"]]
 texture_filter = 1
@@ -41,7 +41,7 @@ shape = SubResource("CircleShape2D_78iwd")
 debug_color = Color(0.49411765, 0, 0.05882353, 0.50980395)
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1.375)
+position = Vector2(2.5, -0.5)
 shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
