@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://cu611lud1s211"]
+
+[ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
+[ext_resource type="Script" uid="uid://juky67gc2d1f" path="res://Assets/Scenes/main_scene.gd" id="1_1bw7v"]
+[ext_resource type="PackedScene" uid="uid://1spsxhila5to" path="res://Assets/Scenes/Player.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://chix7afojtval" path="res://Assets/Scenes/UI/Shop/Shop.tscn" id="2_qk5nb"]
+[ext_resource type="PackedScene" uid="uid://d3wsaqq4atule" path="res://Assets/Scenes/UI/hud.tscn" id="4_03t3n"]
+[ext_resource type="Script" uid="uid://i2qfpxvfn8r7" path="res://Assets/Scripts/day_and_night_cycle.gd" id="5_6bpw5"]
+[ext_resource type="PackedScene" uid="uid://dodyitge0c33y" path="res://Assets/Scenes/UI/shopKeep/shopKeep.tscn" id="6_qk5nb"]
+[ext_resource type="AudioStream" uid="uid://cfnhy8twsi55p" path="res://Assets/music/skippy-mr-sunshine-fernweh-goldfish-main-version-02-32-7172.mp3" id="7_j6pfq"]
+[ext_resource type="PackedScene" uid="uid://m3or5cb2wbu5" path="res://Assets/Scenes/DefenseItems/Farmbell.tscn" id="7_r8ymx"]
+[ext_resource type="AudioStream" uid="uid://dxq23dj3e8ibt" path="res://Assets/music/neighborhood-brandon-hopkins-main-version-22925-01-55 (1).mp3" id="8_ilymy"]
+
+[sub_resource type="Animation" id="Animation_qk5nb"]
+resource_name = "NightToDay"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.063753895, 9.945608),
+"transitions": PackedFloat32Array(1.2745608, 1),
+"update": 0,
+"values": [Color(0.36120036, 0.38660744, 0.52579904, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6bpw5"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_03t3n"]
+resource_name = "dayNNight"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.37, 0.37, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qk5nb"]
+_data = {
+&"NightToDay": SubResource("Animation_qk5nb"),
+&"RESET": SubResource("Animation_6bpw5"),
+&"dayNNight": SubResource("Animation_03t3n")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1bw7v")
+
+[node name="Map" parent="." instance=ExtResource("1_0f027")]
+position = Vector2(-1, -5)
+
+[node name="Farmbell" parent="." instance=ExtResource("7_r8ymx")]
+position = Vector2(1794, -437)
+
+[node name="Player" parent="." instance=ExtResource("2_2c62f")]
+position = Vector2(2178, 777)
+
+[node name="HUD" parent="." instance=ExtResource("4_03t3n")]
+
+[node name="dayAndNight" type="CanvasModulate" parent="."]
+script = ExtResource("5_6bpw5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dayAndNight"]
+libraries = {
+&"": SubResource("AnimationLibrary_qk5nb")
+}
+
+[node name="Timer" type="Timer" parent="dayAndNight"]
+wait_time = 20.0
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="dayAndNight"]
+stream = ExtResource("7_j6pfq")
+volume_db = -27.13
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="dayAndNight"]
+stream = ExtResource("8_ilymy")
+volume_db = -27.13
+
+[node name="ShopKeep" parent="." instance=ExtResource("6_qk5nb")]
+position = Vector2(1778, -1082)
+
+[node name="Shop" parent="." instance=ExtResource("2_qk5nb")]
+
+[node name="Move_node" type="Node2D" parent="."]
+position = Vector2(1902, 365)
+metadata/enemyPriority = -1
+
+[connection signal="nightLost" from="Map" to="HUD" method="_updateDaysLived"]
+[connection signal="night_survived" from="Map" to="HUD" method="_updateDaysLived"]
+[connection signal="changeDayTime" from="dayAndNight" to="Farmbell" method="_on_day_and_night_change_day_time"]
+[connection signal="timeout" from="dayAndNight/Timer" to="Map" method="_on_timer_timeout"]
+[connection signal="timeout" from="dayAndNight/Timer" to="dayAndNight" method="_on_timer_timeout"]

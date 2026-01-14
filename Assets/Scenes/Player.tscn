@@ -448,6 +448,7 @@ animation = &"idleForward"
 frame_progress = 0.4043137
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.26, 0.26)
 
 [node name="PlotSelector" type="Area2D" parent="."]
 position = Vector2(32, 36)
