@@ -545,8 +545,8 @@ fill = 1
 fill_from = Vector2(0.4811321, 0.509434)
 fill_to = Vector2(0.16509435, 0.8632075)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hogxh"]
-size = Vector2(649, 992)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_jbq5a"]
+points = PackedVector2Array(327.5, 504, -324.5, 501, -334.5, -277, 0.5, -517, 335.5, -289)
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_17ifn")
@@ -660,4 +660,4 @@ texture = ExtResource("21_jbq5a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -96)
-shape = SubResource("RectangleShape2D_hogxh")
+shape = SubResource("ConvexPolygonShape2D_jbq5a")
