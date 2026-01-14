@@ -655,6 +655,7 @@ texture_scale = 2.0
 position = Vector2(2181.5, 273)
 
 [node name="HouseSprite" type="Sprite2D" parent="StaticBody2D"]
+texture_filter = 1
 position = Vector2(-0.5, -47)
 texture = ExtResource("21_jbq5a")
 
