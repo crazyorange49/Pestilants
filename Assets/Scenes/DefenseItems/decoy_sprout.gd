@@ -7,6 +7,7 @@ class_name DecoySprout
 func _ready():
 	health = maxHealth
 	SignalBus.connect("DayTime", Callable(self, "destroy"))
+	SignalBus.emit_signal("DecoyPlanted")
 	
 
 func _process(_float) -> void:
