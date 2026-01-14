@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3wsaqq4atule"]
+[gd_scene load_steps=8 format=3 uid="uid://d3wsaqq4atule"]
 
 [ext_resource type="PackedScene" uid="uid://cd5so80g438ao" path="res://Assets/Scenes/UI/hotbar/Hotbar.tscn" id="1_7hthr"]
 [ext_resource type="Script" uid="uid://dfhj14ka3fffb" path="res://Assets/Scenes/UI/hud.gd" id="1_h5kcl"]
 [ext_resource type="Script" uid="uid://dscljreyqttko" path="res://Assets/Scripts/timer.gd" id="2_had68"]
 [ext_resource type="Script" uid="uid://dq0q83qbpla8s" path="res://Assets/Scripts/hotbar_test.gd" id="3_w5d3o"]
 [ext_resource type="PackedScene" uid="uid://dcp0dgmy5l4px" path="res://Assets/Scenes/UI/Tooltip.tscn" id="4_rfqbw"]
+[ext_resource type="PackedScene" uid="uid://b4ueoyn67lxq" path="res://pause_menu.tscn" id="6_h5kcl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w5d3o"]
 font_size = 32
@@ -54,3 +55,11 @@ offset_right = 1092.0
 offset_bottom = 47.0
 theme_override_font_sizes/font_size = 32
 text = "Days: "
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_h5kcl")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
