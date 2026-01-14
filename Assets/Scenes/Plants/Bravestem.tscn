@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://biirlcud4ie1x"]
+[gd_scene load_steps=21 format=3 uid="uid://biirlcud4ie1x"]
 
 [ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/bravestem.gd" id="1_sntse"]
 [ext_resource type="Texture2D" uid="uid://dlbb7ggcdhsq8" path="res://Assets/Sprites/braveStem_Day.png" id="2_sntse"]
 [ext_resource type="Texture2D" uid="uid://b1lbwwkk2qhiq" path="res://Assets/Sprites/GrowthSprites/braveStemGrowthStagesSpritesheet.png" id="3_ixgqj"]
 [ext_resource type="PackedScene" uid="uid://mlla82ft7ar" path="res://Assets/Scenes/hpBar.tscn" id="3_jr61u"]
+[ext_resource type="Texture2D" uid="uid://dlu5i0l2cffob" path="res://Assets/Sprites/Penis_plant.png" id="4_j2n7v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jr61u"]
 atlas = ExtResource("2_sntse")
@@ -32,6 +33,22 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cn62r"]
 atlas = ExtResource("3_ixgqj")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyx4f"]
+atlas = ExtResource("4_j2n7v")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hyln"]
+atlas = ExtResource("4_j2n7v")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhw1o"]
+atlas = ExtResource("4_j2n7v")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwq31"]
+atlas = ExtResource("4_j2n7v")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sg2vr"]
 animations = [{
@@ -65,6 +82,23 @@ animations = [{
 "loop": true,
 "name": &"growth",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyx4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hyln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhw1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwq31")
+}],
+"loop": true,
+"name": &"nightIdle",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4edj2"]
@@ -92,7 +126,8 @@ sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sg2vr")
-animation = &"growth"
+animation = &"nightIdle"
+frame_progress = 0.07198147
 
 [node name="VisionArea" type="Area2D" parent="."]
 collision_mask = 32
