@@ -40,10 +40,11 @@ func _ready() -> void:
 func populatePlantList(plants : Array[itemStats]) -> void:
 	for plant in plants:
 		var shop_plant : ShopItemButton = SHOP_ITEM_BUTTON.instantiate()
-		shop_plant.setup_item( plant )
-		shop_items_container.add_child( shop_plant )
-		shop_plant.focus_entered.connect( updateItemDetails.bind( plant ) )
-		shop_plant.pressed.connect( purchase_item.bind( plant ) )
+		shop_plant.setup_item(plant)
+		shop_items_container.add_child(shop_plant)
+		shop_plant.focus_entered.connect(updateItemDetails.bind(plant))
+		shop_plant.mouse_entered.connect(updateItemDetails.bind(plant))
+		shop_plant.pressed.connect(purchase_item.bind(plant))
 		pass
 	pass
 	
