@@ -21,6 +21,7 @@ var currentNight: int
 @onready var enemy_spawn: Marker2D = $EnemySpawn
 @onready var player: CharacterBody2D = $"../Player"
 
+
 var startingNodes: int  
 var numberOfEnemies: int
 var numberOfPlants: int
@@ -30,7 +31,7 @@ var nightsSurived: int
 var navServerMap: RID
 var availableTargets
 var defenceObjects
-var mobAmount: int = 0
+var mobAmount: int
 
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
@@ -109,6 +110,10 @@ func _enemyDeath() -> void:
 	player.renewalSeeds += randi() % 10 + 5
 	if numberOfEnemies == 0 and numberOfPlants > 0:
 		nightSurvived()
+	if mobAmount == 0:
+		day_and_night.timer.stop()
+		day_and_night.timer.timeout.emit()
+		day_and_night.timer.start()
 
 func _updateDefence() -> void:
 	defenceObjects = defense_storage.get_children()

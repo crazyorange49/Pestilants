@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func _on_start_button_pressed() -> void:
 	get_tree().root.add_child(main_scene)
+	get_tree().root.remove_child(self)
 	
 
 func _on_options_button_pressed() -> void:

@@ -8,11 +8,13 @@ signal changeDayTime(dayTime: DAY_STATE)
 @onready var map: Node2D = $"../Map"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player: CharacterBody2D = $"../Player"
+@onready var timer: Timer = $Timer
 
 enum DAY_STATE{NOON, EVENING}
 var dayTime : DAY_STATE = DAY_STATE.NOON
 
 func _ready() -> void:
+
 	add_to_group("dayAndNightCycle")
 	dayMusic.play()
 	pass
