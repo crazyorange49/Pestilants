@@ -71,24 +71,6 @@ func _physics_process(delta: float) -> void:
 		if navigationAgent2d.is_target_reached():
 			isBackHome = true
 			isTarget = false
-	
-var icon : Texture = stats.icon:
-	set(icon):
-		stats.icon = icon
-	get:
-		return icon
-		
-var maxStackSize: int = stats.maxStackSize:
-	set(maxSize):
-		stats.maxStackSize = maxSize
-	get:
-		return maxStackSize
-		
-var itemName: StringName = stats.itemName:
-	set(name):
-		stats.itemName = name
-	get:
-		return itemName
 
 @export var health: int:
 	set(subtractedHealth):
