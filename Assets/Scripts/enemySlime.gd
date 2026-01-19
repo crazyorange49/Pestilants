@@ -36,6 +36,8 @@ var oldDistaceWeight: float = 0.01
 			SignalBus.emit_signal("EnemyDeath")
 	get:
 		return health
+		
+		
 
 func _ready():
 	var main_scene = get_tree().get_current_scene() 

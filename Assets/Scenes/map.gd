@@ -96,21 +96,20 @@ func spawn_type(type, mobSpawnRounds, mobWaitTime):
 	
 func killAllChildren():
 	var enemyStorageChildren = enemy_storage.get_children()
-	for child in enemyStorageChildren:
-		child.health = 0
 	nightEnded = true
+	for child in enemyStorageChildren:
+		child.queue_free()
+	mobAmount = 0
 	if( numberOfPlants <= 0 ):
 		nightLoss()
-		
 
 func _enemyDeath() -> void:
 	numberOfEnemies -= 1
 	mobAmount -= 1
 	print("bug death")
 	player.renewalSeeds += randi() % 10 + 5
-	if numberOfEnemies == 0 and numberOfPlants > 0:
+	if mobAmount == 0 and numberOfPlants > 0:
 		nightSurvived()
-	if mobAmount == 0:
 		day_and_night.timer.stop()
 		day_and_night.timer.timeout.emit()
 		day_and_night.timer.start()
