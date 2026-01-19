@@ -24,12 +24,12 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_pressed() and (event.is_action("hotbarMoveLeft") or event.is_action("hotbarMoveRight")) and !isInShop :
-		if currentSelection == 8 and event.is_action("hotbarMoveLeft"):
+		if currentSelection == 8 and event.is_action("hotbarMoveRight"):
 			currentSelection = 0
-		elif currentSelection == 0 and event.is_action("hotbarMoveRight"):
+		elif currentSelection == 0 and event.is_action("hotbarMoveLeft"):
 			currentSelection = 8
 		else:
-			currentSelection = clamp(currentSelection + 1 if event.is_action("hotbarMoveLeft") else currentSelection - 1, 0, 8)
+			currentSelection = clamp(currentSelection - 1 if event.is_action("hotbarMoveLeft") else currentSelection + 1, 0, 8)
 		updateHotbar()
 		
 func _hotbar_Button_Pressed(Selction: int) -> void:
