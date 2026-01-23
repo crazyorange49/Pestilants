@@ -111,7 +111,14 @@ func getRenewalSeedCount() -> int:
 func changeRenewalSeedCount(x : int):
 	renewalSeeds += x
 	
-
+func updateToolTip(body: Node2D) -> void:
+	var overlappingObjects = plot_selector.get_overlapping_bodies()
+	for object in overlappingObjects:
+		if body.is_in_group("Plant"):
+			isInPlant = true
+		elif body.is_in_group("Plot"):
+			isInFarmPlot = true
+	if hotbar.currentSlot.Item 
 		
 		
 	
