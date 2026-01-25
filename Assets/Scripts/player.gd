@@ -90,20 +90,10 @@ func _input(event: InputEvent) -> void:
 func _on_plot_selector_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	activePlotPOS = soilTiles.map_to_local(soilTiles.local_to_map(position))
 	NumberOfCollisions = len(plot_selector.get_overlapping_bodies())
-	if body.is_in_group("Plant"):
-		isInPlant = true
-	elif body.is_in_group("Plot"):
-		isInFarmPlot = true
-	if body.is_in_group("Item") and !isInPlant:
-		tooltip.visible = true
+	updateToolTip()
 
-func _on_plot_selector_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if body.is_in_group("Plant"):
-		isInPlant = false
-	elif body.is_in_group("Plot"):
-		isInFarmPlot = false
-	if body.is_in_group("Item"):
-		tooltip.visible = false
+func _on_plot_selector_body_shape_exited(_body_rid: RID, _body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+	updateToolTip()
 
 func getRenewalSeedCount() -> int:
 	return renewalSeeds 
@@ -111,14 +101,23 @@ func getRenewalSeedCount() -> int:
 func changeRenewalSeedCount(x : int):
 	renewalSeeds += x
 	
-func updateToolTip(body: Node2D) -> void:
+func updateToolTip() -> void:
 	var overlappingObjects = plot_selector.get_overlapping_bodies()
+	if !hotbar.currentSlot:
+		return
 	for object in overlappingObjects:
-		if body.is_in_group("Plant"):
+		if object.is_in_group("Plant"):
 			isInPlant = true
-		elif body.is_in_group("Plot"):
+		elif object.is_in_group("Plot"):
 			isInFarmPlot = true
-	if hotbar.currentSlot.Item 
-		
+	if hotbar.currentSlot.Item.itemType == 1 and isInFarmPlot and !isInPlant:
+		tooltip.visible = true
+	elif hotbar.currentSlot.Item.itemType == 0 and !isInPlant:
+		tooltip.visible = true
+	else:
+		tooltip.visible = false
+		print_debug("no item or valid spot to place")
+	isInFarmPlot = false
+	isInFarmPlot = false
 		
 	

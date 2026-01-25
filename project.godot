@@ -89,5 +89,6 @@ signals={
 "EnemyDeath": [],
 "GameOver": [],
 "NightTime": [],
-"PlantDeath": []
+"PlantDeath": [],
+"SelectedSlotChanged": []
 }

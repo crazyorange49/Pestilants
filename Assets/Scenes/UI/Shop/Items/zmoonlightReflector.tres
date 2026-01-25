@@ -6,11 +6,11 @@
 
 [resource]
 script = ExtResource("3_fiwkt")
-scenePath = ExtResource("2_ot588")
 itemName = &"Moonlight Reflector"
-description = "Reflects moonlight to damage nearby enemies!
-"
+price = 60
 maxStackSize = 16
 icon = ExtResource("1_n7buv")
-price = 60
+scenePath = ExtResource("2_ot588")
+description = "Reflects moonlight to damage nearby enemies!
+"
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

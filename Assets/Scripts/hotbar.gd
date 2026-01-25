@@ -80,6 +80,7 @@ func getNumberOfItems(Item) -> int:
 ## updates of the texture of the currently selected hotbar slot
 func updateHotbar():
 	slots[currentSelection].slotSelected(true)
+	player.updateToolTip()
 	if currentSlot and currentSlot != slots[currentSelection]:
 		currentSlot.slotSelected(false)
 		currentSlot = slots[currentSelection]

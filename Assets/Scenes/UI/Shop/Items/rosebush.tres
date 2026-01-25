@@ -6,11 +6,12 @@
 
 [resource]
 script = ExtResource("2_67gfr")
-scenePath = ExtResource("2_2h5tf")
 itemName = &"Rosebush"
-description = "Thorny bush that sends outgoing damage on a received hit!
-"
+itemType = 1
+price = 25
 maxStackSize = 16
 icon = ExtResource("1_67gfr")
-price = 25
+scenePath = ExtResource("2_2h5tf")
+description = "Thorny bush that sends outgoing damage on a received hit!
+"
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

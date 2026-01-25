@@ -6,11 +6,12 @@
 
 [resource]
 script = ExtResource("2_ps64a")
-scenePath = ExtResource("2_mbs7v")
 itemName = &"Sunpetal"
-description = "Stronger older brother of the Bravestem!
-"
+itemType = 1
+price = 50
 maxStackSize = 16
 icon = ExtResource("1_ps64a")
-price = 50
+scenePath = ExtResource("2_mbs7v")
+description = "Stronger older brother of the Bravestem!
+"
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

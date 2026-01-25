@@ -6,10 +6,11 @@
 
 [resource]
 script = ExtResource("3_gjdiy")
-scenePath = ExtResource("2_6vk33")
 itemName = &"Bravestem"
-description = "Brave and loyal plant who guards all!"
+itemType = 1
+price = 15
 maxStackSize = 16
 icon = ExtResource("1_g3c7s")
-price = 15
+scenePath = ExtResource("2_6vk33")
+description = "Brave and loyal plant who guards all!"
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

@@ -6,11 +6,11 @@
 
 [resource]
 script = ExtResource("2_4g0vf")
-scenePath = ExtResource("2_qg82p")
 itemName = &"Farm Bell"
-description = "Does 30 damage to all enemies on the field!
-"
+price = 75
 maxStackSize = 16
 icon = ExtResource("1_nrjbs")
-price = 75
+scenePath = ExtResource("2_qg82p")
+description = "Does 30 damage to all enemies on the field!
+"
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"

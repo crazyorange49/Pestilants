@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource("3_eghg2")
-scenePath = ExtResource("2_cjp5x")
 itemName = &"Decoy Sprout"
-description = "Attracts nearby enemies to an explosion on death."
+price = 60
 maxStackSize = 16
 icon = ExtResource("1_cjp5x")
-price = 60
+scenePath = ExtResource("2_cjp5x")
+description = "Attracts nearby enemies to an explosion on death."
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"
