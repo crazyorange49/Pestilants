@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bom4ur2mvc2g2"]
+[gd_scene format=3 uid="uid://bom4ur2mvc2g2"]
 
 [ext_resource type="Texture2D" uid="uid://coflil8u4jh7m" path="res://Assets/Scenes/UI/hotbar/Textures/HotbarButtonNormal.png" id="1_2b3u6"]
 [ext_resource type="Script" uid="uid://cw3uo2dt5iahx" path="res://Assets/Scripts/hotbar_button.gd" id="1_qo6jk"]
@@ -14,7 +14,7 @@ icon = ExtResource("3_twgdt")
 description = "unfilled item description"
 metadata/_custom_type_script = "uid://dhxcbvbymlfxm"
 
-[node name="HotbarButton" type="TextureButton"]
+[node name="HotbarButton" type="TextureButton" unique_id=1576596241]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
@@ -26,7 +26,7 @@ stretch_mode = 6
 script = ExtResource("1_qo6jk")
 Item = SubResource("Resource_uv8nl")
 
-[node name="icon" type="TextureRect" parent="."]
+[node name="icon" type="TextureRect" parent="." unique_id=491410039]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -43,7 +43,7 @@ grow_vertical = 2
 mouse_filter = 2
 expand_mode = 1
 
-[node name="quantityText" type="Label" parent="."]
+[node name="quantityText" type="Label" parent="." unique_id=55174802]
 z_index = 1
 layout_mode = 1
 anchors_preset = 1

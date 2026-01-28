@@ -103,23 +103,30 @@ func changeRenewalSeedCount(x : int):
 	
 func updateToolTip() -> void:
 	var overlappingObjects = plot_selector.get_overlapping_bodies()
+	var numOverlappingPlants: int = 0
+	var numOverlappingPlots: int = 0
 	if !hotbar.currentSlot:
 		return
-	if !hotbar.currentSlot.Item:
-			return
-	for object in overlappingObjects:
-		if object.is_in_group("Plant"):
+	if hotbar.currentSlot.Item:
+		for object in overlappingObjects:
+			if object.is_in_group("Plant"):
+				numOverlappingPlants += 1
+			elif object.is_in_group("Plot"):
+				numOverlappingPlots += 1
+		if numOverlappingPlants > 0:
 			isInPlant = true
-		elif object.is_in_group("Plot"):
+		else:
+			isInPlant = false
+		if numOverlappingPlots > 0:
 			isInFarmPlot = true
-	if hotbar.currentSlot.Item.itemType == 1 and isInFarmPlot and !isInPlant:
-		tooltip.visible = true
-	elif hotbar.currentSlot.Item.itemType == 0 and !isInPlant:
-		tooltip.visible = true
-	else:
-		tooltip.visible = false
-		print_debug("no item or valid spot to place")
-	isInFarmPlot = false
-	isInFarmPlot = false
+		else:
+			isInFarmPlot = false
+		if hotbar.currentSlot.Item.itemType == 1 and isInFarmPlot and !isInPlant:
+			tooltip.visible = true
+		elif hotbar.currentSlot.Item.itemType == 0 and !isInPlant:
+			tooltip.visible = true
+		else:
+			tooltip.visible = false
+			print_debug("no item or valid spot to place")
 		
 	

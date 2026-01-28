@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://1spsxhila5to"]
+[gd_scene format=3 uid="uid://1spsxhila5to"]
 
 [ext_resource type="Script" uid="uid://qhc8nwka33gh" path="res://Assets/Scripts/player.gd" id="1_b2ifw"]
 [ext_resource type="PackedScene" uid="uid://qbn65467pc8r" path="res://Assets/Scenes/DefenseItems/MoonlightReflector.tscn" id="2_e5q2x"]
@@ -433,42 +433,40 @@ _data = {
 &"lightOn": SubResource("Animation_aee6e")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1586703718]
 texture_filter = 1
 collision_layer = 3
 script = ExtResource("1_b2ifw")
 ML = ExtResource("2_e5q2x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=229022693]
 shape = SubResource("CircleShape2D_b2ifw")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2068196080]
 sprite_frames = SubResource("SpriteFrames_y63lr")
 animation = &"idleForward"
 frame_progress = 0.4043137
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=695094815]
 
-[node name="PlotSelector" type="Area2D" parent="."]
+[node name="PlotSelector" type="Area2D" parent="." unique_id=154070377]
 position = Vector2(32, 36)
 collision_layer = 4
 collision_mask = 132
 
-[node name="range" type="CollisionShape2D" parent="PlotSelector"]
-position = Vector2(-32, 0)
+[node name="range" type="CollisionShape2D" parent="PlotSelector" unique_id=479544788]
+position = Vector2(-32, -24)
 shape = SubResource("RectangleShape2D_b2ifw")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1789687376]
 texture = SubResource("GradientTexture2D_e5q2x")
 texture_scale = 0.2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D" unique_id=266382688]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_mifcl")
-}
+libraries/ = SubResource("AnimationLibrary_mifcl")
 
-[node name="itemSpawn" type="Marker2D" parent="."]
+[node name="itemSpawn" type="Marker2D" parent="." unique_id=68384095]
 
 [connection signal="body_shape_entered" from="PlotSelector" to="." method="_on_plot_selector_body_shape_entered"]
 [connection signal="body_shape_exited" from="PlotSelector" to="." method="_on_plot_selector_body_shape_exited"]

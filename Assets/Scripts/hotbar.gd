@@ -44,6 +44,7 @@ func addItem (Item):
 	
 	if slot.Item == null:
 		slot.setItem(Item)
+		player.updateToolTip()
 	elif slot.Item == Item:
 		slot.addItem()
 
@@ -53,7 +54,8 @@ func removeItem():
 	
 	if slot == null or slot.Item == null:
 		return
-	
+	if slot.quantity == 1:
+		player.updateToolTip()
 	slot.removeItem()
 
 ## searches for a slot that has either a simalar item or is empty
