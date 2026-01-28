@@ -105,6 +105,8 @@ func updateToolTip() -> void:
 	var overlappingObjects = plot_selector.get_overlapping_bodies()
 	if !hotbar.currentSlot:
 		return
+	if !hotbar.currentSlot.Item:
+			return
 	for object in overlappingObjects:
 		if object.is_in_group("Plant"):
 			isInPlant = true
