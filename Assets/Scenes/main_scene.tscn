@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cu611lud1s211"]
+[gd_scene format=3 uid="uid://cu611lud1s211"]
 
 [ext_resource type="PackedScene" uid="uid://dexdvbfljxaes" path="res://Assets/Scenes/Map.tscn" id="1_0f027"]
 [ext_resource type="Script" uid="uid://juky67gc2d1f" path="res://Assets/Scenes/main_scene.gd" id="1_1bw7v"]
@@ -67,49 +67,47 @@ _data = {
 &"dayNNight": SubResource("Animation_03t3n")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=210384986]
 script = ExtResource("1_1bw7v")
 
-[node name="Map" parent="." instance=ExtResource("1_0f027")]
+[node name="Map" parent="." unique_id=1437946165 instance=ExtResource("1_0f027")]
 position = Vector2(-1, -5)
 Solder = ExtResource("3_cyn7s")
 fly = ExtResource("4_v6rsf")
 worm = ExtResource("5_swc2n")
 
-[node name="Farmbell" parent="." instance=ExtResource("7_r8ymx")]
+[node name="Farmbell" parent="." unique_id=242259208 instance=ExtResource("7_r8ymx")]
 position = Vector2(1794, -437)
 
-[node name="Player" parent="." instance=ExtResource("2_2c62f")]
-position = Vector2(2178, 777)
+[node name="Player" parent="." unique_id=1352220734 instance=ExtResource("2_2c62f")]
+position = Vector2(1339, -824)
 
-[node name="HUD" parent="." instance=ExtResource("4_03t3n")]
+[node name="HUD" parent="." unique_id=218062348 instance=ExtResource("4_03t3n")]
 
-[node name="dayAndNight" type="CanvasModulate" parent="."]
+[node name="dayAndNight" type="CanvasModulate" parent="." unique_id=2118815509]
 script = ExtResource("5_6bpw5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="dayAndNight"]
-libraries = {
-&"": SubResource("AnimationLibrary_qk5nb")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dayAndNight" unique_id=774655782]
+libraries/ = SubResource("AnimationLibrary_qk5nb")
 
-[node name="Timer" type="Timer" parent="dayAndNight"]
+[node name="Timer" type="Timer" parent="dayAndNight" unique_id=1222178618]
 wait_time = 60.0
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="dayAndNight"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="dayAndNight" unique_id=1551179887]
 stream = ExtResource("7_j6pfq")
 volume_db = -27.13
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="dayAndNight"]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="dayAndNight" unique_id=1433403721]
 stream = ExtResource("8_ilymy")
 volume_db = -27.13
 
-[node name="ShopKeep" parent="." instance=ExtResource("6_qk5nb")]
+[node name="ShopKeep" parent="." unique_id=230613261 instance=ExtResource("6_qk5nb")]
 position = Vector2(1778, -1082)
 
-[node name="Shop" parent="." instance=ExtResource("2_qk5nb")]
+[node name="Shop" parent="." unique_id=2106528541 instance=ExtResource("2_qk5nb")]
 
-[node name="Move_node" type="Node2D" parent="."]
+[node name="Move_node" type="Node2D" parent="." unique_id=877989362]
 position = Vector2(1902, 365)
 metadata/enemyPriority = -1
 

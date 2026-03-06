@@ -16,6 +16,7 @@ var currentNight: int
 @onready var defense_storage: Node2D = $defenseStorage
 @onready var navMap: Node2D = $NavMap
 @onready var grass_tiles: TileMapDual = $GrassTiles
+@onready var soil_tiles: TileMapDual = $SoilTiles
 @onready var grass_tileset: TileSet = grass_tiles.tile_set
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var enemy_spawn: Marker2D = $EnemySpawn
@@ -42,6 +43,12 @@ func _ready() -> void:
 	numberOfEnemies = enemy_storage.get_child_count()
 	availableTargets = plant_storage.get_children()
 	defenceObjects = defense_storage.get_children() 
+	
+	# disable and reenable tilemaps to make sure they are visible to the player
+	grass_tiles.enabled = false
+	grass_tiles.enabled = true
+	soil_tiles.enabled = false
+	soil_tiles.enabled = true
 
 func changeNight():
 	if numberOfEnemies == startingNodes: #all enemies defeated
