@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3wsaqq4atule"]
+[gd_scene load_steps=11 format=3 uid="uid://d3wsaqq4atule"]
 
 [ext_resource type="PackedScene" uid="uid://cd5so80g438ao" path="res://Assets/Scenes/UI/hotbar/Hotbar.tscn" id="1_7hthr"]
 [ext_resource type="Script" uid="uid://dfhj14ka3fffb" path="res://Assets/Scenes/UI/hud.gd" id="1_h5kcl"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ueoyn67lxq" path="res://pause_menu.tscn" id="6_h5kcl"]
 [ext_resource type="Script" path="res://Assets/Scenes/UI/renewal_seeds.gd" id="8_l3gab"]
 [ext_resource type="Script" uid="uid://v7wfb1gxe53b" path="res://Assets/Scenes/UI/enemies.gd" id="8_topgj"]
+[ext_resource type="PackedScene" path="res://Assets/Scenes/UI/MiniMap/MiniMap.tscn" id="9_minimap"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w5d3o"]
 font_size = 32
@@ -54,6 +55,8 @@ offset_bottom = 47.0
 theme_override_font_sizes/font_size = 32
 text = "Days: "
 script = ExtResource("6_0u0r5")
+
+[node name="MiniMap" parent="." instance=ExtResource("9_minimap")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_h5kcl")]
 visible = false
