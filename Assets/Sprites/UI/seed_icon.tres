@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://cwqn824dosuow" path="res://Assets/Sprites/UI/seed.png" id="1_seed"]
+
+[resource]
+resource_name = "SeedIcon"
+atlas = ExtResource("1_seed")
+region = Rect2(25, 13, 15, 24)

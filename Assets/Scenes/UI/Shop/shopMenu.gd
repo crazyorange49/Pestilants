@@ -44,7 +44,10 @@ func populatePlantList(plants : Array[itemStats]) -> void:
 		shop_items_container.add_child(shop_plant)
 		shop_plant.focus_entered.connect(updateItemDetails.bind(plant))
 		shop_plant.mouse_entered.connect(updateItemDetails.bind(plant))
-		shop_plant.pressed.connect(purchase_item.bind(plant))
+		# Pressing the card only previews it; buying goes through the card's own
+		# buy button, so a click anywhere on the row cannot spend seeds.
+		shop_plant.pressed.connect(updateItemDetails.bind(plant))
+		shop_plant.buy_pressed.connect(purchase_item)
 		pass
 	pass
 	
