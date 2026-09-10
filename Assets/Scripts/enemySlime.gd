@@ -107,7 +107,7 @@ func calculateTarget() -> Plant:
 	var newTarget: Node2D = move_target
 	var bestScore := -INF
 	for plant in availableTargets:
-		if (!is_instance_valid(plant) or plant.growthProgress < 2):
+		if (!is_instance_valid(plant) or plant.growthProgress < 2 or !plant.is_in_group("Plant")):
 			continue
 
 		var score = calculatePriority(plant)

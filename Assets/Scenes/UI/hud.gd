@@ -1,3 +1,4 @@
+class_name HUD
 extends CanvasLayer
 
 @onready var hotbar: Hotbar = $Hotbar

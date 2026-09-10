@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://chix7afojtval"]
+[gd_scene format=3 uid="uid://chix7afojtval"]
 
 [ext_resource type="Script" uid="uid://b8wi31y3d7per" path="res://Assets/Scenes/UI/Shop/shopMenu.gd" id="1_343ii"]
 [ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="2_n0g5p"]
@@ -14,7 +14,7 @@ border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 8
-border_color = Color(0.29019608, 0.19215687, 0.1254902, 1)
+border_color = Color(0.2901961, 0.19215687, 0.1254902, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -39,22 +39,6 @@ corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
-[sub_resource type="StyleBoxFlat" id="SB_Gold"]
-content_margin_left = 16.0
-content_margin_top = 4.0
-content_margin_right = 16.0
-content_margin_bottom = 6.0
-bg_color = Color(1, 0.7764706, 0.23529412, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 6
-border_color = Color(0.61960787, 0.4, 0.09019608, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
 [sub_resource type="StyleBoxFlat" id="SB_ListBg"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -70,6 +54,39 @@ corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="SB_Grabber"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.6039216, 0.45490196, 0.29411766, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="SB_GrabberHi"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="SB_ScrollBg"]
+content_margin_left = 6.0
+content_margin_right = 6.0
+bg_color = Color(0.78431374, 0.69411767, 0.53333336, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Theme" id="Theme_scroll"]
+VScrollBar/styles/grabber = SubResource("SB_Grabber")
+VScrollBar/styles/grabber_highlight = SubResource("SB_GrabberHi")
+VScrollBar/styles/grabber_pressed = SubResource("SB_GrabberHi")
+VScrollBar/styles/scroll = SubResource("SB_ScrollBg")
 
 [sub_resource type="StyleBoxFlat" id="SB_Card"]
 content_margin_left = 0.0
@@ -115,38 +132,21 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="SB_ScrollBg"]
-content_margin_left = 6.0
-content_margin_right = 6.0
-bg_color = Color(0.78431374, 0.69411767, 0.53333336, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="SB_Grabber"]
-content_margin_left = 5.0
-content_margin_right = 5.0
-bg_color = Color(0.6039216, 0.45490196, 0.29411766, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="SB_GrabberHi"]
-content_margin_left = 5.0
-content_margin_right = 5.0
-bg_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="Theme" id="Theme_scroll"]
-VScrollBar/styles/grabber = SubResource("SB_Grabber")
-VScrollBar/styles/grabber_highlight = SubResource("SB_GrabberHi")
-VScrollBar/styles/grabber_pressed = SubResource("SB_GrabberHi")
-VScrollBar/styles/scroll = SubResource("SB_ScrollBg")
+[sub_resource type="StyleBoxFlat" id="SB_Gold"]
+content_margin_left = 16.0
+content_margin_top = 4.0
+content_margin_right = 16.0
+content_margin_bottom = 6.0
+bg_color = Color(1, 0.7764706, 0.23529412, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 6
+border_color = Color(0.61960787, 0.4, 0.09019608, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="Animation" id="Animation_mrfld"]
 length = 0.001
@@ -209,12 +209,12 @@ _data = {
 &"notEnoughMoney": SubResource("Animation_8dotq")
 }
 
-[node name="Shop" type="CanvasLayer"]
+[node name="Shop" type="CanvasLayer" unique_id=1146062787]
 layer = 3
 visible = false
 script = ExtResource("1_343ii")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=821039384]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -222,7 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.043137256, 0.09019608, 0.05490196, 0.6392157)
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=974322166]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -230,7 +230,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Window" type="PanelContainer" parent="Control"]
+[node name="Window" type="PanelContainer" parent="Control" unique_id=1679463272]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -245,26 +245,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("SB_Window")
 
-[node name="Pad" type="MarginContainer" parent="Control/Window"]
+[node name="Pad" type="MarginContainer" parent="Control/Window" unique_id=857047899]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="Rows" type="VBoxContainer" parent="Control/Window/Pad"]
+[node name="Rows" type="VBoxContainer" parent="Control/Window/Pad" unique_id=1431595238]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Header" type="HBoxContainer" parent="Control/Window/Pad/Rows"]
+[node name="Header" type="HBoxContainer" parent="Control/Window/Pad/Rows" unique_id=506218774]
 layout_mode = 2
 
-[node name="TitleSign" type="PanelContainer" parent="Control/Window/Pad/Rows/Header"]
+[node name="TitleSign" type="PanelContainer" parent="Control/Window/Pad/Rows/Header" unique_id=497272524]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("SB_Sign")
 
-[node name="Title" type="Label" parent="Control/Window/Pad/Rows/Header/TitleSign"]
+[node name="Title" type="Label" parent="Control/Window/Pad/Rows/Header/TitleSign" unique_id=1835150075]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.98039216, 0.8862745, 1)
 theme_override_colors/font_outline_color = Color(0.10196079, 0.24313726, 0.07058824, 1)
@@ -272,24 +272,24 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 30
 text = "Town Recovery Center"
 
-[node name="Body" type="HBoxContainer" parent="Control/Window/Pad/Rows"]
+[node name="Body" type="HBoxContainer" parent="Control/Window/Pad/Rows" unique_id=671623352]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 18
 
-[node name="ListPanel" type="PanelContainer" parent="Control/Window/Pad/Rows/Body"]
+[node name="ListPanel" type="PanelContainer" parent="Control/Window/Pad/Rows/Body" unique_id=1844527758]
 custom_minimum_size = Vector2(452, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("SB_ListBg")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/Window/Pad/Rows/Body/ListPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Window/Pad/Rows/Body/ListPanel" unique_id=1296111769]
 layout_mode = 2
 theme = SubResource("Theme_scroll")
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/Window/Pad/Rows/Body/ListPanel/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Window/Pad/Rows/Body/ListPanel/ScrollContainer" unique_id=1414386303]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -297,41 +297,41 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="ShopItemsContainer" type="VBoxContainer" parent="Control/Window/Pad/Rows/Body/ListPanel/ScrollContainer/MarginContainer"]
+[node name="ShopItemsContainer" type="VBoxContainer" parent="Control/Window/Pad/Rows/Body/ListPanel/ScrollContainer/MarginContainer" unique_id=59711824]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="DetailsPanel" type="PanelContainer" parent="Control/Window/Pad/Rows/Body"]
+[node name="DetailsPanel" type="PanelContainer" parent="Control/Window/Pad/Rows/Body" unique_id=2132090098]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("SB_Card")
 
-[node name="Pad" type="MarginContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel"]
+[node name="Pad" type="MarginContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel" unique_id=292892928]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 18
 
-[node name="Rows" type="VBoxContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad"]
+[node name="Rows" type="VBoxContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad" unique_id=51255302]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="IconFrame" type="PanelContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows"]
+[node name="IconFrame" type="PanelContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows" unique_id=608030700]
 custom_minimum_size = Vector2(124, 124)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("SB_IconFrame")
 
-[node name="itemImage" type="TextureRect" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/IconFrame"]
+[node name="itemImage" type="TextureRect" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/IconFrame" unique_id=762073153]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_n0g5p")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="itemName" type="Label" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows"]
+[node name="itemName" type="Label" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows" unique_id=1346841139]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.16078432, 0.36078432, 0.10980392, 1)
@@ -340,12 +340,12 @@ text = "item name label"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Rule" type="ColorRect" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows"]
+[node name="Rule" type="ColorRect" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows" unique_id=318204848]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 color = Color(0.6039216, 0.45490196, 0.29411766, 1)
 
-[node name="itemDescription" type="Label" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows"]
+[node name="itemDescription" type="Label" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows" unique_id=133932113]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -356,29 +356,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="PriceRow" type="HBoxContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows"]
+[node name="PriceRow" type="HBoxContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows" unique_id=1484803621]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
 
-[node name="priceLabel" type="Label" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow"]
+[node name="priceLabel" type="Label" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow" unique_id=612815900]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
 theme_override_colors/font_color = Color(0.36078432, 0.27058825, 0.16862746, 1)
 theme_override_font_sizes/font_size = 22
 text = "Costs"
 
-[node name="Pill" type="PanelContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow"]
+[node name="Pill" type="PanelContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow" unique_id=228195947]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("SB_PricePill")
 
-[node name="Inner" type="HBoxContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow/Pill"]
+[node name="Inner" type="HBoxContainer" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow/Pill" unique_id=91212737]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="Seed" type="TextureRect" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow/Pill/Inner"]
+[node name="Seed" type="TextureRect" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow/Pill/Inner" unique_id=1507669372]
 custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 size_flags_vertical = 4
@@ -386,26 +385,26 @@ texture = ExtResource("3_343ii")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="itemPrice" type="Label" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow/Pill/Inner"]
+[node name="itemPrice" type="Label" parent="Control/Window/Pad/Rows/Body/DetailsPanel/Pad/Rows/PriceRow/Pill/Inner" unique_id=1469230258]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
 theme_override_colors/font_color = Color(0.29803923, 0.1882353, 0.05490196, 1)
 theme_override_font_sizes/font_size = 26
 text = "99"
 
-[node name="PanelContainer2" type="PanelContainer" parent="Control"]
+[node name="PanelContainer2" type="PanelContainer" parent="Control" unique_id=1373015745]
+layout_mode = 0
 offset_left = 826.0
 offset_top = 86.0
 offset_right = 1026.0
-offset_bottom = 138.0
+offset_bottom = 141.0
 theme_override_styles/panel = SubResource("SB_Gold")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2" unique_id=1014281572]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer" unique_id=1962437291]
 custom_minimum_size = Vector2(26, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -413,19 +412,16 @@ texture = ExtResource("3_343ii")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="currencyLabel" type="Label" parent="Control/PanelContainer2/HBoxContainer"]
+[node name="currencyLabel" type="Label" parent="Control/PanelContainer2/HBoxContainer" unique_id=1392702416]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 theme_override_colors/font_color = Color(0.29803923, 0.1882353, 0.05490196, 1)
 theme_override_font_sizes/font_size = 32
 text = "99"
 horizontal_alignment = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PanelContainer2"]
-libraries = {
-&"": SubResource("AnimationLibrary_komvi")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PanelContainer2" unique_id=804963637]
+libraries/ = SubResource("AnimationLibrary_komvi")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1521687955]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b85ckxdld6jch"]
+[gd_scene format=3 uid="uid://b85ckxdld6jch"]
 
 [ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="1_ctk0b"]
 [ext_resource type="Script" uid="uid://yxt3utqfdonn" path="res://Assets/Scenes/UI/Shop/shop_item_button.gd" id="1_vn4bg"]
@@ -76,18 +76,6 @@ corner_radius_top_right = 11
 corner_radius_bottom_right = 11
 corner_radius_bottom_left = 11
 
-[sub_resource type="StyleBoxFlat" id="SB_BuyHover"]
-bg_color = Color(1, 0.92941177, 0.5647059, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 5
-border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
-corner_radius_top_left = 11
-corner_radius_top_right = 11
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 11
-
 [sub_resource type="StyleBoxFlat" id="SB_BuyPressed"]
 bg_color = Color(0.9098039, 0.7176471, 0.29411766, 1)
 border_width_left = 3
@@ -95,6 +83,18 @@ border_width_top = 5
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.5019608, 0.32941177, 0.078431375, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="SB_BuyHover"]
+bg_color = Color(1, 0.92941177, 0.5647059, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
 corner_radius_top_left = 11
 corner_radius_top_right = 11
 corner_radius_bottom_right = 11
@@ -112,16 +112,16 @@ corner_radius_top_right = 11
 corner_radius_bottom_right = 11
 corner_radius_bottom_left = 11
 
-[node name="ShopItemButton" type="Button"]
+[node name="ShopItemButton" type="Button" unique_id=125584097]
 custom_minimum_size = Vector2(300, 68)
 theme_override_styles/normal = SubResource("SB_BtnNormal")
-theme_override_styles/hover = SubResource("SB_BtnHover")
 theme_override_styles/pressed = SubResource("SB_BtnHover")
+theme_override_styles/hover = SubResource("SB_BtnHover")
 theme_override_styles/focus = SubResource("SB_BtnFocus")
 script = ExtResource("1_vn4bg")
 
-[node name="Pad" type="MarginContainer" parent="."]
-anchors_preset = 15
+[node name="Pad" type="MarginContainer" parent="." unique_id=1076121602]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -132,19 +132,19 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 8
 
-[node name="Row" type="HBoxContainer" parent="Pad"]
+[node name="Row" type="HBoxContainer" parent="Pad" unique_id=1202631888]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="IconSlot" type="PanelContainer" parent="Pad/Row"]
+[node name="IconSlot" type="PanelContainer" parent="Pad/Row" unique_id=399405882]
 custom_minimum_size = Vector2(52, 52)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_IconSlot")
 
-[node name="TextureRect" type="TextureRect" parent="Pad/Row/IconSlot"]
+[node name="TextureRect" type="TextureRect" parent="Pad/Row/IconSlot" unique_id=1850259737]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
@@ -152,30 +152,28 @@ texture = ExtResource("1_ctk0b")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Pad/Row"]
+[node name="Label" type="Label" parent="Pad/Row" unique_id=1275630918]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.22745098, 0.14901961, 0.08627451, 1)
 theme_override_font_sizes/font_size = 24
 text = "Label for the item so we know what it is"
 clip_text = true
 
-[node name="BuyButton" type="Button" parent="Pad/Row"]
+[node name="BuyButton" type="Button" parent="Pad/Row" unique_id=1721048265]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(98, 44)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Buy"
 theme_override_styles/normal = SubResource("SB_BuyNormal")
-theme_override_styles/hover = SubResource("SB_BuyHover")
 theme_override_styles/pressed = SubResource("SB_BuyPressed")
+theme_override_styles/hover = SubResource("SB_BuyHover")
 theme_override_styles/focus = SubResource("SB_BuyFocus")
 
-[node name="Inner" type="MarginContainer" parent="Pad/Row/BuyButton"]
-anchors_preset = 15
+[node name="Inner" type="MarginContainer" parent="Pad/Row/BuyButton" unique_id=372805090]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -186,13 +184,13 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
 
-[node name="PriceRow" type="HBoxContainer" parent="Pad/Row/BuyButton/Inner"]
+[node name="PriceRow" type="HBoxContainer" parent="Pad/Row/BuyButton/Inner" unique_id=1102298042]
 layout_mode = 2
 mouse_filter = 2
-alignment = 1
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="Seed" type="TextureRect" parent="Pad/Row/BuyButton/Inner/PriceRow"]
+[node name="Seed" type="TextureRect" parent="Pad/Row/BuyButton/Inner/PriceRow" unique_id=2076305431]
 custom_minimum_size = Vector2(18, 26)
 layout_mode = 2
 size_flags_vertical = 4
@@ -201,11 +199,9 @@ texture = ExtResource("3_seedic")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="priceLabel" type="Label" parent="Pad/Row/BuyButton/Inner/PriceRow"]
+[node name="priceLabel" type="Label" parent="Pad/Row/BuyButton/Inner/PriceRow" unique_id=1754823387]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.29803923, 0.1882353, 0.05490196, 1)
 theme_override_font_sizes/font_size = 24
 text = "99"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3wsaqq4atule"]
+[gd_scene format=3 uid="uid://d3wsaqq4atule"]
 
 [ext_resource type="PackedScene" uid="uid://cd5so80g438ao" path="res://Assets/Scenes/UI/hotbar/Hotbar.tscn" id="1_7hthr"]
 [ext_resource type="Script" uid="uid://dfhj14ka3fffb" path="res://Assets/Scenes/UI/hud.gd" id="1_h5kcl"]
@@ -13,10 +13,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_w5d3o"]
 font_size = 32
 
-[node name="Hud" type="CanvasLayer"]
+[node name="Hud" type="CanvasLayer" unique_id=1469109547]
 script = ExtResource("1_h5kcl")
 
-[node name="Hotbar" parent="." instance=ExtResource("1_7hthr")]
+[node name="Hotbar" parent="." unique_id=1814997271 instance=ExtResource("1_7hthr")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -27,7 +27,7 @@ offset_right = 0.0
 offset_bottom = -45.0
 grow_vertical = 0
 
-[node name="Timer" type="Label" parent="."]
+[node name="Timer" type="Label" parent="." unique_id=1470074864]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -40,14 +40,14 @@ text = "5:00"
 label_settings = SubResource("LabelSettings_w5d3o")
 script = ExtResource("2_had68")
 
-[node name="Tooltip" parent="." instance=ExtResource("4_rfqbw")]
+[node name="Tooltip" parent="." unique_id=1813829333 instance=ExtResource("4_rfqbw")]
 visible = false
 offset_left = 34.0
 offset_top = 569.0
 offset_right = -975.0
 offset_bottom = -20.0
 
-[node name="DaysLived" type="Label" parent="."]
+[node name="DaysLived" type="Label" parent="." unique_id=607145509]
 offset_left = 971.0
 offset_top = 2.0
 offset_right = 1063.0
@@ -56,9 +56,10 @@ theme_override_font_sizes/font_size = 32
 text = "Days: "
 script = ExtResource("6_0u0r5")
 
-[node name="MiniMap" parent="." instance=ExtResource("9_minimap")]
+[node name="MiniMap" parent="." unique_id=1178936867 instance=ExtResource("9_minimap")]
+layout_mode = 3
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_h5kcl")]
+[node name="PauseMenu" parent="." unique_id=63442440 instance=ExtResource("6_h5kcl")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,7 +67,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
-[node name="renewalSeeds" type="Label" parent="."]
+[node name="renewalSeeds" type="Label" parent="." unique_id=1068642139]
 offset_left = 5.0
 offset_top = 1.0
 offset_right = 251.0
@@ -75,7 +76,7 @@ theme_override_font_sizes/font_size = 32
 text = "Renewal Seeds: "
 script = ExtResource("8_l3gab")
 
-[node name="Enemies" type="Label" parent="."]
+[node name="Enemies" type="Label" parent="." unique_id=1004567272]
 offset_left = 5.0
 offset_top = 46.0
 offset_right = 170.0

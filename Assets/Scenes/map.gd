@@ -50,6 +50,8 @@ func _ready() -> void:
 	soil_tiles.enabled = false
 	soil_tiles.enabled = true
 
+
+
 func changeNight():
 	if numberOfEnemies == startingNodes: #all enemies defeated
 		nightEnded = false

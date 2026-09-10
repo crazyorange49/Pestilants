@@ -19,6 +19,21 @@ func _ready() -> void:
 	dayMusic.play()
 	pass
 	
+func startNight() -> void:
+	if dayTime != DAY_STATE.EVENING:
+		dayTime = DAY_STATE.EVENING
+		if(nightMusic.playing == false):
+			dayMusic.stop()
+			nightMusic.play()
+		player.light.visible = true
+		player.lightAni.play("lightOn")   
+		SignalBus.emit_signal("NightTime")
+		animation_player.play("dayNNight")
+		print("nightTIME!!")
+
+
+
+
 func _on_timer_timeout() -> void:
 	if dayTime != DAY_STATE.EVENING:
 		dayTime = DAY_STATE.EVENING
