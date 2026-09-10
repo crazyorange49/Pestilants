@@ -56,10 +56,10 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="SB_ListBg"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(0.87058824, 0.7882353, 0.627451, 1)
 border_width_left = 4
 border_width_top = 4
@@ -292,10 +292,10 @@ vertical_scroll_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="Control/Window/Pad/Rows/Body/ListPanel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="ShopItemsContainer" type="VBoxContainer" parent="Control/Window/Pad/Rows/Body/ListPanel/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
