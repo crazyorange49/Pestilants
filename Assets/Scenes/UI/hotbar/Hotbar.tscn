@@ -26,6 +26,7 @@ grow_vertical = 2
 script = ExtResource("1_y2nog")
 
 [node name="HotbarBackground" type="TextureRect" parent="."]
+self_modulate = Color(1.16, 1.04, 0.83, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

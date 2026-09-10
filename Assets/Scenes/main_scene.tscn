@@ -102,14 +102,14 @@ volume_db = -27.13
 wait_time = 60.0
 autostart = true
 
-[node name="ShopKeep" parent="." unique_id=230613261 instance=ExtResource("6_qk5nb")]
-position = Vector2(1778, -1082)
-
 [node name="Shop" parent="." unique_id=2106528541 instance=ExtResource("2_qk5nb")]
 
 [node name="Move_node" type="Node2D" parent="." unique_id=877989362]
 position = Vector2(1902, 365)
 metadata/enemyPriority = -1
+
+[node name="ShopKeep" parent="." unique_id=1006567977 instance=ExtResource("6_qk5nb")]
+position = Vector2(1778, -1082)
 
 [connection signal="nightLost" from="Map" to="HUD" method="_updateDaysLived"]
 [connection signal="night_survived" from="Map" to="HUD" method="_updateDaysLived"]

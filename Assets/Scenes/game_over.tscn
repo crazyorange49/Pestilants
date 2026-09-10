@@ -4,7 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://tree25n21hra" path="res://Assets/Sprites/IMG_0332.png" id="2_scefk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77rv3"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.9764706, 0.92941177, 0.8039216, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.6039216, 0.45490196, 0.29411766, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -14,7 +19,12 @@ shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsbqx"]
-bg_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
+bg_color = Color(0.9019608, 0.83137256, 0.6784314, 1)
+border_width_left = 3
+border_width_top = 5
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.20392157, 0.44313726, 0.13725491, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -24,7 +34,12 @@ shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbhea"]
-bg_color = Color(0.654232, 0.65423214, 0.6542318, 1)
+bg_color = Color(1, 0.98039216, 0.8980392, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16

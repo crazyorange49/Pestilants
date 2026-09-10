@@ -1,0 +1,126 @@
+[gd_resource type="Theme" load_steps=9 format=3]
+
+[sub_resource type="StyleBoxFlat" id="Btn_Normal"]
+content_margin_left = 18.0
+content_margin_top = 6.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.9764706, 0.92941177, 0.8039216, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.6039216, 0.45490196, 0.29411766, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Btn_Hover"]
+content_margin_left = 18.0
+content_margin_top = 6.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 0.98039216, 0.8980392, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Btn_Pressed"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 6.0
+bg_color = Color(0.9019608, 0.83137256, 0.6784314, 1)
+border_width_left = 3
+border_width_top = 5
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.20392157, 0.44313726, 0.13725491, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Btn_Focus"]
+content_margin_left = 18.0
+content_margin_top = 6.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.7764706, 0.23529412, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Btn_Disabled"]
+content_margin_left = 18.0
+content_margin_top = 6.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.827451, 0.7882353, 0.7137255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.6431373, 0.5647059, 0.4745098, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Panel_Parchment"]
+bg_color = Color(0.9490196, 0.8784314, 0.7372549, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 7
+border_color = Color(0.2901961, 0.19215687, 0.1254902, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.32156864)
+shadow_size = 12
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="Bar_Bg"]
+bg_color = Color(0.29019608, 0.19215687, 0.1254902, 0.7529412)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="Bar_Fill"]
+bg_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+Button/colors/font_color = Color(0.22745098, 0.14901961, 0.08627451, 1)
+Button/colors/font_disabled_color = Color(0.49803922, 0.44705883, 0.38431373, 1)
+Button/colors/font_focus_color = Color(0.22745098, 0.14901961, 0.08627451, 1)
+Button/colors/font_hover_color = Color(0.16078432, 0.36078432, 0.10980392, 1)
+Button/colors/font_pressed_color = Color(0.16078432, 0.36078432, 0.10980392, 1)
+Button/styles/disabled = SubResource("Btn_Disabled")
+Button/styles/focus = SubResource("Btn_Focus")
+Button/styles/hover = SubResource("Btn_Hover")
+Button/styles/normal = SubResource("Btn_Normal")
+Button/styles/pressed = SubResource("Btn_Pressed")
+Panel/styles/panel = SubResource("Panel_Parchment")
+PanelContainer/styles/panel = SubResource("Panel_Parchment")
+ProgressBar/styles/background = SubResource("Bar_Bg")
+ProgressBar/styles/fill = SubResource("Bar_Fill")

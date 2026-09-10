@@ -16,7 +16,6 @@
 [ext_resource type="NavigationPolygon" uid="uid://dpm4iivx4c3wk" path="res://NavMeshes/NavRegion6.tres" id="10_ky2ni"]
 [ext_resource type="NavigationPolygon" uid="uid://bs6l6j84km42p" path="res://NavMeshes/NavRegion7.tres" id="13_7dmry"]
 [ext_resource type="NavigationPolygon" uid="uid://dlglipulxyqx6" path="res://NavMeshes/NavRegion8.tres" id="14_vwnmq"]
-[ext_resource type="Texture2D" uid="uid://h7xp0x1w72ub" path="res://Assets/Sprites/Shop_Sprite.png" id="18_4fr7r"]
 [ext_resource type="Texture2D" uid="uid://dypd6nx7qmb8f" path="res://Assets/Sprites/Bug_cave.png" id="20_bwh4a"]
 [ext_resource type="Texture2D" uid="uid://chhk1bbtvhg8p" path="res://Assets/Sprites/House_Sprite.png" id="21_jbq5a"]
 
@@ -292,15 +291,6 @@ normal = Vector2(-1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bwh4a"]
 normal = Vector2(1, 0)
 
-[sub_resource type="Gradient" id="Gradient_4fr7r"]
-colors = PackedColorArray(0.7799795, 0.5143093, 0.23526576, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_tue0r"]
-gradient = SubResource("Gradient_4fr7r")
-fill = 1
-fill_from = Vector2(0.4811321, 0.509434)
-fill_to = Vector2(0.16509435, 0.8632075)
-
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_jbq5a"]
 points = PackedVector2Array(327.5, 504, -324.5, 501, -334.5, -277, 0.5, -517, 335.5, -289)
 
@@ -391,16 +381,6 @@ shape = SubResource("WorldBoundaryShape2D_tue0r")
 [node name="WorldBorder4" type="CollisionShape2D" parent="WorldBorder" unique_id=1651635998]
 position = Vector2(-10113, -1147)
 shape = SubResource("WorldBoundaryShape2D_bwh4a")
-
-[node name="ShopSprite" type="Sprite2D" parent="." unique_id=957810189]
-texture_filter = 1
-position = Vector2(1844, -1018)
-texture = ExtResource("18_4fr7r")
-
-[node name="PointLight2D" type="PointLight2D" parent="ShopSprite" unique_id=136805895]
-position = Vector2(186, -2)
-texture = SubResource("GradientTexture2D_tue0r")
-texture_scale = 2.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1687867083]
 position = Vector2(2181.5, 273)

@@ -12,6 +12,9 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_w5d3o"]
 font_size = 32
+font_color = Color(0.99215686, 0.96862745, 0.8901961, 1)
+outline_size = 10
+outline_color = Color(0.14509805, 0.09411765, 0.05490196, 1)
 
 [node name="Hud" type="CanvasLayer" unique_id=1469109547]
 script = ExtResource("1_h5kcl")
@@ -22,9 +25,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 offset_left = 0.0
-offset_top = -45.0
+offset_top = -64.0
 offset_right = 0.0
-offset_bottom = -45.0
+offset_bottom = -64.0
 grow_vertical = 0
 
 [node name="Timer" type="Label" parent="." unique_id=1470074864]
@@ -53,6 +56,9 @@ offset_top = 2.0
 offset_right = 1063.0
 offset_bottom = 47.0
 theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.99215686, 0.96862745, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.14509805, 0.09411765, 0.05490196, 1)
+theme_override_constants/outline_size = 10
 text = "Days: "
 script = ExtResource("6_0u0r5")
 
@@ -73,6 +79,9 @@ offset_top = 1.0
 offset_right = 251.0
 offset_bottom = 46.0
 theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.99215686, 0.96862745, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.14509805, 0.09411765, 0.05490196, 1)
+theme_override_constants/outline_size = 10
 text = "Renewal Seeds: "
 script = ExtResource("8_l3gab")
 
@@ -82,5 +91,8 @@ offset_top = 46.0
 offset_right = 170.0
 offset_bottom = 96.0
 theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.99215686, 0.96862745, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.14509805, 0.09411765, 0.05490196, 1)
+theme_override_constants/outline_size = 10
 text = "Enemies: "
 script = ExtResource("8_topgj")
