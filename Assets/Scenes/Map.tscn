@@ -368,12 +368,6 @@ metadata/enemyPriority = -1
 [node name="EnemySpawn" type="Marker2D" parent="." unique_id=784234389]
 position = Vector2(-9337, 329)
 
-[node name="enemyStorage" type="Node2D" parent="." unique_id=2002057266]
-
-[node name="defenseStorage" type="Node2D" parent="." unique_id=1374669541]
-
-[node name="plantStorage" type="Node2D" parent="." unique_id=2108591658]
-
 [node name="WorldBorder" type="StaticBody2D" parent="." unique_id=519006129]
 
 [node name="WorldBorder" type="CollisionShape2D" parent="WorldBorder" unique_id=1855618941]

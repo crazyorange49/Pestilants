@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://8bbjksyw0lcg"]
+[gd_scene format=3 uid="uid://8bbjksyw0lcg"]
 
 [ext_resource type="Script" uid="uid://iwfpdtvl83b4" path="res://Assets/Scripts/Plants/sunpetal.gd" id="1_ojlaq"]
 [ext_resource type="Texture2D" uid="uid://b51xt18562q15" path="res://Assets/Sprites/sunPetal_Day.png" id="2_53p8o"]
@@ -65,7 +65,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g3beu")
 }],
-"loop": true,
+"loop": 1,
 "name": &"dayIdle",
 "speed": 5.0
 }, {
@@ -79,7 +79,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gissv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"growth",
 "speed": 5.0
 }, {
@@ -96,7 +96,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ksm2u")
 }],
-"loop": true,
+"loop": 1,
 "name": &"nightIdle",
 "speed": 5.0
 }]
@@ -108,7 +108,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
 size = Vector2(53, 63)
 
-[node name="Sunpetal" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d", "sprite") groups=["Plant"]]
+[node name="Sunpetal" type="CharacterBody2D" unique_id=1576859190 node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d", "sprite") groups=["Plant"]]
 texture_filter = 1
 collision_layer = 4
 collision_mask = 16
@@ -123,35 +123,35 @@ attackRangeCollisionBox = NodePath("AttackArea/Range")
 navigationAgent2d = NodePath("NavigationAgent2D")
 sprite = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1778380613]
 sprite_frames = SubResource("SpriteFrames_yl8wm")
 animation = &"growth"
 
-[node name="VisionArea" type="Area2D" parent="."]
+[node name="VisionArea" type="Area2D" parent="." unique_id=883810919]
 collision_mask = 32
 
-[node name="Radius" type="CollisionShape2D" parent="VisionArea"]
+[node name="Radius" type="CollisionShape2D" parent="VisionArea" unique_id=1938254563]
 shape = SubResource("CircleShape2D_4edj2")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." unique_id=1688876913]
 collision_mask = 4
 
-[node name="Range" type="CollisionShape2D" parent="AttackArea"]
+[node name="Range" type="CollisionShape2D" parent="AttackArea" unique_id=2027477400]
 shape = SubResource("CircleShape2D_78iwd")
 debug_color = Color(0.49411765, 0, 0.05882353, 0.50980395)
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=987365127]
 position = Vector2(2.5, -0.5)
 shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
-[node name="NavTimer" type="Timer" parent="."]
+[node name="NavTimer" type="Timer" parent="." unique_id=458662356]
 wait_time = 10.0
 autostart = true
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=875172104]
 
-[node name="HpBar" parent="." instance=ExtResource("3_c0i50")]
+[node name="HpBar" parent="." unique_id=401841146 instance=ExtResource("3_c0i50")]
 offset_left = -40.0
 offset_top = -45.0
 offset_right = 39.0

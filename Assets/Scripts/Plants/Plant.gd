@@ -16,6 +16,7 @@
 class_name Plant
 extends CharacterBody2D
 
+
 ## Unused. The group actually checked throughout the codebase is "Plant"
 ## (capitalised), assigned on the plant scenes themselves rather than here.
 static var group: StringName = "plant"
@@ -146,6 +147,7 @@ func die() -> void:
 ## return to each morning.
 func onPlantPlaced():
 	dayTimePosition = position
+	SignalBus.emit_signal("PlantPlaced")
 
 ## Standard damage entry point. The attacker is ignored here; Rosebush
 ## overrides this to hit back with thorns.

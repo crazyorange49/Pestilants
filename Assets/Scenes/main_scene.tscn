@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cfnhy8twsi55p" path="res://Assets/music/skippy-mr-sunshine-fernweh-goldfish-main-version-02-32-7172.mp3" id="7_j6pfq"]
 [ext_resource type="PackedScene" uid="uid://m3or5cb2wbu5" path="res://Assets/Scenes/DefenseItems/Farmbell.tscn" id="7_r8ymx"]
 [ext_resource type="AudioStream" uid="uid://dxq23dj3e8ibt" path="res://Assets/music/neighborhood-brandon-hopkins-main-version-22925-01-55 (1).mp3" id="8_ilymy"]
+[ext_resource type="Script" uid="uid://cnkj1bp4s126j" path="res://Assets/Scenes/enemy_manager.gd" id="14_v6rsf"]
 
 [sub_resource type="Animation" id="Animation_qk5nb"]
 resource_name = "NightToDay"
@@ -98,10 +99,6 @@ volume_db = -27.13
 stream = ExtResource("8_ilymy")
 volume_db = -27.13
 
-[node name="Timer" type="Timer" parent="dayAndNight" unique_id=1222178618]
-wait_time = 60.0
-autostart = true
-
 [node name="ShopKeep" parent="." unique_id=230613261 instance=ExtResource("6_qk5nb")]
 position = Vector2(1778, -1082)
 
@@ -111,8 +108,19 @@ position = Vector2(1778, -1082)
 position = Vector2(1902, 365)
 metadata/enemyPriority = -1
 
-[connection signal="nightLost" from="Map" to="HUD" method="_updateDaysLived"]
-[connection signal="night_survived" from="Map" to="HUD" method="_updateDaysLived"]
+[node name="nightTimer" type="Timer" parent="." unique_id=1222178618]
+wait_time = 60.0
+autostart = true
+
+[node name="EnemyManager" type="Node" parent="." unique_id=1916068149]
+script = ExtResource("14_v6rsf")
+
+[node name="enemyStorage" type="Node2D" parent="EnemyManager" unique_id=108142589]
+
+[node name="defenseStorage" type="Node2D" parent="EnemyManager" unique_id=1821433122]
+
+[node name="plantStorage" type="Node2D" parent="EnemyManager" unique_id=422013382]
+
 [connection signal="changeDayTime" from="dayAndNight" to="Farmbell" method="_on_day_and_night_change_day_time"]
-[connection signal="timeout" from="dayAndNight/Timer" to="Map" method="_on_timer_timeout"]
-[connection signal="timeout" from="dayAndNight/Timer" to="dayAndNight" method="_on_timer_timeout"]
+[connection signal="timeout" from="nightTimer" to="Map" method="_on_timer_timeout"]
+[connection signal="timeout" from="nightTimer" to="dayAndNight" method="_on_timer_timeout"]
