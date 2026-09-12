@@ -11,22 +11,13 @@
 class_name Map
 extends Node2D
 
-## Emitted after a night is cleared / lost. The HUD listens to update the day
-## counter, and the minimap listens to re-bake its terrain image.
-signal night_survived
-signal nightLost
+
 
 ## Top-left cell of each ground "section", ordered from the safest (east,
 ## nearest the house) to the most corrupted (far west). nightSurvived and
 ## nightLoss index into this to move the frontier one section at a time,
 ## which is why nightsSurived is used directly as an index.
 const tileMapSectionVectors: Array[Vector2i] = [Vector2i(-6,-23),Vector2i(-24,-23),Vector2i(-42,-23),Vector2i(-60,-23),Vector2i(-76,-23),Vector2i(-92,-23),Vector2i(-110,-23),Vector2i(-128,-23)]
-
-## Total nights begun, only ever increasing. Distinct from nightsSurived,
-## which moves both up and down and drives the ground repaint.
-var currentNight: int
-
-
 
 ## The clock. Map reads its timer and can force it to fire early.
 @onready var day_and_night: DayAndNightCycle = $"../dayAndNight"
@@ -108,7 +99,6 @@ func _ready() -> void:
 ##
 ## Only runs when the field is already clear -- a leftover enemy from the
 ## previous night blocks the next wave entirely.
-func changeNight():
 
 	
 ## Works out how many of one enemy type to spawn this night and kicks off the
@@ -150,30 +140,10 @@ func _updateDefence() -> void:
 ## nightLoss() check in killAllChildren() does not fire on the last plant.
 
 
-## Night cleared: advance the frontier one section east, repainting the newly
-## reclaimed strip as grass. Surviving with nightsSurived already at 7 wins
-## the run.
-func nightSurvived():
-	if nightsSurived == 7:
-		SignalBus.emit_signal("GameOver")
-		return
-	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
-	print("Night survived: " + str(nightsSurived))
-	night_survived.emit()
+func grassProression(nightsSurived: int, Direction: int) -> void:
+	#win
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
-
-## Night lost: pull the frontier one section west. Losing again at -1 ends
-## the run.
-func nightLoss():
-	if nightsSurived == -1:
-		#game loss
-		SignalBus.emit_signal("GameOver")
-		return
-	nightsSurived = clamp(nightsSurived - 1, -2, 7)
-	nightLost.emit()
+	#loss
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
 	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
-
-
-func killAllChildren():

@@ -6,11 +6,14 @@
 ## anything -- Map keeps the authoritative versions.
 extends Node2D
 
-
+## Emitted after a night is cleared / lost. The HUD listens to update the day
+## counter, and the minimap listens to re-bake its terrain image.
+signal nightWon
+signal nightLost
 # main nodes
 ## The top-level systems. Sibling scripts reach each other through this
 ## root, which is why the node NAMES here are load-bearing.
-@onready var map: Map = $Map
+@onready var map = $Map
 @onready var hud: HUD = $HUD
 @onready var timer: Timer = $nightTimer
 @onready var player: CharacterBody2D = $Player
@@ -86,6 +89,31 @@ func _plantDeath() -> void:
 func _plantPlaced() -> void:
 	currentNumberOfPlants += 1
 	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
+
+
+## Night cleared: advance the frontier one section east, repainting the newly
+## reclaimed strip as grass. Surviving with nightsSurived already at 7 wins
+## the run.
+func nightSurvived():
+	if nightsSurived == 7:
+		SignalBus.emit_signal("GameOver")
+		return
+	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
+	print("Night survived: " + str(nightsSurived))
+	nightWon.emit()
+	
+
+## Night lost: pull the frontier one section west. Losing again at -1 ends
+## the run.
+func nightLoss():
+	if nightsSurived == -1:
+		#game loss
+		SignalBus.emit_signal("GameOver")
+		return
+	nightsSurived = clamp(nightsSurived - 1, -2, 7)
+	nightLost.emit()
+	map.loseTileMovement()
+
 
 ## Leaves the run entirely and loads the game-over screen. Wired to the
 ## GameOver signal, which Map emits both on a final loss and on surviving
