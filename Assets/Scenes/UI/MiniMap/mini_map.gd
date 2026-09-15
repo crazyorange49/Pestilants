@@ -37,6 +37,8 @@ extends Control
 @export_range(1, 8, 1) var terrain_resolution: int = 3
 ## Multiplied over the baked terrain, to mute it behind the blips.
 @export var terrain_tint: Color = Color(0.82, 0.82, 0.82, 1.0)
+@export var follow_world_light: bool = true
+@export_range(0.0, 1.0, 0.05) var world_light_influence: float = 0.55
 ## Used for the shader's red mask if the grass texture cannot be read.
 @export var fallback_grass_color: Color = Color(0.51, 0.79, 0.31)
 
@@ -79,6 +81,7 @@ var _view: Rect2 = Rect2()
 var _landmarks: Array[Dictionary] = []
 
 var _terrain_tex: ImageTexture
+var _day_night: CanvasModulate
 # World-space area the baked texture covers.
 var _terrain_rect: Rect2 = Rect2()
 var _baking: bool = false
@@ -94,6 +97,7 @@ func _ready() -> void:
 	_player = get_node_or_null(player_path) as Node2D
 	if _map != null:
 		_scene_root = _map.get_parent()
+		_day_night = _scene_root.get_node_or_null("dayAndNight") as CanvasModulate
 		if _player == null:
 			_player = _scene_root.get_node_or_null("Player") as Node2D
 		_collect_landmarks()
@@ -139,8 +143,22 @@ func _find_map() -> Node2D:
 func _collect_landmarks() -> void:
 	_landmarks.clear()
 	_add_landmark(_map.get_node_or_null("StaticBody2D/HouseSprite"), house_color)
-	_add_landmark(_map.get_node_or_null("ShopSprite"), shop_color)
+	_add_landmark(_find_shop(), shop_color)
 	_add_landmark(_map.get_node_or_null("EnemySpawn"), spawn_color)
+
+
+func _find_shop() -> Node2D:
+	var in_map := _map.get_node_or_null("ShopSprite")
+	if in_map is Node2D:
+		return in_map
+	if _scene_root != null:
+		for child in _scene_root.get_children():
+			if child is shopKeep:
+				return child as Node2D
+		var named := _scene_root.get_node_or_null("ShopKeep")
+		if named is Node2D:
+			return named as Node2D
+	return null
 
 
 func _add_landmark(node: Node, color: Color) -> void:
@@ -477,6 +495,18 @@ func _project(world_pos: Vector2) -> Vector2:
 	return (world_pos - _view.position) / _view.size * size
 
 
+func _current_terrain_tint() -> Color:
+	if not follow_world_light or _day_night == null or not is_instance_valid(_day_night):
+		return terrain_tint
+	var world := _day_night.color
+	var k := world_light_influence
+	return terrain_tint * Color(
+		lerpf(1.0, world.r, k),
+		lerpf(1.0, world.g, k),
+		lerpf(1.0, world.b, k),
+		1.0)
+
+
 # --- Drawing -----------------------------------------------------------------
 
 func _draw() -> void:
@@ -491,7 +521,7 @@ func _draw() -> void:
 		var src := Rect2(
 			(_view.position - _terrain_rect.position) / _terrain_rect.size * tex_size,
 			_view.size / _terrain_rect.size * tex_size)
-		draw_texture_rect_region(_terrain_tex, panel, src, terrain_tint)
+		draw_texture_rect_region(_terrain_tex, panel, src, _current_terrain_tint())
 
 	if _map != null:
 		for landmark: Dictionary in _landmarks:
