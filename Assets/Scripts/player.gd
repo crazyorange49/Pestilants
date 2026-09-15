@@ -23,7 +23,7 @@ var activePlotPOS: Vector2
 ## Unused.
 var NumberOfCollisions: int
 ## The seed wallet. Spent by the shop, topped up by Map on every enemy kill.
-var renewalSeeds: = 50
+var renewalSeeds: = 200
 ## Reached by child index, so hud.tscn's child ORDER matters here: the
 ## hotbar must stay at index 0 and the tooltip at index 2.
 @onready var hud: CanvasLayer = $"../HUD"

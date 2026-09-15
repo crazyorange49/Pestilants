@@ -128,7 +128,7 @@ stream = ExtResource("8_ilymy")
 volume_db = -27.13
 
 [node name="Timer" type="Timer" parent="dayAndNight" unique_id=1222178618]
-wait_time = 15.0
+wait_time = 60.0
 autostart = true
 
 [node name="Shop" parent="." unique_id=2106528541 instance=ExtResource("2_qk5nb")]
