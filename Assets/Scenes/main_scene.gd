@@ -36,6 +36,7 @@ var itemsOnFeild
 ## takes the startup snapshots above.
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	currentNight = 0
 	SignalBus.connect("GameOver", Callable(self, "changeScene"))
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
 	SignalBus.connect("PlantDeath", Callable(self, "_plantDeath"))
@@ -44,6 +45,17 @@ func _ready() -> void:
 	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()	
 	
 
+func _nightEnded() -> void:
+	dayAndNight.startDay()
+	if currentNumberOfPlants > 0:
+		map.nightSurvived()
+	else:
+		map.nightLoss()
+	enemyManager.killAllChildren()
+	timer.stop()
+	timer.timeout.emit()
+	timer.start()
+
 ## Starts a night directly, without waiting for the timer.
 ##
 ## NOTE: nothing calls this yet. It also splits the work that
@@ -51,13 +63,8 @@ func _ready() -> void:
 ## handles the visuals and signals while the caller triggers the wave -- so
 ## the two paths into night are not currently equivalent.
 func nextNight() -> void:
+	currentNight += 1
 	dayAndNight.startNight()
-	if enemyManager.numberOfEnemies == 0: #all enemies defeated
-		currentNight += 1
-		enemyManager.killAllChildren()
-	else:
-		enemyManager.killAllChildren()
-		currentNight -= 1
 	enemyManager.prepareSpawn("aphid", 2.0, 1, currentNight) # mob type, multiplier, # of spawn points, current night
 	if nightsSurived >= 3:
 		enemyManager.prepareSpawn("fly", 1.5, 1, currentNight) # mob type, multiplier, # of spawn points, current night
@@ -66,18 +73,20 @@ func nextNight() -> void:
 	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
 	print("Night: ", currentNight)
 
-
+## Runs on every EnemyDeath. Pays the player, decrements the counters, and
+## ends the night early once the kill quota is met.
+##
+## Forcing the timer to fire is what advances dusk -> dawn immediately, so
+## clearing a wave skips the rest of the night.
 func _enemyDeath() -> void:
 	enemyManager.numberOfEnemies -= 1
 	var currentNumberOfEnemies: int = enemyManager.numberOfEnemies
 	print("bug death")
 	# Reward per kill: 5-14 seeds.
 	player.renewalSeeds += randi() % 10 + 5
-	if currentNumberOfEnemies == 0 and currentNumberOfPlants > 0:
-		map.nightSurvived()
-		timer.stop()
-		timer.timeout.emit()
-		timer.start()
+	if currentNumberOfEnemies == 0:
+		_nightEnded()
+		
 
 func _plantDeath() -> void:
 	currentNumberOfPlants -= 1
@@ -101,6 +110,7 @@ func nightSurvived():
 	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
 	print("Night survived: " + str(nightsSurived))
 	nightWon.emit()
+	map.grassProgression(nightsSurived, true)
 	
 
 ## Night lost: pull the frontier one section west. Losing again at -1 ends
@@ -112,7 +122,7 @@ func nightLoss():
 		return
 	nightsSurived = clamp(nightsSurived - 1, -2, 7)
 	nightLost.emit()
-	map.loseTileMovement()
+	map.grassProgression(nightsSurived, false)
 
 
 ## Leaves the run entirely and loads the game-over screen. Wired to the

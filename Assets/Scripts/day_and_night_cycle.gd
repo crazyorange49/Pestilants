@@ -56,7 +56,17 @@ func startNight() -> void:
 		animation_player.play("dayNNight")
 		print("nightTIME!!")
 
-
+func startDay() -> void:
+	if dayTime != DAY_STATE.NOON:
+		SignalBus.emit_signal("DayTime")
+		if(dayMusic.playing == false):
+			nightMusic.stop()
+			dayMusic.play()
+		dayTime = DAY_STATE.NOON
+		player.lightAni.play("lightOff")  
+		map.killAllChildren()
+		animation_player.play("NightToDay")
+		print("dayTIME!!")
 
 
 ## The main phase switch, fired by the Timer.
@@ -64,29 +74,3 @@ func startNight() -> void:
 ## First firing takes NOON -> EVENING: spawn the wave, lights on, night music.
 ## Second takes EVENING -> NOON: clear the field, lights off, day music.
 ## Map forces this to fire early when a wave is cleared.
-func _on_timer_timeout() -> void:
-	if dayTime != DAY_STATE.EVENING:
-		dayTime = DAY_STATE.EVENING
-		map.changeNight()
-		if(nightMusic.playing == false):
-			dayMusic.stop()
-			nightMusic.play()
-		player.light.visible = true
-		player.lightAni.play("lightOn")   
-		SignalBus.emit_signal("NightTime")
-		changeDayTime.emit(dayTime)
-		animation_player.play("dayNNight")
-		print("nightTIME!!")
-	# Dawn. killAllChildren wipes any surviving enemies and is also where a
-	# loss is detected.
-	elif dayTime != DAY_STATE.NOON:
-		SignalBus.emit_signal("DayTime")
-		if(dayMusic.playing == false):
-			nightMusic.stop()
-			dayMusic.play()
-		dayTime = DAY_STATE.NOON
-		changeDayTime.emit(dayTime)
-		player.lightAni.play("lightOff")  
-		map.killAllChildren()
-		animation_player.play("NightToDay")
-		print("dayTIME!!")

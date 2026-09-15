@@ -61,5 +61,3 @@ func killAllChildren():
 	var enemyStorageChildren = enemyStorage.get_children()
 	for child in enemyStorageChildren:
 		child.queue_free()
-	if( numberOfPlants <= 0 ):
-		nightLoss()

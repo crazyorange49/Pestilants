@@ -54,11 +54,6 @@ var nightEnded: bool = true
 ## Unused.
 var movingToNextNight: bool
 
-## Progress along the ground sections: up on a win, down on a loss. Reaching
-## 7 wins the run and -1 loses it. Also used as a nav-region count for plant
-## wandering, so the roaming area widens as ground is reclaimed.
-var nightsSurived: int
-
 ## Unused.
 var navServerMap: RID
 
@@ -69,21 +64,8 @@ var availableTargets
 ## Placed defence items, appended into the enemy target list separately.
 var defenceObjects
 
-## Kill quota for the current night. Counts down on each enemy death, and
-## reaching zero is what ends the night early as a win.
-var mobAmount: int
-
 ## Hooks the three gameplay signals and captures the baseline counts.
 func _ready() -> void:
-	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
-	SignalBus.connect("PlantDeath", Callable(self, "_plantDeath"))
-	SignalBus.connect("DecoyPlanted", Callable(self, "_updateDefence"))
-	currentNight = 0
-	startingNodes = enemy_storage.get_child_count()
-	numberOfEnemies = enemy_storage.get_child_count()
-	availableTargets = plant_storage.get_children()
-	defenceObjects = defense_storage.get_children() 
-	
 	# NOTE: toggling `enabled` forces TileMapDual to rebuild its display
 	# layers, which otherwise sometimes come up blank at runtime.
 	# disable and reenable tilemaps to make sure they are visible to the player
@@ -93,57 +75,10 @@ func _ready() -> void:
 	soil_tiles.enabled = true
 
 
-
-## Called at dusk by DayAndNightCycle. Builds the night's waves, scaled by
-## currentNight, and unlocks tougher enemy types as the run progresses.
-##
-## Only runs when the field is already clear -- a leftover enemy from the
-## previous night blocks the next wave entirely.
-
-	
-## Works out how many of one enemy type to spawn this night and kicks off the
-## staggered spawning.
-##
-## NOTE: mobAmount is ASSIGNED here, not added to. On nights that spawn more
-## than one type the later calls overwrite the earlier ones, so the kill
-## quota ends up matching only the last wave rather than the total spawned.
-
-	
-## Spawns `mobSpawnRounds` enemies of one type at the spawn marker, staggered
-## by mobWaitTime so they trickle in rather than appearing as a block.
-##
-## The three branches are identical apart from which scene they instance.
-## Because of the await this runs as a coroutine: changeNight() does not
-## wait for it, so all of a night's waves start spawning in parallel.
-
-	#nightEnded = true
-	
-
-
-## Runs on every EnemyDeath. Pays the player, decrements the counters, and
-## ends the night early once the kill quota is met.
-##
-## Forcing the timer to fire is what advances dusk -> dawn immediately, so
-## clearing a wave skips the rest of the night.
-
-
-## Refreshes the defence list. Triggered by DecoyPlanted, since a decoy is
-## also a valid enemy target and needs to enter the list immediately.
-func _updateDefence() -> void:
-	defenceObjects = defense_storage.get_children()
-
-## Recounts plants after one dies and refreshes the target lists.
-##
-## NOTE: Plant.die() calls queue_free() before emitting PlantDeath, and
-## queue_free is deferred, so the dying plant is still counted here. The
-## count therefore reads one too high and never reaches 0, which means the
-## nightLoss() check in killAllChildren() does not fire on the last plant.
-
-
-func grassProression(nightsSurived: int, Direction: int) -> void:
-	#win
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
-	#loss
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
+func grassProgression(nightsSurived: int, Direction: bool) -> void:
+	if Direction == true: #win
+		grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
+		grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
+	else: #loss
+		grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
+		grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
