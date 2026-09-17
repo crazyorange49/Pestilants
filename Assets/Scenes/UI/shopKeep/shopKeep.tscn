@@ -35,7 +35,7 @@ shape = SubResource("CircleShape2D_h4jb3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D" unique_id=367421160]
 position = Vector2(288, 102)
-polygon = PackedVector2Array(-65, -41, -53, -77, 70, -145, 204, -75, 357, -70, 356, 148, -205, 148, -206, 41, -129, 41, -92, 42, -76, -12)
+polygon = PackedVector2Array(-65, -41, -53, -77, 70, -145, 204, -75, 357, -70, 353, 138, -204, 138, -206, 41, -129, 41, -92, 42, -76, -12)
 
 [node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D" unique_id=2050680294]
 position = Vector2(538, 128)

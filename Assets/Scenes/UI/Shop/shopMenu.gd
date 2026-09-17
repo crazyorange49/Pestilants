@@ -28,6 +28,7 @@ var Items: Array[itemStats]
 ## NOTE: reached by child index, so the hotbar must stay the first child of
 ## hud.tscn.
 @onready var hotbar: Hotbar = hud.get_child(0)
+const NotEnoughMoneyNoise = preload("uid://cp2mq0lvjkh80")
 
 ## The details panel widgets on the right-hand side.
 @onready var item_image: TextureRect = %itemImage
@@ -110,7 +111,14 @@ func purchase_item( plant : itemStats ) -> void:
 	else:
 		# Cannot afford it: shake and flash the currency counter. seek(0) restarts
 		# the animation so repeated clicks re-trigger it.
-		#play audio
 		animation_player.play("notEnoughMoney")
 		animation_player.seek(0)
+		#Creates a new Audio Player to play the "NotEnoughMoneySound" when failing to buy in item, rids itself when done.
+		var new_player = AudioStreamPlayer.new()
+		new_player.stream = NotEnoughMoneyNoise
+		add_child(new_player)
+		new_player.volume_db = 10.0
+		new_player.play()
+		new_player.finished.connect(func(): new_player.queue_free())
+		
 	pass
