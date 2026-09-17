@@ -4,6 +4,7 @@
 ## Mostly a container: the real logic lives in Map (waves and nights) and
 ## DayAndNightCycle (the clock). The counters below are not currently read by
 ## anything -- Map keeps the authoritative versions.
+class_name MainScene
 extends Node2D
 
 ## Emitted after a night is cleared / lost. The HUD listens to update the day
@@ -30,7 +31,6 @@ var nightsSurived: int
 ## Plants and defence items present at startup, captured once and not
 ## refreshed as things are placed or destroyed.
 var itemsOnFeild
-
 
 ## Subscribes to GameOver so a win or loss can swap in the end screen, and
 ## takes the startup snapshots above.

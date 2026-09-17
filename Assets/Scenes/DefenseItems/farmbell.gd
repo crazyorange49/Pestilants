@@ -14,7 +14,7 @@ extends CharacterBody2D
 @onready var point_light_2d: PointLight2D = $PointLight2D
 ## Only used to reach the SceneTree in _input(); the group lookup below is
 ## tree-wide, not limited to this node.
-@onready var enemyStorage: Node2D = $"../Map/enemyStorage"
+@onready var gameManager: Node2D = $"../"
 
 ## True while the player is inside the bell's VisionArea.
 var isInRange: bool
@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 		
 		# NOTE: only Enemy.tscn (the aphid) is in the "Enemies" group -- Fly.tscn
 		# and Big_Bug.tscn are not, so the bell currently cannot damage them.
-		for enemy in enemyStorage.get_tree().get_nodes_in_group("Enemies"):
+		for enemy in gameManager.enemyManager.getEnemies():
 			enemy.subtractDamage(20)
 		pass
 

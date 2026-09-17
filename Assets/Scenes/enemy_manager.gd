@@ -61,3 +61,7 @@ func killAllChildren():
 	var enemyStorageChildren = enemyStorage.get_children()
 	for child in enemyStorageChildren:
 		child.queue_free()
+
+func getEnemies():
+	return enemyStorage.get_children()
+	

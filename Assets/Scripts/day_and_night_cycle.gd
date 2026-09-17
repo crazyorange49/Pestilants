@@ -17,19 +17,14 @@ signal changeDayTime(dayTime: DAY_STATE)
 ## Day and night tracks; only one plays at a time.
 @onready var dayMusic: AudioStreamPlayer = $AudioStreamPlayer
 @onready var nightMusic: AudioStreamPlayer = $AudioStreamPlayer2
-## Map, told when to start a wave (changeNight) and when to clear it
-## (killAllChildren).
-@onready var map: Node2D = $"../Map"
 ## Plays the "dayNNight" and "NightToDay" fades over this node's tint.
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player: CharacterBody2D = $"../Player"
-## The single repeating timer for the whole cycle -- its wait time is the
-## length of one phase. Map can stop and re-fire it to end a night early.
-@onready var timer: Timer = $Timer
 
 ## Only two phases: NOON is day, EVENING is night.
 enum DAY_STATE{NOON, EVENING}
 var dayTime : DAY_STATE = DAY_STATE.NOON
+var isDay: bool = true
 
 ## Starts the day music. The timer autostarts from the scene.
 func _ready() -> void:
@@ -45,6 +40,7 @@ func _ready() -> void:
 ## not emit changeDayTime, so the Farm Bell would not learn it is night if
 ## the night were started this way.
 func startNight() -> void:
+	changeDayTime.emit(dayTime)
 	if dayTime != DAY_STATE.EVENING:
 		dayTime = DAY_STATE.EVENING
 		if(nightMusic.playing == false):
@@ -54,9 +50,11 @@ func startNight() -> void:
 		player.lightAni.play("lightOn")   
 		SignalBus.emit_signal("NightTime")
 		animation_player.play("dayNNight")
+		isDay = false
 		print("nightTIME!!")
 
 func startDay() -> void:
+	changeDayTime.emit(dayTime)
 	if dayTime != DAY_STATE.NOON:
 		SignalBus.emit_signal("DayTime")
 		if(dayMusic.playing == false):
@@ -64,13 +62,6 @@ func startDay() -> void:
 			dayMusic.play()
 		dayTime = DAY_STATE.NOON
 		player.lightAni.play("lightOff")  
-		map.killAllChildren()
 		animation_player.play("NightToDay")
+		isDay = true
 		print("dayTIME!!")
-
-
-## The main phase switch, fired by the Timer.
-##
-## First firing takes NOON -> EVENING: spawn the wave, lights on, night music.
-## Second takes EVENING -> NOON: clear the field, lights off, day music.
-## Map forces this to fire early when a wave is cleared.

@@ -116,5 +116,4 @@ script = ExtResource("14_v6rsf")
 [node name="plantStorage" type="Node2D" parent="EnemyManager" unique_id=422013382]
 
 [connection signal="changeDayTime" from="dayAndNight" to="Farmbell" method="_on_day_and_night_change_day_time"]
-[connection signal="timeout" from="nightTimer" to="Map" method="_on_timer_timeout"]
-[connection signal="timeout" from="nightTimer" to="dayAndNight" method="_on_timer_timeout"]
+[connection signal="timeout" from="nightTimer" to="." method="_nightEnded"]

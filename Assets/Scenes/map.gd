@@ -22,11 +22,7 @@ const tileMapSectionVectors: Array[Vector2i] = [Vector2i(-6,-23),Vector2i(-24,-2
 ## The clock. Map reads its timer and can force it to fire early.
 @onready var day_and_night: DayAndNightCycle = $"../dayAndNight"
 
-## Containers. Enemies, planted plants and placed defences are kept in
 ## separate nodes so each can be counted and cleared independently.
-@onready var enemy_storage: Node2D = $enemyStorage
-@onready var plant_storage: Node2D = $plantStorage
-@onready var defense_storage: Node2D = $defenseStorage
 @onready var navMap: Node2D = $NavMap ## Navigation regions plants wander within (see Plant.getNewPosition).
 ## Ground layers. GrassTiles carries the corruption border that gets
 ## repainted as nights are won and lost.
