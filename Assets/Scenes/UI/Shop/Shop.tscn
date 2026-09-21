@@ -396,7 +396,7 @@ text = "99"
 layout_mode = 0
 offset_left = 826.0
 offset_top = 86.0
-offset_right = 1026.0
+offset_right = 1025.9999
 offset_bottom = 141.0
 theme_override_styles/panel = SubResource("SB_Gold")
 
@@ -423,5 +423,3 @@ horizontal_alignment = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PanelContainer2" unique_id=804963637]
 libraries/ = SubResource("AnimationLibrary_komvi")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1521687955]
