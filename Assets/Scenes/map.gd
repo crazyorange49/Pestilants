@@ -32,7 +32,6 @@ const tileMapSectionVectors: Array[Vector2i] = [Vector2i(-6,-23),Vector2i(-24,-2
 @onready var hud: CanvasLayer = $"../HUD"
 
 ## Where every enemy enters the map, far to the west of the house.
-@onready var enemy_spawn: Marker2D = $EnemySpawn
 @onready var player: CharacterBody2D = $"../Player"
 
 ## Baseline child count of enemyStorage, captured at startup. changeNight()

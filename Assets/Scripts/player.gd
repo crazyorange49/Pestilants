@@ -54,6 +54,7 @@ var last_direction: Vector2
 ## throughout the placement logic below.
 const ZMOONLIGHT_REFLECTOR = preload("uid://bjriv5fi8rcua")
 const ZDECOYSPROUT = preload("uid://cu0nj78id1rtn")
+@export var daySkip = false
 
 ## Lantern starts off; night turns it on.
 func _ready():
@@ -133,17 +134,24 @@ func _input(event: InputEvent) -> void:
 				mainScene.enemyManager.defenseStorage.add_child(usedItem)
 				hotbar.removeItem()
 				usedItem.position = item_spawn.global_position
+		if daySkip == true:
+			mainScene.nextNight()
 
 ## Cache the snapped plot position when the selector touches something, then
 ## re-evaluate what can be placed.
 func _on_plot_selector_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	activePlotPOS = soilTiles.map_to_local(soilTiles.local_to_map(position))
 	NumberOfCollisions = len(plot_selector.get_overlapping_bodies())
+	if body.name == "NextNightTrigger":
+		daySkip = true
 	updateToolTip()
-
+ 
 ## Re-evaluate placement legality when the selector stops touching something.
 func _on_plot_selector_body_shape_exited(_body_rid: RID, _body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+	if _body.name == "NextNightTrigger":
+		daySkip = false
 	updateToolTip()
+	
 
 ## Seed wallet accessors, used by the HUD label and the shop.
 func getRenewalSeedCount() -> int:
@@ -187,5 +195,9 @@ func updateToolTip() -> void:
 		else:
 			tooltip.visible = false
 			print_debug("no item or valid spot to place")
+	if daySkip == true:
+		tooltip.visible = true
+	else: 
+		tooltip.visible = false
 		
 	

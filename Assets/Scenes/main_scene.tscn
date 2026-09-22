@@ -165,4 +165,8 @@ worm = ExtResource("15_mgcol")
 
 [node name="defenseStorage" type="Node2D" parent="EnemyManager" unique_id=133029747]
 
+[node name="EnemySpawn" type="Marker2D" parent="EnemyManager" unique_id=707544924]
+position = Vector2(-9337, 329)
+
 [connection signal="changeDayTime" from="dayAndNight" to="Farmbell" method="_on_day_and_night_change_day_time"]
+[connection signal="timeout" from="nightTimer" to="." method="_nightEnded"]

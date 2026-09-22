@@ -14,8 +14,6 @@ extends Node
 var numberOfEnemies: int
 var numberOfPlants: int
 
-
-
 func prepareSpawn(type, multiplier, mobSpawns, currentNight):
 	var mobAmount = float(currentNight) * multiplier
 	var mobWaitTime: float = 0.5

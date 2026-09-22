@@ -20,8 +20,8 @@ signal nightLost
 @onready var player: CharacterBody2D = $Player
 @onready var dayAndNight: DayAndNightCycle = $dayAndNight
 @onready var enemyManager: EnemyManager = $EnemyManager
+@onready var enemySpawn: Marker2D = $EnemyManager/EnemySpawn
  
-
 ## Snapshot of the enemy count taken at startup. Map.numberOfEnemies is the
 ## live figure that actually drives the waves.
 ## Declared but unused; Map owns the equivalents.
@@ -50,7 +50,7 @@ func _nightEnded() -> void:
 	if currentNumberOfPlants > 0:
 		map.nightSurvived()
 	else:
-		map.nightLoss()
+		nightLoss()
 	enemyManager.killAllChildren()
 	timer.stop()
 	timer.timeout.emit()

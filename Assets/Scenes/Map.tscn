@@ -357,9 +357,6 @@ navigation_polygon = ExtResource("14_vwnmq")
 position = Vector2(1846, 249)
 metadata/enemyPriority = -1
 
-[node name="EnemySpawn" type="Marker2D" parent="." unique_id=784234389]
-position = Vector2(-9337, 329)
-
 [node name="WorldBorder" type="StaticBody2D" parent="." unique_id=519006129]
 
 [node name="WorldBorder" type="CollisionShape2D" parent="WorldBorder" unique_id=1855618941]
@@ -397,9 +394,11 @@ offset_right = -9571.0
 offset_bottom = 795.0
 texture = ExtResource("20_bwh4a")
 
-[node name="NextNightTrigger" type="Area2D" parent="." unique_id=1580465201]
+[node name="NextNightTrigger" type="StaticBody2D" parent="." unique_id=1234596493]
 position = Vector2(2183, 736.99994)
 scale = Vector2(8.620786, 10.327935)
+collision_layer = 132
+collision_mask = 132
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NextNightTrigger" unique_id=517085391]
+[node name="NextNightTrigger" type="CollisionShape2D" parent="NextNightTrigger" unique_id=517085391]
 shape = SubResource("RectangleShape2D_bhunq")

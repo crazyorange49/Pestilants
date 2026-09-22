@@ -42,7 +42,7 @@ var targetsInRange: Array[Node2D]
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var detecion_area: Area2D = $detecionArea
 ## The Map. Path assumes the enemy sits at Map/enemyStorage/<enemy>.
-@onready var map: Map = $"../../"
+@onready var map: MainScene = $"../../../"
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 ## Repeating timer (0.5s) that makes subclasses re-run _findNewTarget, so
 ## enemies react to plants appearing and dying without polling every frame.
@@ -74,8 +74,6 @@ var oldDistaceWeight: float = 0.01
 			SignalBus.emit_signal("EnemyDeath")
 	get:
 		return health
-		
-		
 
 ## Starts the retarget timer. main_scene is fetched but unused.
 func _ready():
@@ -94,10 +92,7 @@ func _physics_process(delta):
 		move_to_target(delta)
 	else:
 		sprite.play("idle")
-			
-			
-		
-		
+
 ## Damage the current victim, then sit out the cooldown. Passes itself as the
 ## attacker so Rosebush can reflect thorn damage back.
 func attack():
@@ -154,12 +149,7 @@ func move_to_target(delta):
 func calculateTarget() -> Plant:
 	# NOTE: this is Map's own array, not a copy, so the appends below grow the
 	# shared list every time any enemy retargets.
-	var availableTargets = map.availableTargets
-	for defenceObject in map.defenceObjects:
-		if !is_instance_valid(defenceObject):
-			continue
-		if defenceObject.is_in_group("Plant"):
-			availableTargets.append(defenceObject)
+	var availableTargets = map.itemsOnFeild
 	var newTarget: Node2D = move_target
 	var bestScore := -INF
 	for plant in availableTargets:
