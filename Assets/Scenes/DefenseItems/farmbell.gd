@@ -14,7 +14,7 @@ extends CharacterBody2D
 @onready var point_light_2d: PointLight2D = $PointLight2D
 ## Only used to reach the SceneTree in _input(); the group lookup below is
 ## tree-wide, not limited to this node.
-@onready var gameManager: Node2D = $"../"
+@onready var gameManager: MainScene = $"../"
 
 ## True while the player is inside the bell's VisionArea.
 var isInRange: bool
@@ -47,7 +47,7 @@ func _on_vision_area_body_exited(body: Node2D) -> void:
 ## Ring the bell. Requires all four: the use action, the player in range,
 ## night time, and the bell not already spent this night.
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("use") and isInRange and currentState == DayAndNightCycle.DAY_STATE.EVENING and !isUsed:
+	if event.is_action_pressed("use") and isInRange and !gameManager.dayAndNight.isDay and !isUsed:
 		isUsed = true 
 		point_light_2d.enabled = true
 		animation_player.play("farmBellAni")
