@@ -135,6 +135,7 @@ libraries = {
 autoplay = "twinkle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.62, 0.78, 1, 1)
 position = Vector2(-480, -30)
 scale = Vector2(2.8583674, 1.3858321)
 texture = SubResource("GradientTexture2D_pkyi3")

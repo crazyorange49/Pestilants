@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Uplifting Game Jam (pixel-perfect)"
+config/name="Pestilants (Pre-Alpha Build)"
 run/main_scene="uid://ckugtawfvcu5f"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
