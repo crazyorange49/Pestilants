@@ -9,8 +9,6 @@
 extends Plant
 class_name DecoySprout
 
-## Unused here; kept as a handle on the shared day/night timer.
-@onready var timer: Timer = $"../../../dayAndNight/Timer"
 @onready var decoySprite: AnimatedSprite2D = $AnimatedSprite2D
 #@onready var enemies: Node2D = $"../../enemyStorage"
 ## Guards die() so the detonation and death animation only run once.

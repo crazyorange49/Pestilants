@@ -16,6 +16,7 @@
 class_name Plant
 extends CharacterBody2D
 
+
 ## Unused. The group actually checked throughout the codebase is "Plant"
 ## (capitalised), assigned on the plant scenes themselves rather than here.
 static var group: StringName = "plant"
@@ -46,8 +47,10 @@ var dayTimePosition: Vector2
 @onready var TimeState: DayAndNightCycle = $"../../../dayAndNight"
 @onready var visionCollisionBox: CollisionShape2D = $VisionArea/Radius
 @export var attackRangeCollisionBox: CollisionShape2D
-## The Map, used for numberOfPlants, availableTargets and the nav regions.
-@onready var map: Map = $"../../"
+## The playable scene owns plant counts and the night-survival frontier.
+@onready var main_scene: MainScene = $"../../.."
+## Map services used by plants: navigation, phase state, and target cache.
+@onready var map: Map = main_scene.map
 ## The NavigationRegion2Ds under Map/NavMap. getNewPosition() picks one of
 ## these to wander into, and how many are eligible grows with nightsSurived.
 @onready var navRegions = map.navMap.get_children()
@@ -92,7 +95,7 @@ func _init(p_growthProgress: int = 0, p_maxHealth: int = 0, p_atkDamage: int = 0
 	speed = p_speed
 
 ## Applies the exported radii to the actual collision shapes and registers
-## the plant with Map. Subclasses call this via super._ready() -- Decoy
+## the plant with MainScene. Subclasses call this via super._ready() -- Decoy
 ## Sprout is the one that does not, and so skips all of it.
 func _ready() -> void:
 	SignalBus.connect("EnemyDeath", Callable(self, "onEnemyDeath"))
@@ -102,7 +105,7 @@ func _ready() -> void:
 	sprite.frame = growthProgress
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
-	map.numberOfPlants += 1
+	main_scene.currentNumberOfPlants += 1
 
 ## Roaming. At dusk the plant walks toward whatever nav target it was given;
 ## at noon it heads back to where it was planted and then stops.
@@ -135,7 +138,7 @@ func _physics_process(delta: float) -> void:
 	get:
 		return health
 
-## Frees the plant and tells Map to recount. NOTE: queue_free() is deferred,
+## Frees the plant and tells MainScene to recount. NOTE: queue_free() is deferred,
 ## so the node is still a child of plantStorage when Map._plantDeath() runs.
 func die() -> void:
 	queue_free()
@@ -146,6 +149,7 @@ func die() -> void:
 ## return to each morning.
 func onPlantPlaced():
 	dayTimePosition = position
+	SignalBus.emit_signal("PlantPlaced")
 
 ## Standard damage entry point. The attacker is ignored here; Rosebush
 ## overrides this to hit back with thorns.
@@ -157,14 +161,14 @@ func addHealth(healing: int) -> void:
 	health += healing
 
 ## Picks a random point inside one of the map's nav regions to wander to.
-## The number of regions in play grows with nightsSurived, so the plant's
-## roaming range widens as the safe zone is reclaimed.
+## The number of regions in play grows with MainScene.nightsSurived, so the
+## plant's roaming range widens as the safe zone is reclaimed.
 func getNewPosition():
 	var navRID: RID
-	if map.nightsSurived == -1:
+	if main_scene.nightsSurived == -1:
 		navRID= navRegions[0].get_rid()
 	else:
-		navRID= navRegions[randi() % (map.nightsSurived + 1)].get_rid()
+		navRID= navRegions[randi() % (main_scene.nightsSurived + 1)].get_rid()
 	navigationAgent2d.target_position = (NavigationServer2D.region_get_random_point(navRID, 1, false))
 	
 ## Scores how badly hurt a target is; lower health should mean a higher

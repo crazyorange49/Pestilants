@@ -4,21 +4,26 @@
 ## Mostly a container: the real logic lives in Map (waves and nights) and
 ## DayAndNightCycle (the clock). The counters below are not currently read by
 ## anything -- Map keeps the authoritative versions.
+class_name MainScene
 extends Node2D
 
-
+## Emitted after a night is cleared / lost. The HUD listens to update the day
+## counter, and the minimap listens to re-bake its terrain image.
+signal nightWon
+signal nightLost
 # main nodes
-## The four top-level systems. Sibling scripts reach each other through this
+## The top-level systems. Sibling scripts reach each other through this
 ## root, which is why the node NAMES here are load-bearing.
-@onready var map: Map = $Map
+@onready var map = $Map
 @onready var hud: HUD = $HUD
+@onready var timer: Timer = $nightTimer
 @onready var player: CharacterBody2D = $Player
 @onready var dayAndNight: DayAndNightCycle = $dayAndNight
-
+@onready var enemyManager: EnemyManager = $EnemyManager
+ 
 
 ## Snapshot of the enemy count taken at startup. Map.numberOfEnemies is the
 ## live figure that actually drives the waves.
-var currentNumberOfEnemies: int
 ## Declared but unused; Map owns the equivalents.
 var currentNumberOfPlants: int
 var currentNight: int
@@ -27,16 +32,29 @@ var nightsSurived: int
 ## refreshed as things are placed or destroyed.
 var itemsOnFeild
 
-
 ## Subscribes to GameOver so a win or loss can swap in the end screen, and
 ## takes the startup snapshots above.
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	currentNight = 0
 	SignalBus.connect("GameOver", Callable(self, "changeScene"))
-	currentNumberOfEnemies = map.enemy_storage.get_child_count()
-	itemsOnFeild = map.plant_storage.get_children() + map.defense_storage.get_children()
+	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
+	SignalBus.connect("PlantDeath", Callable(self, "_plantDeath"))
+	SignalBus.connect("PlantPlaced", Callable(self, "_plantPlaced"))
+	SignalBus.connect("DecoyPlanted", Callable(self, "_updateDefence"))
+	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()	
 	
-	
+
+func _nightEnded() -> void:
+	dayAndNight.startDay()
+	if currentNumberOfPlants > 0:
+		map.nightSurvived()
+	else:
+		map.nightLoss()
+	enemyManager.killAllChildren()
+	timer.stop()
+	timer.timeout.emit()
+	timer.start()
 
 ## Starts a night directly, without waiting for the timer.
 ##
@@ -45,8 +63,66 @@ func _ready() -> void:
 ## handles the visuals and signals while the caller triggers the wave -- so
 ## the two paths into night are not currently equivalent.
 func nextNight() -> void:
+	currentNight += 1
 	dayAndNight.startNight()
-	map.changeNight()
+	enemyManager.prepareSpawn("aphid", 2.0, 1, currentNight) # mob type, multiplier, # of spawn points, current night
+	if nightsSurived >= 3:
+		enemyManager.prepareSpawn("fly", 1.5, 1, currentNight) # mob type, multiplier, # of spawn points, current night
+	if nightsSurived >= 5:
+		enemyManager.prepareSpawn("worm", 1.0, 1, currentNight) # mob type, multiplier, # of spawn points	
+	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
+	print("Night: ", currentNight)
+
+## Runs on every EnemyDeath. Pays the player, decrements the counters, and
+## ends the night early once the kill quota is met.
+##
+## Forcing the timer to fire is what advances dusk -> dawn immediately, so
+## clearing a wave skips the rest of the night.
+func _enemyDeath() -> void:
+	enemyManager.numberOfEnemies -= 1
+	var currentNumberOfEnemies: int = enemyManager.numberOfEnemies
+	print("bug death")
+	# Reward per kill: 5-14 seeds.
+	player.renewalSeeds += randi() % 10 + 5
+	if currentNumberOfEnemies == 0:
+		_nightEnded()
+		
+
+func _plantDeath() -> void:
+	currentNumberOfPlants -= 1
+	print("Plant death")
+	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
+	if currentNumberOfPlants == 0:
+		pass
+
+func _plantPlaced() -> void:
+	currentNumberOfPlants += 1
+	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
+
+
+## Night cleared: advance the frontier one section east, repainting the newly
+## reclaimed strip as grass. Surviving with nightsSurived already at 7 wins
+## the run.
+func nightSurvived():
+	if nightsSurived == 7:
+		SignalBus.emit_signal("GameOver")
+		return
+	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
+	print("Night survived: " + str(nightsSurived))
+	nightWon.emit()
+	map.grassProgression(nightsSurived, true)
+	
+
+## Night lost: pull the frontier one section west. Losing again at -1 ends
+## the run.
+func nightLoss():
+	if nightsSurived == -1:
+		#game loss
+		SignalBus.emit_signal("GameOver")
+		return
+	nightsSurived = clamp(nightsSurived - 1, -2, 7)
+	nightLost.emit()
+	map.grassProgression(nightsSurived, false)
 
 
 ## Leaves the run entirely and loads the game-over screen. Wired to the

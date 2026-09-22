@@ -94,5 +94,6 @@ signals={
 "GameOver": [],
 "NightTime": [],
 "PlantDeath": [],
+"PlantPlaced": [],
 "SelectedSlotChanged": []
 }

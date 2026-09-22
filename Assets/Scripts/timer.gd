@@ -8,15 +8,15 @@ extends Label
 
 ## Self-reference; the script is attached to the Label it writes to.
 @onready var timer_label = $"."
-## The shared cycle timer. Path is Hud -> .. (main scene) -> dayAndNight/Timer.
-@onready var timer = $"../../dayAndNight/Timer"
-	
+@onready var gameManager = $"../../"
+
+
 func _process(_delta):
 	update_timer_label()
 	
 ## Splits the Timer's remaining seconds into [minutes, seconds] for display.
 func time_between():
-	var time_left = timer.time_left
+	var time_left = gameManager.timer.time_left
 	var minute = floor(time_left / 60)
 	var second = int(time_left) % 60
 	return [minute, second]

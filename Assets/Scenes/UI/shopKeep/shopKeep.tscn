@@ -25,12 +25,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_yhwn0")
 
-[node name="detectionArea" type="Area2D" parent="CharacterBody2D" unique_id=825121593]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=562937082]
+position = Vector2(118, 59.75)
+shape = SubResource("RectangleShape2D_h4jb3")
+
+[node name="detectionArea" type="Area2D" parent="CharacterBody2D" unique_id=391970722]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/detectionArea" unique_id=1690660939]
-position = Vector2(349, 208)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/detectionArea" unique_id=1813709410]
+position = Vector2(64, 67)
 shape = SubResource("CircleShape2D_h4jb3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D" unique_id=367421160]

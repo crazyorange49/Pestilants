@@ -11,10 +11,7 @@
 class_name Map
 extends Node2D
 
-## Emitted after a night is cleared / lost. The HUD listens to update the day
-## counter, and the minimap listens to re-bake its terrain image.
-signal night_survived
-signal nightLost
+
 
 ## Top-left cell of each ground "section", ordered from the safest (east,
 ## nearest the house) to the most corrupted (far west). nightSurvived and
@@ -22,71 +19,49 @@ signal nightLost
 ## which is why nightsSurived is used directly as an index.
 const tileMapSectionVectors: Array[Vector2i] = [Vector2i(-6,-23),Vector2i(-24,-23),Vector2i(-42,-23),Vector2i(-60,-23),Vector2i(-76,-23),Vector2i(-92,-23),Vector2i(-110,-23),Vector2i(-128,-23)]
 
-## Total nights begun, only ever increasing. Distinct from nightsSurived,
-## which moves both up and down and drives the ground repaint.
-var currentNight: int
-## Enemy scenes to instance. "Solder" is the aphid, "worm" is the BigBug.
-@export var Solder: PackedScene
-@export var fly: PackedScene
-@export var worm: PackedScene
 ## The clock. Map reads its timer and can force it to fire early.
 @onready var day_and_night: DayAndNightCycle = $"../dayAndNight"
-## Containers. Enemies, planted plants and placed defences are kept in
+
 ## separate nodes so each can be counted and cleared independently.
-@onready var enemy_storage: Node2D = $enemyStorage
-@onready var plant_storage: Node2D = $plantStorage
-@onready var defense_storage: Node2D = $defenseStorage
-## Navigation regions plants wander within (see Plant.getNewPosition).
-@onready var navMap: Node2D = $NavMap
+@onready var navMap: Node2D = $NavMap ## Navigation regions plants wander within (see Plant.getNewPosition).
 ## Ground layers. GrassTiles carries the corruption border that gets
 ## repainted as nights are won and lost.
 @onready var grass_tiles: TileMapDual = $GrassTiles
 @onready var soil_tiles: TileMapDual = $SoilTiles
 @onready var grass_tileset: TileSet = grass_tiles.tile_set
 @onready var hud: CanvasLayer = $"../HUD"
+
 ## Where every enemy enters the map, far to the west of the house.
 @onready var enemy_spawn: Marker2D = $EnemySpawn
 @onready var player: CharacterBody2D = $"../Player"
 
-
 ## Baseline child count of enemyStorage, captured at startup. changeNight()
 ## treats "numberOfEnemies back to this value" as "the field is clear".
 var startingNodes: int  
+
 ## Live counts. numberOfEnemies is maintained by hand as enemies spawn and
 ## die; numberOfPlants is incremented by Plant._ready and recounted on death.
 var numberOfEnemies: int
 var numberOfPlants: int
+
 ## False for the duration of a night. Gates plant placement, shop access and
 ## the Moonlight Reflector's light.
 var nightEnded: bool = true
 ## Unused.
 var movingToNextNight: bool
-## Progress along the ground sections: up on a win, down on a loss. Reaching
-## 7 wins the run and -1 loses it. Also used as a nav-region count for plant
-## wandering, so the roaming area widens as ground is reclaimed.
-var nightsSurived: int
+
 ## Unused.
 var navServerMap: RID
+
 ## The plant list enemies choose targets from, and the list Coneflower heals
 ## from. Refreshed at the start of each night and whenever a plant dies.
 var availableTargets
+
 ## Placed defence items, appended into the enemy target list separately.
 var defenceObjects
-## Kill quota for the current night. Counts down on each enemy death, and
-## reaching zero is what ends the night early as a win.
-var mobAmount: int
 
 ## Hooks the three gameplay signals and captures the baseline counts.
 func _ready() -> void:
-	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
-	SignalBus.connect("PlantDeath", Callable(self, "_plantDeath"))
-	SignalBus.connect("DecoyPlanted", Callable(self, "_updateDefence"))
-	currentNight = 0
-	startingNodes = enemy_storage.get_child_count()
-	numberOfEnemies = enemy_storage.get_child_count()
-	availableTargets = plant_storage.get_children()
-	defenceObjects = defense_storage.get_children() 
-	
 	# NOTE: toggling `enabled` forces TileMapDual to rebuild its display
 	# layers, which otherwise sometimes come up blank at runtime.
 	# disable and reenable tilemaps to make sure they are visible to the player
@@ -96,148 +71,10 @@ func _ready() -> void:
 	soil_tiles.enabled = true
 
 
-
-## Called at dusk by DayAndNightCycle. Builds the night's waves, scaled by
-## currentNight, and unlocks tougher enemy types as the run progresses.
-##
-## Only runs when the field is already clear -- a leftover enemy from the
-## previous night blocks the next wave entirely.
-func changeNight():
-	if numberOfEnemies == startingNodes: #all enemies defeated
-		nightEnded = false
-		currentNight += 1
-		prepareSpawn("aphid", 2.0, 1) # mob type, multiplier, # of spawn points
-		if nightsSurived >= 3:
-			prepareSpawn("fly", 1.5, 1) # mob type, multiplier, # of spawn points
-		if nightsSurived >= 5:
-			prepareSpawn("worm", 1.0, 1) # mob type, multiplier, # of spawn points
-		availableTargets = plant_storage.get_children()
-		defenceObjects = defense_storage.get_children()
-		print("Night: ", currentNight)
-	
-## Works out how many of one enemy type to spawn this night and kicks off the
-## staggered spawning.
-##
-## NOTE: mobAmount is ASSIGNED here, not added to. On nights that spawn more
-## than one type the later calls overwrite the earlier ones, so the kill
-## quota ends up matching only the last wave rather than the total spawned.
-func prepareSpawn(type, multiplier, mobSpawns):
-	mobAmount = float(currentNight) * multiplier
-	var mobWaitTime: float = 0.5
-	print("mob amount: ", mobAmount)
-	var mobSpawnRounds = mobAmount / mobSpawns
-	spawn_type(type, mobSpawnRounds, mobWaitTime)
-	
-## Spawns `mobSpawnRounds` enemies of one type at the spawn marker, staggered
-## by mobWaitTime so they trickle in rather than appearing as a block.
-##
-## The three branches are identical apart from which scene they instance.
-## Because of the await this runs as a coroutine: changeNight() does not
-## wait for it, so all of a night's waves start spawning in parallel.
-func spawn_type(type, mobSpawnRounds, mobWaitTime):
-	var slimeSpawn = $EnemySpawn
-	if type == "aphid":
-		if mobSpawnRounds >= 1:
-			for i in mobSpawnRounds:
-				var aphid = Solder.instantiate()
-				aphid.global_position = slimeSpawn.global_position
-				enemy_storage.add_child(aphid)
-				mobSpawnRounds -= 1
-				numberOfEnemies += 1
-				await get_tree().create_timer(mobWaitTime).timeout
-	elif type == "fly":
-		if mobSpawnRounds >= 1:
-			for i in mobSpawnRounds:
-				var flyBug = fly.instantiate()
-				flyBug.global_position = slimeSpawn.global_position
-				enemy_storage.add_child(flyBug)
-				mobSpawnRounds -= 1
-				numberOfEnemies += 1
-				await get_tree().create_timer(mobWaitTime).timeout
-	elif type == "worm":
-		if mobSpawnRounds >= 1:
-			for i in mobSpawnRounds:
-				var bigBug = worm.instantiate()
-				bigBug.global_position = slimeSpawn.global_position
-				enemy_storage.add_child(bigBug)
-				mobSpawnRounds -= 1
-				numberOfEnemies += 1
-				await get_tree().create_timer(mobWaitTime).timeout
-	#nightEnded = true
-	
-## Called at dawn. Clears the field whether or not the player killed
-## everything, then decides whether the night was actually lost.
-##
-## NOTE: queue_free() here bypasses the enemy health setter, so EnemyDeath is
-## never emitted for survivors and numberOfEnemies is not decremented for
-## them. Since changeNight() requires that count to be back at startingNodes,
-## a single leftover enemy stops all later waves from spawning.
-func killAllChildren():
-	var enemyStorageChildren = enemy_storage.get_children()
-	nightEnded = true
-	for child in enemyStorageChildren:
-		child.queue_free()
-	mobAmount = 0
-	if( numberOfPlants <= 0 ):
-		nightLoss()
-
-## Runs on every EnemyDeath. Pays the player, decrements the counters, and
-## ends the night early once the kill quota is met.
-##
-## Forcing the timer to fire is what advances dusk -> dawn immediately, so
-## clearing a wave skips the rest of the night.
-func _enemyDeath() -> void:
-	numberOfEnemies -= 1
-	mobAmount -= 1
-	print("bug death")
-	# Reward per kill: 5-14 seeds.
-	player.renewalSeeds += randi() % 10 + 5
-	if mobAmount == 0 and numberOfPlants > 0:
-		nightSurvived()
-		day_and_night.timer.stop()
-		day_and_night.timer.timeout.emit()
-		day_and_night.timer.start()
-
-## Refreshes the defence list. Triggered by DecoyPlanted, since a decoy is
-## also a valid enemy target and needs to enter the list immediately.
-func _updateDefence() -> void:
-	defenceObjects = defense_storage.get_children()
-
-## Recounts plants after one dies and refreshes the target lists.
-##
-## NOTE: Plant.die() calls queue_free() before emitting PlantDeath, and
-## queue_free is deferred, so the dying plant is still counted here. The
-## count therefore reads one too high and never reaches 0, which means the
-## nightLoss() check in killAllChildren() does not fire on the last plant.
-func _plantDeath() -> void:
-	numberOfPlants = plant_storage.get_child_count()
-	print("Plant death")
-	availableTargets = plant_storage.get_children()
-	defenceObjects = defense_storage.get_children()
-	if numberOfPlants == 0:
-		pass
-
-## Night cleared: advance the frontier one section east, repainting the newly
-## reclaimed strip as grass. Surviving with nightsSurived already at 7 wins
-## the run.
-func nightSurvived():
-	if nightsSurived == 7:
-		SignalBus.emit_signal("GameOver")
-		return
-	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
-	print("Night survived: " + str(nightsSurived))
-	night_survived.emit()
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
-
-## Night lost: pull the frontier one section west. Losing again at -1 ends
-## the run.
-func nightLoss():
-	if nightsSurived == -1:
-		#game loss
-		SignalBus.emit_signal("GameOver")
-		return
-	nightsSurived = clamp(nightsSurived - 1, -2, 7)
-	nightLost.emit()
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
-	grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))
+func grassProgression(nightsSurived: int, Direction: bool) -> void:
+	if Direction == true: #win
+		grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
+		grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived], grass_tileset.get_pattern(0))
+	else: #loss
+		grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 1], grass_tileset.get_pattern(4))
+		grass_tiles.set_pattern(tileMapSectionVectors[nightsSurived + 2], grass_tileset.get_pattern(1))

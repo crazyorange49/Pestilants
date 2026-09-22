@@ -29,6 +29,7 @@ var renewalSeeds: = 200
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var hotbar: Hotbar = hud.get_child(0)
 @onready var tooltip: Control = hud.get_child(2)
+@onready var mainScene: MainScene = $".."
 @onready var map: Map = $"../Map"
 ## Soil layer, used to snap a world position onto the plot grid.
 @onready var soilTiles: TileMapDual = $"../Map/SoilTiles"
@@ -114,12 +115,12 @@ func playIdleAnimation(last_direction):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
 		var itemInUse = hotbar.currentSlot.Item
-		if isInFarmPlot and hotbar.currentSlot != null and !isInPlant and itemInUse != ZMOONLIGHT_REFLECTOR and map.nightEnded:
+		if isInFarmPlot and hotbar.currentSlot != null and !isInPlant and itemInUse != ZMOONLIGHT_REFLECTOR and mainScene.dayAndNight.isDay:
 			if itemInUse != null:
 			# Plants are parented into plantStorage and remember where they were
 			# planted, so they can walk back to that spot each morning.
 				var usedItem: Plant = load(itemInUse.scenePath.resource_path).instantiate()
-				map.get_node("plantStorage").add_child(usedItem)
+				mainScene.enemyManager.plantStorage.add_child(usedItem)
 				hotbar.removeItem()
 				usedItem.position = activePlotPOS
 				usedItem.dayTimePos = activePlotPOS
@@ -129,7 +130,7 @@ func _input(event: InputEvent) -> void:
 			# Defence items go into defenseStorage and are dropped in front of the
 			# player instead of snapping to the plot grid.
 				var usedItem = load(itemInUse.scenePath.resource_path).instantiate()
-				map.get_node("defenseStorage").add_child(usedItem)
+				mainScene.enemyManager.defenseStorage.add_child(usedItem)
 				hotbar.removeItem()
 				usedItem.position = item_spawn.global_position
 

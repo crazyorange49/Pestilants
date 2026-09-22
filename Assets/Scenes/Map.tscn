@@ -294,6 +294,8 @@ normal = Vector2(1, 0)
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_jbq5a"]
 points = PackedVector2Array(327.5, 504, -324.5, 501, -334.5, -277, 0.5, -517, 335.5, -289)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
+
 [node name="Map" type="Node2D" unique_id=590603445]
 script = ExtResource("1_17ifn")
 
@@ -358,12 +360,6 @@ metadata/enemyPriority = -1
 [node name="EnemySpawn" type="Marker2D" parent="." unique_id=784234389]
 position = Vector2(-9337, 329)
 
-[node name="enemyStorage" type="Node2D" parent="." unique_id=2002057266]
-
-[node name="defenseStorage" type="Node2D" parent="." unique_id=1374669541]
-
-[node name="plantStorage" type="Node2D" parent="." unique_id=2108591658]
-
 [node name="WorldBorder" type="StaticBody2D" parent="." unique_id=519006129]
 
 [node name="WorldBorder" type="CollisionShape2D" parent="WorldBorder" unique_id=1855618941]
@@ -400,3 +396,10 @@ offset_top = -101.0
 offset_right = -9571.0
 offset_bottom = 795.0
 texture = ExtResource("20_bwh4a")
+
+[node name="NextNightTrigger" type="Area2D" parent="." unique_id=1580465201]
+position = Vector2(2183, 736.99994)
+scale = Vector2(8.620786, 10.327935)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextNightTrigger" unique_id=517085391]
+shape = SubResource("RectangleShape2D_bhunq")
