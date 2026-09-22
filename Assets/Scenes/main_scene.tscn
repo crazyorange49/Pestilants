@@ -10,6 +10,10 @@
 [ext_resource type="AudioStream" uid="uid://cfnhy8twsi55p" path="res://Assets/music/skippy-mr-sunshine-fernweh-goldfish-main-version-02-32-7172.mp3" id="7_j6pfq"]
 [ext_resource type="PackedScene" uid="uid://m3or5cb2wbu5" path="res://Assets/Scenes/DefenseItems/Farmbell.tscn" id="7_r8ymx"]
 [ext_resource type="AudioStream" uid="uid://dxq23dj3e8ibt" path="res://Assets/music/neighborhood-brandon-hopkins-main-version-22925-01-55 (1).mp3" id="8_ilymy"]
+[ext_resource type="Script" uid="uid://cnkj1bp4s126j" path="res://Assets/Scenes/enemy_manager.gd" id="12_swc2n"]
+[ext_resource type="PackedScene" uid="uid://tx4bkgf2okvm" path="res://Assets/Scenes/Enemy.tscn" id="13_5b5rl"]
+[ext_resource type="PackedScene" uid="uid://biw8da6mxhhmx" path="res://Assets/Scenes/Enemies/Fly.tscn" id="14_k5iv5"]
+[ext_resource type="PackedScene" uid="uid://c8wf7w8mupiek" path="res://Assets/Scenes/Enemies/Big_Bug.tscn" id="15_mgcol"]
 [ext_resource type="Environment" path="res://Assets/atmosphere.tres" id="20_atmos"]
 
 [sub_resource type="Animation" id="Animation_qk5nb"]
@@ -121,10 +125,6 @@ volume_db = -27.13
 stream = ExtResource("8_ilymy")
 volume_db = -27.13
 
-[node name="Timer" type="Timer" parent="dayAndNight" unique_id=1222178618]
-wait_time = 60.0
-autostart = true
-
 [node name="Shop" parent="." unique_id=2106528541 instance=ExtResource("2_qk5nb")]
 
 [node name="Move_node" type="Node2D" parent="." unique_id=877989362]
@@ -132,7 +132,7 @@ position = Vector2(1902, 365)
 metadata/enemyPriority = -1
 
 [node name="ShopKeep" parent="." unique_id=1006567977 instance=ExtResource("6_qk5nb")]
-position = Vector2(1778, -1082)
+position = Vector2(1795, -1061)
 
 [node name="NightTint" type="CanvasLayer" parent="." unique_id=1118880652]
 
@@ -149,7 +149,20 @@ color = Color(0.04, 0.07, 0.2, 0)
 [node name="Atmosphere" type="WorldEnvironment" parent="." unique_id=269941751]
 environment = ExtResource("20_atmos")
 
-[connection signal="nightLost" from="Map" to="HUD" method="_updateDaysLived"]
-[connection signal="night_survived" from="Map" to="HUD" method="_updateDaysLived"]
+[node name="nightTimer" type="Timer" parent="." unique_id=1222178618]
+wait_time = 60.0
+autostart = true
+
+[node name="EnemyManager" type="Node" parent="." unique_id=802241796]
+script = ExtResource("12_swc2n")
+solder = ExtResource("13_5b5rl")
+fly = ExtResource("14_k5iv5")
+worm = ExtResource("15_mgcol")
+
+[node name="enemyStorage" type="Node2D" parent="EnemyManager" unique_id=1872666702]
+
+[node name="plantStorage" type="Node2D" parent="EnemyManager" unique_id=1804263409]
+
+[node name="defenseStorage" type="Node2D" parent="EnemyManager" unique_id=133029747]
+
 [connection signal="changeDayTime" from="dayAndNight" to="Farmbell" method="_on_day_and_night_change_day_time"]
-[connection signal="timeout" from="nightTimer" to="." method="_nightEnded"]

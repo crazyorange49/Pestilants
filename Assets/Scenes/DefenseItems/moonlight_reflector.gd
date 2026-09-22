@@ -14,7 +14,7 @@ class_name MoonlightReflector
 @export var health: int  = 100
 @export var minHealth: int = 0
 ## Map, used to read nightEnded and reach the HUD tooltip.
-@onready var map: Map = $"../../"
+@onready var main_scene: MainScene = $"../../../"
 @onready var point_light_2d: PointLight2D = $PointLight2D
 ## Repeating timer that drives the damage ticks (wait time set in the scene).
 @onready var damage_timer: Timer = $DamageTimer
@@ -37,13 +37,13 @@ func Damage():
 
 ## Player walked out of range; hide the tooltip.
 func _on_vision_area_body_exited(_body: Node2D) -> void:
-	map.hud.tooltip.visible = false
+	main_scene.hud.tooltip.visible = false
 	pass
 
 ## Idle through the day (light off, timer stopped) and active at night.
 ## The timer is only started when something is actually in range.
 func _process(_float) -> void:
-	if(map.nightEnded == true and health > 0):
+	if(main_scene.dayAndNight.isDay == false and health > 0):
 		point_light_2d.visible = false
 		damage_timer.stop()
 	else:

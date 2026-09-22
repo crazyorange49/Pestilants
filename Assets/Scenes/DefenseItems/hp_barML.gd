@@ -16,8 +16,6 @@ var minValueAmount
 
 ## Unused. Present so the bar could reach Map (e.g. to hide during the day)
 ## if that is ever needed.
-@onready var map: Map = $"../../../"
-
 
 ## Cache the bar range from the reflector.
 func _ready():

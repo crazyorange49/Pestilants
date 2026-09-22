@@ -21,13 +21,11 @@ script = ExtResource("1_h4jb3")
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1112899025]
 
 [node name="TextureRect" type="TextureRect" parent="CharacterBody2D" unique_id=1891548838]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -286.09998
+offset_top = -123.100006
+offset_right = 417.90002
+offset_bottom = 132.9
 texture = ExtResource("3_yhwn0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=562937082]
-position = Vector2(118, 59.75)
-shape = SubResource("RectangleShape2D_h4jb3")
 
 [node name="detectionArea" type="Area2D" parent="CharacterBody2D" unique_id=391970722]
 collision_layer = 2
@@ -38,11 +36,11 @@ position = Vector2(64, 67)
 shape = SubResource("CircleShape2D_h4jb3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D" unique_id=367421160]
-position = Vector2(288, 102)
+position = Vector2(1.9000244, -21.100006)
 polygon = PackedVector2Array(-65, -41, -53, -77, 70, -145, 204, -75, 357, -70, 353, 138, -204, 138, -206, 41, -129, 41, -92, 42, -76, -12)
 
 [node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D" unique_id=2050680294]
-position = Vector2(538, 128)
+position = Vector2(251.90002, 4.899994)
 texture = SubResource("GradientTexture2D_h4jb3")
 texture_scale = 2.0
 
