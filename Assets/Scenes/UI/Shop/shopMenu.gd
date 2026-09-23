@@ -106,6 +106,7 @@ func purchase_item( plant : itemStats ) -> void:
 		# it reveals it rather than granting a hotbar item.
 		if( plant == ZFARM_BELL):
 			farmbell.visible = true
+			farmbell.hit_box.disabled = false
 		else:
 			hotbar.addItem(plant)
 	else:

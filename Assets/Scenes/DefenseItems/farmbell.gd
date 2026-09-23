@@ -15,6 +15,7 @@ extends CharacterBody2D
 ## Only used to reach the SceneTree in _input(); the group lookup below is
 ## tree-wide, not limited to this node.
 @onready var gameManager: MainScene = $"../"
+@onready var hit_box: CollisionShape2D = $HitBox
 
 ## True while the player is inside the bell's VisionArea.
 var isInRange: bool
@@ -28,6 +29,7 @@ var isUsed: bool = false
 ## Starts hidden: the bell only appears once bought from the shop.
 func _ready() -> void:
 	visible = false
+	hit_box.disabled = true
 	isInRange = false
 	pass
 

@@ -20,11 +20,12 @@ var x = "res://Assets/Scenes/UI/Shop/shopMenu.gd"
 @onready var shop: CanvasLayer = $"../Shop"
 ## Map, read for nightEnded to enforce the day-only rule.
 @onready var map: Map = $"../Map"
+@onready var gameManager: MainScene = $".."
 	
 ## Player entered the shop: show the UI, lock the hotbar, and refresh the
 ## displayed seed balance.
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if( map.nightEnded == true ):
+	if( gameManager.dayAndNight.isDay == true ):
 		sceneToControl.visible = true
 		hotbarControl.isInShop = true
 		shop.whenOpened()
