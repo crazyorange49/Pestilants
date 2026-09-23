@@ -82,6 +82,9 @@ var _landmarks: Array[Dictionary] = []
 
 var _terrain_tex: ImageTexture
 var _day_night: CanvasModulate
+var _enemy_storage: Node
+var _plant_storage: Node
+var _defense_storage: Node
 # World-space area the baked texture covers.
 var _terrain_rect: Rect2 = Rect2()
 var _baking: bool = false
@@ -101,11 +104,14 @@ func _ready() -> void:
 		if _player == null:
 			_player = _scene_root.get_node_or_null("Player") as Node2D
 		_collect_landmarks()
+		_resolve_storages()
 		# The ground is repainted as nights are won and lost.
-		if _map.has_signal("night_survived"):
-			_map.night_survived.connect(_on_world_changed)
-		if _map.has_signal("nightLost"):
-			_map.nightLost.connect(_on_world_changed)
+		for source in [_scene_root, _map]:
+			if source == null:
+				continue
+			for signal_name in ["nightWon", "night_survived", "nightLost"]:
+				if source.has_signal(signal_name):
+					source.connect(signal_name, _on_world_changed)
 	refresh_bounds()
 	resized.connect(queue_redraw)
 	bake_terrain()
@@ -159,6 +165,42 @@ func _find_shop() -> Node2D:
 		if named is Node2D:
 			return named as Node2D
 	return null
+
+
+func _find_enemy_manager() -> Node:
+	if _scene_root == null:
+		return null
+	var named := _scene_root.get_node_or_null("EnemyManager")
+	if named != null:
+		return named
+	for child in _scene_root.get_children():
+		if child is EnemyManager:
+			return child
+	return null
+
+
+func _resolve_storage(manager: Node, storage_name: String) -> Node:
+	if manager != null:
+		var found := manager.get_node_or_null(storage_name)
+		if found != null:
+			return found
+	if _map != null:
+		return _map.get_node_or_null(storage_name)
+	return null
+
+
+func _resolve_storages() -> void:
+	var manager := _find_enemy_manager()
+	_enemy_storage = _resolve_storage(manager, "enemyStorage")
+	_plant_storage = _resolve_storage(manager, "plantStorage")
+	_defense_storage = _resolve_storage(manager, "defenseStorage")
+
+
+func _ensure_storages() -> void:
+	if is_instance_valid(_enemy_storage) and is_instance_valid(_plant_storage) \
+			and is_instance_valid(_defense_storage):
+		return
+	_resolve_storages()
 
 
 func _add_landmark(node: Node, color: Color) -> void:
@@ -529,12 +571,13 @@ func _draw() -> void:
 			if is_instance_valid(node):
 				_draw_blip(node.global_position, landmark["color"], landmark_blip_size)
 
-		_draw_container(_map.get_node_or_null("plantStorage"), plant_color)
-		_draw_container(_map.get_node_or_null("defenseStorage"), defense_color)
+		_ensure_storages()
+		_draw_container(_plant_storage, plant_color)
+		_draw_container(_defense_storage, defense_color)
 		_draw_loose_defenses()
 		# Enemies last so they are never hidden under a plant blip, and pinned
 		# to the edge when off-view so an incoming wave still reads.
-		_draw_container(_map.get_node_or_null("enemyStorage"), enemy_color, true)
+		_draw_container(_enemy_storage, enemy_color, true)
 
 	if show_view_rect:
 		_draw_view_rect()
@@ -547,7 +590,7 @@ func _draw() -> void:
 
 
 func _draw_container(container: Node, color: Color, pin_off_view: bool = false) -> void:
-	if container == null:
+	if container == null or not is_instance_valid(container):
 		return
 	for child in container.get_children():
 		if child is Node2D:

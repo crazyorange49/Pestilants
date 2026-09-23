@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 		attackTarget = getHealTarget()
 		if attackTarget:
 			navigationAgent2d.target_position = attackTarget.position
-	if( map.nightEnded == true ):
+	if( self.main_scene.dayAndNight.isDay == true ):
 		animated_sprite_2d.play("dayIdle")
 		animation_player.stop()
 	else:
@@ -83,7 +83,7 @@ func attack():
 ## already at full health, so it returns null when nothing needs healing.
 func getHealTarget():
 	# NOTE: this is the shared array from Map, not a copy.
-	availablePlants = map.availableTargets
+	availablePlants = self.main_scene.itemsOnFeild
 	var bestTarget = attackTarget
 	var bestScore := -INF
 	if len(availablePlants) > 0:

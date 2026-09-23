@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://biirlcud4ie1x"]
+[gd_scene format=3 uid="uid://biirlcud4ie1x"]
 
 [ext_resource type="Script" uid="uid://c0sqbfxso5u2m" path="res://Assets/Scripts/Plants/bravestem.gd" id="1_sntse"]
 [ext_resource type="Texture2D" uid="uid://dlbb7ggcdhsq8" path="res://Assets/Sprites/braveStem_Day.png" id="2_sntse"]
@@ -65,7 +65,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jck2u")
 }],
-"loop": true,
+"loop": 1,
 "name": &"dayIdle",
 "speed": 5.0
 }, {
@@ -79,7 +79,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cn62r")
 }],
-"loop": true,
+"loop": 1,
 "name": &"growth",
 "speed": 5.0
 }, {
@@ -96,7 +96,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uwq31")
 }],
-"loop": true,
+"loop": 1,
 "name": &"nightIdle",
 "speed": 5.0
 }]
@@ -108,7 +108,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntse"]
 size = Vector2(47, 48.75)
 
-[node name="Bravestem" type="CharacterBody2D" node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d", "sprite") groups=["Plant"]]
+[node name="Bravestem" type="CharacterBody2D" unique_id=731894975 node_paths=PackedStringArray("attackRangeCollisionBox", "navigationAgent2d", "sprite") groups=["Plant"]]
 texture_filter = 1
 collision_layer = 4
 collision_mask = 16
@@ -124,37 +124,37 @@ attackRangeCollisionBox = NodePath("AttackArea/Range")
 navigationAgent2d = NodePath("NavigationAgent2D")
 sprite = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=262380594]
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_sg2vr")
 animation = &"nightIdle"
 frame_progress = 0.6907509
 
-[node name="VisionArea" type="Area2D" parent="."]
+[node name="VisionArea" type="Area2D" parent="." unique_id=97241465]
 collision_mask = 32
 
-[node name="Radius" type="CollisionShape2D" parent="VisionArea"]
+[node name="Radius" type="CollisionShape2D" parent="VisionArea" unique_id=1210182347]
 shape = SubResource("CircleShape2D_4edj2")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." unique_id=1513017899]
 collision_mask = 32
 
-[node name="Range" type="CollisionShape2D" parent="AttackArea"]
+[node name="Range" type="CollisionShape2D" parent="AttackArea" unique_id=1881379065]
 shape = SubResource("CircleShape2D_78iwd")
 debug_color = Color(0.49411765, 0, 0.05882353, 0.50980395)
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=1224081294]
 position = Vector2(0.5, 1.375)
 shape = SubResource("RectangleShape2D_sntse")
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
-[node name="NavTimer" type="Timer" parent="."]
+[node name="NavTimer" type="Timer" parent="." unique_id=160166803]
 wait_time = 10.0
 autostart = true
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1674313703]
 
-[node name="HpBar" parent="." instance=ExtResource("3_jr61u")]
+[node name="HpBar" parent="." unique_id=1303869688 instance=ExtResource("3_jr61u")]
 offset_left = -23.0
 offset_top = -29.0
 offset_right = 24.0

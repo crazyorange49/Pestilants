@@ -50,7 +50,7 @@ func _ready() -> void:
 func _nightEnded() -> void:
 	dayAndNight.startDay()
 	if currentNumberOfPlants > 0:
-		map.nightSurvived()
+		nightSurvived()
 	else:
 		nightLoss()
 	enemyManager.killAllChildren()

@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	# Immature plants do nothing at all.
 	if(growthProgress < 2):
 		return
-	if( map.nightEnded == true ):
+	if( self.main_scene.dayAndNight.isDay == true ):
 		animated_sprite_2d.play("dayIdle")
 	else:
 		animated_sprite_2d.play("nightIdle")
