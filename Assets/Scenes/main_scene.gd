@@ -37,6 +37,8 @@ var itemsOnFeild
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	currentNight = 0
+	nightsSurived = 1
+	currentNumberOfPlants = 0
 	SignalBus.connect("GameOver", Callable(self, "changeScene"))
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
 	SignalBus.connect("PlantDeath", Callable(self, "_plantDeath"))
@@ -53,8 +55,6 @@ func _nightEnded() -> void:
 		nightLoss()
 	enemyManager.killAllChildren()
 	timer.stop()
-	timer.timeout.emit()
-	timer.start()
 
 ## Starts a night directly, without waiting for the timer.
 ##
@@ -72,6 +72,7 @@ func nextNight() -> void:
 		enemyManager.prepareSpawn("worm", 1.0, 1, currentNight) # mob type, multiplier, # of spawn points	
 	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
 	print("Night: ", currentNight)
+	timer.start()
 
 ## Runs on every EnemyDeath. Pays the player, decrements the counters, and
 ## ends the night early once the kill quota is met.

@@ -151,7 +151,6 @@ environment = ExtResource("20_atmos")
 
 [node name="nightTimer" type="Timer" parent="." unique_id=1222178618]
 wait_time = 60.0
-autostart = true
 
 [node name="EnemyManager" type="Node" parent="." unique_id=802241796]
 script = ExtResource("12_swc2n")
