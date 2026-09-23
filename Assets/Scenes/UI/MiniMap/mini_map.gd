@@ -71,8 +71,15 @@ extends Control
 @export var spawn_color: Color = Color(0.78, 0.18, 0.44)
 @export var view_rect_color: Color = Color(1.0, 1.0, 1.0, 0.35)
 
-@export_group("House")
-@export var draw_house_sprite: bool = true
+@export_group("Buildings")
+@export var draw_building_sprites: bool = true
+@export var buildings_follow_world_light: bool = true
+@export_range(0.0, 1.0, 0.05) var building_light_influence: float = 0.55
+
+@export_group("Dead infection")
+@export var show_dead_patches: bool = true
+@export var dead_patch_color: Color = Color(0.46, 0.36, 0.47)
+@export var dead_patch_min_pixels: float = 2.0
 
 @export_group("Night skip")
 @export var night_skip_color: Color = Color(1.0, 0.16, 0.14)
@@ -80,10 +87,9 @@ extends Control
 @export var night_skip_only_during_day: bool = true
 @export var night_skip_min_size: float = 14.0
 
-var _house_sprite: Sprite2D
-var _house_image: Image
-var _house_icon: ImageTexture
-var _house_icon_size: Vector2i = Vector2i.ZERO
+var _building_icons: Array[Dictionary] = []
+var _grass_helper: Node
+var _dead_patches: Array[Dictionary] = []
 var _night_trigger: CollisionShape2D
 var _hotbar: Hotbar
 
@@ -121,6 +127,10 @@ func _ready() -> void:
 			_player = _scene_root.get_node_or_null("Player") as Node2D
 		_collect_landmarks()
 		_resolve_storages()
+		_grass_helper = _map.get_node_or_null("GrassBlockerMask")
+		if _grass_helper != null and _grass_helper.has_signal("dead_patches_changed"):
+			_grass_helper.connect("dead_patches_changed", _refresh_dead_patches)
+		_refresh_dead_patches()
 		# The ground is repainted as nights are won and lost.
 		for source in [_scene_root, _map]:
 			if source == null:
@@ -164,11 +174,41 @@ func _find_map() -> Node2D:
 
 func _collect_landmarks() -> void:
 	_landmarks.clear()
-	_house_sprite = _map.get_node_or_null("StaticBody2D/HouseSprite") as Sprite2D
-	_add_landmark(_house_sprite, house_color)
-	_add_landmark(_find_shop(), shop_color)
+	_building_icons.clear()
+	var house := _map.get_node_or_null("StaticBody2D/HouseSprite") as Node2D
+	_add_landmark(house, house_color)
+	_add_building_icon(house)
+	var shop := _find_shop()
+	_add_landmark(shop, shop_color)
+	_add_building_icon(shop)
 	_add_landmark(_map.get_node_or_null("EnemySpawn"), spawn_color)
 	_night_trigger = _find_night_trigger()
+
+
+func _add_building_icon(landmark: Node) -> void:
+	if landmark == null:
+		return
+	var visual := _find_building_visual(landmark)
+	if visual != null:
+		_building_icons.append({
+			"landmark": landmark,
+			"visual": visual,
+			"image": null,
+			"icon": null,
+			"size": Vector2i.ZERO,
+		})
+
+
+func _find_building_visual(node: Node) -> CanvasItem:
+	if node is Sprite2D and (node as Sprite2D).texture != null:
+		return node as CanvasItem
+	if node is TextureRect and (node as TextureRect).texture != null:
+		return node as CanvasItem
+	for child in node.get_children():
+		var found := _find_building_visual(child)
+		if found != null:
+			return found
+	return null
 
 
 func _find_night_trigger() -> CollisionShape2D:
@@ -607,12 +647,14 @@ func _draw() -> void:
 			_view.size / _terrain_rect.size * tex_size)
 		draw_texture_rect_region(_terrain_tex, panel, src, _current_terrain_tint())
 
+	_draw_dead_patches()
+
 	if _map != null:
 		for landmark: Dictionary in _landmarks:
 			var node: Node2D = landmark["node"]
 			if not is_instance_valid(node):
 				continue
-			if node == _house_sprite and draw_house_sprite and _draw_house():
+			if draw_building_sprites and _draw_building_for(node):
 				continue
 			_draw_blip(node.global_position, landmark["color"], landmark_blip_size)
 
@@ -636,39 +678,104 @@ func _draw() -> void:
 		draw_rect(panel, border_color, false, border_width)
 
 
+func _refresh_dead_patches() -> void:
+	_dead_patches.clear()
+	if _grass_helper != null and is_instance_valid(_grass_helper) and _grass_helper.has_method("dead_patch_list"):
+		_dead_patches = _grass_helper.dead_patch_list()
+	queue_redraw()
+
+
+func _draw_dead_patches() -> void:
+	if not show_dead_patches or _dead_patches.is_empty() or _view.size.x <= 0.0:
+		return
+	var tint := _current_terrain_tint() / terrain_tint if terrain_tint.r > 0.0 else Color.WHITE
+	var color := dead_patch_color * Color(tint.r, tint.g, tint.b, 1.0)
+	var scale_x := size.x / _view.size.x
+	var panel := Rect2(Vector2.ZERO, size).grow(-border_width)
+	for patch: Dictionary in _dead_patches:
+		var side := maxf(dead_patch_min_pixels, roundf(patch["radius"] * 2.0 * scale_x))
+		var centre := _project(patch["position"])
+		var r := Rect2((centre - Vector2(side, side) * 0.5).round(), Vector2(side, side))
+		if panel.encloses(r):
+			draw_rect(r, color)
+
+
 func _project_rect(world_rect: Rect2) -> Rect2:
 	var a := _project(world_rect.position)
 	var b := _project(world_rect.end)
 	return Rect2(a, b - a).abs()
 
 
-func _draw_house() -> bool:
-	if _house_sprite.texture == null:
+func _building_light_tint() -> Color:
+	if not buildings_follow_world_light or _day_night == null or not is_instance_valid(_day_night):
+		return Color.WHITE
+	var world := _day_night.color
+	var k := building_light_influence
+	return Color(
+		lerpf(1.0, world.r, k),
+		lerpf(1.0, world.g, k),
+		lerpf(1.0, world.b, k),
+		1.0)
+
+
+func _building_world_rect(visual: CanvasItem) -> Rect2:
+	if visual is Sprite2D:
+		var sprite := visual as Sprite2D
+		return sprite.global_transform * sprite.get_rect()
+	if visual is TextureRect:
+		return (visual as TextureRect).get_global_rect()
+	return Rect2()
+
+
+func _building_texture(visual: CanvasItem) -> Texture2D:
+	if visual is Sprite2D:
+		return (visual as Sprite2D).texture
+	if visual is TextureRect:
+		return (visual as TextureRect).texture
+	return null
+
+
+func _draw_building_for(landmark: Node) -> bool:
+	for entry: Dictionary in _building_icons:
+		if entry["landmark"] == landmark:
+			return _draw_building(entry)
+	return false
+
+
+func _draw_building(entry: Dictionary) -> bool:
+	var visual: CanvasItem = entry["visual"]
+	if not is_instance_valid(visual) or _building_texture(visual) == null:
 		return false
-	var world_rect: Rect2 = _house_sprite.global_transform * _house_sprite.get_rect()
-	var r := _project_rect(world_rect)
+	if not visual.is_visible_in_tree():
+		return true
+	var r := _project_rect(_building_world_rect(visual))
+	if r.size.x <= 0.0 or r.size.y <= 0.0:
+		return false
 	if not Rect2(Vector2.ZERO, size).intersects(r):
 		return true
 	var px := Vector2i(maxi(1, roundi(r.size.x)), maxi(1, roundi(r.size.y)))
-	if px != _house_icon_size:
-		_bake_house_icon(px)
-	if _house_icon == null:
+	if px != entry["size"]:
+		_bake_building_icon(entry, px)
+	var icon: ImageTexture = entry["icon"]
+	if icon == null:
 		return false
-	draw_texture_rect(_house_icon, Rect2(r.position.round(), Vector2(px)), false)
+	draw_texture_rect(icon, Rect2(r.position.round(), Vector2(px)), false, _building_light_tint())
 	return true
 
 
-func _bake_house_icon(px: Vector2i) -> void:
-	_house_icon_size = px
-	if _house_image == null:
-		_house_image = _house_sprite.texture.get_image()
-		if _house_image == null:
+func _bake_building_icon(entry: Dictionary, px: Vector2i) -> void:
+	entry["size"] = px
+	var image: Image = entry["image"]
+	if image == null:
+		image = _building_texture(entry["visual"]).get_image()
+		if image == null:
 			return
-		if _house_image.is_compressed():
-			_house_image.decompress()
-	var img := _house_image.duplicate() as Image
+		if image.is_compressed():
+			image.decompress()
+		entry["image"] = image
+	var img := image.duplicate() as Image
 	img.resize(px.x, px.y, Image.INTERPOLATE_LANCZOS)
-	_house_icon = ImageTexture.create_from_image(img)
+	entry["icon"] = ImageTexture.create_from_image(img)
 
 
 func _night_skip_ready() -> bool:

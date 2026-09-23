@@ -57,6 +57,7 @@ const ZMOONLIGHT_REFLECTOR = preload("uid://bjriv5fi8rcua")
 const ZDECOYSPROUT = preload("uid://cu0nj78id1rtn")
 @export var daySkip = false
 @onready var gameManager: MainScene = $".."
+@onready var shopKeeper: shopKeep = get_node_or_null("../ShopKeep")
 
 ## Lantern starts off; night turns it on.
 func _ready():
@@ -136,6 +137,8 @@ func playIdleAnimation(last_direction):
 ## decoy therefore passes even while standing on a plot.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
+		if shopKeeper != null and (shopKeeper.isOpen or shopKeeper.canOpen()):
+			return
 		var itemInUse = hotbar.currentSlot.Item
 		if isInFarmPlot and hotbar.currentSlot != null and !isInPlant and itemInUse != ZMOONLIGHT_REFLECTOR and mainScene.dayAndNight.isDay:
 			if itemInUse != null:
@@ -216,7 +219,7 @@ func updateToolTip() -> void:
 		else:
 			tooltip.visible = false
 			print_debug("no item or valid spot to place")
-	if daySkip == true:
+	if daySkip == true or (shopKeeper != null and shopKeeper.canOpen()):
 		tooltip.visible = true
 	else: 
 		tooltip.visible = false

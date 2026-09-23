@@ -48,6 +48,11 @@ uniform float vent_density = 0.18;
 uniform float creep_speed = 0.3;
 uniform float creep_reach = 0.42;
 uniform float stain_strength = 0.5;
+uniform bool show_dead_patches = true;
+uniform vec4 dead_crust : source_color = vec4(0.4, 0.33, 0.4, 1.0);
+uniform vec4 dead_crack : source_color = vec4(0.22, 0.15, 0.22, 1.0);
+uniform vec4 dead_fleck : source_color = vec4(0.56, 0.49, 0.55, 1.0);
+uniform float dead_wilt = 0.45;
 
 varying vec2 worldPosition;
 
@@ -288,6 +293,83 @@ vec3 infection_color(vec2 q, vec3 tex, float inf) {
 	return add_seeps(q, col);
 }
 
+vec3 dead_patch_pixel(vec2 q, vec3 col, vec2 centre, float radius, float seed, out bool hit) {
+	hit = false;
+	vec2 d = q + 0.5 - centre;
+	float wobble = 0.75 + 0.45 * value_noise(q / 3.0 + seed * 50.0);
+	float t = length(d) / wobble / radius;
+	if (t > 1.4) {
+		return col;
+	}
+	vec2 tq = q + (vec2(value_noise(q / 5.0 + 20.0), value_noise(q / 5.0 + 60.0)) - 0.5) * 5.0;
+	float tendril = abs(value_noise(tq / 3.5 + seed * 30.0) - 0.5);
+	float husk = 0.36;
+	if (t < husk) {
+		hit = true;
+		float crack = abs(value_noise(q / 1.8 + seed * 13.0) - 0.5);
+		if (crack < 0.07) {
+			return dead_crack.rgb;
+		}
+		if (hash(q + 3.9) > 0.92) {
+			return dead_fleck.rgb;
+		}
+		if (d.x + d.y < -radius * husk * 0.3) {
+			return mix(dead_crust.rgb, dead_fleck.rgb, 0.4);
+		}
+		return dead_crust.rgb;
+	}
+	if (t < husk + 1.0 / radius) {
+		hit = true;
+		return dead_crack.rgb;
+	}
+	if (t < 1.0) {
+		hit = true;
+		if (tendril < 0.055) {
+			return mix(col, inf_stain_dark.rgb, 0.8);
+		}
+		float amount = t < 0.7 ? dead_wilt : dead_wilt * 0.55;
+		if (t > 0.85 && bayer4(q) > 0.5) {
+			amount *= 0.5;
+		}
+		return mix(col, inf_stain.rgb, amount);
+	}
+	if (tendril < 0.03) {
+		hit = true;
+		return mix(col, inf_stain_dark.rgb, 0.65);
+	}
+	return col;
+}
+
+vec3 add_dead_patch(vec2 q, vec3 col) {
+	if (!show_dead_patches || !use_infection_mask) {
+		return col;
+	}
+	ivec2 size = textureSize(infection_mask, 0);
+	vec2 tile = infection_rect.zw / vec2(size);
+	vec2 rel = ((q + 0.5) * pixel_size - infection_rect.xy) / tile;
+	ivec2 home = ivec2(floor(rel));
+	for (int dy = -1; dy <= 1; dy++) {
+		for (int dx = -1; dx <= 1; dx++) {
+			ivec2 ci = home + ivec2(dx, dy);
+			if (ci.x < 0 || ci.y < 0 || ci.x >= size.x || ci.y >= size.y) {
+				continue;
+			}
+			vec4 m = texelFetch(infection_mask, ci, 0);
+			if (m.g <= 0.0) {
+				continue;
+			}
+			float radius = m.g * 32.0 / pixel_size;
+			vec2 centre = ((vec2(ci) + m.ba) * tile + infection_rect.xy) / pixel_size;
+			bool hit;
+			vec3 result = dead_patch_pixel(q, col, centre, radius, hash(vec2(ci)), hit);
+			if (hit) {
+				return result;
+			}
+		}
+	}
+	return col;
+}
+
 vec3 infection_stain(vec2 q, vec3 col, float inf) {
 	if (inf <= 0.02) {
 		return col;
@@ -318,6 +400,7 @@ void fragment() {
 		vec3 col = grass_color(q, worldPosition);
 		if (infection_enabled) {
 			col = infection_stain(q, col, inf);
+			col = add_dead_patch(q, col);
 		}
 		COLOR = vec4(col, 1.0);
 	} else if (infection_enabled && COLOR.a > 0.5 && COLOR.b > COLOR.g) {
