@@ -163,6 +163,8 @@ func calculateTarget() -> Plant:
 		if score > bestScore:
 			bestScore = score
 			newTarget = plant
+	if !is_instance_valid(newTarget):
+		newTarget = null
 	return newTarget
 
 ## Target score: the plant's own draw, plus a closeness bonus, minus a
