@@ -37,7 +37,7 @@ var itemsOnFeild
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	currentNight = 0
-	nightsSurived = 1
+	nightsSurived = 0
 	hud._updateDaysLived()
 	currentNumberOfPlants = 0
 	SignalBus.connect("GameOver", Callable(self, "changeScene"))
