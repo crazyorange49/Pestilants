@@ -135,7 +135,7 @@ func _input(event: InputEvent) -> void:
 				mainScene.enemyManager.defenseStorage.add_child(usedItem)
 				hotbar.removeItem()
 				usedItem.position = item_spawn.global_position
-		if daySkip == true:
+		if daySkip and gameManager.dayAndNight.isDay and itemInUse == null:
 			mainScene.nextNight()
 
 ## Cache the snapped plot position when the selector touches something, then
