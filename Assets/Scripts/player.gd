@@ -55,6 +55,7 @@ var last_direction: Vector2
 const ZMOONLIGHT_REFLECTOR = preload("uid://bjriv5fi8rcua")
 const ZDECOYSPROUT = preload("uid://cu0nj78id1rtn")
 @export var daySkip = false
+@onready var gameManager: MainScene = $".."
 
 ## Lantern starts off; night turns it on.
 func _ready():
@@ -142,7 +143,7 @@ func _input(event: InputEvent) -> void:
 func _on_plot_selector_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	activePlotPOS = soilTiles.map_to_local(soilTiles.local_to_map(position))
 	NumberOfCollisions = len(plot_selector.get_overlapping_bodies())
-	if body.name == "NextNightTrigger":
+	if body.name == "NextNightTrigger" and gameManager.dayAndNight.isDay:
 		daySkip = true
 	updateToolTip()
  
