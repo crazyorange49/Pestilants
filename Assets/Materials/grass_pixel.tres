@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://Assets/Scripts/grassPixel.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://qn64ak1s7rr2" path="res://Assets/TileSheets/grass fill texture.png" id="2_tex"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/overlay_tex = ExtResource("2_tex")
+shader_parameter/original_grass = true
