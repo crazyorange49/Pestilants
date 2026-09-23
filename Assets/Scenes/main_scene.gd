@@ -38,6 +38,7 @@ var itemsOnFeild
 func _ready() -> void:
 	currentNight = 0
 	nightsSurived = 1
+	hud._updateDaysLived()
 	currentNumberOfPlants = 0
 	SignalBus.connect("GameOver", Callable(self, "changeScene"))
 	SignalBus.connect("EnemyDeath", Callable(self, "_enemyDeath"))
@@ -54,6 +55,7 @@ func _nightEnded() -> void:
 	else:
 		nightLoss()
 	enemyManager.killAllChildren()
+	hud._updateDaysLived()
 	timer.stop()
 
 ## Starts a night directly, without waiting for the timer.

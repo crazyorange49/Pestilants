@@ -77,7 +77,6 @@ var oldDistaceWeight: float = 0.01
 
 ## Starts the retarget timer. main_scene is fetched but unused.
 func _ready():
-	var main_scene = get_tree().get_current_scene() 
 	timer.start()
 
 	
@@ -188,7 +187,7 @@ func _findNewTarget() -> void:
 	if is_instance_valid(move_target):
 		navigation_agent_2d.target_position = move_target.position
 	else:
-		navigation_agent_2d.target_position = map.enemy_spawn.position
+		navigation_agent_2d.target_position = map.enemySpawn.position
 
 ## The damage entry point used by plants, the Farm Bell, the Moonlight
 ## Reflector and the Decoy Sprout. Clamps into range, so reaching 0 here is
