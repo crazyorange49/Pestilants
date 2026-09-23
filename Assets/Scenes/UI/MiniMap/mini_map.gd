@@ -71,6 +71,22 @@ extends Control
 @export var spawn_color: Color = Color(0.78, 0.18, 0.44)
 @export var view_rect_color: Color = Color(1.0, 1.0, 1.0, 0.35)
 
+@export_group("House")
+@export var draw_house_sprite: bool = true
+
+@export_group("Night skip")
+@export var night_skip_color: Color = Color(1.0, 0.16, 0.14)
+@export var night_skip_flashes_per_second: float = 1.6
+@export var night_skip_only_during_day: bool = true
+@export var night_skip_min_size: float = 14.0
+
+var _house_sprite: Sprite2D
+var _house_image: Image
+var _house_icon: ImageTexture
+var _house_icon_size: Vector2i = Vector2i.ZERO
+var _night_trigger: CollisionShape2D
+var _hotbar: Hotbar
+
 var _map: Node2D
 var _player: Node2D
 var _scene_root: Node
@@ -148,9 +164,35 @@ func _find_map() -> Node2D:
 
 func _collect_landmarks() -> void:
 	_landmarks.clear()
-	_add_landmark(_map.get_node_or_null("StaticBody2D/HouseSprite"), house_color)
+	_house_sprite = _map.get_node_or_null("StaticBody2D/HouseSprite") as Sprite2D
+	_add_landmark(_house_sprite, house_color)
 	_add_landmark(_find_shop(), shop_color)
 	_add_landmark(_map.get_node_or_null("EnemySpawn"), spawn_color)
+	_night_trigger = _find_night_trigger()
+
+
+func _find_night_trigger() -> CollisionShape2D:
+	var body := _map.get_node_or_null("NextNightTrigger")
+	if body == null:
+		return null
+	for child in body.get_children():
+		if child is CollisionShape2D and (child as CollisionShape2D).shape != null:
+			return child
+	return null
+
+
+func _find_hotbar() -> Hotbar:
+	if _scene_root == null:
+		return null
+	var named := _scene_root.get_node_or_null("HUD/Hotbar")
+	if named is Hotbar:
+		return named
+	var hud := _scene_root.get_node_or_null("HUD")
+	if hud != null:
+		for child in hud.get_children():
+			if child is Hotbar:
+				return child
+	return null
 
 
 func _find_shop() -> Node2D:
@@ -568,8 +610,13 @@ func _draw() -> void:
 	if _map != null:
 		for landmark: Dictionary in _landmarks:
 			var node: Node2D = landmark["node"]
-			if is_instance_valid(node):
-				_draw_blip(node.global_position, landmark["color"], landmark_blip_size)
+			if not is_instance_valid(node):
+				continue
+			if node == _house_sprite and draw_house_sprite and _draw_house():
+				continue
+			_draw_blip(node.global_position, landmark["color"], landmark_blip_size)
+
+		_draw_night_skip()
 
 		_ensure_storages()
 		_draw_container(_plant_storage, plant_color)
@@ -587,6 +634,81 @@ func _draw() -> void:
 
 	if border_width > 0.0:
 		draw_rect(panel, border_color, false, border_width)
+
+
+func _project_rect(world_rect: Rect2) -> Rect2:
+	var a := _project(world_rect.position)
+	var b := _project(world_rect.end)
+	return Rect2(a, b - a).abs()
+
+
+func _draw_house() -> bool:
+	if _house_sprite.texture == null:
+		return false
+	var world_rect: Rect2 = _house_sprite.global_transform * _house_sprite.get_rect()
+	var r := _project_rect(world_rect)
+	if not Rect2(Vector2.ZERO, size).intersects(r):
+		return true
+	var px := Vector2i(maxi(1, roundi(r.size.x)), maxi(1, roundi(r.size.y)))
+	if px != _house_icon_size:
+		_bake_house_icon(px)
+	if _house_icon == null:
+		return false
+	draw_texture_rect(_house_icon, Rect2(r.position.round(), Vector2(px)), false)
+	return true
+
+
+func _bake_house_icon(px: Vector2i) -> void:
+	_house_icon_size = px
+	if _house_image == null:
+		_house_image = _house_sprite.texture.get_image()
+		if _house_image == null:
+			return
+		if _house_image.is_compressed():
+			_house_image.decompress()
+	var img := _house_image.duplicate() as Image
+	img.resize(px.x, px.y, Image.INTERPOLATE_LANCZOS)
+	_house_icon = ImageTexture.create_from_image(img)
+
+
+func _night_skip_ready() -> bool:
+	if _hotbar == null or not is_instance_valid(_hotbar):
+		_hotbar = _find_hotbar()
+	if _hotbar == null:
+		return false
+	if night_skip_only_during_day and _day_night != null and is_instance_valid(_day_night) \
+			and _day_night.get("isDay") == false:
+		return false
+	for slot in _hotbar.slots:
+		if slot.Item != null:
+			return false
+	return true
+
+
+func _draw_night_skip() -> void:
+	if _night_trigger == null or not is_instance_valid(_night_trigger):
+		return
+	if not _night_skip_ready():
+		return
+	var t := Time.get_ticks_msec() / 1000.0
+	var pulse := clampf(sin(t * TAU * night_skip_flashes_per_second) * 1.5 + 0.5, 0.0, 1.0)
+	var world_rect: Rect2 = _night_trigger.global_transform * _night_trigger.shape.get_rect()
+	var r := _project_rect(world_rect)
+	var panel := Rect2(Vector2.ZERO, size).grow(-border_width)
+	if not panel.intersects(r):
+		var hint := night_skip_color
+		hint.a = lerpf(0.3, 1.0, pulse)
+		_draw_blip(world_rect.get_center(), hint, blip_size + 2.0, true)
+		return
+	var fill := night_skip_color
+	fill.a = 0.22 * pulse
+	var line := night_skip_color
+	line.a = lerpf(0.3, 1.0, pulse)
+	var min_size := Vector2(night_skip_min_size, night_skip_min_size)
+	var grown := r.size.max(min_size)
+	r = Rect2((r.get_center() - grown * 0.5).round(), grown.round())
+	draw_rect(r, fill, true)
+	draw_rect(r.grow(1.0), line, false, 2.0)
 
 
 func _draw_container(container: Node, color: Color, pin_off_view: bool = false) -> void:

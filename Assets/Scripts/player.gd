@@ -50,6 +50,7 @@ var health = 78
 var minHealth = 0
 ## Last non-zero facing, so the idle animation faces the right way.
 var last_direction: Vector2
+var preferVertical := false
 ## The two items that are placed off-plot rather than on one, special-cased
 ## throughout the placement logic below.
 const ZMOONLIGHT_REFLECTOR = preload("uid://bjriv5fi8rcua")
@@ -64,14 +65,33 @@ func _ready():
 ## Movement, plus keeping the tooltip visible while holding a defence item
 ## somewhere it could legally be dropped.
 func _physics_process(_delta: float) -> void:
-	var moveInput = Input.get_vector("left","right", "up","down")
+	var moveInput = snapToCardinal(Input.get_vector("left","right", "up","down"))
 	velocity = moveInput * speed
 	move_and_slide()
 	handleMovementAnimations(moveInput)
 	if(hotbar.currentSlot != null):
 		if (hotbar.currentSlot.Item == ZMOONLIGHT_REFLECTOR or hotbar.currentSlot.Item == ZDECOYSPROUT) and !isInFarmPlot:
 			tooltip.visible = true
-		 
+
+func snapToCardinal(input: Vector2) -> Vector2:
+	if Input.is_action_just_pressed("up") or Input.is_action_just_pressed("down"):
+		preferVertical = true
+	elif Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
+		preferVertical = false
+
+	if input == Vector2.ZERO:
+		return Vector2.ZERO
+
+	var useVertical: bool
+	if is_equal_approx(abs(input.x), abs(input.y)):
+		useVertical = preferVertical
+	else:
+		useVertical = abs(input.y) > abs(input.x)
+
+	if useVertical:
+		return Vector2(0, sign(input.y)) * input.length()
+	return Vector2(sign(input.x), 0) * input.length()
+
 ## Picks a walk animation from the dominant input axis and remembers the
 ## facing for the idle pose.
 func handleMovementAnimations(Direction):

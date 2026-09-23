@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://vuspus5ab6rg" path="res://Assets/Scenes/audio_control.gd" id="2_cbhea"]
 [ext_resource type="Texture2D" uid="uid://tree25n21hra" path="res://Assets/Sprites/IMG_0332.png" id="2_tanm1"]
 [ext_resource type="Script" uid="uid://h8uu3vrf37iw" path="res://Assets/Scenes/full_screen.gd" id="3_cbhea"]
+[ext_resource type="Script" uid="uid://cljiowb1uch50" path="res://Assets/Scenes/UI/title_logo.gd" id="4_logo"]
+[ext_resource type="FontFile" uid="uid://dndnxppxtawe6" path="res://Assets/UI/Fonts/Lato-Black.ttf" id="5_logofont"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77rv3"]
 bg_color = Color(0.9764706, 0.92941177, 0.8039216, 1)
@@ -57,82 +59,6 @@ thickness = 6
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_cbhea"]
 color = Color(0, 0.16470589, 0.9254902, 1)
 thickness = 6
-
-[sub_resource type="FontFile" id="FontFile_fsbqx"]
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/49/0/ascent = 0.0
-cache/0/49/0/descent = 0.0
-cache/0/49/0/underline_position = 0.0
-cache/0/49/0/underline_thickness = 0.0
-cache/0/49/0/scale = 1.0
-cache/0/29/0/ascent = 0.0
-cache/0/29/0/descent = 0.0
-cache/0/29/0/underline_position = 0.0
-cache/0/29/0/underline_thickness = 0.0
-cache/0/29/0/scale = 1.0
-cache/0/24/0/ascent = 0.0
-cache/0/24/0/descent = 0.0
-cache/0/24/0/underline_position = 0.0
-cache/0/24/0/underline_thickness = 0.0
-cache/0/24/0/scale = 1.0
-cache/0/19/0/ascent = 0.0
-cache/0/19/0/descent = 0.0
-cache/0/19/0/underline_position = 0.0
-cache/0/19/0/underline_thickness = 0.0
-cache/0/19/0/scale = 1.0
-cache/0/14/0/ascent = 0.0
-cache/0/14/0/descent = 0.0
-cache/0/14/0/underline_position = 0.0
-cache/0/14/0/underline_thickness = 0.0
-cache/0/14/0/scale = 1.0
-cache/0/9/0/ascent = 0.0
-cache/0/9/0/descent = 0.0
-cache/0/9/0/underline_position = 0.0
-cache/0/9/0/underline_thickness = 0.0
-cache/0/9/0/scale = 1.0
-cache/0/4/0/ascent = 0.0
-cache/0/4/0/descent = 0.0
-cache/0/4/0/underline_position = 0.0
-cache/0/4/0/underline_thickness = 0.0
-cache/0/4/0/scale = 1.0
-cache/0/34/0/ascent = 0.0
-cache/0/34/0/descent = 0.0
-cache/0/34/0/underline_position = 0.0
-cache/0/34/0/underline_thickness = 0.0
-cache/0/34/0/scale = 1.0
-cache/0/39/0/ascent = 0.0
-cache/0/39/0/descent = 0.0
-cache/0/39/0/underline_position = 0.0
-cache/0/39/0/underline_thickness = 0.0
-cache/0/39/0/scale = 1.0
-cache/0/64/0/ascent = 0.0
-cache/0/64/0/descent = 0.0
-cache/0/64/0/underline_position = 0.0
-cache/0/64/0/underline_thickness = 0.0
-cache/0/64/0/scale = 1.0
-cache/0/69/0/ascent = 0.0
-cache/0/69/0/descent = 0.0
-cache/0/69/0/underline_position = 0.0
-cache/0/69/0/underline_thickness = 0.0
-cache/0/69/0/scale = 1.0
-cache/0/59/0/ascent = 0.0
-cache/0/59/0/descent = 0.0
-cache/0/59/0/underline_position = 0.0
-cache/0/59/0/underline_thickness = 0.0
-cache/0/59/0/scale = 1.0
 
 [node name="MainMenu" type="Control" unique_id=1005490298]
 layout_mode = 3
@@ -306,28 +232,23 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_cbhea")
 text = "Exit
 "
 
-[node name="Title" type="Label" parent="." unique_id=1162539313]
+[node name="Title" type="Control" parent="." unique_id=1162539313]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -60.5
-offset_top = -259.5
-offset_right = 220.5
-offset_bottom = -180.5
+offset_left = -281.0
+offset_top = -335.0
+offset_right = 439.0
+offset_bottom = -195.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.48053217, 0.36398193, 0.7046112, 1)
-theme_override_colors/font_shadow_color = Color(0.111693405, 0.32583785, 0.2529609, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = SubResource("FontFile_fsbqx")
-theme_override_font_sizes/font_size = 59
-text = "Pestilants"
-horizontal_alignment = 1
-vertical_alignment = 1
+mouse_filter = 2
+script = ExtResource("4_logo")
+font = ExtResource("5_logofont")
+pest_letters = 5
 
 [connection signal="pressed" from="Panel/Options/Back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="Panel/Options/Audio_control" to="Panel/Options/Audio_control" method="_on_value_changed"]
