@@ -88,7 +88,7 @@ func getHealTarget():
 	var bestScore := -INF
 	if len(availablePlants) > 0:
 		for plant in availablePlants:
-			if !is_instance_valid(plant) or plant == self or plant.health == plant.maxHealth:
+			if !is_instance_valid(plant) or plant == self or plant.health == plant.maxHealth or plant.is_in_group("Defence") or plant is Coneflower:
 				continue
 			var score = calculatePriority(plant)
 			

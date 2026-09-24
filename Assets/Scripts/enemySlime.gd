@@ -49,9 +49,6 @@ var targetsInRange: Array[Node2D]
 @onready var timer: Timer = $Timer
 
 ## priority variables
-
-## Unused weight.
-var w_priority = 0.5
 ## How much closeness contributes to a target's score.
 var w_new = 0.25
 ## Distance falloff scale for closeness(). Small, so distance only matters
@@ -161,7 +158,11 @@ func calculateTarget() -> Plant:
 
 		if score > bestScore:
 			bestScore = score
+			if newTarget != plant:
+				if is_instance_valid(newTarget):
+					newTarget.numberOfEnemies -= 1
 			newTarget = plant
+			plant.numberOfEnemies += 1
 	if !is_instance_valid(newTarget):
 		newTarget = null
 	return newTarget
@@ -170,6 +171,7 @@ func calculateTarget() -> Plant:
 ## switching penalty. Higher is more appealing.
 func calculatePriority(plant: Plant):
 	var score = plant.enemyPriority
+	score -= plant.numberOfEnemies
 	score += closeness(position.distance_to(plant.position), scale_new) * w_new
 	if plant != move_target:
 		score -= oldDistaceWeight

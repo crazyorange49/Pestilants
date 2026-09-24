@@ -57,7 +57,7 @@ var dayTimePosition: Vector2
 @export var navigationAgent2d: NavigationAgent2D
 @onready var visionArea: Area2D = $VisionArea
 @export var sprite: AnimatedSprite2D
-
+@export var numberOfEnemies: int = 0
 
 ## Enemies currently inside VisionArea; refreshed on enter/exit and whenever
 ## any enemy dies.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://qbn65467pc8r"]
+[gd_scene format=3 uid="uid://qbn65467pc8r"]
 
 [ext_resource type="Script" uid="uid://1lw0jsqyjouq" path="res://Assets/Scenes/DefenseItems/moonlight_reflector.gd" id="1_pkyi3"]
 [ext_resource type="Texture2D" uid="uid://buq4njdy5nibm" path="res://Assets/Sprites/moonlightReflector_Day.png" id="2_7rapx"]
@@ -97,67 +97,65 @@ fill_from = Vector2(0.53051645, 0.5399061)
 radius = 205.00923
 height = 782.0447
 
-[node name="Moonlight Reflector" type="CharacterBody2D"]
+[node name="Moonlight Reflector" type="CharacterBody2D" unique_id=1824623825 groups=["Defence"]]
 texture_filter = 1
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("1_pkyi3")
 damage = 3
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="Sprite2D" parent="." unique_id=130854185]
 position = Vector2(13, -13)
 scale = Vector2(1.40625, 1.40625)
 texture = ExtResource("2_7rapx")
 
-[node name="VisionArea" type="Area2D" parent="."]
+[node name="VisionArea" type="Area2D" parent="." unique_id=446567180]
 
-[node name="Radius" type="CollisionShape2D" parent="VisionArea"]
+[node name="Radius" type="CollisionShape2D" parent="VisionArea" unique_id=466656841]
 position = Vector2(13, -9)
 shape = SubResource("CircleShape2D_4edj2")
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=1004955019]
 position = Vector2(14, 5.5)
 shape = SubResource("RectangleShape2D_sntse")
 disabled = true
 debug_color = Color(0.0032314504, 0.6454529, 0.26474586, 0.41960785)
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=2133432774]
 position = Vector2(-3, 14.000002)
 rotation = 0.66086215
 scale = Vector2(0.045146406, 0.05157691)
 texture = SubResource("GradientTexture2D_7rapx")
 texture_scale = 0.1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D2"]
-libraries = {
-&"": SubResource("AnimationLibrary_8i3qd")
-}
-autoplay = "twinkle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D2" unique_id=347769633]
+libraries/ = SubResource("AnimationLibrary_8i3qd")
+autoplay = &"twinkle"
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.62, 0.78, 1, 1)
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=344304040]
 position = Vector2(-480, -30)
 scale = Vector2(2.8583674, 1.3858321)
+color = Color(0.62, 0.78, 1, 1)
 texture = SubResource("GradientTexture2D_pkyi3")
 texture_scale = 7.25
 
-[node name="HpBar" parent="." instance=ExtResource("3_7rapx")]
+[node name="HpBar" parent="." unique_id=1743826693 instance=ExtResource("3_7rapx")]
 offset_left = -36.0
 offset_top = -33.0
 offset_right = 63.0
 offset_bottom = -27.0
 script = ExtResource("4_l0pdi")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1707190789]
 position = Vector2(-524, 8)
 collision_mask = 32
 
-[node name="lightCollision" type="CollisionShape2D" parent="Area2D"]
+[node name="lightCollision" type="CollisionShape2D" parent="Area2D" unique_id=1428597960]
 position = Vector2(55, -23)
 rotation = -1.568875
 shape = SubResource("CapsuleShape2D_l0pdi")
 
-[node name="DamageTimer" type="Timer" parent="."]
+[node name="DamageTimer" type="Timer" parent="." unique_id=137620511]
 wait_time = 1.5
 one_shot = true
 
