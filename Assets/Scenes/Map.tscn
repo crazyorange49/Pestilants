@@ -352,6 +352,7 @@ position = Vector2(1846, 249)
 metadata/enemyPriority = -1
 
 [node name="WorldBorder" type="StaticBody2D" parent="." unique_id=519006129]
+visible = false
 
 [node name="WorldBorder" type="CollisionShape2D" parent="WorldBorder" unique_id=1855618941]
 position = Vector2(2852, 2061)
