@@ -5,6 +5,14 @@ uniform bool original_grass = false;
 uniform sampler2D overlay_tex : repeat_enable, filter_nearest;
 uniform float overlay_scale = 0.001;
 uniform bool show_tufts = false;
+uniform bool smooth_grass = false;
+uniform float smooth_radius = 7.0;
+uniform float smooth_pixel = 2.0;
+uniform float light_threshold = 0.86;
+uniform float edge_band = 0.06;
+uniform vec4 grass_light_tint : source_color = vec4(0.6, 0.9, 0.31, 1.0);
+uniform vec4 grass_dark_tint : source_color = vec4(0.51, 0.82, 0.25, 1.0);
+uniform vec4 grass_edge_tint : source_color = vec4(0.555, 0.86, 0.28, 1.0);
 uniform vec4 color_deep : source_color = vec4(0.2, 0.44, 0.19, 1.0);
 uniform vec4 color_dark : source_color = vec4(0.3, 0.58, 0.21, 1.0);
 uniform vec4 color_mid : source_color = vec4(0.4, 0.69, 0.24, 1.0);
@@ -139,9 +147,30 @@ vec3 flower_pixel(vec2 lp, vec3 petal, vec3 under) {
 	return under;
 }
 
+vec3 smoothed_grass(vec2 wp) {
+	vec2 sp = (floor(wp / smooth_pixel) + 0.5) * smooth_pixel;
+	vec2 uv = sp * overlay_scale;
+	vec2 texel = 1.0 / vec2(textureSize(overlay_tex, 0));
+	float light = 0.0;
+	for (int i = 0; i < 16; i++) {
+		float fi = float(i);
+		float angle = fi * 2.39996;
+		float r = sqrt((fi + 0.5) / 16.0) * smooth_radius;
+		vec2 offset = vec2(cos(angle), sin(angle)) * r * texel;
+		light += step(light_threshold, textureLod(overlay_tex, uv + offset, 0.0).g);
+	}
+	float f = light / 16.0;
+	if (abs(f - 0.5) < edge_band) {
+		return grass_edge_tint.rgb;
+	}
+	return f > 0.5 ? grass_light_tint.rgb : grass_dark_tint.rgb;
+}
+
 vec3 grass_color(vec2 q, vec2 wp) {
 	vec3 col;
-	if (original_grass) {
+	if (original_grass && smooth_grass) {
+		col = smoothed_grass(wp);
+	} else if (original_grass) {
 		col = texture(overlay_tex, wp * overlay_scale).rgb;
 	} else {
 		float v = fbm(q / patch_scale);

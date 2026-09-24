@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cfjgmammsk3ab" path="res://Assets/Scenes/map.gd" id="1_17ifn"]
 [ext_resource type="Texture2D" uid="uid://5rawhje0pheo" path="res://Assets/TileSheets/grassAndDarkTileset_Day.png" id="4_vwnmq"]
 [ext_resource type="Material" uid="uid://cmbcfxlkxxnwq" path="res://addons/TileMapDual/ghost_material.tres" id="5_4hua8"]
-[ext_resource type="Material" path="res://Assets/Materials/grass_pixel.tres" id="5_tue0r"]
+[ext_resource type="Material" uid="uid://d1lk1qhh38dcu" path="res://Assets/Materials/grass_pixel.tres" id="5_tue0r"]
 [ext_resource type="Script" uid="uid://cjk8nronimk5r" path="res://addons/TileMapDual/tile_map_dual.gd" id="6_17ifn"]
 [ext_resource type="Texture2D" uid="uid://d14iarpbhvy74" path="res://Assets/TileSheets/worldplaceholderstilesheet.png" id="6_47en4"]
 [ext_resource type="NavigationPolygon" uid="uid://daejun74jn0cv" path="res://NavMeshes/NavRegion1.tres" id="7_hv05q"]
