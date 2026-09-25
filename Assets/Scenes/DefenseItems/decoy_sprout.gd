@@ -24,6 +24,8 @@ func _ready():
 	health = maxHealth
 	SignalBus.connect("DayTime", Callable(self, "destroy"))
 	SignalBus.emit_signal("DecoyPlanted")
+	if growthProgress == 2:
+		main_scene.currentNumberOfPlants += 1
 	
 
 ## Empty on purpose: overrides Plant._process so the decoy stays inert.
@@ -45,6 +47,7 @@ func die() -> void:
 	
 	decoySprite.play("death")
 	await decoySprite.animation_finished
+	SignalBus.emit_signal("PlantDeath")
 	queue_free()
 
 ## Empty on purpose: overrides Plant._physics_process so the decoy never

@@ -99,7 +99,6 @@ func _plantDeath() -> void:
 		pass
 
 func _plantPlaced() -> void:
-	currentNumberOfPlants += 1
 	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
 
 func _updateDefence() -> void:

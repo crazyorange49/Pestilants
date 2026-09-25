@@ -237,3 +237,5 @@ func growthCheck():
 	if(growthProgress < 2):
 		growthProgress += 1
 		sprite.frame = growthProgress
+		if growthProgress == 2:
+			main_scene.currentNumberOfPlants += 1
