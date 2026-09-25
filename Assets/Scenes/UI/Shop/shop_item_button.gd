@@ -11,7 +11,7 @@ signal buy_pressed(bought_plant: itemStats)
 
 ## The item this card represents, supplied by setup_item.
 var plant : itemStats
-
+var itemName : String
 
 ## Forwards the nested buy button's press as this card's own signal, so the
 ## shop never needs to reach inside the card's layout.
@@ -27,8 +27,9 @@ func _on_buy_button_pressed() -> void:
 ## added to the tree.
 func setup_item( _plant : itemStats):
 	plant = _plant
+	itemName = plant.itemName
 	# Unique names rather than child paths: the card is laid out with containers
 	# now, so these are nested rather than direct children of the button.
-	%Label.text = plant.itemName
+	%Label.text = itemName
 	%priceLabel.text = str(plant.price)
 	%TextureRect.texture = plant.icon

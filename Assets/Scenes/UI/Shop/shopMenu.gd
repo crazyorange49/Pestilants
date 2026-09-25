@@ -85,7 +85,12 @@ func focusedItemChanged(plant : itemStats) -> void:
 	if plant:
 		updateItemDetails( plant )
 	pass
-	
+
+func removeItemFromShop(plant : itemStats) -> void:
+	for child in shop_items_container.get_children():
+		if child.plant == plant:
+			child.queue_free()
+
 ## Pushes one item's data into the details panel on the right.
 func updateItemDetails(plant : itemStats) -> void:
 	item_image.texture = plant.icon
@@ -107,6 +112,7 @@ func purchase_item( plant : itemStats ) -> void:
 		if( plant == ZFARM_BELL):
 			farmbell.visible = true
 			farmbell.hit_box.disabled = false
+			removeItemFromShop(plant)
 		else:
 			hotbar.addItem(plant)
 	else:
