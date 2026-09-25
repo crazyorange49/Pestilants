@@ -30,7 +30,6 @@ var playerChase = false
 var victim  = null
 ## Attack cooldown gate, cleared and re-set by attack().
 var can_attack = true
-## Never assigned anywhere; attack() checks it but nothing sets it true.
 var is_dead = false
 ## The plant being navigated toward. May be far away, or already freed.
 var move_target: Node2D = null
@@ -66,7 +65,8 @@ var oldDistaceWeight: float = 0.01
 	set(subtractedHealth):
 		health = subtractedHealth
 		print(str(health))
-		if health <= 0:
+		if health <= 0 and !is_dead:
+			is_dead = true
 			queue_free()
 			SignalBus.emit_signal("EnemyDeath")
 	get:
@@ -102,8 +102,10 @@ func attack():
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
+	
 ## Anything in the "Plant" group that touches the attack area becomes the
 ## victim -- including immature plants, which cannot fight back.
+
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	print(body.name)
 	if body.is_in_group("Plant"):
@@ -195,4 +197,6 @@ func _findNewTarget() -> void:
 ## Reflector and the Decoy Sprout. Clamps into range, so reaching 0 here is
 ## what triggers the death path in the health setter.
 func subtractDamage(damage: int) -> void:
+	if is_dead:
+		return
 	health = clamp(health - damage, 0, maxHealth)

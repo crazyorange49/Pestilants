@@ -105,7 +105,6 @@ func _ready() -> void:
 	sprite.frame = growthProgress
 	visionCollisionBox.shape.radius = visionRadius
 	attackRangeCollisionBox.shape.radius = atkRange
-	main_scene.currentNumberOfPlants += 1
 
 ## Roaming. At dusk the plant walks toward whatever nav target it was given;
 ## at noon it heads back to where it was planted and then stops.
@@ -179,10 +178,19 @@ func getNewPosition():
 func calculateVulnerability(currentHealth: int, targetMaxHealth: int):
 	return exp(-currentHealth / targetMaxHealth)
 
+func isInAttackRange(target) -> bool:
+	if target == null or !is_instance_valid(target):
+		return false
+	var attackArea := attackRangeCollisionBox.get_parent() as Area2D
+	return attackArea != null and attackArea.overlaps_body(target)
+
 ## Default attack: damage the current victim, then sit on cooldown.
 ## Coneflower overrides this to heal instead.
 func attack():
 	if (!can_attack || growthProgress < 2):
+		return
+	if !isInAttackRange(victim):
+		victim = null
 		return
 
 	can_attack = false

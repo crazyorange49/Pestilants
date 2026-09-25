@@ -102,6 +102,8 @@ func _plantPlaced() -> void:
 	currentNumberOfPlants += 1
 	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
 
+func _updateDefence() -> void:
+	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()
 
 ## Night cleared: advance the frontier one section east, repainting the newly
 ## reclaimed strip as grass. Surviving with nightsSurived already at 7 wins

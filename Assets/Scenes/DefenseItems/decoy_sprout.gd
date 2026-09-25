@@ -37,8 +37,6 @@ func die() -> void:
 		return
 	is_dead = true
 	
-	# NOTE: this list only holds aphids -- the enter callback below filters on
-	# the "Enemies" group, which Fly.tscn and Big_Bug.tscn are not in.
 	for enemy in enemies_in_attack_area:
 		if is_instance_valid(enemy):
 			enemy.subtractDamage(30)
@@ -76,9 +74,6 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies") and !enemies_in_attack_area.has(body):
 		enemies_in_attack_area.append(body)
 
-## NOTE: checks the group as lowercase "enemies" while the enter callback
-## above uses "Enemies". The names do not match, so enemies are never
-## removed from the list once added.
 func _on_attack_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("Enemies"):
 		enemies_in_attack_area.erase(body)

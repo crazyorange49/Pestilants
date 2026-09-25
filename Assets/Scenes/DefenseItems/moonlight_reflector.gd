@@ -43,7 +43,7 @@ func _on_vision_area_body_exited(_body: Node2D) -> void:
 ## Idle through the day (light off, timer stopped) and active at night.
 ## The timer is only started when something is actually in range.
 func _process(_float) -> void:
-	if(main_scene.dayAndNight.isDay == false and health > 0):
+	if(main_scene.dayAndNight.isDay and health > 0):
 		point_light_2d.visible = false
 		damage_timer.stop()
 	else:
@@ -55,16 +55,13 @@ func _process(_float) -> void:
 			
 ## One damage tick to everything currently in the light.
 func _on_damage_timer_timeout() -> void:
-	# NOTE: this list only ever contains aphids -- the enter callback filters
-	# on the "Enemies" group, which Fly.tscn and Big_Bug.tscn are not in.
 	for enemy in enemies_in_attack_area:
 		if is_instance_valid(enemy):
 			enemy.subtractDamage(damage)
 	print("Timer has timed out")
 
 
-## Track enemies entering the light. The group filter is what limits this
-## to aphids.
+## Track enemies entering the light.
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies") and !enemies_in_attack_area.has(body):
 		enemies_in_attack_area.append(body)

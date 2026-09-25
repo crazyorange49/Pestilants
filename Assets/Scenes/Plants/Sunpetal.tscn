@@ -134,7 +134,7 @@ collision_mask = 32
 shape = SubResource("CircleShape2D_4edj2")
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1688876913]
-collision_mask = 4
+collision_mask = 32
 
 [node name="Range" type="CollisionShape2D" parent="AttackArea" unique_id=2027477400]
 shape = SubResource("CircleShape2D_78iwd")

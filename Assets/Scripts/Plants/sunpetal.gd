@@ -33,7 +33,8 @@ func _process(_delta: float) -> void:
 		attackTarget = getAttackTarget()
 		if attackTarget:
 			navigationAgent2d.target_position = attackTarget.position
-			victim = attackTarget
+			if isInAttackRange(attackTarget):
+				victim = attackTarget
 	
 	
 

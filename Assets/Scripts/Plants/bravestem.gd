@@ -33,7 +33,8 @@ func _process(_delta: float) -> void:
 		attackTarget = getAttackTarget()
 		if attackTarget:
 			navigationAgent2d.target_position = attackTarget.position
-			victim = attackTarget
+			if isInAttackRange(attackTarget):
+				victim = attackTarget
 
 ## Something entered vision range -- re-read what is in sight and re-pick.
 func _on_vision_area_body_entered(_body: Node2D) -> void:
