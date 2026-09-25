@@ -14,9 +14,8 @@ func _ready() -> void:
 	v_box_container.visible = true
 	$Title.visible = true
 
-## Restarts by reloading the whole main scene, so all run state is discarded.
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Assets/Scenes/main_scene.tscn")
+	get_tree().change_scene_to_file("res://Assets/Scenes/UI/StarterKit/StarterKitSelect.tscn")
 
 ## Quits the application.
 func _on_exit_button_pressed() -> void:

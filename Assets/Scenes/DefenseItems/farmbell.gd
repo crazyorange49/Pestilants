@@ -33,6 +33,10 @@ func _ready() -> void:
 	isInRange = false
 	pass
 
+func unlock() -> void:
+	visible = true
+	hit_box.disabled = false
+
 ## Show the "press use" tooltip, but only if the bell has been bought.
 func _on_vision_area_body_entered(body: Node2D) -> void:
 	if(visible) and body.is_in_group("Player"):

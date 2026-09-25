@@ -22,6 +22,9 @@ signal nightLost
 @onready var enemyManager: EnemyManager = $EnemyManager
 @onready var enemySpawn: Marker2D = $EnemyManager/EnemySpawn
 @onready var farmbell: Farmbell = $Farmbell
+@onready var shop = $Shop
+
+@export var starterKit: StarterKit
  
 ## Snapshot of the enemy count taken at startup. Map.numberOfEnemies is the
 ## live figure that actually drives the waves.
@@ -47,6 +50,7 @@ func _ready() -> void:
 	SignalBus.connect("PlantPlaced", Callable(self, "_plantPlaced"))
 	SignalBus.connect("DecoyPlanted", Callable(self, "_updateDefence"))
 	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()	
+	applyStarterKit()
 	
 
 func _nightEnded() -> void:
@@ -135,3 +139,14 @@ func nightLoss():
 ## all 7 nights.
 func changeScene():
 	get_tree().change_scene_to_file("res://Assets/Scenes/game_over.tscn")
+
+func applyStarterKit() -> void:
+	if starterKit == null:
+		return
+	if starterKit.includesFarmBell:
+		farmbell.unlock()
+		shop.removeItemFromShop(shop.ZFARM_BELL)
+	if starterKit.item != null:
+		for i in starterKit.itemCount:
+			hud.hotbar.addItem(starterKit.item)
+	player.changeRenewalSeedCount(starterKit.bonusSeeds)

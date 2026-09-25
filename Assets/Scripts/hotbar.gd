@@ -18,7 +18,7 @@ var slots: Array[HotbarSlot]
 @onready var player: CharacterBody2D = $"../../Player"
 
 
-## Collects the slots, clears them, then grants the starting inventory.
+## Collects the slots and clears them.
 func _ready() -> void:
 	
 	for child in get_node("SlotContainer").get_children():
@@ -27,10 +27,6 @@ func _ready() -> void:
 		child.hotbar = self
 		updateHotbar()
 	currentSelection = 0
-	# Three Decoy Sprouts are handed out for free at the start of a run.
-	addItem(preload("uid://cu0nj78id1rtn"))
-	addItem(preload("uid://cu0nj78id1rtn"))
-	addItem(preload("uid://cu0nj78id1rtn"))
 	updateHotbar()
 
 

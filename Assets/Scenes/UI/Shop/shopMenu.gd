@@ -110,8 +110,7 @@ func purchase_item( plant : itemStats ) -> void:
 		# The Farm Bell already exists in the world and starts hidden, so buying
 		# it reveals it rather than granting a hotbar item.
 		if( plant == ZFARM_BELL):
-			farmbell.visible = true
-			farmbell.hit_box.disabled = false
+			farmbell.unlock()
 			removeItemFromShop(plant)
 		else:
 			hotbar.addItem(plant)

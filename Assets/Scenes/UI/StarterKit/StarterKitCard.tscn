@@ -1,0 +1,244 @@
+[gd_scene format=3 uid="uid://uhesjtphiay8"]
+
+[ext_resource type="Script" uid="uid://da7q64u4rtmbw" path="res://Assets/Scenes/UI/StarterKit/starter_kit_card.gd" id="1_card"]
+[ext_resource type="Texture2D" uid="uid://bd46c4etswl3v" path="res://icon.svg" id="2_icon"]
+
+[sub_resource type="StyleBoxFlat" id="SB_CardNormal"]
+bg_color = Color(0.9882353, 0.95686275, 0.88235295, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 6
+border_color = Color(0.6039216, 0.45490196, 0.29411766, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="SB_CardPressed"]
+bg_color = Color(0.9490196, 0.8980392, 0.78039217, 1)
+border_width_left = 4
+border_width_top = 6
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.16078432, 0.36078432, 0.10980392, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="SB_CardHover"]
+bg_color = Color(1, 0.98039216, 0.8980392, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 6
+border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0.30588236, 0.6039216, 0.20392157, 0.35)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="SB_CardFocus"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.7764706, 0.23529412, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="SB_RowSlot"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9490196, 0.8980392, 0.78039217, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.6039216, 0.45490196, 0.29411766, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="SB_ChooseNormal"]
+content_margin_left = 14.0
+content_margin_top = 5.0
+content_margin_right = 14.0
+content_margin_bottom = 7.0
+bg_color = Color(1, 0.85490197, 0.44313726, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.6784314, 0.45882353, 0.11764706, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="SB_ChooseHover"]
+content_margin_left = 14.0
+content_margin_top = 5.0
+content_margin_right = 14.0
+content_margin_bottom = 7.0
+bg_color = Color(1, 0.92941177, 0.5647059, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="SB_IconFrame"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.9098039, 0.9490196, 0.85490197, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="SB_Perk"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.9098039, 0.9490196, 0.85490197, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="StarterKitCard" type="Button" unique_id=2064869545]
+custom_minimum_size = Vector2(280, 400)
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("SB_CardNormal")
+theme_override_styles/pressed = SubResource("SB_CardPressed")
+theme_override_styles/hover = SubResource("SB_CardHover")
+theme_override_styles/focus = SubResource("SB_CardFocus")
+script = ExtResource("1_card")
+rowSlotStyle = SubResource("SB_RowSlot")
+chooseNormalStyle = SubResource("SB_ChooseNormal")
+chooseHoverStyle = SubResource("SB_ChooseHover")
+
+[node name="Pad" type="MarginContainer" parent="." unique_id=1979465185]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Rows" type="VBoxContainer" parent="Pad" unique_id=86356585]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 7
+
+[node name="IconFrame" type="PanelContainer" parent="Pad/Rows" unique_id=891553179]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_IconFrame")
+
+[node name="Icon" type="TextureRect" parent="Pad/Rows/IconFrame" unique_id=266775137]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KitName" type="Label" parent="Pad/Rows" unique_id=395105848]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16078432, 0.36078432, 0.10980392, 1)
+theme_override_font_sizes/font_size = 30
+text = "Kit name"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Rule" type="ColorRect" parent="Pad/Rows" unique_id=979489240]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.6039216, 0.45490196, 0.29411766, 1)
+
+[node name="Description" type="Label" parent="Pad/Rows" unique_id=1791294292]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36078432, 0.27058825, 0.16862746, 1)
+theme_override_font_sizes/font_size = 18
+text = "Kit description"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Contents" type="VBoxContainer" parent="Pad/Rows" unique_id=1016784469]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Spacer" type="Control" parent="Pad/Rows" unique_id=2136063880]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="PerkTag" type="PanelContainer" parent="Pad/Rows" unique_id=1288294086]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_Perk")
+
+[node name="PerkLabel" type="Label" parent="Pad/Rows/PerkTag" unique_id=1696027499]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16078432, 0.36078432, 0.10980392, 1)
+theme_override_font_sizes/font_size = 17
+text = "Perk"
+horizontal_alignment = 1
+
+[node name="ChooseTag" type="PanelContainer" parent="Pad/Rows" unique_id=908183766]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_ChooseNormal")
+
+[node name="ChooseLabel" type="Label" parent="Pad/Rows/ChooseTag" unique_id=1562654248]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29803923, 0.1882353, 0.05490196, 1)
+theme_override_font_sizes/font_size = 22
+text = "Start with this kit"
+horizontal_alignment = 1
