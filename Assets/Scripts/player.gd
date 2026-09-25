@@ -10,6 +10,7 @@
 ## those situations applies; see updateToolTip().
 extends CharacterBody2D
 
+#region
 ## Movement speed. rotationSpeed is unused.
 var speed: float = 400
 var rotationSpeed: float = 100
@@ -58,6 +59,7 @@ const ZDECOYSPROUT = preload("uid://cu0nj78id1rtn")
 @export var daySkip = false
 @onready var gameManager: MainScene = $".."
 @onready var shopKeeper: shopKeep = get_node_or_null("../ShopKeep")
+#endregion
 
 ## Lantern starts off; night turns it on.
 func _ready():
@@ -66,11 +68,11 @@ func _ready():
 ## Movement, plus keeping the tooltip visible while holding a defence item
 ## somewhere it could legally be dropped.
 func _physics_process(_delta: float) -> void:
-	var moveInput = snapToCardinal(Input.get_vector("left","right", "up","down"))
+	var moveInput = snapToCardinal(Input.get_vector("left", "right", "up", "down"))
 	velocity = moveInput * speed
 	move_and_slide()
 	handleMovementAnimations(moveInput)
-	if(hotbar.currentSlot != null):
+	if (hotbar.currentSlot != null):
 		if (hotbar.currentSlot.Item == ZMOONLIGHT_REFLECTOR or hotbar.currentSlot.Item == ZDECOYSPROUT) and !isInFarmPlot:
 			tooltip.visible = true
 
@@ -136,7 +138,7 @@ func playIdleAnimation(last_direction):
 ## reduces to "(...moonlight reflector) or (item is a decoy sprout)" -- a
 ## decoy therefore passes even while standing on a plot.
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("use"):
+	if event.is_action_pressed("use") and !mainScene.farmbell.isInRange:
 		if shopKeeper != null and (shopKeeper.isOpen or shopKeeper.canOpen()):
 			return
 		var itemInUse = hotbar.currentSlot.Item
@@ -179,9 +181,9 @@ func _on_plot_selector_body_shape_exited(_body_rid: RID, _body: Node2D, _body_sh
 
 ## Seed wallet accessors, used by the HUD label and the shop.
 func getRenewalSeedCount() -> int:
-	return renewalSeeds 
+	return renewalSeeds
 
-func changeRenewalSeedCount(x : int):
+func changeRenewalSeedCount(x: int):
 	renewalSeeds += x
 	
 ## Works out what the player is standing next to and shows or hides the
@@ -221,7 +223,5 @@ func updateToolTip() -> void:
 			print_debug("no item or valid spot to place")
 	if daySkip == true or (shopKeeper != null and shopKeeper.canOpen()):
 		tooltip.visible = true
-	else: 
+	else:
 		tooltip.visible = false
-		
-	

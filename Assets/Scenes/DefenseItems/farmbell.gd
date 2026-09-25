@@ -35,7 +35,7 @@ func _ready() -> void:
 
 ## Show the "press use" tooltip, but only if the bell has been bought.
 func _on_vision_area_body_entered(body: Node2D) -> void:
-	if(visible):
+	if(visible) and body.is_in_group("Player"):
 		hud.tooltip.visible = true
 		isInRange = true
 	pass # Replace with function body.

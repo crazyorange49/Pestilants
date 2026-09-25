@@ -21,6 +21,7 @@ signal nightLost
 @onready var dayAndNight: DayAndNightCycle = $dayAndNight
 @onready var enemyManager: EnemyManager = $EnemyManager
 @onready var enemySpawn: Marker2D = $EnemyManager/EnemySpawn
+@onready var farmbell: Farmbell = $Farmbell
  
 ## Snapshot of the enemy count taken at startup. Map.numberOfEnemies is the
 ## live figure that actually drives the waves.
