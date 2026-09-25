@@ -127,12 +127,15 @@ func _physics_process(delta: float) -> void:
 			isBackHome = true
 			isTarget = false
 
+var isDead := false
+
 ## Health, clamped to the plant's bounds. Assigning 0 or less triggers die(),
 ## so all damage and healing funnels through this one setter.
 @export var health: int:
 	set(subtractedHealth):
 		health = clamp(subtractedHealth, minHealth, maxHealth)
-		if health <= 0:
+		if health <= 0 and !isDead:
+			isDead = true
 			die()
 	get:
 		return health

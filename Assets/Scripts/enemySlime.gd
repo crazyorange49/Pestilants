@@ -153,7 +153,7 @@ func calculateTarget() -> Plant:
 	for plant in availableTargets:
 		# Immature plants are skipped, which is why enemies ignore freshly
 		# planted seedlings until they have grown.
-		if (!is_instance_valid(plant) or plant.growthProgress < 2 or !plant.is_in_group("Plant")):
+		if (!is_instance_valid(plant) or !plant.is_in_group("Plant") or plant.growthProgress < 2):
 			continue
 
 		var score = calculatePriority(plant)
