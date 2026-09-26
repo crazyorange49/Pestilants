@@ -109,13 +109,14 @@ func _updateDefence() -> void:
 ## reclaimed strip as grass. Surviving with nightsSurived already at 7 wins
 ## the run.
 func nightSurvived():
+	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
+	print("Night survived: " + str(nightsSurived))
 	if nightsSurived == 7:
 		SignalBus.emit_signal("GameOver")
 		return
-	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
-	print("Night survived: " + str(nightsSurived))
 	nightWon.emit()
 	map.grassProgression(nightsSurived, true)
+	
 	
 
 ## Night lost: pull the frontier one section west. Losing again at -1 ends
