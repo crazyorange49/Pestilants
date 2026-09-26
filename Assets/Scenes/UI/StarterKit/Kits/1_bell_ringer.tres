@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StarterKit" format=3 uid="uid://debeo1lgu8awm"]
+
+[ext_resource type="Script" uid="uid://1txowshymg5q" path="res://Assets/Scripts/Resources/starter_kit_entry.gd" id="1_sy6t2"]
+[ext_resource type="Texture2D" uid="uid://cy7es1elt2tf5" path="res://Assets/Sprites/farmBell_Day.png" id="2_6ekyl"]
+[ext_resource type="Script" uid="uid://doglnh67a0c33" path="res://Assets/Scripts/Resources/starter_kit.gd" id="3_oxobe"]
+
+[resource]
+script = ExtResource("3_oxobe")
+kitName = "Bell Ringer"
+description = "Start with the Farm Bell already built beside the farm."
+icon = ExtResource("2_6ekyl")
+includesFarmBell = true
+perk = "Ring it once every night"

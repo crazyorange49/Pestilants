@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="StarterKit" format=3 uid="uid://cptpm7sdnedq7"]
+
+[ext_resource type="Script" uid="uid://1txowshymg5q" path="res://Assets/Scripts/Resources/starter_kit_entry.gd" id="1_h8fif"]
+[ext_resource type="Resource" uid="uid://c0ljm4521vth4" path="res://Assets/Scenes/UI/Shop/Items/rosebush.tres" id="2_g8a6q"]
+[ext_resource type="Texture2D" uid="uid://drsecbdab7ow2" path="res://Assets/Sprites/UI/RoseBush_Icon.png" id="3_51frq"]
+[ext_resource type="Script" uid="uid://doglnh67a0c33" path="res://Assets/Scripts/Resources/starter_kit.gd" id="4_mewbo"]
+
+[sub_resource type="Resource" id="Resource_gjxc8"]
+script = ExtResource("1_h8fif")
+item = ExtResource("2_g8a6q")
+count = 2
+
+[resource]
+script = ExtResource("4_mewbo")
+kitName = "Thorn Wall"
+description = "Thorny bushes that hurt every bug that dares to bite them."
+icon = ExtResource("3_51frq")
+entries = Array[ExtResource("1_h8fif")]([SubResource("Resource_gjxc8")])
+perk = "Thorns hit back"

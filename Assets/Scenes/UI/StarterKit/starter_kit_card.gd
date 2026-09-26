@@ -26,10 +26,11 @@ func setup(_kit: StarterKit) -> void:
 	%Description.text = kit.description
 	%PerkLabel.text = kit.perk
 	%PerkTag.visible = kit.perk != ""
-	if kit.item != null and kit.itemCount > 0:
-		_addRow(kit.item.icon, "x%d  %s" % [kit.itemCount, kit.itemLabel])
-	elif kit.includesFarmBell:
-		_addRow(kit.icon, kit.itemLabel)
+	if kit.includesFarmBell:
+		_addRow(kit.icon, "Farm Bell, ready to ring")
+	for entry in kit.entries:
+		if entry != null and entry.item != null:
+			_addRow(entry.item.icon, "x%d  %s" % [entry.count, entry.item.itemName])
 	if kit.bonusSeeds > 0:
 		_addRow(SEED_ICON, "+%d Renewal Seeds" % kit.bonusSeeds)
 

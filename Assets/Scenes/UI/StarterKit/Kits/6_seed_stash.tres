@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StarterKit" format=3]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/starter_kit_entry.gd" id="1_li6mb"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/UI/seed_icon.tres" id="2_qym03"]
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/starter_kit.gd" id="3_3ktxh"]
+
+[resource]
+script = ExtResource("3_3ktxh")
+kitName = "Seed Stash"
+description = "Nothing planted yet, just a full pouch to spend at the shop."
+icon = ExtResource("2_qym03")
+bonusSeeds = 125
+perk = "Spend it however you like"

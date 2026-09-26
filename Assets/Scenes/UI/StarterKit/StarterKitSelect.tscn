@@ -1,7 +1,14 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dp3fs7y3vtccd"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/UI/StarterKit/starter_kit_select.gd" id="1_select"]
+[ext_resource type="Script" uid="uid://csn57wskmru6s" path="res://Assets/Scenes/UI/StarterKit/starter_kit_select.gd" id="1_select"]
 [ext_resource type="Texture2D" uid="uid://tree25n21hra" path="res://Assets/Sprites/IMG_0332.png" id="2_bg"]
+[ext_resource type="Script" uid="uid://doglnh67a0c33" path="res://Assets/Scripts/Resources/starter_kit.gd" id="3_kitscript"]
+[ext_resource type="Resource" path="res://Assets/Scenes/UI/StarterKit/Kits/1_bell_ringer.tres" id="4_kit1"]
+[ext_resource type="Resource" uid="uid://8pcd6xv2b5nk" path="res://Assets/Scenes/UI/StarterKit/Kits/2_decoy_sprouts.tres" id="5_kit2"]
+[ext_resource type="Resource" uid="uid://cptpm7sdnedq7" path="res://Assets/Scenes/UI/StarterKit/Kits/3_thorn_wall.tres" id="6_kit3"]
+[ext_resource type="Resource" uid="uid://coij8ywhywhhs" path="res://Assets/Scenes/UI/StarterKit/Kits/4_sun_guard.tres" id="7_kit4"]
+[ext_resource type="Resource" uid="uid://3pah42fpixhu" path="res://Assets/Scenes/UI/StarterKit/Kits/5_healers_garden.tres" id="8_kit5"]
+[ext_resource type="Resource" path="res://Assets/Scenes/UI/StarterKit/Kits/6_seed_stash.tres" id="9_kit6"]
 
 [sub_resource type="StyleBoxFlat" id="SB_Window"]
 bg_color = Color(0.9490196, 0.8784314, 0.7372549, 1)
@@ -50,22 +57,6 @@ corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
-[sub_resource type="StyleBoxFlat" id="SB_BackHover"]
-content_margin_left = 22.0
-content_margin_top = 4.0
-content_margin_right = 22.0
-content_margin_bottom = 6.0
-bg_color = Color(1, 0.98039216, 0.8980392, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 5
-border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-
 [sub_resource type="StyleBoxFlat" id="SB_BackPressed"]
 content_margin_left = 22.0
 content_margin_top = 6.0
@@ -82,7 +73,23 @@ corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
-[node name="StarterKitSelect" type="Control"]
+[sub_resource type="StyleBoxFlat" id="SB_BackHover"]
+content_margin_left = 22.0
+content_margin_top = 4.0
+content_margin_right = 22.0
+content_margin_bottom = 6.0
+bg_color = Color(1, 0.98039216, 0.8980392, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.30588236, 0.6039216, 0.20392157, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="StarterKitSelect" type="Control" unique_id=1765427890]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,8 +97,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_select")
+kits = Array[ExtResource("3_kitscript")]([ExtResource("4_kit1"), ExtResource("5_kit2"), ExtResource("6_kit3"), ExtResource("7_kit4"), ExtResource("8_kit5"), ExtResource("9_kit6")])
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1112806940]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,7 +111,7 @@ texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Dim" type="ColorRect" parent="."]
+[node name="Dim" type="ColorRect" parent="." unique_id=1461474772]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +121,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.043137256, 0.09019608, 0.05490196, 0.45)
 
-[node name="Window" type="PanelContainer" parent="."]
+[node name="Window" type="PanelContainer" parent="." unique_id=781078949]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,26 +136,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("SB_Window")
 
-[node name="Pad" type="MarginContainer" parent="Window"]
+[node name="Pad" type="MarginContainer" parent="Window" unique_id=287328141]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="Rows" type="VBoxContainer" parent="Window/Pad"]
+[node name="Rows" type="VBoxContainer" parent="Window/Pad" unique_id=210891138]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Header" type="HBoxContainer" parent="Window/Pad/Rows"]
+[node name="Header" type="HBoxContainer" parent="Window/Pad/Rows" unique_id=1664537338]
 layout_mode = 2
 
-[node name="TitleSign" type="PanelContainer" parent="Window/Pad/Rows/Header"]
+[node name="TitleSign" type="PanelContainer" parent="Window/Pad/Rows/Header" unique_id=968329635]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("SB_Sign")
 
-[node name="Title" type="Label" parent="Window/Pad/Rows/Header/TitleSign"]
+[node name="Title" type="Label" parent="Window/Pad/Rows/Header/TitleSign" unique_id=1551991079]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.98039216, 0.8862745, 1)
 theme_override_colors/font_outline_color = Color(0.10196079, 0.24313726, 0.07058824, 1)
@@ -155,33 +163,33 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 30
 text = "Pick Your Starter Kit"
 
-[node name="Spacer" type="Control" parent="Window/Pad/Rows/Header"]
+[node name="Spacer" type="Control" parent="Window/Pad/Rows/Header" unique_id=1388863904]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="BackButton" type="Button" parent="Window/Pad/Rows/Header"]
+[node name="BackButton" type="Button" parent="Window/Pad/Rows/Header" unique_id=948567534]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("SB_BackNormal")
-theme_override_styles/hover = SubResource("SB_BackHover")
 theme_override_styles/pressed = SubResource("SB_BackPressed")
+theme_override_styles/hover = SubResource("SB_BackHover")
 theme_override_styles/focus = SubResource("SB_BackHover")
 text = "Back"
 
-[node name="Subtitle" type="Label" parent="Window/Pad/Rows"]
+[node name="Subtitle" type="Label" parent="Window/Pad/Rows" unique_id=1241636290]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.36078432, 0.27058825, 0.16862746, 1)
 theme_override_font_sizes/font_size = 20
-text = "Choose one to take into your first day. The rest is up to you!"
+text = "Pick one to take into your first day. Plants in your kit start fully grown!"
 
-[node name="CardRow" type="HBoxContainer" parent="Window/Pad/Rows"]
+[node name="CardRow" type="HBoxContainer" parent="Window/Pad/Rows" unique_id=1388582680]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
