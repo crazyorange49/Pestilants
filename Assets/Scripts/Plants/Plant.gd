@@ -144,7 +144,8 @@ var isDead := false
 ## so the node is still a child of plantStorage when Map._plantDeath() runs.
 func die() -> void:
 	queue_free()
-	SignalBus.emit_signal("PlantDeath")
+	if growthProgress >= 2:
+		SignalBus.emit_signal("PlantDeath")
 
 
 ## Called by player.gd once the plant is placed, recording the spot it should
