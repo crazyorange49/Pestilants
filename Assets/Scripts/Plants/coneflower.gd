@@ -33,6 +33,8 @@ func _process(_delta: float) -> void:
 		attackTarget = getHealTarget()
 		if attackTarget:
 			navigationAgent2d.target_position = attackTarget.position
+			if isInAttackRange(attackTarget):
+				victim = attackTarget
 	if( self.main_scene.dayAndNight.isDay == true ):
 		animated_sprite_2d.play("dayIdle")
 		animation_player.stop()
@@ -77,6 +79,10 @@ func attack():
 	attackTarget = getHealTarget()
 	if attackTarget:
 		navigationAgent2d.target_position = attackTarget.position
+	if victim != attackTarget:
+		victim = attackTarget if isInAttackRange(attackTarget) else null
+		if victim == null:
+			animation_player.play("healOff")
 	can_attack = true
 
 ## Picks the most injured plant worth healing. Skips itself and anything
@@ -84,7 +90,7 @@ func attack():
 func getHealTarget():
 	# NOTE: this is the shared array from Map, not a copy.
 	availablePlants = self.main_scene.itemsOnFeild
-	var bestTarget = attackTarget
+	var bestTarget = null
 	var bestScore := -INF
 	if len(availablePlants) > 0:
 		for plant in availablePlants:

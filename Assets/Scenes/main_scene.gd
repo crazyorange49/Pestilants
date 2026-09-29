@@ -116,6 +116,8 @@ func nightSurvived():
 	nightsSurived = clamp(nightsSurived + 1, -2, 7) 
 	print("Night survived: " + str(nightsSurived))
 	if nightsSurived == 7:
+		GameOverScreen.playerWon = true
+		GameOverScreen.nightsPlayed = currentNight
 		SignalBus.emit_signal("GameOver")
 		return
 	nightWon.emit()
@@ -128,6 +130,8 @@ func nightSurvived():
 func nightLoss():
 	if nightsSurived == -1:
 		#game loss
+		GameOverScreen.playerWon = false
+		GameOverScreen.nightsPlayed = currentNight
 		SignalBus.emit_signal("GameOver")
 		return
 	nightsSurived = clamp(nightsSurived - 1, -2, 7)

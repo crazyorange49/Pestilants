@@ -1,13 +1,20 @@
-[gd_resource type="Resource" script_class="StarterKit" format=3]
+[gd_resource type="Resource" script_class="StarterKit" format=3 uid="uid://s6vsdpi2igat"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Resources/starter_kit_entry.gd" id="1_li6mb"]
+[ext_resource type="Script" uid="uid://1txowshymg5q" path="res://Assets/Scripts/Resources/starter_kit_entry.gd" id="1_li6mb"]
+[ext_resource type="Resource" uid="uid://cu0nj78id1rtn" path="res://Assets/Scenes/UI/Shop/Items/zdecoysprout.tres" id="2_3ktxh"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/UI/seed_icon.tres" id="2_qym03"]
-[ext_resource type="Script" path="res://Assets/Scripts/Resources/starter_kit.gd" id="3_3ktxh"]
+[ext_resource type="Script" uid="uid://doglnh67a0c33" path="res://Assets/Scripts/Resources/starter_kit.gd" id="3_3ktxh"]
+
+[sub_resource type="Resource" id="Resource_pimd8"]
+script = ExtResource("1_li6mb")
+item = ExtResource("2_3ktxh")
+metadata/_custom_type_script = "uid://1txowshymg5q"
 
 [resource]
 script = ExtResource("3_3ktxh")
 kitName = "Seed Stash"
 description = "Nothing planted yet, just a full pouch to spend at the shop."
 icon = ExtResource("2_qym03")
-bonusSeeds = 125
+entries = Array[ExtResource("1_li6mb")]([SubResource("Resource_pimd8")])
+bonusSeeds = 100
 perk = "Spend it however you like"
