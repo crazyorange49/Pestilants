@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StarterKit" format=3 uid="uid://8pcd6xv2b5nk"]
+
+[ext_resource type="Script" uid="uid://1txowshymg5q" path="res://Assets/Scripts/Resources/starter_kit_entry.gd" id="1_63kl6"]
+[ext_resource type="Resource" uid="uid://cu0nj78id1rtn" path="res://Assets/Scenes/UI/Shop/Items/zdecoysprout.tres" id="2_k5fuh"]
+[ext_resource type="Texture2D" uid="uid://uhoo1qsvvxc4" path="res://Assets/Sprites/decoysprout_Day.png" id="3_rei8u"]
+[ext_resource type="Script" uid="uid://doglnh67a0c33" path="res://Assets/Scripts/Resources/starter_kit.gd" id="4_gutxg"]
+
+[sub_resource type="Resource" id="Resource_robei"]
+script = ExtResource("1_63kl6")
+item = ExtResource("2_k5fuh")
+count = 3
+
+[resource]
+script = ExtResource("4_gutxg")
+kitName = "Decoy Sprouts"
+description = "Decoy Sprouts lure bugs in, then explode when they are eaten."
+icon = ExtResource("3_rei8u")
+entries = Array[ExtResource("1_63kl6")]([SubResource("Resource_robei")])
+bonusSeeds = 50
+perk = "Explodes for 30 damage"

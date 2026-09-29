@@ -44,10 +44,10 @@ func die() -> void:
 			enemy.subtractDamage(30)
 
 	enemies_in_attack_area.clear()
+	SignalBus.emit_signal("PlantDeath")
 	
 	decoySprite.play("death")
 	await decoySprite.animation_finished
-	SignalBus.emit_signal("PlantDeath")
 	queue_free()
 
 ## Empty on purpose: overrides Plant._physics_process so the decoy never

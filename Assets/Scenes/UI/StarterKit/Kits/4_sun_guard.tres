@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="StarterKit" format=3 uid="uid://coij8ywhywhhs"]
+
+[ext_resource type="Script" uid="uid://1txowshymg5q" path="res://Assets/Scripts/Resources/starter_kit_entry.gd" id="1_pimd8"]
+[ext_resource type="Resource" uid="uid://e2leq8masu58" path="res://Assets/Scenes/UI/Shop/Items/sunpedal.tres" id="2_4rohq"]
+[ext_resource type="Resource" uid="uid://dh5pyc230gwc2" path="res://Assets/Scenes/UI/Shop/Items/bravestemItem.tres" id="3_y7kl7"]
+[ext_resource type="Texture2D" uid="uid://o0p50i0pssxb" path="res://Assets/Sprites/UI/Sunpetal_Icon.png" id="4_d51jw"]
+[ext_resource type="Script" uid="uid://doglnh67a0c33" path="res://Assets/Scripts/Resources/starter_kit.gd" id="5_a4irl"]
+
+[sub_resource type="Resource" id="Resource_6j8p5"]
+script = ExtResource("1_pimd8")
+item = ExtResource("2_4rohq")
+
+[sub_resource type="Resource" id="Resource_8w2xm"]
+script = ExtResource("1_pimd8")
+item = ExtResource("3_y7kl7")
+count = 2
+
+[resource]
+script = ExtResource("5_a4irl")
+kitName = "Sun Guard"
+description = "A small squad of fighters, fully grown and ready to swing."
+icon = ExtResource("4_d51jw")
+entries = Array[ExtResource("1_pimd8")]([SubResource("Resource_6j8p5"), SubResource("Resource_8w2xm")])
+perk = "Fights from night one"

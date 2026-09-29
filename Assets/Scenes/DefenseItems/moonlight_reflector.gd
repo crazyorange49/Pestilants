@@ -50,8 +50,6 @@ func _process(_float) -> void:
 		point_light_2d.visible = true
 		if enemies_in_attack_area.size() > 0 and damage_timer.is_stopped():
 			damage_timer.start()
-
-
 			
 ## One damage tick to everything currently in the light.
 func _on_damage_timer_timeout() -> void:

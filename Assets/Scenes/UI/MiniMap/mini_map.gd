@@ -832,7 +832,7 @@ func _draw_loose_defenses() -> void:
 	if _scene_root == null:
 		return
 	for child in _scene_root.get_children():
-		if child is Farmbell or child is MoonlightReflector:
+		if (child is Farmbell or child is MoonlightReflector) and (child as CanvasItem).visible:
 			_draw_blip((child as Node2D).global_position, defense_color, blip_size)
 
 

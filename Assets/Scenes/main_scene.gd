@@ -22,6 +22,9 @@ signal nightLost
 @onready var enemyManager: EnemyManager = $EnemyManager
 @onready var enemySpawn: Marker2D = $EnemyManager/EnemySpawn
 @onready var farmbell: Farmbell = $Farmbell
+@onready var shop = $Shop
+
+@export var starterKit: StarterKit
  
 ## Snapshot of the enemy count taken at startup. Map.numberOfEnemies is the
 ## live figure that actually drives the waves.
@@ -47,6 +50,7 @@ func _ready() -> void:
 	SignalBus.connect("PlantPlaced", Callable(self, "_plantPlaced"))
 	SignalBus.connect("DecoyPlanted", Callable(self, "_updateDefence"))
 	itemsOnFeild = enemyManager.plantStorage.get_children() + enemyManager.defenseStorage.get_children()	
+	applyStarterKit()
 	
 
 func _nightEnded() -> void:
@@ -136,3 +140,50 @@ func nightLoss():
 ## all 7 nights.
 func changeScene():
 	get_tree().change_scene_to_file("res://Assets/Scenes/game_over.tscn")
+
+func applyStarterKit() -> void:
+	if starterKit == null:
+		return
+	if starterKit.includesFarmBell:
+		farmbell.unlock()
+		shop.removeItemFromShop(shop.ZFARM_BELL)
+	var plots := _kitPlotCells()
+	for entry in starterKit.entries:
+		if entry == null or entry.item == null:
+			continue
+		for i in entry.count:
+			if entry.item.itemType == 1 and !plots.is_empty():
+				_plantPreGrown(entry.item, plots.pop_front())
+			else:
+				hud.hotbar.addItem(entry.item)
+	player.changeRenewalSeedCount(starterKit.bonusSeeds)
+
+func _kitPlotCells() -> Array[Vector2i]:
+	var soil: TileMapLayer = map.soil_tiles
+	var origin: Vector2i = soil.local_to_map(soil.to_local(player.global_position))
+	var cells: Array[Vector2i] = []
+	for cell in soil.get_used_cells():
+		var data := soil.get_cell_tile_data(cell)
+		if data != null and data.get_collision_polygons_count(0) > 0:
+			cells.append(cell)
+	cells.sort_custom(func(a: Vector2i, b: Vector2i): return a.distance_squared_to(origin) < b.distance_squared_to(origin))
+	var spaced: Array[Vector2i] = []
+	for cell in cells:
+		var crowded := false
+		for taken in spaced:
+			if absi(cell.x - taken.x) < 2 and absi(cell.y - taken.y) < 2:
+				crowded = true
+				break
+		if !crowded:
+			spaced.append(cell)
+	return spaced
+
+func _plantPreGrown(item: itemStats, cell: Vector2i) -> void:
+	var soil: TileMapLayer = map.soil_tiles
+	var plant: Plant = (item.scenePath as PackedScene).instantiate()
+	plant.growthProgress = 2
+	plant.position = enemyManager.plantStorage.to_local(soil.to_global(soil.map_to_local(cell)))
+	plant.dayTimePos = plant.position
+	enemyManager.plantStorage.add_child(plant)
+	plant.onPlantPlaced()
+	currentNumberOfPlants += 1
